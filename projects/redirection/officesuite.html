@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officore Ultimate</title>
+    <style>
+        /* Versteckt alle Browser-Elemente und sorgt für Vollbild */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Verhindert doppelte Scrollbalken */
+            background: #0f172a; /* Gleiche Farbe wie das Original-Theme */
+        }
+
+        /* Der Frame wird so konfiguriert, dass er wie eine lokale App wirkt */
+        .app-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            display: block;
+            z-index: 1;
+        }
+
+        /* Optionaler Overlay-Schutz (verhindert Rechtsklick-Menüs auf dem Frame) */
+        .interaction-shield {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.1); /* Subtiler Tiefeneffekt */
+        }
+    </style>
+</head>
+<body>
+
+    <iframe 
+        src="https://office-suite-pro-8cc61122.base44.app" 
+        class="app-container"
+        id="officore-engine"
+        spellcheck="false"
+        loading="eager">
+    </iframe>
+
+    <div class="interaction-shield"></div>
+
+    <script>
+        // Kleiner Trick: Setzt den Fokus direkt in den Frame, 
+        // damit Tastaturbefehle sofort dort landen.
+        window.onload = function() {
+            const frame = document.getElementById('officore-engine');
+            frame.focus();
+        };
+    </script>
+</body>
+</html>
