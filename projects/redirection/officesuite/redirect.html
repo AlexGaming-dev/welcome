@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icon.png">
+    <title>Officore Pro Suite</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0f172a;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .loading-container {
+            text-align: center;
+        }
+
+        .icon-preview {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #1e293b;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-text {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+    </style>
+    
+    <script>
+        // Diese Funktion startet die App ohne iframe-Blockade
+        window.onload = function() {
+            setTimeout(function() {
+                // Ersetzt das aktuelle Fenster durch die Zielseite
+                // Damit funktionieren Google/Microsoft Logins fehlerfrei
+                window.location.replace("https://office-suite-pro-8cc61122.base44.app");
+            }, 1200); // Kurze Verzögerung für den Effekt
+        };
+    </script>
+</head>
+<body>
+
+    <div class="loading-container">
+        <img src="icon.png" alt="Officore" class="icon-preview" onerror="this.style.display='none'">
+        <div class="spinner"></div>
+        <div class="status-text">OFFICORE WIRD GELADEN...</div>
+    </div>
+
+</body>
+</html>
