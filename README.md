@@ -1,35 +1,40 @@
 # Alex Gaming Studios
 ### Developer | Tech Enthusiast | Open Source Contributor
 
-Willkommen auf meinem Profil! Ich bin Alex, ein leidenschaftlicher Entwickler mit Fokus auf Gaming-Technologien und Web-Development. Hier findest du meine Projekte, Experimente und Tools.
+Welcome to my profile! I'm Alex, a passionate developer focused on gaming technologies and web development. Here you'll find my projects, experiments, and tools.
 
 ---
 
-## 🚀 Über mich
-- 🌍 Ich komme aus **Deutschland**.
-- 🛠️ Ich arbeite aktuell an **Web-basierten Tools** und **Gaming-Interfaces**.
-- 📚 Ich lerne ständig neue Technologien, um meine Workflows zu verbessern.
-- 💬 Frag mich gerne nach Hilfe bei **HTML, CSS oder JavaScript**.
+## 🚀 About Me
+- 🌍 I'm from **Germany**.
+
+- 🛠️ I'm currently working on **web-based tools** and **gaming interfaces**.
+
+- 📚 I'm constantly learning new technologies to improve my workflows.
+
+- 💬 Feel free to ask me for help with **HTML, CSS, or JavaScript**.
 
 ---
 
-## 🛠️ Mein Tech Stack
-| Frontend | Tools & Hosting | Sprachen |
+## 🛠️ My Tech Stack
+| Frontend | Tools & Hosting | Languages ​​|
+
 | :--- | :--- | :--- |
-| HTML5 / CSS3 | Netlify / GitHub Pages | JavaScript (ES6+) |
+
+HTML5 / CSS3 | Netlify / GitHub Pages | JavaScript (ES6+) |
+
 | Responsive Design | Git / GitHub | Markdown |
 
-
 ---
 
-## 🔗 Lass uns vernetzen
-- **Website:** [alexgaming.netlify.app](https://alexgaming.netlify.app)
+## 🔗 Let's connect
+- **Website:** [alexgaming.is-a.dev](https://alexgaming.is-a.dev)
 - **Discord:** discord.com/invite/JzsK7Ay84f
-- **E-Mail:** Siehe Impressum
+- **Email:** See Imprint
 ---
 
-## ⚖️ Lizenz
-Meine Projekte stehen unter der **MIT-Lizenz**. Das bedeutet, du kannst meinen Code gerne als Inspiration nutzen oder darauf aufbauen. Schau dir die jeweilige `LICENSE` Datei in den Repositories an.
+## ⚖️ License
+My projects are licensed under the **MIT License**. This means you are welcome to use my code for inspiration or build upon it. Check out the respective `LICENSE` file in the repositories.
 
 ---
-*Zuletzt aktualisiert: Januar 2026*
+*Last updated: January 2026*
