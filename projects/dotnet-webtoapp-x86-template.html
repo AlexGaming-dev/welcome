@@ -1,169 +1,273 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: .NET WebToApp – Alex Studios</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
-            color: #ffffff; 
-            line-height: 1.6; 
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-        .project-container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 3rem 2rem; 
-            border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-        h1 { color: #00bcd4; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,188,212,0.3); }
-        h2 { margin-top: 2.5rem; font-size: 1.5rem; color: #fff; border-left: 4px solid #00bcd4; padding-left: 15px; }
-        p { margin: 15px 0; color: #cbd5e0; font-size: 1.1rem; }
-        
-        .grid-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project: .NET WebToApp – Alex Gaming</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.06); }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        .instruction-box {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        ul { margin: 15px 25px; color: #cbd5e0; }
-        li { margin-bottom: 10px; }
+    header img { max-height: 50px; }
 
-        .btn-group { text-align: center; margin-top: 40px; }
-        .back-btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background: #00bcd4;
-            color: #011627;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 800;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .back-btn:hover { 
-            background: #ffffff; 
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
-            transform: scale(1.05);
-        }
-        
-        .nav-link { color: #718096; text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; display: block; transition: 0.2s; }
-        .nav-link:hover { color: #00bcd4; }
-        
-        code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #00bcd4; font-family: monospace; }
-    </style>
+    .lang-menu { position: relative; display: inline-block; }
+    
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .lang-dropdown {
+      display: none; 
+      position: absolute;
+      right: 0;
+      background: #1e3a45;
+      min-width: 180px;
+      box-shadow: 0px 8px 24px rgba(0,0,0,0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .lang-dropdown.show { display: block; }
+
+    .lang-dropdown a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .lang-dropdown a:hover { background: #2c5364; }
+
+    .flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; border: 1px solid rgba(255,255,255,0.2); }
+
+    main { flex: 1; padding: 3rem 2rem; }
+    
+    .project-content {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; color: #00bcd4; }
+    h2 { margin-top: 2rem; font-size: 1.5rem; margin-bottom: 1rem; color: #ffffff; border-left: 4px solid #00bcd4; padding-left: 15px; }
+    p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; color: #d1d1d1; }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+
+    .tech-card {
+      background: rgba(255,255,255,0.03);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    ul { list-style: none; }
+    li { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #00bcd4; }
+
+    .github-link { 
+      display: inline-block; padding: 1rem 2rem; background-color: #00bcd4; color: white; 
+      text-decoration: none; font-weight: 700; border-radius: 10px; transition: 0.3s; margin-top: 2rem;
+    }
+    .github-link:hover { background-color: #0097a7; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,188,212,0.4); }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.4); color: #888; margin-top: 2rem; }
+  </style>
 </head>
 <body>
 
-    <div class="project-container">
-        <a href="index.html" class="nav-link" id="t-nav-back">← Zurück zur Übersicht</a>
-        
-        <h1 id="t-name">.NET WebToApp Template</h1>
-        
-        <div class="card">
-            <h2 id="t-desc-title">Was ist das?</h2>
-            <p id="t-desc-text">Lade Beschreibung...</p>
-        </div>
-
-        <div class="grid-info">
-            <div class="card">
-                <strong>Framework</strong><br>
-                <small id="t-spec-fw">.NET 6.0</small>
-            </div>
-            <div class="card">
-                <strong>Platform</strong><br>
-                <small>x86 (Windows)</small>
-            </div>
-            <div class="card">
-                <strong>Engine</strong><br>
-                <small>WebView2 (Edge)</small>
-            </div>
-        </div>
-
-        <div class="instruction-box">
-            <h2 id="t-guide-title">Anleitung</h2>
-            <ul id="t-guide-list">
-                </ul>
-        </div>
-
-        <div class="btn-group">
-            <a href="https://github.com/alexgamingstudio/webtoapp-template" id="t-btn" class="back-btn" target="_blank">GitHub Repository</a>
-        </div>
+  <header>
+    <a href="../index.html"><img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo" /></a>
+    <div class="lang-menu">
+      <button class="lang-btn" id="menu-trigger">
+        <img src="https://flagcdn.com/w40/de.png" id="cur-flag" class="flag"> 
+        <span id="cur-lang-name">Deutsch</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <a href="javascript:void(0)" onclick="changeLang('de', 'Deutsch', 'de')"><img src="https://flagcdn.com/w40/de.png" class="flag"> Deutsch</a>
+        <a href="javascript:void(0)" onclick="changeLang('at', 'Österreich', 'at')"><img src="https://flagcdn.com/w40/at.png" class="flag"> Österreich</a>
+        <a href="javascript:void(0)" onclick="changeLang('ch', 'Schweiz', 'ch')"><img src="https://flagcdn.com/w40/ch.png" class="flag"> Schweiz</a>
+        <a href="javascript:void(0)" onclick="changeLang('en', 'English (US)', 'us')"><img src="https://flagcdn.com/w40/us.png" class="flag"> English</a>
+        <a href="javascript:void(0)" onclick="changeLang('fr', 'Français', 'fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag"> Français</a>
+        <a href="javascript:void(0)" onclick="changeLang('nl', 'Nederlands', 'nl')"><img src="https://flagcdn.com/w40/nl.png" class="flag"> Nederlands</a>
+        <a href="javascript:void(0)" onclick="changeLang('it', 'Italiano', 'it')"><img src="https://flagcdn.com/w40/it.png" class="flag"> Italiano</a>
+        <a href="javascript:void(0)" onclick="changeLang('pl', 'Polski', 'pl')"><img src="https://flagcdn.com/w40/pl.png" class="flag"> Polski</a>
+      </div>
     </div>
+  </header>
 
-    <script>
-        const i18n = {
-            de: {
-                navBack: "← Zurück zur Übersicht",
-                name: ".NET WebToApp Template",
-                descT: "Über dieses Template",
-                descText: "Ein professionelles Fundament, um Web-Oberflächen in native Windows-Apps zu verwandeln. Es nutzt die WebView2-Engine für maximale Performance und bietet volle Unterstützung für WiX-Installer.",
-                guideT: "Schritt-für-Schritt Anleitung",
-                steps: [
-                    "Klicke auf GitHub auf 'Use this template'.",
-                    "Öffne das Projekt in Visual Studio 2022.",
-                    "Trage deine URL in <code>MainWindow.cs</code> ein.",
-                    "Kompiliere das Projekt als <b>Release x86</b>.",
-                    "Nutze WiX Toolset für die <code>.msi</code> Erstellung."
-                ],
-                btn: "Zum GitHub Template"
-            },
-            en: {
-                navBack: "← Back to Overview",
-                name: ".NET WebToApp Template",
-                descT: "About this Template",
-                descText: "A professional foundation to transform web interfaces into native Windows apps. It uses the WebView2 engine for maximum performance and offers full support for WiX installers.",
-                guideT: "Step-by-Step Guide",
-                steps: [
-                    "Click 'Use this template' on GitHub.",
-                    "Open the project in Visual Studio 2022.",
-                    "Enter your target URL in <code>MainWindow.cs</code>.",
-                    "Compile the project as <b>Release x86</b>.",
-                    "Use WiX Toolset for <code>.msi</code> creation."
-                ],
-                btn: "View GitHub Template"
-            }
-        };
+  <main>
+    <div class="project-content">
+      <h1 id="t-title">.NET WebToApp x86 Template</h1>
+      
+      <p id="t-desc">Wird geladen...</p>
 
-        const lang = localStorage.getItem('selectedLang') || 'de';
-        const content = i18n[lang] || i18n['en'];
+      <div class="tech-grid">
+        <div class="tech-card"><strong>Framework</strong><br>.NET 6.0</div>
+        <div class="tech-card"><strong>Arch</strong><br>x86</div>
+        <div class="tech-card"><strong>Engine</strong><br>WebView2</div>
+      </div>
 
-        document.getElementById('t-nav-back').innerText = content.navBack;
-        document.getElementById('t-name').innerText = content.name;
-        document.getElementById('t-desc-title').innerText = content.descT;
-        document.getElementById('t-desc-text').innerText = content.descText;
-        document.getElementById('t-guide-title').innerText = content.guideT;
-        document.getElementById('t-btn').innerText = content.btn;
+      <h2 id="t-guide-title">Anleitung</h2>
+      <ul id="t-guide-list">
+        </ul>
 
-        const list = document.getElementById('t-guide-list');
-        list.innerHTML = content.steps.map(s => `<li>${s}</li>`).join('');
-    </script>
+      <div style="text-align: center;">
+        <a href="https://github.com/alexgamingstudio/webtoapp-template" class="github-link" id="t-btn">GitHub Repository</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span>
+  </footer>
+
+  <script>
+    const i18n = {
+      de: { 
+        title: ".NET WebToApp Template", 
+        desc: "Ein professionelles Fundament, um Webseiten in native Windows x86 Desktop-Anwendungen zu verwandeln. Perfekt für Dashboards oder Kiosk-Systeme.",
+        guideT: "Schritt-für-Schritt Anleitung",
+        steps: ["Template auf GitHub klonen", "In Visual Studio 2022 öffnen", "URL in MainWindow.cs anpassen", "Als Release (x86) kompilieren"],
+        btn: "Jetzt auf GitHub ansehen", 
+        copy: "Alle Rechte vorbehalten." 
+      },
+      at: { 
+        title: ".NET WebToApp Template", 
+        desc: "A professionelles Fundament, um Webseiten in native Windows x86 Desktop-Anwendungen zu verwandeln. Servus beim Coding!",
+        guideT: "Schritt-für-Schritt Anleitung",
+        steps: ["Template auf GitHub klonen", "In Visual Studio 2022 öffnen", "URL in MainWindow.cs anpassen", "Als Release (x86) kompilieren"],
+        btn: "Auf GitHub ansehen", 
+        copy: "Alle Rechte vorbehalten." 
+      },
+      ch: { 
+        title: ".NET WebToApp Template", 
+        desc: "Es professionells Fundament zum Webseiten in native Windows-Apps umwandle. Viel Spass beim Kompiliere!",
+        guideT: "Schritt-für-Schritt Aleitig",
+        steps: ["Template uf GitHub klone", "In Visual Studio öffne", "URL i de MainWindow.cs apasse", "Als Release x86 baue"],
+        btn: "Uf GitHub aluege", 
+        copy: "Alle Rechte vorbehalten." 
+      },
+      en: { 
+        title: ".NET WebToApp Template", 
+        desc: "A professional foundation to transform websites into native Windows x86 desktop applications. Optimized for performance and stability.",
+        guideT: "Step-by-Step Guide",
+        steps: ["Clone the template on GitHub", "Open in Visual Studio 2022", "Update URL in MainWindow.cs", "Build as Release (x86)"],
+        btn: "View on GitHub", 
+        copy: "All rights reserved." 
+      },
+      fr: { 
+        title: "Modèle .NET WebToApp", 
+        desc: "Une base professionnelle pour transformer des sites Web en applications de bureau Windows x86 natives.",
+        guideT: "Guide étape par étape",
+        steps: ["Cloner le modèle sur GitHub", "Ouvrir dans Visual Studio", "Modifier l'URL dans MainWindow.cs", "Compiler en Release (x86)"],
+        btn: "Voir sur GitHub", 
+        copy: "Tous droits réservés." 
+      },
+      nl: { 
+        title: ".NET WebToApp Template", 
+        desc: "Een professionele basis om websites om te zetten in native Windows x86 desktop-apps.",
+        guideT: "Stap-voor-stap handleiding",
+        steps: ["Kloon de template op GitHub", "Open in Visual Studio", "Pas URL aan in MainWindow.cs", "Compileer als Release (x86)"],
+        btn: "Bekijk op GitHub", 
+        copy: "Alle rechten voorbehouden." 
+      },
+      it: { 
+        title: "Template .NET WebToApp", 
+        desc: "Una base professionale per trasformare i siti web in applicazioni desktop native per Windows x86.",
+        guideT: "Guida passo dopo passo",
+        steps: ["Clona il template su GitHub", "Apri in Visual Studio", "Cambia URL in MainWindow.cs", "Compila come Release (x86)"],
+        btn: "Visualizza su GitHub", 
+        copy: "Tutti i diritti riservati." 
+      },
+      pl: { 
+        title: "Szablon .NET WebToApp", 
+        desc: "Profesjonalny fundament do przekształcania stron internetowych w natywne aplikacje Windows x86.",
+        guideT: "Instrukcja krok po kroku",
+        steps: ["Sklonuj szablon na GitHub", "Otwórz w Visual Studio", "Zmień URL w MainWindow.cs", "Skompiluj jako Release (x86)"],
+        btn: "Zobacz na GitHub", 
+        copy: "Wszelkie prawa zastrzeżone." 
+      }
+    };
+
+    const trigger = document.getElementById('menu-trigger');
+    const dropdown = document.getElementById('lang-dropdown');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('show');
+    });
+
+    window.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+    });
+
+    function changeLang(lang, name, flag) {
+      const data = i18n[lang];
+      document.getElementById('t-title').innerText = data.title;
+      document.getElementById('t-desc').innerText = data.desc;
+      document.getElementById('t-guide-title').innerText = data.guideT;
+      document.getElementById('t-btn').innerText = data.btn;
+      document.getElementById('t-copy').innerText = data.copy;
+      
+      document.getElementById('cur-lang-name').innerText = name;
+      document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${flag}.png`;
+      
+      const list = document.getElementById('t-guide-list');
+      list.innerHTML = data.steps.map(s => `<li>${s}</li>`).join('');
+
+      localStorage.setItem('selectedLang', lang);
+    }
+
+    window.onload = () => {
+      const saved = localStorage.getItem('selectedLang') || 'de';
+      const flagMap = {de:'de', at:'at', ch:'ch', en:'us', fr:'fr', nl:'nl', it:'it', pl:'pl'};
+      const nameMap = {de:'Deutsch', at:'Österreich', ch:'Schweiz', en:'English', fr:'Français', nl:'Nederlands', it:'Italiano', pl:'Polski'};
+      changeLang(saved, nameMap[saved], flagMap[saved]);
+    };
+  </script>
 </body>
 </html>
