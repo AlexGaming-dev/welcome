@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: .NET WebToApp – Alex Studios</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            color: #ffffff; 
+            line-height: 1.6; 
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .project-container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        h1 { color: #00bcd4; font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0,188,212,0.3); }
+        h2 { margin-top: 2.5rem; font-size: 1.5rem; color: #fff; border-left: 4px solid #00bcd4; padding-left: 15px; }
+        p { margin: 15px 0; color: #cbd5e0; font-size: 1.1rem; }
+        
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.06); }
+
+        .instruction-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        ul { margin: 15px 25px; color: #cbd5e0; }
+        li { margin-bottom: 10px; }
+
+        .btn-group { text-align: center; margin-top: 40px; }
+        .back-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #00bcd4;
+            color: #011627;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 800;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .back-btn:hover { 
+            background: #ffffff; 
+            box-shadow: 0 0 20px rgba(0, 188, 212, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .nav-link { color: #718096; text-decoration: none; font-size: 0.9rem; margin-bottom: 20px; display: block; transition: 0.2s; }
+        .nav-link:hover { color: #00bcd4; }
+        
+        code { background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; color: #00bcd4; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+    <div class="project-container">
+        <a href="index.html" class="nav-link" id="t-nav-back">← Zurück zur Übersicht</a>
+        
+        <h1 id="t-name">.NET WebToApp Template</h1>
+        
+        <div class="card">
+            <h2 id="t-desc-title">Was ist das?</h2>
+            <p id="t-desc-text">Lade Beschreibung...</p>
+        </div>
+
+        <div class="grid-info">
+            <div class="card">
+                <strong>Framework</strong><br>
+                <small id="t-spec-fw">.NET 6.0</small>
+            </div>
+            <div class="card">
+                <strong>Platform</strong><br>
+                <small>x86 (Windows)</small>
+            </div>
+            <div class="card">
+                <strong>Engine</strong><br>
+                <small>WebView2 (Edge)</small>
+            </div>
+        </div>
+
+        <div class="instruction-box">
+            <h2 id="t-guide-title">Anleitung</h2>
+            <ul id="t-guide-list">
+                </ul>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://github.com/alexgamingstudio/webtoapp-template" id="t-btn" class="back-btn" target="_blank">GitHub Repository</a>
+        </div>
+    </div>
+
+    <script>
+        const i18n = {
+            de: {
+                navBack: "← Zurück zur Übersicht",
+                name: ".NET WebToApp Template",
+                descT: "Über dieses Template",
+                descText: "Ein professionelles Fundament, um Web-Oberflächen in native Windows-Apps zu verwandeln. Es nutzt die WebView2-Engine für maximale Performance und bietet volle Unterstützung für WiX-Installer.",
+                guideT: "Schritt-für-Schritt Anleitung",
+                steps: [
+                    "Klicke auf GitHub auf 'Use this template'.",
+                    "Öffne das Projekt in Visual Studio 2022.",
+                    "Trage deine URL in <code>MainWindow.cs</code> ein.",
+                    "Kompiliere das Projekt als <b>Release x86</b>.",
+                    "Nutze WiX Toolset für die <code>.msi</code> Erstellung."
+                ],
+                btn: "Zum GitHub Template"
+            },
+            en: {
+                navBack: "← Back to Overview",
+                name: ".NET WebToApp Template",
+                descT: "About this Template",
+                descText: "A professional foundation to transform web interfaces into native Windows apps. It uses the WebView2 engine for maximum performance and offers full support for WiX installers.",
+                guideT: "Step-by-Step Guide",
+                steps: [
+                    "Click 'Use this template' on GitHub.",
+                    "Open the project in Visual Studio 2022.",
+                    "Enter your target URL in <code>MainWindow.cs</code>.",
+                    "Compile the project as <b>Release x86</b>.",
+                    "Use WiX Toolset for <code>.msi</code> creation."
+                ],
+                btn: "View GitHub Template"
+            }
+        };
+
+        const lang = localStorage.getItem('selectedLang') || 'de';
+        const content = i18n[lang] || i18n['en'];
+
+        document.getElementById('t-nav-back').innerText = content.navBack;
+        document.getElementById('t-name').innerText = content.name;
+        document.getElementById('t-desc-title').innerText = content.descT;
+        document.getElementById('t-desc-text').innerText = content.descText;
+        document.getElementById('t-guide-title').innerText = content.guideT;
+        document.getElementById('t-btn').innerText = content.btn;
+
+        const list = document.getElementById('t-guide-list');
+        list.innerHTML = content.steps.map(s => `<li>${s}</li>`).join('');
+    </script>
+</body>
+</html>
