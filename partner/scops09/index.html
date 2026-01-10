@@ -11,7 +11,6 @@
             --twitch: #9146FF;
             --discord: #5865F2;
             --bg: #0b0e11;
-            --panel: #18181b;
             --text: #efeff1;
             --text-muted: #adadb8;
         }
@@ -21,11 +20,13 @@
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
         header {
-            height: 100vh;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -36,8 +37,8 @@
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             border: 3px solid var(--twitch);
             margin-bottom: 25px;
@@ -54,28 +55,30 @@
         .tagline {
             font-size: 1.2rem;
             color: var(--text-muted);
-            margin-top: 5px;
-            max-width: 500px;
+            margin-top: 10px;
         }
 
         .cta-group {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             margin-top: 45px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
-            padding: 14px 28px;
-            border-radius: 10px;
+            padding: 15px 35px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             gap: 12px;
             transition: all 0.2s ease-in-out;
+            color: white;
+            min-width: 180px;
+            justify-content: center;
         }
 
         .btn:hover {
@@ -84,19 +87,17 @@
         }
 
         .btn-twitch { 
-            background-color: var(--twitch); 
-            color: white; 
+            background-color: var(--twitch);
+            box-shadow: 0 4px 15px rgba(145, 70, 255, 0.3);
         }
 
         .btn-discord { 
-            background-color: var(--discord); 
-            color: white; 
+            background-color: var(--discord);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
         }
 
         footer {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
+            padding: 30px;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -115,14 +116,15 @@
         <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/503bc5cc-0396-401c-8ad5-69bd9be387b1-profile_image-70x70.png" alt="scops09 Logo" class="logo">
         
         <h1>scops09</h1>
-        <p class="tagline">Gaming, Entertainment & Community auf Twitch.</p>
+        <p class="tagline">Gaming & Entertainment auf Twitch.</p>
 
         <div class="cta-group">
             <a href="https://twitch.tv/scops09" class="btn btn-twitch" target="_blank">
                 <i data-lucide="twitch"></i> Twitch
             </a>
+            
             <a href="https://discord.com/invite/uYBkNMVYTR" class="btn btn-discord" target="_blank">
-                <i data-lucide="message-square"></i> Discord
+                <i data-lucide="messages-square"></i> Discord
             </a>
         </div>
     </header>
@@ -132,7 +134,7 @@
     </footer>
 
     <script>
-        // Lucide Icons initialisieren
+        // Initialisiert die Icons (Twitch und Discord)
         lucide.createIcons();
     </script>
 </body>
