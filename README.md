@@ -29,8 +29,8 @@ HTML5 / CSS3 | Netlify / GitHub Pages | JavaScript (ES6+) |
 
 ## 🔗 Let's connect
 - **Website:** [alexgaming.is-a.dev](https://alexgaming.is-a.dev)
-- **Discord:** discord.com/invite/JzsK7Ay84f
-- **Email:** See Imprint
+- **Discord:** [Discord](https://discord.gg/mGKMvfe6P6)
+- **Email:** [info@alexgaming.is-a.dev](mailto:info@alexgaming.is-a.dev)
 ---
 
 ## ⚖️ License
