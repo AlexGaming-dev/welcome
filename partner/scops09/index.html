@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scops09 | Offizielle Startseite</title>
+    <title>scops09 | Official Hub</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -24,168 +24,115 @@
             line-height: 1.6;
         }
 
-        /* Hero Section */
         header {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, #2e1065 0%, #0b0e11 100%);
+            background: radial-gradient(circle at center, #1a0b33 0%, #0b0e11 100%);
             text-align: center;
             padding: 0 20px;
         }
 
-        .avatar {
-            width: 150px;
-            height: 150px;
+        .logo {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 5px solid var(--twitch);
-            margin-bottom: 20px;
-            box-shadow: 0 0 40px rgba(145, 70, 255, 0.3);
+            border: 3px solid var(--twitch);
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px rgba(145, 70, 255, 0.2);
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin: 0;
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
         }
 
-        .stream-status {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(235, 4, 0, 0.1);
-            color: #ff4a4a;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border: 1px solid rgba(235, 4, 0, 0.3);
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            max-width: 500px;
         }
 
-        .dot {
-            height: 8px;
-            width: 8px;
-            background-color: #ff4a4a;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        /* Buttons */
         .cta-group {
             display: flex;
-            gap: 20px;
-            margin-top: 40px;
+            gap: 15px;
+            margin-top: 45px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
-            padding: 16px 32px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 12px;
-            transition: transform 0.2s, filter 0.2s;
+            transition: all 0.2s ease-in-out;
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            filter: brightness(1.2);
+            transform: translateY(-3px);
+            filter: brightness(1.1);
         }
 
-        .btn-twitch { background-color: var(--twitch); color: white; }
-        .btn-discord { background-color: var(--discord); color: white; }
-
-        /* Content Section */
-        .info-section {
-            max-width: 800px;
-            margin: -50px auto 100px;
-            padding: 40px;
-            background: var(--panel);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
+        .btn-twitch { 
+            background-color: var(--twitch); 
+            color: white; 
         }
 
-        h2 { font-size: 2rem; }
-        p { color: var(--text-muted); font-size: 1.1rem; }
+        .btn-discord { 
+            background-color: var(--discord); 
+            color: white; 
+        }
 
         footer {
-            padding: 40px;
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
             text-align: center;
             color: var(--text-muted);
-            border-top: 1px solid var(--panel);
+            font-size: 0.85rem;
         }
 
-        .social-icons {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .alex-credit {
+            color: var(--twitch);
+            text-decoration: none;
+            font-weight: 600;
         }
-
-        .social-icons a { color: var(--text-muted); transition: color 0.2s; }
-        .social-icons a:hover { color: var(--twitch); }
-
     </style>
 </head>
 <body>
 
     <header>
-        <div class="stream-status">
-            <span class="dot"></span> JETZT LIVE AUF TWITCH
-        </div>
-        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=scops09" alt="scops09 Avatar" class="avatar">
+        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/503bc5cc-0396-401c-8ad5-69bd9be387b1-profile_image-70x70.png" alt="scops09 Logo" class="logo">
+        
         <h1>scops09</h1>
-        <p style="font-size: 1.4rem; color: var(--text-muted); margin-top: 10px;">
-            Gaming & Community – Live aus Leidenschaft.
-        </p>
+        <p class="tagline">Gaming, Entertainment & Community auf Twitch.</p>
 
         <div class="cta-group">
             <a href="https://twitch.tv/scops09" class="btn btn-twitch" target="_blank">
-                <i data-lucide="twitch"></i> Zum Stream
+                <i data-lucide="twitch"></i> Twitch
             </a>
             <a href="https://discord.com/invite/uYBkNMVYTR" class="btn btn-discord" target="_blank">
-                <i data-lucide="message-square"></i> Discord Server
+                <i data-lucide="message-square"></i> Discord
             </a>
         </div>
     </header>
 
-    <section class="info-section">
-        <h2>Willkommen im Squad!</h2>
-        <p>
-            Hey! Ich bin scops09. Auf meinem Kanal dreht sich alles um gute Laune, 
-            packendes Gameplay und den direkten Austausch mit euch. Egal ob Profi-Play 
-            oder totaler Fail – hier zählt der Spaß am Spiel.
-        </p>
-        <p>
-            Schalte ein, schreib in den Chat und werde Teil unserer wachsenden Community!
-        </p>
-    </section>
-
     <footer>
-        <div class="social-icons">
-            <a href="https://twitch.tv/scops09"><i data-lucide="twitch"></i></a>
-            <a href="https://discord.com/invite/uYBkNMVYTR"><i data-lucide="message-square"></i></a>
-        </div>
-        <p>&copy; 2026 scops09. Created by Alex Gaming Studio.</p>
+        <p>&copy; 2026 scops09 | Design by <a href="#" class="alex-credit">Alex Gaming Studio</a></p>
     </footer>
 
     <script>
+        // Lucide Icons initialisieren
         lucide.createIcons();
     </script>
 </body>
