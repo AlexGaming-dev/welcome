@@ -1,18 +1,17 @@
-## 🤖 Automated Pre-Check
-- [ ] **Release Script:** I have verified that my changes pass the internal build/release script.
-> *Note: Maintainers will only review this PR after the automated CI-Pipeline (Release-Check) has finished successfully.*
-## 🎯 Purpose of Use
-- [ ] I am contributing a bug fix or feature to the official project.
-- [ ] I am requesting permission to use part of this code for a specific purpose (please explain below).
-**Explanation:**
-> Write here...
+# 🛡️ Alex Gaming Submission Form
 
-## ✅ Agreement & Terms
-By submitting this Pull Request, I confirm the following:
-- [ ] I have read the **Legal & License** terms of this project.
-- [ ] I understand that cloning or copying this project for personal use is **not allowed**.
-- [ ] I grant AlexGaming.dev the right to use and modify my contributed code.
-- [ ] I have not used third-party code that violates other licenses.
+## 📋 Mandatory Steps
+- [ ] I have read the instructions in **`PR/index.html`**.
+- [ ] I have created a subfolder in **`PR/`** for my files.
+- [ ] I have executed the **Automated Release-Check Script**.
+- [ ] My PR only contains changes within the `PR/` directory.
+
+## 🛠 Request Details
+- [ ] **Product Key Request** (Office Suite Pro only)
+- [ ] **Contribution / Inquiry** - [ ] **Reason (!Grund):** [Enter reason here]
 
 ---
-*Note: Submitting this form does not automatically grant a license for personal use. It serves as a formal inquiry and contribution offer.*
+
+## ✅ Agreement
+- [ ] I accept the **Proprietary License** of Alex Gaming.
+- [ ] I confirm that I have not cloned this repository for personal use.
