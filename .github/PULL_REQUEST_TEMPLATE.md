@@ -1,8 +1,9 @@
-## 🛠 Description
+## 🤖 Automated Pre-Check
+- [ ] **Release Script:** I have verified that my changes pass the internal build/release script.
+> *Note: Maintainers will only review this PR after the automated CI-Pipeline (Release-Check) has finished successfully.*
 ## 🎯 Purpose of Use
 - [ ] I am contributing a bug fix or feature to the official project.
 - [ ] I am requesting permission to use part of this code for a specific purpose (please explain below).
-
 **Explanation:**
 > Write here...
 
