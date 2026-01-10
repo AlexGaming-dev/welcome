@@ -1,21 +1,38 @@
-MIT License
+Proprietary License - Alex Gaming Official Portal
 
-Copyright (c) 2026 AlexGaming.dev
+Copyright (c) 2026 Alex Gaming. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Redistribution and use in source and binary forms, with or without
+modification, are strictly prohibited.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The Portal (Startseite), its design, and its source code are the 
+exclusive property of Alex Gaming. Unauthorized copying of this 
+system, via any medium is strictly prohibited. 
+Proprietary and confidential.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. No part of this source code or design may be reproduced, distributed, 
+   or transmitted in any form or by any means, including mirroring 
+   the website, without the prior written permission of Alex Gaming.
+
+2. You may not modify, adapt, sublicense, translate, sell, reverse 
+   engineer, or disassemble any portion of the Portal. Unauthorized 
+   possession of the source code grants no rights to edit or alter 
+   the original work.
+
+3. CONTRIBUTIONS AND PULL REQUESTS:
+   Users are permitted to submit Pull Requests via the official 
+   repository for the purpose of proposing UI improvements, fixing 
+   broken links, or submitting a formal inquiry for code usage. 
+   However, this does NOT grant the right to clone the repository 
+   for personal use or to create a personal website based on this design.
+
+4. The structure and redirection logic contained within this Portal 
+   are proprietary information of Alex Gaming.
+
+5. Possession of the source code does not constitute ownership. 
+   All intellectual property remains with Alex Gaming.
+
+Official Portal: https://alexgaming.is-a.dev/
+
+Legal action will be taken against any unauthorized use or theft 
+of intellectual property.
