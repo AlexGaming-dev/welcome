@@ -20,6 +20,7 @@
     .license-badge { display: inline-block; background: #00bcd4; color: #000; padding: 2px 10px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
     .back-btn { display: inline-block; margin-top: 3rem; padding: 0.8rem 2rem; background: #00bcd4; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; transition: 0.3s; }
     .back-btn:hover { background: #0097a7; transform: translateY(-2px); }
+    .custom-notice { color: #ff9800; font-weight: 600; font-size: 0.9rem; margin-top: 10px; border-left: 3px solid #ff9800; padding-left: 10px; }
   </style>
 </head>
 <body>
@@ -35,8 +36,13 @@
     <section>
       <h2 id="l-h2">⚖️ Lizenzierung</h2>
       <div class="section-box">
-        <span class="license-badge">MIT License</span>
+        <span class="license-badge">MIT License + Custom Terms</span>
         <p id="l-t2">Sofern nicht anders angegeben, unterliegen meine Projekte der folgenden Lizenz:</p>
+        
+        <div class="custom-notice">
+          Hinweis: Pull-Requests sind willkommen, jedoch ist das Klonen oder Kopieren des Projekts/Codes für die persönliche Nutzung untersagt.
+        </div>
+
         <div class="license-text">MIT License
 
 Copyright (c) 2026 AlexGaming.dev
@@ -67,14 +73,13 @@ SOFTWARE.</div>
         <p id="l-t4" style="font-size: 0.85rem; color: #777; font-style: italic;">Hinweis gemäß § 5 TMG: Aufgrund der privaten Natur wird auf die Veröffentlichung einer privaten Anschrift verzichtet. Identitätsanfragen können via E-Mail gestellt werden.</p>
       </div>
     </section>
-    <div style="text-align: center;"><a href="index.html" class="back-btn" id="l-btn">Zurück zur Startseite</a></div>
+    <div style="text-align: center;"><a href="/" class="back-btn" id="l-btn">Zurück zur Startseite</a></div>
   </div>
 
   <script>
     const i18n = {
       de: { title: "Legal & Lizenz", h1: "📧 Kontakt", t1: "Für Anfragen oder Feedback erreichst du mich per E-Mail:", h2: "⚖️ Lizenzierung", t2: "Sofern nicht anders angegeben, unterliegen meine Projekte der folgenden Lizenz:", h3: "📜 Rechtlicher Hinweis", t3: "Dies ist eine rein private Website zur Präsentation von Software-Projekten. Es erfolgt keine gewerbliche Nutzung.", t4: "Hinweis gemäß § 5 TMG: Aufgrund der privaten Natur wird auf die Veröffentlichung einer privaten Anschrift verzichtet. Identitätsanfragen können via E-Mail gestellt werden.", btn: "Zurück zur Startseite" },
       en: { title: "Legal & License", h1: "📧 Contact", t1: "For inquiries or feedback, you can reach me by email:", h2: "⚖️ Licensing", t2: "Unless otherwise stated, my projects are subject to the following license:", h3: "📜 Legal Notice", t3: "This is a purely private website for the presentation of software projects. There is no commercial use.", t4: "Note according to § 5 TMG: Due to the private nature, we refrain from publishing a private address. Identity inquiries can be made via email.", btn: "Back to Home" }
-      // Weitere Sprachen hier ergänzen
     };
     const lang = localStorage.getItem('selectedLang') || 'de';
     const t = i18n[lang] || i18n['en'];
@@ -89,5 +94,4 @@ SOFTWARE.</div>
     document.getElementById('l-btn').innerText = t.btn;
   </script>
 </body>
-
 </html>
