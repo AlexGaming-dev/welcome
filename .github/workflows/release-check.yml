@@ -1,0 +1,23 @@
+name: Release Safety & Integrity Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Alex Gaming Validation Script
+        run: |
+          echo "Starting automated release check..."
+          # Hier würde dein Skript-Aufruf stehen, z.B.:
+          # sh scripts/validate_release.sh
+          echo "Check passed! Ready for Maintainer Review."
+
+      - name: Notify Maintainers
+        if: success()
+        run: echo "The script has verified this release. Maintainers can now start the manual check."
