@@ -10,11 +10,12 @@
             --peace-blue: #00a8ff;
             --peace-gold: #f1c40f;
             --text-dark: #2d3436;
+            --soft-bg: #f9f9f9;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--peace-white);
             color: var(--text-dark);
             line-height: 1.6;
@@ -23,115 +24,142 @@
             align-items: center;
         }
 
+        /* Navigation */
         .top-bar {
             width: 100%;
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1000px;
+            max-width: 1100px;
             box-sizing: border-box;
         }
 
         .nav-left { display: flex; align-items: center; gap: 20px; }
         
         .lang-switch {
-            background: #f1f2f6;
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            border-radius: 5px;
+            background: var(--text-dark);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 0.8rem;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        .lang-switch:hover { background: var(--peace-blue); }
 
         .back-link {
             text-decoration: none;
             color: var(--peace-blue);
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .logo-small {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--peace-blue);
         }
 
+        /* Hero */
         .hero-section {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, var(--soft-bg), var(--peace-white));
             width: 100%;
         }
 
-        .symbol { font-size: 80px; margin-bottom: 20px; }
+        .symbol { font-size: 90px; margin-bottom: 20px; animation: float 6s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+        /* Manifesto Content */
         .manifesto-content {
-            max-width: 700px;
+            max-width: 750px;
             margin: 20px auto;
             padding: 40px;
-            border-left: 4px solid var(--peace-gold);
+            border-left: 5px solid var(--peace-gold);
             background: #fffdf9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            border-radius: 0 15px 15px 0;
         }
 
-        h2 {
-            color: var(--peace-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        h2 { color: var(--peace-blue); text-transform: uppercase; letter-spacing: 2px; margin-top: 0; }
 
+        /* Donation Section */
         .donation-section {
-            background: #f1f2f6;
+            background: var(--soft-bg);
             width: 100%;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
+            box-sizing: border-box;
         }
 
         .donation-grid {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .btn-donate {
-            padding: 10px 20px;
+            padding: 15px 25px;
             background: white;
-            border: 1px solid #ddd;
+            border: 2px solid transparent;
             text-decoration: none;
             color: var(--text-dark);
-            border-radius: 5px;
-            font-size: 0.9rem;
+            border-radius: 10px;
+            font-weight: bold;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .btn-donate:hover { background: var(--peace-blue); color: white; border-color: var(--peace-blue); }
+        .btn-donate:hover { 
+            border-color: var(--peace-blue); 
+            transform: translateY(-3px);
+            color: var(--peace-blue);
+        }
 
-        .cta-box { margin-top: 50px; text-align: center; }
+        /* Repository CTA */
+        .cta-box { margin: 60px 20px; text-align: center; }
 
         .btn-repo {
             display: inline-block;
-            padding: 20px 40px;
+            padding: 22px 50px;
             background-color: var(--text-dark);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
             font-weight: bold;
-            transition: all 0.3s ease;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .btn-repo:hover {
             background-color: var(--peace-blue);
-            transform: translateY(-3px);
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0, 168, 255, 0.3);
         }
 
         .equality-statement {
             font-style: italic;
-            margin: 60px 20px 20px 20px;
-            opacity: 0.8;
+            max-width: 600px;
+            margin: 40px auto;
+            opacity: 0.7;
             text-align: center;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            margin-bottom: 40px;
+            font-size: 0.85rem;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -139,49 +167,51 @@
 
     <nav class="top-bar">
         <div class="nav-left">
-            <a href="/" class="back-link">← <span class="t" data-en="Back" data-de="Zurück">Back</span></a>
+            <a href="/" class="back-link">← <span class="t" data-en="Home" data-de="Startseite">Home</span></a>
             <button class="lang-switch" onclick="toggleLang()">DE / EN</button>
         </div>
         <img src="https://alexgaming.is-a.dev/content/svg/logo/icon.svg" alt="Logo" class="logo-small">
     </nav>
 
-    <section class="hero-section">
+    <header class="hero-section">
         <div class="symbol">🕊️</div>
-        <h1 class="t" data-en="Standing for Peace & Equality" data-de="Für Frieden & Gleichheit">Standing for Peace & Equality</h1>
-        <p><span class="t" data-en="A personal commitment to the global" data-de="Eine persönliche Verpflichtung zum globalen">A personal commitment to the global</span> <strong>PeaceProtocol</strong>.</p>
-    </section>
+        <h1 class="t" data-en="Advocating for Peace & Equality" data-de="Einsatz für Frieden & Gleichberechtigung">Advocating for Peace & Equality</h1>
+        <p class="t" data-en="A personal commitment to the global PeaceProtocol." data-de="Eine persönliche Verpflichtung zum globalen PeaceProtocol.">A personal commitment to the global PeaceProtocol.</p>
+    </header>
 
-    <div class="manifesto-content">
-        <h2 class="t" data-en="The Message" data-de="Die Botschaft">The Message</h2>
-        <p class="t" 
-           data-en="In a world of fragments, I believe in unity. Digital spaces should not be used to divide, but to bridge the gaps between us. This page serves as my official endorsement of the PeaceProtocol." 
-           data-de="In einer Welt der Fragmente glaube ich an Einheit. Digitale Räume sollten nicht zur Spaltung genutzt werden, sondern um Brücken zu bauen. Diese Seite dient als meine offizielle Unterstützung des PeaceProtocol.">
-           In a world of fragments, I believe in unity. Digital spaces should not be used to divide, but to bridge the gaps between us. This page serves as my official endorsement of the PeaceProtocol.
-        </p>
-        
-        <p class="t" 
-           data-en="I commit to the principle that every individual, regardless of their background, deserves absolute equality and a life free from the shadows of conflict." 
-           data-de="Ich bekenne mich zu dem Grundsatz, dass jeder Einzelne, unabhängig von seinem Hintergrund, absolute Gleichheit und ein Leben frei von den Schatten des Konflikts verdient.">
-           I commit to the principle that every individual, regardless of their background, deserves absolute equality and a life free from the shadows of conflict.
-        </p>
-    </div>
-
-    <section class="donation-section">
-        <h3 class="t" data-en="Support the Cause" data-de="Unterstütze die Sache">Support the Cause</h3>
-        <p class="t" data-en="Action is stronger than words. Consider donating to these organizations:" data-de="Taten sagen mehr als Worte. Ziehe eine Spende an diese Organisationen in Betracht:">Action is stronger than words. Consider donating to these organizations:</p>
-        <div class="donation-grid">
-            <a href="https://www.amnesty.org" class="btn-donate" target="_blank">Amnesty International</a>
-            <a href="https://www.unicef.org" class="btn-donate" target="_blank">UNICEF</a>
-            <a href="https://www.msf.org" class="btn-donate" target="_blank">Doctors Without Borders</a>
+    <main>
+        <div class="manifesto-content">
+            <h2 class="t" data-en="The Mission" data-de="Die Mission">The Mission</h2>
+            <p class="t" 
+               data-en="I believe that digital innovation must go hand in hand with human values. This space is dedicated to the idea that every human being, regardless of origin or identity, deserves a life of dignity and peace." 
+               data-de="Ich glaube, dass digitale Innovation Hand in Hand mit menschlichen Werten gehen muss. Dieser Raum ist der Idee gewidmet, dass jeder Mensch, unabhängig von Herkunft oder Identität, ein Leben in Würde und Frieden verdient.">
+               I believe that digital innovation must go hand in hand with human values. This space is dedicated to the idea that every human being, regardless of origin or identity, deserves a life of dignity and peace.
+            </p>
+            <p class="t" 
+               data-en="By supporting the PeaceProtocol, I pledge to use my digital voice to build bridges and stand against discrimination." 
+               data-de="Durch die Unterstützung des PeaceProtocol verpflichte ich mich, meine digitale Stimme zu nutzen, um Brücken zu bauen und mich gegen Diskriminierung einzusetzen.">
+               By supporting the PeaceProtocol, I pledge to use my digital voice to build bridges and stand against discrimination.
+            </p>
         </div>
-    </section>
 
-    <div class="cta-box">
-        <p class="t" data-en="To read the full protocol and join the movement:" data-de="Um das vollständige Protokoll zu lesen und Teil der Bewegung zu werden:">To read the full protocol and join the movement:</p>
-        <a href="https://github.com/AlexGaming-dev/PeaceProtocol" class="btn-repo" target="_blank">
-            Open PeaceProtocol Repository
-        </a>
-    </div>
+        <section class="donation-section">
+            <h3 class="t" data-en="Take Action: Support Humanity" data-de="Handeln: Menschlichkeit unterstützen">Take Action: Support Humanity</h3>
+            <p class="t" data-en="Peace requires more than words. Support these vital organizations:" data-de="Frieden braucht mehr als Worte. Unterstütze diese wichtigen Organisationen:">Peace requires more than words. Support these vital organizations:</p>
+            <div class="donation-grid">
+                <a href="https://www.amnesty.org" class="btn-donate" target="_blank">Amnesty International</a>
+                <a href="https://www.unicef.org" class="btn-donate" target="_blank">UNICEF</a>
+                <a href="https://www.msf.org" class="btn-donate" target="_blank">Doctors Without Borders</a>
+                <a href="https://www.icrc.org" class="btn-donate" target="_blank">Red Cross</a>
+            </div>
+        </section>
+
+        <div class="cta-box">
+            <p class="t" data-en="Explore the official repository and contribute:" data-de="Entdecke das offizielle Repository und wirke mit:">Explore the official repository and contribute:</p>
+            <a href="https://github.com/AlexGaming-dev/PeaceProtocol" class="btn-repo" target="_blank">
+                PeaceProtocol on GitHub
+            </a>
+        </div>
+    </main>
 
     <p class="equality-statement t" 
        data-en='"All human beings are born free and equal in dignity and rights."' 
@@ -189,8 +219,8 @@
        "All human beings are born free and equal in dignity and rights."
     </p>
 
-    <footer style="margin-bottom: 50px; margin-top: 40px; font-size: 0.9rem;">
-        <span class="t" data-en="Part of the" data-de="Teil des">Part of the</span> <a href="https://alexgaming.is-a.dev" style="color: inherit;">alexgaming.is-a.dev</a> <span class="t" data-en="ecosystem." data-de="Ökosystems.">ecosystem.</span>
+    <footer>
+        <span class="t" data-en="Official Advocate Page" data-de="Offizielle Unterstützer-Seite">Official Advocate Page</span> | alexgaming.is-a.dev
     </footer>
 
     <script>
