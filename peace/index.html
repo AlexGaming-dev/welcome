@@ -30,6 +30,18 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1000px;
+            box-sizing: border-box;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        
+        .lang-switch {
+            background: #f1f2f6;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
         }
 
         .back-link {
@@ -45,19 +57,16 @@
 
         .hero-section {
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             background: linear-gradient(to bottom, #f9f9f9, #ffffff);
             width: 100%;
         }
 
-        .symbol {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
+        .symbol { font-size: 80px; margin-bottom: 20px; }
 
         .manifesto-content {
             max-width: 700px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 40px;
             border-left: 4px solid var(--peace-gold);
             background: #fffdf9;
@@ -70,10 +79,36 @@
             letter-spacing: 2px;
         }
 
-        .cta-box {
-            margin-top: 50px;
+        .donation-section {
+            background: #f1f2f6;
+            width: 100%;
+            padding: 50px 20px;
             text-align: center;
+            margin-top: 40px;
         }
+
+        .donation-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-donate {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: var(--text-dark);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-donate:hover { background: var(--peace-blue); color: white; border-color: var(--peace-blue); }
+
+        .cta-box { margin-top: 50px; text-align: center; }
 
         .btn-repo {
             display: inline-block;
@@ -90,48 +125,83 @@
         .btn-repo:hover {
             background-color: var(--peace-blue);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .equality-statement {
             font-style: italic;
-            margin-top: 60px;
+            margin: 60px 20px 20px 20px;
             opacity: 0.8;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
     <nav class="top-bar">
-        <a href="/" class="back-link">← Back to Alex Gaming</a>
+        <div class="nav-left">
+            <a href="/" class="back-link">← <span class="t" data-en="Back" data-de="Zurück">Back</span></a>
+            <button class="lang-switch" onclick="toggleLang()">DE / EN</button>
+        </div>
         <img src="https://alexgaming.is-a.dev/content/svg/logo/icon.svg" alt="Logo" class="logo-small">
     </nav>
 
     <section class="hero-section">
         <div class="symbol">🕊️</div>
-        <h1>Standing for Peace & Equality</h1>
-        <p>A personal commitment to the global <strong>PeaceProtocol</strong>.</p>
+        <h1 class="t" data-en="Standing for Peace & Equality" data-de="Für Frieden & Gleichheit">Standing for Peace & Equality</h1>
+        <p><span class="t" data-en="A personal commitment to the global" data-de="Eine persönliche Verpflichtung zum globalen">A personal commitment to the global</span> <strong>PeaceProtocol</strong>.</p>
     </section>
 
     <div class="manifesto-content">
-        <h2>The Message</h2>
-        <p>In a world of fragments, I believe in unity. Digital spaces should not be used to divide, but to bridge the gaps between us. This page serves as my official endorsement of the <strong>PeaceProtocol</strong>.</p>
+        <h2 class="t" data-en="The Message" data-de="Die Botschaft">The Message</h2>
+        <p class="t" 
+           data-en="In a world of fragments, I believe in unity. Digital spaces should not be used to divide, but to bridge the gaps between us. This page serves as my official endorsement of the PeaceProtocol." 
+           data-de="In einer Welt der Fragmente glaube ich an Einheit. Digitale Räume sollten nicht zur Spaltung genutzt werden, sondern um Brücken zu bauen. Diese Seite dient als meine offizielle Unterstützung des PeaceProtocol.">
+           In a world of fragments, I believe in unity. Digital spaces should not be used to divide, but to bridge the gaps between us. This page serves as my official endorsement of the PeaceProtocol.
+        </p>
         
-        <p>I commit to the principle that every individual, regardless of their background, deserves absolute equality and a life free from the shadows of conflict.</p>
+        <p class="t" 
+           data-en="I commit to the principle that every individual, regardless of their background, deserves absolute equality and a life free from the shadows of conflict." 
+           data-de="Ich bekenne mich zu dem Grundsatz, dass jeder Einzelne, unabhängig von seinem Hintergrund, absolute Gleichheit und ein Leben frei von den Schatten des Konflikts verdient.">
+           I commit to the principle that every individual, regardless of their background, deserves absolute equality and a life free from the shadows of conflict.
+        </p>
     </div>
 
+    <section class="donation-section">
+        <h3 class="t" data-en="Support the Cause" data-de="Unterstütze die Sache">Support the Cause</h3>
+        <p class="t" data-en="Action is stronger than words. Consider donating to these organizations:" data-de="Taten sagen mehr als Worte. Ziehe eine Spende an diese Organisationen in Betracht:">Action is stronger than words. Consider donating to these organizations:</p>
+        <div class="donation-grid">
+            <a href="https://www.amnesty.org" class="btn-donate" target="_blank">Amnesty International</a>
+            <a href="https://www.unicef.org" class="btn-donate" target="_blank">UNICEF</a>
+            <a href="https://www.msf.org" class="btn-donate" target="_blank">Doctors Without Borders</a>
+        </div>
+    </section>
+
     <div class="cta-box">
-        <p>To read the full protocol and join the movement:</p>
+        <p class="t" data-en="To read the full protocol and join the movement:" data-de="Um das vollständige Protokoll zu lesen und Teil der Bewegung zu werden:">To read the full protocol and join the movement:</p>
         <a href="https://github.com/AlexGaming-dev/PeaceProtocol" class="btn-repo" target="_blank">
             Open PeaceProtocol Repository
         </a>
     </div>
 
-    <p class="equality-statement">"All human beings are born free and equal in dignity and rights."</p>
+    <p class="equality-statement t" 
+       data-en='"All human beings are born free and equal in dignity and rights."' 
+       data-de='"Alle Menschen sind frei und gleich an Würde und Rechten geboren."'>
+       "All human beings are born free and equal in dignity and rights."
+    </p>
 
     <footer style="margin-bottom: 50px; margin-top: 40px; font-size: 0.9rem;">
-        Part of the <a href="https://alexgaming.is-a.dev" style="color: inherit;">alexgaming.is-a.dev</a> ecosystem.
+        <span class="t" data-en="Part of the" data-de="Teil des">Part of the</span> <a href="https://alexgaming.is-a.dev" style="color: inherit;">alexgaming.is-a.dev</a> <span class="t" data-en="ecosystem." data-de="Ökosystems.">ecosystem.</span>
     </footer>
+
+    <script>
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            document.querySelectorAll('.t').forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+    </script>
 
 </body>
 </html>
