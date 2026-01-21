@@ -59,7 +59,7 @@
             border-color: var(--accent);
         }
 
-        /* Main Content (Hidden initially) */
+        /* Main Content */
         #main-content {
             opacity: 0;
             transition: opacity 2s ease;
@@ -67,6 +67,7 @@
             margin: 0 auto;
             padding: 60px 20px;
             text-align: center;
+            visibility: hidden; /* Prevent interaction before click */
         }
 
         .video-wrapper {
@@ -130,7 +131,7 @@
     <div class="ambient-glow"></div>
 
     <audio id="bgMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-sad-pensive-piano-23.mp3" type="audio/mpeg">
+        <source src="https://neal.fun/not-a-robot/end/music.mp3" type="audio/mpeg">
     </audio>
 
     <div id="main-content">
@@ -158,17 +159,34 @@
     </div>
 
     <script>
+        let experienceStarted = false;
+
         function startExperience() {
+            if (experienceStarted) return;
+            experienceStarted = true;
+
             const music = document.getElementById('bgMusic');
             const overlay = document.getElementById('overlay');
             const content = document.getElementById('main-content');
 
-            // Play Music
-            music.volume = 0.3;
-            music.play();
+            // Musik-Setup & sanfter Fade-In
+            music.volume = 0;
+            music.play().catch(e => console.log("Audio play blocked", e));
+            
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                if (vol < 0.3) {
+                    vol += 0.02;
+                    music.volume = vol;
+                } else {
+                    clearInterval(fadeIn);
+                }
+            }, 100);
 
-            // UI Transitions
+            // UI-Animationen
             overlay.style.opacity = '0';
+            content.style.visibility = 'visible';
+            
             setTimeout(() => {
                 overlay.style.display = 'none';
                 content.style.opacity = '1';
