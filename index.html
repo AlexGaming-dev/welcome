@@ -129,6 +129,24 @@
       .welcome-box h1 { font-size: 2rem; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alex Gaming",
+    "url": "https://alexgaming.is-a.dev",
+    "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
+    "sameAs": [
+      "https://mastodon.social/@alexgamingdev",
+      "https://github.com/alexgamingstudio",
+      "https://www.youtube.com/@alexgamingdev"
+    ],
+    "jobTitle": "Softwareentwickler",
+    "knowsAbout": ["C#", ".NET 6", "WebView2", "JavaScript", "WiX Toolset"],
+    "description": "Deutscher Softwareentwickler spezialisiert auf .NET Framework und moderne Web-Lösungen."
+  }
+  </script>
 </head>
 <body>
 
@@ -157,18 +175,20 @@
       <h1 id="t-title">Willkommen bei Alex Gaming</h1>
       <p id="t-desc">Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.</p>
       
-<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-  <a href="github/" class="cta-btn" id="t-btn">GitHub Profil</a>
-  <a rel="me" href="https://mastodon.social/@alexgamingdev" style="color: #00bcd4; text-decoration: none; font-weight: 600;">Auf Mastodon folgen</a>
-</div>
+      <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+        <a href="https://github.com/alexgamingstudio" class="cta-btn" id="t-btn">GitHub Profil</a>
+        <a rel="me" href="https://mastodon.social/@alexgamingdev" style="color: #00bcd4; text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px dashed #00bcd4; padding-bottom: 2px;">
+          Verifiziert auf Mastodon
+        </a>
+      </div>
 
       <div class="about-grid">
         <div class="about-info">
-          <h2 id="t-about-h" style="border:none; padding:0; margin-bottom:10px;">Über mich</h2>
+          <h2 id="t-about-h" style="border:none; padding:0; margin-bottom:10px; color: #00bcd4;">Über mich</h2>
           <p id="t-about-p" style="font-size:1rem; text-align:left;">Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.</p>
         </div>
         <div class="about-skills">
-          <h2 id="t-skills-h" style="border:none; padding:0; margin-bottom:10px;">Tech Stack</h2>
+          <h2 id="t-skills-h" style="border:none; padding:0; margin-bottom:10px; color: #00bcd4;">Tech Stack</h2>
           <div id="skills-list">
             <span class="skill-badge">C# / .NET 6</span>
             <span class="skill-badge">WebView2</span>
@@ -182,9 +202,9 @@
   </main>
 
   <footer>
-    &copy; 2025 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
-    <a href="legal/" style="color:#888; text-decoration:none;">imprint</a> | 
-    <a href="privacy/" style="color:#888; text-decoration:none;">Data protection</a>
+    &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
+    <a href="legal/" style="color:#888; text-decoration:none;">Impressum</a> | 
+    <a href="privacy/" style="color:#888; text-decoration:none;">Datenschutz</a>
   </footer>
 
   <script>
@@ -195,8 +215,8 @@
       ch: { title: "Grüezi bei Alex Gaming", desc: "Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
       fr: { title: "Bienvenue chez Alex Gaming", desc: "Ravi de vous voir!<br>Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET et les technologies web. La qualité est ma priorité.", skillsH: "Compétences", copy: "Tous droits réservés." },
       nl: { title: "Welkom bij Alex Gaming", desc: "Leuk dat je er bent!<br>Ich bin ein deutscher Developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen met een focus op .NET en webtechnologieën.", skillsH: "Tech Stack", copy: "Alle rechten voorbehouden." },
-      it: { title: "Benvenuti in Alex Gaming", desc: "Piacere di averti qui!<br>Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET e tecnologie web.", skillsH: "Competenze", copy: "Tutti i diritti riservati." },
-      pl: { title: "Witamy w Alex Gaming", desc: "Fajnie, że jesteś!<br>Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET i technologiach webowych.", skillsH: "Umiejętności", copy: "Wszelkie prawa zastrzeżone." }
+      it: { title: "Benvenuti in Alex Gaming", desc: "Piacere di averti qui!<br>Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET e tecnologie web.", skillsH: "Competenze", copy: "Tutti i diritti reservati." },
+      pl: { title: "Witamy w Alex Gaming", desc: "Fajnie, że jesteś!<br>Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę moderne rozwiązania oparte na .NET i technologiach webowych.", skillsH: "Umiejętności", copy: "Wszelkie prawa zastrzeżone." }
     };
 
     const trigger = document.getElementById('menu-trigger');
@@ -211,6 +231,7 @@
 
     function changeLang(lang, name, flag) {
       const data = i18n[lang];
+      if(!data) return;
       document.getElementById('t-title').innerText = data.title;
       document.getElementById('t-desc').innerHTML = data.desc;
       document.getElementById('t-btn').innerText = data.btn;
@@ -233,11 +254,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
