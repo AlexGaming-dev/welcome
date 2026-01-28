@@ -12,19 +12,12 @@
       font-family: 'Inter', sans-serif;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
+      display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;
     }
     .error-box {
       background-color: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 4rem 2rem;
-      backdrop-filter: blur(10px);
-      max-width: 500px;
+      border-radius: 20px; padding: 4rem 2rem; backdrop-filter: blur(10px); max-width: 500px;
     }
     h1 { font-size: 5rem; color: #00bcd4; margin-bottom: 10px; }
     p { font-size: 1.2rem; color: #cbd5e0; margin-bottom: 30px; }
@@ -38,23 +31,27 @@
 <body>
   <div class="error-box">
     <h1>404</h1>
-    <p id="t-404-msg">Oops! Die Seite wurde nicht gefunden.</p>
-    <a href="https://alexgaming.is-a.dev/" class="cta-btn" id="t-404-btn">Zurück zur Startseite</a>
+    <p id="t-msg">Seite nicht gefunden</p>
+    <a href="/" class="cta-btn" id="t-btn">Zur Startseite</a>
   </div>
 
   <script>
     const i18n = {
-      de: { msg: "Oops! Diese Seite existiert nicht oder wurde verschoben.", btn: "Zurück zur Startseite" },
-      en: { msg: "Oops! The page you are looking for does not exist.", btn: "Back to homepage" },
-      fr: { msg: "Oups ! La page que vous recherchez n'existe pas.", btn: "Retour à l'accueil" },
-      nl: { msg: "Oeps! De pagina die u zoekt bestaat niet.", btn: "Terug naar home" },
-      it: { msg: "Oops! La pagina che stavi cercando non esiste.", btn: "Torna alla home" },
-      pl: { msg: "Ups! Strona, której szukasz, nie istnieje.", btn: "Powrót do strony głównej" }
+      de: { msg: "Oops! Die Seite existiert nicht.", btn: "Zurück zur Startseite" },
+      en: { msg: "Oops! Page not found.", btn: "Back to Home" },
+      fr: { msg: "Oups ! Page non trouvée.", btn: "Retour à l'accueil" },
+      it: { msg: "Oops! Pagina non trovata.", btn: "Torna alla Home" }
     };
-    const lang = localStorage.getItem('selectedLang') || 'de';
-    const content = i18n[lang] || i18n['en'];
-    document.getElementById('t-404-msg').innerText = content.msg;
-    document.getElementById('t-404-btn').innerText = content.btn;
+
+    function updateContent() {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get('lang') || localStorage.getItem('selectedLang') || 'de';
+      const content = i18n[lang] || i18n['de'];
+      document.getElementById('t-msg').innerText = content.msg;
+      document.getElementById('t-btn').innerText = content.btn;
+      document.getElementById('t-btn').href = `/?lang=${lang}`;
+    }
+    updateContent();
   </script>
 </body>
 </html>
