@@ -3,62 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday OS – Alex Gaming</title>
+    <title>Birthday OS Elite – Alex Gaming</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap">
     <style>
-        :root { --accent: #00bcd4; --bg: #050505; --card: #111; --success: #00ff88; --warning: #ff9800; --danger: #ff0055; }
+        :root { --accent: #00bcd4; --bg: #050505; --card: #111; --success: #00ff88; --danger: #ff0055; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
         
-        /* POPUP STYLE */
-        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 100; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: 0.5s; }
+        .os-container { max-width: 850px; width: 100%; background: var(--card); border: 1px solid #222; border-radius: 28px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); text-align: center; position: relative; }
+        
+        /* POPUP */
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); z-index: 100; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: 0.5s; }
         #overlay.active { visibility: visible; opacity: 1; }
-        .popup { background: var(--card); border: 2px solid var(--accent); padding: 35px; border-radius: 24px; max-width: 450px; text-align: center; transform: scale(0.8); transition: 0.4s; box-shadow: 0 0 30px rgba(0, 188, 212, 0.2); }
-        #overlay.active .popup { transform: scale(1); }
+        .popup { background: #000; border: 1px solid var(--accent); padding: 40px; border-radius: 24px; max-width: 500px; text-align: center; }
         
-        .os-container { max-width: 800px; width: 100%; background: var(--card); border: 1px solid #222; border-radius: 24px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; }
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        .user-welcome { font-size: 1.2rem; margin-bottom: 25px; color: #eee; font-weight: 700; }
+        /* FSK ICONS */
+        .fsk-badge { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
+        .rating-flex { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
 
         .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
-        .time-box { background: #000; padding: 20px; border-radius: 15px; border: 1px solid #333; }
-        .time-box span { display: block; font-size: 2.5rem; font-weight: 900; color: var(--success); }
-        .time-box label { font-size: 0.7rem; color: #666; text-transform: uppercase; }
+        .time-box { background: #000; padding: 20px; border-radius: 18px; border: 1px solid #333; }
+        .time-box span { display: block; font-size: 2.8rem; font-weight: 900; color: var(--success); font-family: 'JetBrains Mono'; }
 
-        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
-        .tool-card { background: #0a0a0a; padding: 18px; border-radius: 12px; border: 1px solid #222; text-align: left; }
-        .tool-card small { display: block; color: var(--accent); font-size: 0.65rem; text-transform: uppercase; margin-bottom: 8px; font-weight: bold; }
-        .tool-card span { font-size: 0.95rem; font-weight: 600; color: #fff; }
-
-        /* RATING ICONS */
-        .rating-flex { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
-        .rating-icon { width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.8rem; color: #000; border: 1px solid rgba(255,255,255,0.1); }
-        .fsk-0 { background: #fff; } .fsk-6 { background: #ffff00; } .fsk-12 { background: #00ff00; } .fsk-16 { background: #0000ff; color: #fff; } .fsk-18 { background: #ff0000; color: #fff; }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .tool-card { background: #0c0c0c; padding: 20px; border-radius: 15px; border: 1px solid #222; text-align: left; transition: 0.3s; }
+        .tool-card:hover { border-color: var(--accent); background: #121212; }
+        .tool-card small { display: block; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
         
-        .btn { display: inline-block; padding: 12px 25px; background: var(--accent); color: black; text-decoration: none; border-radius: 8px; font-weight: 800; cursor: pointer; border: none; margin-top: 20px; }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn { display: inline-block; padding: 15px 30px; background: var(--accent); color: black; text-decoration: none; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; margin-top: 25px; transition: 0.3s; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+        
+        .celeb-alert { color: var(--success); font-size: 0.8rem; margin-top: 5px; font-style: italic; }
     </style>
 </head>
 <body>
 
 <div id="overlay">
     <div class="popup">
-        <h2 id="pop-title">System Scan</h2>
-        <p id="pop-text" style="margin: 15px 0; line-height: 1.5; color: #bbb;"></p>
-        <div id="pop-icons" class="rating-flex" style="justify-content: center; margin-bottom: 20px;"></div>
-        <button class="btn" onclick="closePopup()">Access Granted</button>
+        <h2 id="pop-title" style="color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 20px;">SYSTEM CHECK</h2>
+        <p id="pop-text" style="color: #888; margin-bottom: 25px;"></p>
+        <div id="pop-icons" class="rating-flex"></div>
+        <button class="btn" onclick="closePopup()">INITIALIZE INTERFACE</button>
     </div>
 </div>
 
 <div class="os-container" id="app">
-    <h1>Birthday OS</h1>
-    <p style="margin-bottom: 20px;">Enter your Name and Birthday to start the analysis.</p>
-    <div style="background: #000; padding: 20px; border-radius: 12px; border: 1px dashed #444; margin-bottom: 20px; text-align: left;">
-        <code>Format: ?Name&DD.MM.YYYY</code><br><br>
-        <small style="color: #666;">Example: ?Alex&15.05.2000</small>
-    </div>
-    <button class="btn" onclick="promptUser()">Enter Data Manually</button>
+    <h1>Birthday OS v2.0</h1>
+    <p>Please provide identity credentials (Name & Date).</p>
+    <button class="btn" onclick="promptUser()">LOGIN</button>
 </div>
 
 <script>
@@ -66,55 +59,65 @@
     const query = decodeURIComponent(window.location.search.substring(1));
     const activeLang = localStorage.getItem('selectedLang') || 'en';
 
-    const i18n = {
-        en: { 
-            days: "Days", age: "Age", born: "Born on", weeks: "Weeks", heart: "Heart", milestone: "Milestone",
-            fact: "Fun Fact", popMsg: "Identity verified. Bio-clearance levels unlocked:",
-            ancientTitle: "ANCIENT ENTITY", ancientMsg: "Warning: Biological age exceeds limits. You are a living legend.",
-            fact1: "You were born in the year of the", fact2: "Your lucky number is", share: "Copy Share Link"
-        },
-        de: { 
-            days: "Tage", age: "Alter", born: "Geburtstag", weeks: "Wochen", heart: "Herzschläge", milestone: "Meilenstein",
-            fact: "Fakt", popMsg: "Identität verifiziert. Bio-Freigabestufen freigeschaltet:",
-            ancientTitle: "ANTIKES WESEN", ancientMsg: "Warnung: Biologisches Alter überschreitet Limits. Du bist eine lebende Legende.",
-            fact1: "Du wurdest im Jahr des", fact2: "Deine Glückszahl ist", share: "Link kopieren"
-        }
-    };
+    const fskLinks = [
+        "https://albrecht-kino.de/wp-content/uploads/sites/9/2019/09/600px-FSK_0.svg_.png",
+        "https://parklichtspiele.de/wp-content/uploads/sites/19/2020/05/600px-FSK_6.svg_.png",
+        "https://cdn.cineweb.de/media/betreiber/haveltorkino-2018/city/rathenow-2018/images/FSK-12J.png",
+        "https://albrecht-kino.de/wp-content/uploads/sites/9/2019/09/600px-FSK_16.svg_.png",
+        "https://cdn.cineweb.de/media/betreiber/kino-center-husum-2018/city/husum-2018/images/Sonstige/FSK/fsk18j.png"
+    ];
 
-    const t = i18n[activeLang] || i18n.en;
+    const celebs = {
+        "Elon Musk": "Mars is waiting for you!",
+        "Cristiano Ronaldo": "SUIWY! The GOAT is here.",
+        "Albert Einstein": "Relatively speaking, you look young.",
+        "Alex Gaming": "The creator itself? Welcome, Admin.",
+        "Lionel Messi": "Magic in your feet, magic in this date."
+    };
 
     function init() {
         if (query.includes('&')) {
-            const parts = query.split('&');
-            renderOS(parts[0], parts[1]);
+            const [name, date] = query.split('&');
+            renderOS(name, date);
         }
     }
 
     function promptUser() {
-        const name = prompt(activeLang === 'de' ? "Name eingeben:" : "Enter Name:");
-        const date = prompt(activeLang === 'de' ? "Geburtstag (TT.MM.JJJJ):" : "Birthday (DD.MM.YYYY):");
-        if(name && date) window.location.search = `?${encodeURIComponent(name)}&${encodeURIComponent(date)}`;
+        const n = prompt("Name:");
+        const d = prompt("Date (DD.MM.YYYY):");
+        if(n && d) window.location.search = `?${encodeURIComponent(n)}&${encodeURIComponent(d)}`;
+    }
+
+    function detectOrigin(name) {
+        const n = name.toLowerCase();
+        if (n.endsWith('ov') || n.endsWith('in')) return "Eastern Europe";
+        if (n.endsWith('ez') || n.endsWith('os')) return "Spain / Latin Am.";
+        if (n.endsWith('son') || n.endsWith('smith')) return "English Speaking";
+        if (n.endsWith('er') || n.endsWith('mann')) return "Germany / Central Europe";
+        return "Global / Unknown";
     }
 
     function renderOS(name, dateStr) {
+        const origin = detectOrigin(name);
+        const celebMsg = celebs[name] ? `<div class="celeb-alert">★ ${celebs[name]}</div>` : "";
+
         app.innerHTML = `
-            <h1>Birthday OS</h1>
-            <div class="user-welcome">Welcome, <span style="color:var(--accent)">${name}</span></div>
+            <h1 style="color:var(--accent)">Birthday OS Elite</h1>
+            <div style="font-size: 1.2rem; margin-bottom: 20px;">Identity: <strong>${name}</strong> ${celebMsg}</div>
             
             <div class="timer-grid">
-                <div class="time-box"><span id="d-val">--</span><label>${t.days}</label></div>
-                <div class="time-box"><span id="h-val">--</span><label>Hrs</label></div>
-                <div class="time-box"><span id="m-val">--</span><label>Min</label></div>
+                <div class="time-box"><span id="d-val">0</span><label>Days</label></div>
+                <div class="time-box"><span id="h-val">0</span><label>Hrs</label></div>
+                <div class="time-box"><span id="m-val">0</span><label>Min</label></div>
             </div>
 
             <div class="tool-grid">
-                <div class="tool-card"><small>${t.age}</small><span id="c-age">-</span></div>
-                <div class="tool-card"><small>${t.born}</small><span id="c-day">-</span></div>
-                <div class="tool-card"><small>${t.fact}</small><span id="c-fact">-</span></div>
-                <div class="tool-card" style="grid-column: span 1;"><small>Clearance</small><div id="c-ratings" class="rating-flex"></div></div>
-                <div class="tool-card" style="grid-column: span 2;"><small>${t.milestone}</small><span id="c-milestone">-</span></div>
+                <div class="tool-card"><small>Biological Age</small><span id="c-age">-</span></div>
+                <div class="tool-card"><small>Name Origin</small><span>${origin}</span></div>
+                <div class="tool-card"><small>Clearance Tiers</small><div id="c-ratings" class="rating-flex"></div></div>
+                <div class="tool-card"><small>Celebrity Status</small><span>${celebs[name] ? "Verified ★" : "Citizen"}</span></div>
             </div>
-            <button class="btn" onclick="copyLink()">${t.share}</button>
+            <button class="btn" onclick="copyLink()">GENERATE SHARE LINK</button>
         `;
         runLogic(name, dateStr);
     }
@@ -129,44 +132,25 @@
 
         document.getElementById('c-age').innerText = age;
 
-        // FSK / USK Logic
-        const tiers = activeLang === 'de' ? [0, 6, 12, 16, 18] : [3, 7, 12, 16, 18];
-        const colors = ['fsk-0', 'fsk-6', 'fsk-12', 'fsk-16', 'fsk-18'];
-        const container = document.getElementById('c-ratings');
+        // FSK Display Logic
         const popIcons = document.getElementById('pop-icons');
-
+        const dashIcons = document.getElementById('c-ratings');
+        const tiers = [0, 6, 12, 16, 18];
+        
         tiers.forEach((lvl, i) => {
             if (age >= lvl) {
-                const html = `<div class="rating-icon ${colors[i]}">${lvl}</div>`;
-                container.innerHTML += html;
-                popIcons.innerHTML += html;
+                const img = `<img src="${fskLinks[i]}" class="fsk-badge" title="FSK ${lvl}">`;
+                popIcons.innerHTML += img;
+                dashIcons.innerHTML += img;
             }
         });
 
-        // POPUP LOGIK
-        const overlay = document.getElementById('overlay');
-        if (age >= 130) {
-            overlay.style.background = "rgba(30, 0, 0, 0.95)";
-            document.getElementById('pop-title').innerText = t.ancientTitle;
-            document.getElementById('pop-title').style.color = "var(--danger)";
-            document.getElementById('pop-text').innerHTML = t.ancientMsg;
-        } else {
-            document.getElementById('pop-title').innerText = "Access: " + name;
-            document.getElementById('pop-text').innerText = t.popMsg;
-        }
-        setTimeout(() => overlay.classList.add('active'), 800);
-
-        // FUN FACTS
-        const animals = activeLang === 'de' ? ["Ratte", "Büffel", "Tiger", "Hase", "Drache", "Schlange", "Pferd", "Ziege", "Affe", "Hahn", "Hund", "Schwein"] : ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
-        const zodiacAnimal = animals[(bDate.getFullYear() - 4) % 12];
-        const luckyNum = (name.length + age) % 10 + 1;
-        document.getElementById('c-fact').innerText = `${zodiacAnimal} / Luck: ${luckyNum}`;
-
-        document.getElementById('c-day').innerText = new Intl.DateTimeFormat(activeLang === 'de' ? 'de-DE' : 'en-US', { weekday: 'long' }).format(bDate);
+        // Popup Logic
+        const popText = age >= 130 ? "DATA ERROR: Time Lord detected. Ancient clearances active." : `Welcome ${name}. Biometric data confirmed. Access granted.`;
+        document.getElementById('pop-text').innerText = popText;
+        if(age >= 130) document.getElementById('pop-title').style.color = "var(--danger)";
         
-        const nextRnd = (Math.floor(age / 10) + 1) * 10;
-        const milestoneDate = new Date(bDate.getFullYear() + nextRnd, bDate.getMonth(), bDate.getDate());
-        document.getElementById('c-milestone').innerText = Math.floor((milestoneDate - today) / 864e5) + ` days to age ${nextRnd}`;
+        setTimeout(() => document.getElementById('overlay').classList.add('active'), 500);
 
         setInterval(() => {
             const diff = next - new Date();
