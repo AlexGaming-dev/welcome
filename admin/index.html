@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – Alex Gaming</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #0a0a0a; 
+      color: white; 
+      display: none; /* Standardmäßig versteckt */
+      padding: 40px 20px;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .header { 
+      border-bottom: 2px solid #ff0055; 
+      padding-bottom: 20px; 
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 { color: #ff0055; font-size: 1.8rem; font-weight: 800; }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 20px; 
+    }
+    .card { 
+      background: #141414; 
+      border: 1px solid #333; 
+      padding: 20px; 
+      border-radius: 12px; 
+      transition: 0.3s;
+    }
+    .card:hover { border-color: #ff0055; }
+    .card h3 { margin-bottom: 15px; font-size: 1rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .link-list { list-style: none; }
+    .link-list li { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+    .link-list a { color: #00bcd4; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .link-list a:hover { color: white; }
+
+    .stat-val { font-size: 1.5rem; font-weight: 800; color: #00ff88; }
+    .badge { background: #ff0055; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; }
+    
+    .error-msg { 
+      display: none; 
+      text-align: center; 
+      margin-top: 100px; 
+      color: #ff0055; 
+      font-weight: 800; 
+      font-size: 2rem; 
+    }
+  </style>
+</head>
+<body>
+  <div id="access-denied" class="error-msg">403 - ACCESS DENIED</div>
+
+  <div class="container" id="admin-content">
+    <div class="header">
+      <h1>🔒 Alex Gaming Admin Hub</h1>
+      <a href="../" style="color: #888; text-decoration: none; font-size: 0.9rem;">← Exit Dashboard</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🗂️ Verzeichnisse & Pages</h3>
+        <ul class="link-list">
+          <li><a href="/">/ (Root)</a></li>
+          <li><a href="/legal/">/legal/ <span class="badge">Legal</span></a></li>
+          <li><a href="/privacy/">/privacy/ <span class="badge">Privacy</span></a></li>
+          <li><a href="/support/">/support/ <span class="badge">Support</span></a></li>
+          <li><a href="/projects/">/projects/</a></li>
+          <li><a href="/projects/officesuite/home/">/projects/officesuite/home/</a></li>
+          <li><a href="/projects/info/dotnet-webtoapp-x86-template/">/dotnet-webtoapp-info/</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🚀 Externe Ressourcen</h3>
+        <ul class="link-list">
+          <li><a href="https://github.com/alexgamingstudio?tab=repositories" target="_blank">GitHub Repositories</a></li>
+          <li><a href="https://github.com/alexgamingstudio/alexgamingstudio.github.io" target="_blank">Source Code (Private)</a></li>
+          <li><a href="https://analytics.google.com/" target="_blank">Google Analytics</a></li>
+          <li><a href="https://mastodon.social/@alexgamingdev" target="_blank">Mastodon Profile</a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>📊 System & Info</h3>
+        <p style="margin-bottom: 10px;">Status: <span class="stat-val">ACTIVE</span></p>
+        <p style="margin-bottom: 10px;">Environment: <span style="color: #ff9800;">Production</span></p>
+        <p style="margin-bottom: 10px;">Version: <span style="color: #aaa;">2026.1.0</span></p>
+        <p id="client-info" style="font-size: 0.8rem; color: #555; margin-top: 20px;"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pass = urlParams.get('alexgamingadmin_pw');
+
+      if (pass === 'AAaa221199') {
+        // Zugriff erlaubt
+        document.body.style.display = 'block';
+        document.getElementById('client-info').innerText = "Logged in from: " + navigator.userAgent;
+      } else {
+        // Zugriff verweigert
+        document.body.style.display = 'block';
+        document.getElementById('admin-content').style.display = 'none';
+        document.getElementById('access-denied').style.display = 'block';
+        document.title = "403 Forbidden";
+        
+        // Nach 3 Sekunden zurück zur Homepage
+        setTimeout(() => {
+          window.location.href = "../";
+        }, 3000);
+      }
+    })();
+  </script>
+</body>
+</html>
