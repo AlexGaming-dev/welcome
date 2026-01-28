@@ -1,24 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Gaming - PR Instructions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0b0e14; color: #e0e0e0; padding: 40px; }
-        .container { max-width: 800px; margin: auto; border: 1px solid #00bcd4; padding: 30px; border-radius: 8px; }
-        h1 { color: #00bcd4; }
-        .step { background: rgba(0, 188, 212, 0.1); padding: 15px; margin: 10px 0; border-left: 4px solid #00bcd4; }
-        code { color: #ff4081; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0b0e14; color: #e0e0e0; padding: 40px; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 800px; margin: auto; background: rgba(255,255,255,0.02); border: 1px solid #00bcd4; padding: 30px; border-radius: 15px; flex: 1; }
+        h1 { color: #00bcd4; margin-bottom: 20px; }
+        .step { background: rgba(0, 188, 212, 0.1); padding: 15px; margin: 15px 0; border-left: 4px solid #00bcd4; border-radius: 0 8px 8px 0; }
+        code { color: #ff4081; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
+        footer { text-align: center; padding: 2rem; color: #666; font-size: 0.85rem; }
+        a { color: #00bcd4; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Alex Gaming</h1>
-        <p>To submit an inquiry or improvement, follow these steps:</p>
-        <div class="step">1. Create a subfolder in <code>PR/</code> (e.g., <code>PR/yourname-request/</code>).</div>
-        <div class="step">2. Place your proposal or inquiry files inside that folder.</div>
-        <div class="step">3. Run the automated release script to verify your submission.</div>
-        <p><strong>Note:</strong> Unauthorized cloning is prohibited under our Proprietary License.</p>
+        <h1 id="t-pr-title">Contribution Guide §</h1>
+        <p id="t-pr-intro">Folge diesen Schritten für Pull-Requests:</p>
+        
+        <div class="step" id="t-step-1">1. Erstelle einen Unterordner in <code>PR/</code>.</div>
+        <div class="step" id="t-step-2">2. Platziere deine Dateien dort.</div>
+        <div class="step" id="t-step-3">3. Nutze das Automatisierungs-Script zur Verifizierung.</div>
+        
+        <p style="margin-top:20px;"><strong id="t-pr-note">Hinweis:</strong> Unerlaubtes Klonen ist untersagt.</p>
     </div>
+
+    <footer>
+        &copy; 2026 Alex Gaming | <a href="../legal/">Imprint §</a> | <a href="../privacy/">Privacy §</a>
+    </footer>
+
+    <script>
+        const i18n = {
+            de: { title: "Pull-Request Anleitung §", intro: "Um eine Anfrage oder Verbesserung einzureichen, folge diesen Schritten:", s1: "1. Erstelle einen Unterordner in <code>PR/</code> (z.B. <code>PR/deinname-request/</code>).", s2: "2. Platziere deine Vorschlags-Dateien in diesem Ordner.", s3: "3. Führe das automatisierte Release-Script aus, um deine Einreichung zu prüfen.", note: "Wichtig: Unbefugtes Klonen oder Kopieren des Codes ist gemäß unserer Lizenz untersagt." },
+            en: { title: "Pull-Request Instructions §", intro: "To submit an inquiry or improvement, follow these steps:", s1: "1. Create a subfolder in <code>PR/</code> (e.g., <code>PR/yourname-request/</code>).", s2: "2. Place your proposal files inside that folder.", s3: "3. Run the automated release script to verify your submission.", note: "Note: Unauthorized cloning or copying of code is prohibited under our license." }
+        };
+        const lang = localStorage.getItem('selectedLang') || 'de';
+        const data = i18n[lang] || i18n['en'];
+        document.getElementById('t-pr-title').innerHTML = data.title;
+        document.getElementById('t-pr-intro').innerHTML = data.intro;
+        document.getElementById('t-step-1').innerHTML = data.s1;
+        document.getElementById('t-step-2').innerHTML = data.s2;
+        document.getElementById('t-step-3').innerHTML = data.s3;
+        document.getElementById('t-pr-note').innerHTML = data.note;
+    </script>
 </body>
 </html>
