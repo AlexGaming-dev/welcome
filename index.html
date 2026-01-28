@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
   <style>
-    /* Verstecke den gesamten Content initial, bis Turnstile OK gibt */
+    /* Der Inhalt bleibt versteckt, bis Turnstile grünes Licht gibt */
     #page-content { display: none; }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,23 +27,20 @@
       overflow-x: hidden;
     }
 
-    /* Turnstile Container (unsichtbar) */
+    /* Unsichtbares Turnstile-Feld */
     #turnstile-container { position: fixed; left: -9999px; top: -9999px; }
 
-    /* UI Styles */
+    /* Header & UI Styles */
     header { background-color: rgba(0, 0, 0, 0.6); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
     header img { max-height: 50px; }
     .lang-menu { position: relative; display: inline-block; }
     .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .lang-dropdown { display: none; position: absolute; right: 0; background: #1e3a45; min-width: 180px; box-shadow: 0px 8px 24px rgba(0,0,0,0.5); border-radius: 8px; margin-top: 8px; }
+    .lang-dropdown { display: none; position: absolute; right: 0; background: #1e3a45; min-width: 180px; border-radius: 8px; margin-top: 8px; }
     .lang-dropdown.show { display: block; }
     .lang-dropdown a { color: white; padding: 12px 16px; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-    .flag { width: 22px; height: 16px; object-fit: cover; }
     main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2rem; gap: 3rem; }
-    .welcome-box { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 3rem 2rem; max-width: 850px; width: 100%; text-align: center; backdrop-filter: blur(5px); }
+    .welcome-box { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 3rem 2rem; max-width: 850px; width: 100%; text-align: center; }
     .welcome-box h1 { font-size: 2.8rem; margin-bottom: 1rem; color: #00bcd4; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; text-align: left; margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem; }
-    .skill-badge { background: rgba(0, 188, 212, 0.1); border: 1px solid rgba(0, 188, 212, 0.3); color: #00bcd4; padding: 6px 14px; border-radius: 20px; margin: 4px; display: inline-block; }
     .cta-btn { display: inline-block; padding: 1rem 2.5rem; background-color: #00bcd4; color: white; text-decoration: none; font-weight: 700; border-radius: 10px; }
     footer { text-align: center; padding: 1.5rem; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.4); color: #888; }
   </style>
@@ -57,12 +54,12 @@
       <img src="https://i.postimg.cc/nLhPrLMH/1000072572.png" alt="Logo" />
       <div class="lang-menu">
         <button class="lang-btn" id="menu-trigger">
-          <img src="https://flagcdn.com/w40/de.png" id="cur-flag" class="flag"> 
+          <img src="https://flagcdn.com/w40/de.png" id="cur-flag" style="width:22px;"> 
           <span id="cur-lang-name">Deutsch</span>
         </button>
         <div class="lang-dropdown" id="lang-dropdown">
-          <a href="javascript:void(0)" onclick="changeLang('de', 'Deutsch', 'de')"><img src="https://flagcdn.com/w40/de.png" class="flag"> Deutsch</a>
-          <a href="javascript:void(0)" onclick="changeLang('en', 'English', 'us')"><img src="https://flagcdn.com/w40/us.png" class="flag"> English</a>
+          <a href="javascript:void(0)" onclick="changeLang('de', 'Deutsch', 'de')">Deutsch</a>
+          <a href="javascript:void(0)" onclick="changeLang('en', 'English', 'us')">English</a>
         </div>
       </div>
     </header>
@@ -70,80 +67,46 @@
     <main>
       <div class="welcome-box">
         <h1 id="t-title">Willkommen bei Alex Gaming</h1>
-        <p id="t-desc">Schön, dass du da bist!<br>Ich bin deutscher Developer.</p>
+        <p id="t-desc">Sicherheitsprüfung erfolgreich. Willkommen auf meinem Portfolio!</p>
         <a href="https://github.com/alexgamingstudio" class="cta-btn" id="t-btn">GitHub Profil</a>
-        
-        <div class="about-grid">
-          <div class="about-info">
-            <h2 id="t-about-h" style="color:#00bcd4;">Über mich</h2>
-            <p id="t-about-p">Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.</p>
-          </div>
-          <div class="about-skills">
-            <h2 id="t-skills-h" style="color:#00bcd4;">Tech Stack</h2>
-            <div class="skill-badge">C# / .NET 6</div>
-            <div class="skill-badge">JavaScript</div>
-          </div>
-        </div>
       </div>
     </main>
 
     <footer>
-      &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span>
+      &copy; 2026 Alex Gaming – Alle Rechte vorbehalten.
     </footer>
   </div>
 
   <script>
-    // --- Turnstile Integration ---
-    const siteKey = 'DEIN_SITE_KEY'; // <--- HIER DEINEN SITE-SCHLÜSSEL EINTRAGEN
+    // Site-Key wurde hier eingesetzt
+    const siteKey = '0x4AAAAAACVEfjxkDrA2Xmi6';
 
     window.onload = () => {
       if (typeof turnstile !== 'undefined') {
         turnstile.render('#turnstile-container', {
           sitekey: siteKey,
           callback: function(token) {
-            // Erfolg: Zeige die Seite
+            // Bei Erfolg Content anzeigen
             document.getElementById('page-content').style.display = 'block';
-            initApp();
           },
           'error-callback': function() {
-            // Fehler/Bot erkannt: Blockiere Zugriff
-            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;color:#ff0055;text-align:center;padding:20px;"><h1>ZUGRIFF VERWEIGERT</h1><p>Bot-Sicherheitscheck fehlgeschlagen.</p></div>';
-          },
-          'expired-callback': function() {
-            location.reload(); // Sitzung abgelaufen
+            // Bei Fehler Zugriff blockieren
+            document.body.innerHTML = `
+              <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:#ff0055; font-family:sans-serif; text-align:center;">
+                <h1 style="font-size:3rem; margin-bottom:10px;">ZUGRIFF VERWEIGERT</h1>
+                <p style="color:#888; font-size:1.2rem;">Bot-Sicherheitscheck fehlgeschlagen.</p>
+                <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; background:#ff0055; border:none; color:white; font-weight:bold; cursor:pointer; border-radius:5px;">Erneut versuchen</button>
+              </div>`;
           }
         });
-      } else {
-        // Falls Cloudflare Skript blockiert wird
-        document.body.innerHTML = '<h1>Security Error</h1><p>Bitte deaktiviere deinen Adblocker für diese Seite.</p>';
       }
     };
 
-    // --- Deine bestehende App-Logik ---
-    const i18n = {
-      de: { title: "Willkommen bei Alex Gaming", desc: "Schön, dass du da bist!", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle Lösungen mit .NET.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
-      en: { title: "Welcome to Alex Gaming", desc: "Glad you're here!", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop .NET solutions.", skillsH: "Tech Stack", copy: "All rights reserved." }
-    };
-
-    function initApp() {
-      const saved = localStorage.getItem('selectedLang') || 'de';
-      changeLang(saved, saved === 'de' ? 'Deutsch' : 'English', saved === 'de' ? 'de' : 'us');
-    }
-
-    const trigger = document.getElementById('menu-trigger');
-    const dropdown = document.getElementById('lang-dropdown');
-    trigger.addEventListener('click', (e) => { e.stopPropagation(); dropdown.classList.toggle('show'); });
-    window.addEventListener('click', () => dropdown.classList.remove('show'));
-
+    // Einfache Sprachumschaltung
     function changeLang(lang, name, flag) {
-      const data = i18n[lang];
-      if(!data) return;
-      document.getElementById('t-title').innerText = data.title;
-      document.getElementById('t-desc').innerHTML = data.desc;
-      document.getElementById('t-btn').innerText = data.btn;
-      document.getElementById('cur-lang-name').innerText = name;
-      document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${flag}.png`;
-      localStorage.setItem('selectedLang', lang);
+        document.getElementById('cur-lang-name').innerText = name;
+        document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${flag}.png`;
+        localStorage.setItem('selectedLang', lang);
     }
   </script>
 </body>
