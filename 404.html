@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>404 - Page Not Found | Alex Gaming</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
   <style>
-    /* Ich nutze dein Original-Design für die Konsistenz */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
@@ -38,8 +38,23 @@
 <body>
   <div class="error-box">
     <h1>404</h1>
-    <p>Oops! The page you are looking for does not exist or has been moved.</p>
-    <a href="https://alexgaming.is-a.dev/" class="cta-btn">Back to homepage</a>
+    <p id="t-404-msg">Oops! Die Seite wurde nicht gefunden.</p>
+    <a href="https://alexgaming.is-a.dev/" class="cta-btn" id="t-404-btn">Zurück zur Startseite</a>
   </div>
+
+  <script>
+    const i18n = {
+      de: { msg: "Oops! Diese Seite existiert nicht oder wurde verschoben.", btn: "Zurück zur Startseite" },
+      en: { msg: "Oops! The page you are looking for does not exist.", btn: "Back to homepage" },
+      fr: { msg: "Oups ! La page que vous recherchez n'existe pas.", btn: "Retour à l'accueil" },
+      nl: { msg: "Oeps! De pagina die u zoekt bestaat niet.", btn: "Terug naar home" },
+      it: { msg: "Oops! La pagina che stavi cercando non esiste.", btn: "Torna alla home" },
+      pl: { msg: "Ups! Strona, której szukasz, nie istnieje.", btn: "Powrót do strony głównej" }
+    };
+    const lang = localStorage.getItem('selectedLang') || 'de';
+    const content = i18n[lang] || i18n['en'];
+    document.getElementById('t-404-msg').innerText = content.msg;
+    document.getElementById('t-404-btn').innerText = content.btn;
+  </script>
 </body>
 </html>
