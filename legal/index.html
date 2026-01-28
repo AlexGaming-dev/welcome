@@ -38,39 +38,17 @@
       <div class="section-box">
         <span class="license-badge">MIT License + Custom Terms</span>
         <p id="l-t2">Sofern nicht anders angegeben, unterliegen meine Projekte der folgenden Lizenz:</p>
-        
-        <div class="custom-notice">
-          Note: Pull requests are welcome, however cloning or copying the project/code for personal use is prohibited.
-        </div>
-
+        <div class="custom-notice" id="l-notice">Note: Pull requests are welcome, however cloning or copying for personal use is prohibited.</div>
         <div class="license-text">MIT License
-
 Copyright (c) 2026 AlexGaming.dev
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</div>
+...</div>
       </div>
     </section>
     <section>
       <h2 id="l-h3">📜 Rechtlicher Hinweis</h2>
       <div class="section-box">
         <p id="l-t3">Dies ist eine rein private Website zur Präsentation von Software-Projekten. Es erfolgt keine gewerbliche Nutzung.</p>
-        <p id="l-t4" style="font-size: 0.85rem; color: #777; font-style: italic;">Hinweis gemäß § 5 TMG: Aufgrund der privaten Natur wird auf die Veröffentlichung einer privaten Anschrift verzichtet. Identitätsanfragen können via E-Mail gestellt werden.</p>
+        <p id="l-t4" style="font-size: 0.85rem; color: #777; font-style: italic;">Hinweis gemäß § 5 TMG...</p>
       </div>
     </section>
     <div style="text-align: center;"><a href="/" class="back-btn" id="l-btn">Zurück zur Startseite</a></div>
@@ -78,21 +56,26 @@ SOFTWARE.</div>
 
   <script>
     const i18n = {
-      de: { title: "Legal & Lizenz", h1: "📧 Kontakt", t1: "Für Anfragen oder Feedback erreichst du mich per E-Mail:", h2: "⚖️ Lizenzierung", t2: "Sofern nicht anders angegeben, unterliegen meine Projekte der folgenden Lizenz:", h3: "📜 Rechtlicher Hinweis", t3: "Dies ist eine rein private Website zur Präsentation von Software-Projekten. Es erfolgt keine gewerbliche Nutzung.", t4: "Hinweis gemäß § 5 TMG: Aufgrund der privaten Natur wird auf die Veröffentlichung einer privaten Anschrift verzichtet. Identitätsanfragen können via E-Mail gestellt werden.", btn: "Zurück zur Startseite" },
-      en: { title: "Legal & License", h1: "📧 Contact", t1: "For inquiries or feedback, you can reach me by email:", h2: "⚖️ Licensing", t2: "Unless otherwise stated, my projects are subject to the following license:", h3: "📜 Legal Notice", t3: "This is a purely private website for the presentation of software projects. There is no commercial use.", t4: "Note according to § 5 TMG: Due to the private nature, we refrain from publishing a private address. Identity inquiries can be made via email.", btn: "Back to Home" }
+      de: { title: "Legal & Lizenz", h1: "📧 Kontakt", t1: "Für Anfragen oder Feedback erreichst du mich per E-Mail:", h2: "⚖️ Lizenzierung", t2: "Projekte unterliegen dieser Lizenz:", notice: "Pull-Requests sind willkommen, aber das Klonen/Kopieren für private Zwecke ist untersagt.", h3: "📜 Rechtlicher Hinweis", t3: "Dies ist eine private Website.", t4: "Hinweis gemäß § 5 TMG: Private Natur...", btn: "Zurück zur Startseite" },
+      en: { title: "Legal & License", h1: "📧 Contact", t1: "For inquiries or feedback, reach me via email:", h2: "⚖️ Licensing", t2: "Projects are subject to this license:", notice: "Pull requests are welcome, however cloning for personal use is prohibited.", h3: "📜 Legal Notice", t3: "This is a private website.", t4: "Note according to § 5 TMG: Private nature...", btn: "Back to Home" },
+      fr: { title: "Mentions Légales", h1: "📧 Contact", t1: "Pour toute demande ou feedback, contactez-moi :", h2: "⚖️ Licence", t2: "Les projets sont soumis à cette licence :", notice: "Les Pull Requests sind bienvenue, mais le clonage est interdit.", h3: "📜 Note Juridique", t3: "C'est un site privé.", t4: "Note TMG : Nature privée...", btn: "Retour" },
+      it: { title: "Note Legali", h1: "📧 Contatto", t1: "Per richieste o feedback, scrivimi via email:", h2: "⚖️ Licenza", t2: "I progetti sono soggetti a questa licenza:", notice: "Le Pull Request sono benvenute, ma il clonaggio è vietato.", h3: "📜 Note Legali", t3: "Sito privato.", t4: "Nota TMG: Natura privata...", btn: "Indietro" },
+      nl: { title: "Juridisch & Licentie", h1: "📧 Contact", t1: "Voor vragen of feedback, mail me:", h2: "⚖️ Licenties", t2: "Projecten vallen onder deze licentie:", notice: "Pull-requests welkom, klonen verboden.", h3: "📜 Juridische Mededeling", t3: "Dit is een privéwebsite.", t4: "TMG-opmerking: Privé-aard...", btn: "Terug" },
+      pl: { title: "Prawne & Licencja", h1: "📧 Kontakt", t1: "W przypadku pytań lub opinii napisz do mnie:", h2: "⚖️ Licencjonowanie", t2: "Projekty podlegają tej licencji:", notice: "Pull requesty mile widziane, klonowanie zabronione.", h3: "📜 Informacja Prawna", t3: "To jest prywatna strona.", t4: "Informacja TMG: Charakter prywatny...", btn: "Powrót" }
     };
-    const lang = localStorage.getItem('selectedLang') || 'de';
-    const t = i18n[lang] || i18n['en'];
+    const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+    const t = i18n[lang] || i18n.en;
     document.getElementById('l-title').innerText = t.title;
     document.getElementById('l-h1').innerText = t.h1;
     document.getElementById('l-t1').innerText = t.t1;
     document.getElementById('l-h2').innerText = t.h2;
     document.getElementById('l-t2').innerText = t.t2;
+    document.getElementById('l-notice').innerText = t.notice;
     document.getElementById('l-h3').innerText = t.h3;
     document.getElementById('l-t3').innerText = t.t3;
     document.getElementById('l-t4').innerText = t.t4;
     document.getElementById('l-btn').innerText = t.btn;
+    document.getElementById('l-btn').href = `../../?lang=${lang}`;
   </script>
 </body>
 </html>
-
