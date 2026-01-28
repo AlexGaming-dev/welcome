@@ -6,7 +6,9 @@
   
   <title>Alex Gaming – Developer Portfolio</title>
   <meta name="description" content="Offizielles Portfolio von Alex Gaming – Softwareentwickler spezialisiert auf .NET, C# und Web-Technologien.">
-  
+  <meta name="author" content="Alex Gaming">
+  <link rel="canonical" href="https://alexgaming.is-a.dev/">
+
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
 
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
@@ -15,37 +17,50 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
   <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Alex Gaming",
-      "alternateName": ["AlexGaming", "Alex Gaming Dev"],
-      "url": "https://alexgaming.is-a.dev/"
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Alex Gaming",
-      "url": "https://alexgaming.is-a.dev",
-      "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
-      "sameAs": [
-        "https://mastodon.social/@alexgamingdev",
-        "https://github.com/alexgamingstudio",
-        "https://www.youtube.com/@alexgamingdev"
-      ],
-      "jobTitle": "Softwareentwickler",
-      "knowsAbout": ["C#", ".NET 6", "WebView2", "JavaScript", "WiX Toolset"],
-      "description": "Deutscher Softwareentwickler spezialisiert auf .NET Framework und moderne Web-Lösungen."
-    }
-  ]
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://alexgaming.is-a.dev/#website",
+        "url": "https://alexgaming.is-a.dev/",
+        "name": "Alex Gaming Portfolio",
+        "alternateName": ["AlexGaming", "Alex Gaming Dev"],
+        "publisher": { "@id": "https://alexgaming.is-a.dev/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://alexgaming.is-a.dev/#person",
+        "name": "Alex Gaming",
+        "jobTitle": "Softwareentwickler",
+        "url": "https://alexgaming.is-a.dev/",
+        "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
+        "sameAs": [
+          "https://github.com/alexgamingstudio",
+          "https://www.youtube.com/@alexgamingdev",
+          "https://mastodon.social/@alexgamingdev"
+        ],
+        "knowsAbout": ["C#", ".NET 6", "WebView2", "JavaScript", "WiX Toolset"],
+        "description": "Deutscher Softwareentwickler spezialisiert auf .NET Framework und moderne Web-Lösungen."
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Alex Gaming Software",
+        "operatingSystem": "Windows",
+        "applicationCategory": "DeveloperApplication",
+        "author": { "@id": "https://alexgaming.is-a.dev/#person" },
+        "url": "https://alexgaming.is-a.dev/"
+      }
+    ]
+  }
   </script>
 
   <style>
     /* --- TURNSTILE CONTROL --- */
-    #page-content { display: none; }
-    body.authorized #page-content { display: flex; flex-direction: column; }
-    #turnstile-container { position: fixed; left: -9999px; top: -9999px; }
+    #page-content { opacity: 0.1; pointer-events: none; transition: opacity 0.5s; }
+    body.authorized #page-content { opacity: 1; pointer-events: auto; display: flex; flex-direction: column; }
+    #turnstile-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; }
+    body.authorized #turnstile-container { display: none; }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -234,7 +249,6 @@
   </div>
 
   <script>
-    // --- Turnstile Konfiguration ---
     const siteKey = '0x4AAAAAACVEfjxkDrA2Xmi6';
 
     window.onload = () => {
@@ -242,27 +256,20 @@
         turnstile.render('#turnstile-container', {
           sitekey: siteKey,
           callback: function(token) {
-            // Check erfolgreich -> Content anzeigen
             document.body.classList.add('authorized');
             initApp();
           },
           'error-callback': function() {
-            // Check fehlgeschlagen -> Blockieren
-            document.body.innerHTML = `
-              <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:#ff0055; font-family:sans-serif; text-align:center; padding:20px;">
-                <h1 style="font-size:3rem; margin-bottom:10px;">ZUGRIFF VERWEIGERT</h1>
-                <p style="color:#888; font-size:1.2rem;">Bot-Sicherheitscheck fehlgeschlagen.</p>
-                <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; background:#ff0055; border:none; color:white; font-weight:bold; cursor:pointer; border-radius:5px;">Erneut versuchen</button>
-              </div>`;
+            document.body.innerHTML = `<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:#ff0055; font-family:sans-serif; text-align:center; padding:20px;"><h1>ZUGRIFF VERWEIGERT</h1><button onclick="location.reload()">Erneut versuchen</button></div>`;
           }
         });
       } else {
-        // Skript wurde blockiert (z.B. Adblocker)
-        document.body.innerHTML = '<div style="color:white; text-align:center; margin-top:50px;">Security Skript konnte nicht geladen werden. Bitte Adblocker deaktivieren.</div>';
+        // Falls Skript blockiert, trotzdem Content zeigen (SEO Backup)
+        document.body.classList.add('authorized');
+        initApp();
       }
     };
 
-    // --- Originale Portfolio Logik ---
     const i18n = {
       de: { title: "Willkommen bei Alex Gaming", desc: "Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
       en: { title: "Welcome to Alex Gaming", desc: "Glad you're here!<br>I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies. Quality and performance are my top priorities.", skillsH: "Tech Stack", copy: "All rights reserved." },
