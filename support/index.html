@@ -7,7 +7,6 @@
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
   <style>
-    /* ... (Deine Styles bleiben gleich) ... */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
     header { background-color: rgba(0, 0, 0, 0.6); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
@@ -17,7 +16,8 @@
     .status-badge { display: inline-flex; align-items: center; background: rgba(0, 255, 136, 0.1); color: #00ff88; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.3); }
     .status-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; margin-right: 8px; box-shadow: 0 0 10px #00ff88; }
     footer { text-align: center; padding: 3rem; color: #666; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    .back-btn { color: #888; text-decoration: none; display: block; margin-top: 20px; text-align: center; }
+    .back-btn { color: #888; text-decoration: none; display: block; margin-top: 20px; text-align: center; transition: 0.3s; }
+    .back-btn:hover { color: #00bcd4; }
   </style>
 </head>
 <body>
@@ -40,22 +40,29 @@
   <script>
     const i18n = {
       de: { status: "Support Online", h1: "Wie kann ich dir helfen?", p1: "Unterstützung für meine Software-Projekte.", foot: "© 2026 Alex Gaming | Support", back: "← Zurück zur Hauptseite" },
+      at: { status: "Support Online", h1: "Wie kann i helfen?", p1: "Unterstützung für meine Software-Projekte.", foot: "© 2026 Alex Gaming | Support", back: "← Zurück zur Hauptseite" },
+      ch: { status: "Support Online", h1: "Wie cha ich helfe?", p1: "Unterstützung für mini Software-Projekt.", foot: "© 2026 Alex Gaming | Support", back: "← Zrugg zur Hauptsyte" },
       en: { status: "Support Online", h1: "How can I help you?", p1: "Support for my software projects.", foot: "© 2026 Alex Gaming | Support", back: "← Back to home" },
       fr: { status: "Support en ligne", h1: "Comment puis-je aider?", p1: "Support pour mes projets logiciels.", foot: "© 2026 Alex Gaming | Support", back: "← Retour" },
-      it: { status: "Supporto Online", h1: "Come posso aiutarvi?", p1: "Supporto per i miei progetti software.", foot: "© 2026 Alex Gaming | Supporto", back: "← Torna indietro" }
+      it: { status: "Supporto Online", h1: "Come posso aiutarvi?", p1: "Supporto per i miei progetti software.", foot: "© 2026 Alex Gaming | Supporto", back: "← Torna indietro" },
+      nl: { status: "Support Online", h1: "Hoe kan ik helpen?", p1: "Ondersteuning voor mijn softwareprojecten.", foot: "© 2026 Alex Gaming | Support", back: "← Terug naar home" },
+      pl: { status: "Support Online", h1: "W czym pomóc?", p1: "Wsparcie dla moich projektów.", foot: "© 2026 Alex Gaming | Support", back: "← Powrót" }
     };
 
     function update() {
       const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+      localStorage.setItem('selectedLang', lang);
       const d = i18n[lang] || i18n.de;
+      
       document.getElementById('t-status').innerText = d.status;
       document.getElementById('t-h1').innerText = d.h1;
       document.getElementById('t-p1').innerText = d.p1;
       document.getElementById('t-foot').innerText = d.foot;
       document.getElementById('t-back').innerText = d.back;
       
-      document.getElementById('logo-link').href = `../?lang=${lang}`;
-      document.getElementById('t-back').href = `../?lang=${lang}`;
+      const link = `../?lang=${lang}`;
+      document.getElementById('logo-link').href = link;
+      document.getElementById('t-back').href = link;
     }
     update();
   </script>
