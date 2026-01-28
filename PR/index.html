@@ -2,49 +2,44 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Gaming - PR Instructions</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <title>PR Guidelines | Alex Gaming</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0b0e14; color: #e0e0e0; padding: 40px; display: flex; flex-direction: column; min-height: 100vh; }
-        .container { max-width: 800px; margin: auto; background: rgba(255,255,255,0.02); border: 1px solid #00bcd4; padding: 30px; border-radius: 15px; flex: 1; }
+        body { font-family: 'Inter', sans-serif; background: #0b0e14; color: #e0e0e0; padding: 40px; }
+        .container { max-width: 800px; margin: auto; border: 1px solid #00bcd4; padding: 30px; border-radius: 12px; background: rgba(255,255,255,0.02); }
         h1 { color: #00bcd4; margin-bottom: 20px; }
-        .step { background: rgba(0, 188, 212, 0.1); padding: 15px; margin: 15px 0; border-left: 4px solid #00bcd4; border-radius: 0 8px 8px 0; }
-        code { color: #ff4081; font-weight: bold; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
-        footer { text-align: center; padding: 2rem; color: #666; font-size: 0.85rem; }
-        a { color: #00bcd4; text-decoration: none; }
+        .step { background: rgba(0, 188, 212, 0.1); padding: 15px; margin: 10px 0; border-left: 4px solid #00bcd4; border-radius: 4px; }
+        footer { margin-top: 30px; font-size: 0.8rem; color: #555; text-align: center; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="t-pr-title">Contribution Guide §</h1>
-        <p id="t-pr-intro">Folge diesen Schritten für Pull-Requests:</p>
-        
-        <div class="step" id="t-step-1">1. Erstelle einen Unterordner in <code>PR/</code>.</div>
-        <div class="step" id="t-step-2">2. Platziere deine Dateien dort.</div>
-        <div class="step" id="t-step-3">3. Nutze das Automatisierungs-Script zur Verifizierung.</div>
-        
-        <p style="margin-top:20px;"><strong id="t-pr-note">Hinweis:</strong> Unerlaubtes Klonen ist untersagt.</p>
+        <h1 id="t-h">Pull Requests</h1>
+        <p id="t-p">Anleitung:</p>
+        <div id="steps"></div>
+        <p style="margin-top:20px;"><strong id="t-note">Hinweis:</strong> Klonen verboten.</p>
     </div>
-
-    <footer>
-        &copy; 2026 Alex Gaming | <a href="../legal/">Imprint §</a> | <a href="../privacy/">Privacy §</a>
-    </footer>
+    <footer id="t-foot">&copy; 2026 Alex Gaming</footer>
 
     <script>
         const i18n = {
-            de: { title: "Pull-Request Anleitung §", intro: "Um eine Anfrage oder Verbesserung einzureichen, folge diesen Schritten:", s1: "1. Erstelle einen Unterordner in <code>PR/</code> (z.B. <code>PR/deinname-request/</code>).", s2: "2. Platziere deine Vorschlags-Dateien in diesem Ordner.", s3: "3. Führe das automatisierte Release-Script aus, um deine Einreichung zu prüfen.", note: "Wichtig: Unbefugtes Klonen oder Kopieren des Codes ist gemäß unserer Lizenz untersagt." },
-            en: { title: "Pull-Request Instructions §", intro: "To submit an inquiry or improvement, follow these steps:", s1: "1. Create a subfolder in <code>PR/</code> (e.g., <code>PR/yourname-request/</code>).", s2: "2. Place your proposal files inside that folder.", s3: "3. Run the automated release script to verify your submission.", note: "Note: Unauthorized cloning or copying of code is prohibited under our license." }
+            de: { h: "Pull-Request Richtlinien", p: "Folge diesen Schritten:", steps: ["Unterordner in PR/ erstellen", "Dateien hochladen", "Release-Script ausführen"], note: "Das Kopieren des Projekts für private Zwecke ist untersagt.", foot: "© 2026 Alex Gaming" },
+            en: { h: "Pull-Request Guidelines", p: "Follow these steps:", steps: ["Create subfolder in PR/", "Upload files", "Run release script"], note: "Cloning for personal use is strictly prohibited.", foot: "© 2026 Alex Gaming" },
+            fr: { h: "Directives Pull-Request", p: "Suivez ces étapes:", steps: ["Créer un sous-dossier", "Télécharger les fichiers", "Lancer le script"], note: "Le clonage à des fins personnelles est interdit.", foot: "© 2026 Alex Gaming" },
+            it: { h: "Linee guida Pull-Request", p: "Seguire questi passaggi:", steps: ["Crea sottocartella", "Carica file", "Esegui script di rilascio"], note: "La clonazione per uso personale è vietata.", foot: "© 2026 Alex Gaming" },
+            nl: { h: "Pull-Request Richtlijnen", p: "Volg deze stappen:", steps: ["Submap aanmaken", "Bestanden uploaden", "Release-script uitvoeren"], note: "Klonen voor persoonlijk gebruik is verboden.", foot: "© 2026 Alex Gaming" },
+            pl: { h: "Wytyczne Pull-Request", p: "Wykonaj te kroki:", steps: ["Utwórz podfolder", "Prześlij pliki", "Uruchom skrypt"], note: "Klonowanie do użytku osobistego jest zabronione.", foot: "© 2026 Alex Gaming" }
         };
-        const lang = localStorage.getItem('selectedLang') || 'de';
-        const data = i18n[lang] || i18n['en'];
-        document.getElementById('t-pr-title').innerHTML = data.title;
-        document.getElementById('t-pr-intro').innerHTML = data.intro;
-        document.getElementById('t-step-1').innerHTML = data.s1;
-        document.getElementById('t-step-2').innerHTML = data.s2;
-        document.getElementById('t-step-3').innerHTML = data.s3;
-        document.getElementById('t-pr-note').innerHTML = data.note;
+
+        function init() {
+            const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+            const d = i18n[lang] || i18n.de;
+            document.getElementById('t-h').innerText = d.h;
+            document.getElementById('t-p').innerText = d.p;
+            document.getElementById('t-foot').innerText = d.foot;
+            document.getElementById('t-note').innerHTML = `<strong>Note:</strong> ${d.note}`;
+            document.getElementById('steps').innerHTML = d.steps.map((s, i) => `<div class="step">${i+1}. ${s}</div>`).join('');
+        }
+        init();
     </script>
 </body>
 </html>
