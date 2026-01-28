@@ -3,127 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard – Alex Gaming</title>
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <title>ADMIN PANEL - Member Management</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;800&display=swap">
   <style>
+    :root { --admin-red: #ff0055; --bg: #050505; --card: #111; --accent: #00bcd4; --success: #00ff88; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: #0a0a0a; 
-      color: white; 
-      display: none; /* Standardmäßig versteckt */
-      padding: 40px 20px;
-    }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .header { 
-      border-bottom: 2px solid #ff0055; 
-      padding-bottom: 20px; 
-      margin-bottom: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    h1 { color: #ff0055; font-size: 1.8rem; font-weight: 800; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: none; padding: 20px; }
     
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-      gap: 20px; 
-    }
-    .card { 
-      background: #141414; 
-      border: 1px solid #333; 
-      padding: 20px; 
-      border-radius: 12px; 
-      transition: 0.3s;
-    }
-    .card:hover { border-color: #ff0055; }
-    .card h3 { margin-bottom: 15px; font-size: 1rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-    
-    .link-list { list-style: none; }
-    .link-list li { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #222; }
-    .link-list a { color: #00bcd4; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-    .link-list a:hover { color: white; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 2px solid var(--admin-red); margin-bottom: 30px; }
+    h1 { font-family: 'JetBrains Mono', monospace; color: var(--admin-red); text-transform: uppercase; font-size: 1.5rem; }
 
-    .stat-val { font-size: 1.5rem; font-weight: 800; color: #00ff88; }
-    .badge { background: #ff0055; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 10px; }
-    
-    .error-msg { 
-      display: none; 
-      text-align: center; 
-      margin-top: 100px; 
-      color: #ff0055; 
-      font-weight: 800; 
-      font-size: 2rem; 
-    }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    .card { background: var(--card); border: 1px solid #222; border-radius: 12px; padding: 20px; }
+    .card h2 { font-size: 1rem; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+
+    /* INPUTS */
+    input, select, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: white; margin-bottom: 10px; border-radius: 6px; font-family: inherit; }
+    .action-btn { background: var(--accent); color: black; border: none; padding: 12px; width: 100%; font-weight: 800; cursor: pointer; border-radius: 6px; transition: 0.2s; margin-top: 5px; }
+    .action-btn:hover { transform: scale(1.02); }
+
+    /* MEMBER LIST & CODE BOX */
+    .member-item { background: #000; padding: 10px; border-radius: 5px; margin-bottom: 8px; border-left: 3px solid var(--success); display: flex; justify-content: space-between; }
+    #code-output-area { background: #000; color: var(--success); border: 1px solid var(--success); height: 150px; font-size: 0.75rem; }
+
+    .full-width { grid-column: span 2; }
+    .badge { background: #333; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
   </style>
 </head>
 <body>
-  <div id="access-denied" class="error-msg">403 - ACCESS DENIED</div>
 
-  <div class="container" id="admin-content">
-    <div class="header">
-      <h1>🔒 Alex Gaming Admin Hub</h1>
-      <a href="../" style="color: #888; text-decoration: none; font-size: 0.9rem;">← Exit Dashboard</a>
-    </div>
+<div class="header">
+  <h1>Member Admin Hub</h1>
+  <div style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">AUTH: <span style="color:var(--success)">LEVEL_01</span></div>
+</div>
 
-    <div class="grid">
-      <div class="card">
-        <h3>🗂️ Verzeichnisse & Pages</h3>
-        <ul class="link-list">
-          <li><a href="/">/ (Root)</a></li>
-          <li><a href="/legal/">/legal/ <span class="badge">Legal</span></a></li>
-          <li><a href="/privacy/">/privacy/ <span class="badge">Privacy</span></a></li>
-          <li><a href="/support/">/support/ <span class="badge">Support</span></a></li>
-          <li><a href="/projects/">/projects/</a></li>
-          <li><a href="/projects/officesuite/home/">/projects/officesuite/home/</a></li>
-          <li><a href="/projects/info/dotnet-webtoapp-x86-template/">/dotnet-webtoapp-info/</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>🚀 Externe Ressourcen</h3>
-        <ul class="link-list">
-          <li><a href="https://github.com/alexgamingstudio?tab=repositories" target="_blank">GitHub Repositories</a></li>
-          <li><a href="https://github.com/alexgamingstudio/alexgamingstudio.github.io" target="_blank">Source Code (Private)</a></li>
-          <li><a href="https://analytics.google.com/" target="_blank">Google Analytics</a></li>
-          <li><a href="https://mastodon.social/@alexgamingdev" target="_blank">Mastodon Profile</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>📊 System & Info</h3>
-        <p style="margin-bottom: 10px;">Status: <span class="stat-val">ACTIVE</span></p>
-        <p style="margin-bottom: 10px;">Environment: <span style="color: #ff9800;">Production</span></p>
-        <p style="margin-bottom: 10px;">Version: <span style="color: #aaa;">2026.1.0</span></p>
-        <p id="client-info" style="font-size: 0.8rem; color: #555; margin-top: 20px;"></p>
-      </div>
-    </div>
+<div class="grid">
+  
+  <div class="card">
+    <h2><span>👤</span> Neuen Member hinzufügen</h2>
+    <input type="text" id="mem-name" placeholder="Name (z.B. Max Mustermann)">
+    <input type="text" id="mem-github" placeholder="GitHub Username (für Profilbild)">
+    <select id="mem-role">
+        <option value="Lead Developer">Lead Developer</option>
+        <option value="Frontend Dev">Frontend Dev</option>
+        <option value="Backend Dev">Backend Dev</option>
+        <option value="Moderator">Moderator</option>
+        <option value="Contributor">Contributor</option>
+    </select>
+    <button class="action-btn" onclick="addMember()">Hinzufügen & Generieren</button>
   </div>
 
-  <script>
-    (function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const pass = urlParams.get('alexgamingadmin_pw');
+  <div class="card">
+    <h2><span>📋</span> Aktuelle Session Member</h2>
+    <div id="member-list-display">
+        </div>
+  </div>
 
-      if (pass === 'AAaa221199') {
-        // Zugriff erlaubt
-        document.body.style.display = 'block';
-        document.getElementById('client-info').innerText = "Logged in from: " + navigator.userAgent;
-      } else {
-        // Zugriff verweigert
-        document.body.style.display = 'block';
-        document.getElementById('admin-content').style.display = 'none';
-        document.getElementById('access-denied').style.display = 'block';
-        document.title = "403 Forbidden";
-        
-        // Nach 3 Sekunden zurück zur Homepage
-        setTimeout(() => {
-          window.location.href = "../";
-        }, 3000);
-      }
-    })();
-  </script>
+  <div class="card full-width">
+    <h2><span>📄</span> Generierter HTML-Code (für members/index.html)</h2>
+    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Kopiere diesen Code in deine Seite, um die Member-Cards anzuzeigen.</p>
+    <textarea id="code-output-area" readonly></textarea>
+    <button class="action-btn" style="background: var(--success)" onclick="copyToClipboard()">Code in Zwischenablage kopieren</button>
+  </div>
+
+</div>
+
+<script>
+  // SECURITY
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('alexgamingadmin_pw') !== 'AAaa221199') {
+    window.location.href = "../";
+  } else {
+    document.body.style.display = 'block';
+  }
+
+  let members = [];
+
+  function addMember() {
+    const name = document.getElementById('mem-name').value;
+    const github = document.getElementById('mem-github').value || 'github';
+    const role = document.getElementById('mem-role').value;
+
+    if(!name) return alert("Name erforderlich!");
+
+    members.push({ name, github, role });
+    updateUI();
+    
+    // Reset Inputs
+    document.getElementById('mem-name').value = "";
+    document.getElementById('mem-github').value = "";
+  }
+
+  function updateUI() {
+    // 1. Liste anzeigen
+    const list = document.getElementById('member-list-display');
+    list.innerHTML = members.map((m, i) => `
+      <div class="member-item">
+        <span><strong>${m.name}</strong> <span class="badge">${m.role}</span></span>
+        <span style="color:red; cursor:pointer" onclick="removeMember(${i})">×</span>
+      </div>
+    `).join('');
+
+    // 2. Code generieren (Template für members/index.html)
+    const codeArea = document.getElementById('code-output-area');
+    let htmlCode = `\n<div class="member-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:20px; padding:20px;">\n`;
+    
+    members.forEach(m => {
+      htmlCode += `  <div class="member-card" style="background:#111; border:1px solid #333; padding:20px; border-radius:12px; text-align:center;">
+    <img src="https://github.com/${m.github}.png" style="width:60px; height:60px; border-radius:50%; margin-bottom:10px; border:2px solid var(--accent);">
+    <h3 style="color:white; margin:5px 0;">${m.name}</h3>
+    <span style="color:#00bcd4; font-size:0.8rem; text-transform:uppercase;">${m.role}</span>
+  </div>\n`;
+    });
+
+    htmlCode += `</div>`;
+    codeArea.value = htmlCode;
+  }
+
+  function removeMember(index) {
+    members.splice(index, 1);
+    updateUI();
+  }
+
+  function copyToClipboard() {
+    const copyText = document.getElementById("code-output-area");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Code kopiert! Füge ihn jetzt in deine index.html oder members/index.html ein.");
+  }
+</script>
 </body>
 </html>
