@@ -14,33 +14,6 @@
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://alexgaming.is-a.dev/#website",
-        "url": "https://alexgaming.is-a.dev/",
-        "name": "Alex Gaming Portfolio",
-        "publisher": { "@id": "https://alexgaming.is-a.dev/#person" }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://alexgaming.is-a.dev/#person",
-        "name": "Alex Gaming",
-        "jobTitle": "Softwareentwickler",
-        "url": "https://alexgaming.is-a.dev/",
-        "sameAs": [
-          "https://github.com/alexgamingstudio",
-          "https://www.youtube.com/@alexgamingdev",
-          "https://mastodon.social/@alexgamingdev"
-        ]
-      }
-    ]
-  }
-  </script>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -175,6 +148,7 @@
       color: #888;
     }
     footer a { color: #888; text-decoration: none; margin: 0 5px; }
+    footer a:hover { color: #00bcd4; }
 
     .flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; }
 
@@ -212,7 +186,7 @@
     <main>
       <div class="welcome-box">
         <h1 id="t-title">Willkommen</h1>
-        <p class="lead" id="t-desc">Lade Inhalte...</p>
+        <p class="lead" id="t-desc">Lade Portfolio...</p>
         <div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
           <a href="https://github.com/alexgamingstudio" class="cta-btn" id="t-btn">GitHub Profil</a>
           <a rel="me" href="https://mastodon.social/@alexgamingdev" style="color: #00bcd4; font-size: 0.9rem; text-decoration: none; border-bottom: 1px dashed;">Verifiziert auf Mastodon</a>
@@ -239,32 +213,33 @@
 
     <footer>
       &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
-      <a href="legal/" id="f-legal">Impressum</a> | 
-      <a href="privacy/" id="f-privacy">Datenschutz</a> | 
-      <a href="support/" id="f-support">Support</a>
+      <a href="/legal/" id="f-legal">Impressum</a> | 
+      <a href="/privacy/" id="f-privacy">Datenschutz</a> | 
+      <a href="/support/" id="f-support">Support</a>
     </footer>
   </div>
 
   <script>
     const i18n = {
-      "de-de": { title: "Willkommen bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "de", name: "Deutsch" },
-      "at-at": { title: "Servus bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "at", name: "Österreich" },
-      "ch-ch": { title: "Grüezi bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "ch", name: "Schweiz" },
-      "en-us": { title: "Welcome to Alex Gaming", desc: "I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies.", copy: "All rights reserved.", flag: "us", name: "English" },
-      "fr-fr": { title: "Bienvenue chez Alex Gaming", desc: "Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET.", copy: "Tous droits réservés.", flag: "fr", name: "Français" },
-      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben een Duitse developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen met een focus op .NET.", copy: "Alle rechten voorbehouden.", flag: "nl", name: "Nederlands" },
-      "it-it": { title: "Benvenuti in Alex Gaming", desc: "Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET.", copy: "Tutti i diritti riservati.", flag: "it", name: "Italiano" },
-      "pl-pl": { title: "Witamy w Alex Gaming", desc: "Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET.", copy: "Wszelkie prawa zastrzeżone.", flag: "pl", name: "Polski" }
+      "de-de": { title: "Willkommen bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "de", name: "Deutsch", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "at-at": { title: "Servus bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "at", name: "Österreich", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "ch-ch": { title: "Grüezi bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "ch", name: "Schweiz", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "en-us": { title: "Welcome to Alex Gaming", desc: "I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies.", copy: "All rights reserved.", flag: "us", name: "English", legal: "Legal Notice", privacy: "Privacy Policy", support: "Support" },
+      "fr-fr": { title: "Bienvenue chez Alex Gaming", desc: "Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET.", copy: "Tous droits réservés.", flag: "fr", name: "Français", legal: "Mentions Légales", privacy: "Confidentialité", support: "Support" },
+      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben een Duitse developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen mit een focus op .NET.", copy: "Alle rechten voorbehouden.", flag: "nl", name: "Nederlands", legal: "Colofon", privacy: "Privacybeleid", support: "Support" },
+      "it-it": { title: "Benvenuti in Alex Gaming", desc: "Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET.", copy: "Tutti i diritti riservati.", flag: "it", name: "Italiano", legal: "Note Legali", privacy: "Privacy", support: "Supporto" },
+      "pl-pl": { title: "Witamy w Alex Gaming", desc: "Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET.", copy: "Wszelkie prawa zastrzeżone.", flag: "pl", name: "Polski", legal: "Nota Prawna", privacy: "Prywatność", support: "Wsparcie" }
     };
 
     function setLang(langCode) {
       const data = i18n[langCode];
       if(!data) return;
 
-      // URL oben verschönern
-      const newUrl = window.location.protocol + "//" + window.location.host + "/" + langCode + "/";
+      // URL Update für Browserverlauf
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?lang=" + langCode;
       window.history.replaceState({ path: newUrl }, '', newUrl);
 
+      // Texte austauschen
       document.getElementById('t-title').innerText = data.title;
       document.getElementById('t-desc').innerHTML = data.desc;
       document.getElementById('t-btn').innerText = data.btn;
@@ -272,19 +247,15 @@
       document.getElementById('t-about-p').innerText = data.aboutP;
       document.getElementById('t-copy').innerText = data.copy;
       
+      // Footer-Texte fixen
+      document.getElementById('f-legal').innerText = data.legal;
+      document.getElementById('f-privacy').innerText = data.privacy;
+      document.getElementById('f-support').innerText = data.support;
+      
+      // Flagge & Menü
       document.getElementById('cur-lang-name').innerText = data.name;
       document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${data.flag}.png`;
       localStorage.setItem('lang', langCode);
-
-      // Footer Links aktualisieren
-      const footerLinks = ['f-legal', 'f-privacy', 'f-support'];
-      footerLinks.forEach(id => {
-          const el = document.getElementById(id);
-          if(el) {
-            const base = el.getAttribute('href').split('?')[0];
-            el.href = `${base}?lang=${langCode}`;
-          }
-      });
     }
 
     window.onload = () => {
@@ -293,11 +264,8 @@
           sitekey: '0x4AAAAAACVEfjxkDrA2Xmi6',
           callback: function() {
             document.body.classList.add('authorized');
-            
-            // Schau ob wir von einem Ordner kommen (Parameter)
             const urlParams = new URLSearchParams(window.location.search);
             const lang = urlParams.get('lang') || localStorage.getItem('lang') || 'de-de';
-            
             setLang(lang);
           }
         });
