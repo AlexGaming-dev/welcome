@@ -7,59 +7,65 @@
     <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap">
     <style>
-        :root { --accent: #00bcd4; --bg: #050505; --card: #111; --success: #00ff88; --danger: #ff0055; }
+        :root { --accent: #00bcd4; --bg: #050505; --card: #111; --success: #00ff88; --danger: #ff0055; --warning: #ff9800; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; overflow-x: hidden; }
         
-        .os-container { max-width: 850px; width: 100%; background: var(--card); border: 1px solid #222; border-radius: 28px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); text-align: center; position: relative; }
-        
-        /* POPUP */
-        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); z-index: 100; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: 0.5s; }
+        /* OVERLAY / POPUP */
+        #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(15px); z-index: 100; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
         #overlay.active { visibility: visible; opacity: 1; }
-        .popup { background: #000; border: 1px solid var(--accent); padding: 40px; border-radius: 24px; max-width: 500px; text-align: center; }
+        .popup { background: #000; border: 1px solid var(--accent); padding: 40px; border-radius: 28px; max-width: 500px; text-align: center; box-shadow: 0 0 50px rgba(0, 188, 212, 0.3); transform: translateY(20px); transition: 0.4s; }
+        #overlay.active .popup { transform: translateY(0); }
         
-        /* FSK ICONS */
-        .fsk-badge { width: 45px; height: 45px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
-        .rating-flex { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+        /* CONTAINER */
+        .os-container { max-width: 850px; width: 100%; background: var(--card); border: 1px solid #222; border-radius: 32px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); text-align: center; }
+        h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; color: var(--accent); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 3px; }
+        .id-badge { font-size: 1.3rem; margin-bottom: 25px; font-weight: 800; color: #fff; }
+        .celeb-alert { color: var(--success); font-size: 0.85rem; margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* TIMER */
         .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
-        .time-box { background: #000; padding: 20px; border-radius: 18px; border: 1px solid #333; }
-        .time-box span { display: block; font-size: 2.8rem; font-weight: 900; color: var(--success); font-family: 'JetBrains Mono'; }
+        .time-box { background: #000; padding: 25px 15px; border-radius: 20px; border: 1px solid #222; }
+        .time-box span { display: block; font-size: 3rem; font-weight: 900; color: var(--success); font-family: 'JetBrains Mono'; }
+        .time-box label { font-size: 0.7rem; color: #555; text-transform: uppercase; font-weight: 700; }
 
+        /* TOOLS */
         .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-        .tool-card { background: #0c0c0c; padding: 20px; border-radius: 15px; border: 1px solid #222; text-align: left; transition: 0.3s; }
-        .tool-card:hover { border-color: var(--accent); background: #121212; }
-        .tool-card small { display: block; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
-        
-        .btn { display: inline-block; padding: 15px 30px; background: var(--accent); color: black; text-decoration: none; border-radius: 10px; font-weight: 800; cursor: pointer; border: none; margin-top: 25px; transition: 0.3s; }
+        .tool-card { background: #0c0c0c; padding: 20px; border-radius: 18px; border: 1px solid #222; text-align: left; }
+        .tool-card small { display: block; color: var(--accent); font-size: 0.65rem; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
+        .tool-card span { font-size: 1rem; font-weight: 600; color: #eee; }
+
+        /* FSK ICONS */
+        .rating-flex { display: flex; gap: 8px; justify-content: flex-start; flex-wrap: wrap; }
+        .fsk-icon { width: 40px; height: 40px; object-fit: contain; }
+
+        .btn { display: inline-block; padding: 15px 35px; background: var(--accent); color: black; text-decoration: none; border-radius: 12px; font-weight: 900; cursor: pointer; border: none; margin-top: 30px; transition: 0.3s; }
         .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
-        
-        .celeb-alert { color: var(--success); font-size: 0.8rem; margin-top: 5px; font-style: italic; }
     </style>
 </head>
 <body>
 
 <div id="overlay">
     <div class="popup">
-        <h2 id="pop-title" style="color: var(--accent); font-family: 'JetBrains Mono'; margin-bottom: 20px;">SYSTEM CHECK</h2>
-        <p id="pop-text" style="color: #888; margin-bottom: 25px;"></p>
-        <div id="pop-icons" class="rating-flex"></div>
-        <button class="btn" onclick="closePopup()">INITIALIZE INTERFACE</button>
+        <h2 id="pop-title">SCANNING IDENTITY...</h2>
+        <p id="pop-text" style="margin: 20px 0; color: #888; line-height: 1.6;"></p>
+        <div id="pop-icons" class="rating-flex" style="justify-content: center; margin-bottom: 25px;"></div>
+        <button class="btn" onclick="closePopup()">ACCESS SYSTEM</button>
     </div>
 </div>
 
 <div class="os-container" id="app">
-    <h1>Birthday OS v2.0</h1>
-    <p>Please provide identity credentials (Name & Date).</p>
-    <button class="btn" onclick="promptUser()">LOGIN</button>
+    <h1>Birthday OS v2.5</h1>
+    <p style="color:#555; margin-bottom: 20px;">Awaiting credentials...</p>
+    <button class="btn" onclick="manualLogin()">LOGIN</button>
 </div>
 
 <script>
     const app = document.getElementById('app');
-    const query = decodeURIComponent(window.location.search.substring(1));
+    const params = new URLSearchParams(window.location.search);
     const activeLang = localStorage.getItem('selectedLang') || 'en';
 
-    const fskLinks = [
+    const fskIcons = [
         "https://albrecht-kino.de/wp-content/uploads/sites/9/2019/09/600px-FSK_0.svg_.png",
         "https://parklichtspiele.de/wp-content/uploads/sites/19/2020/05/600px-FSK_6.svg_.png",
         "https://cdn.cineweb.de/media/betreiber/haveltorkino-2018/city/rathenow-2018/images/FSK-12J.png",
@@ -68,61 +74,81 @@
     ];
 
     const celebs = {
-        "Elon Musk": "Mars is waiting for you!",
-        "Cristiano Ronaldo": "SUIWY! The GOAT is here.",
-        "Albert Einstein": "Relatively speaking, you look young.",
-        "Alex Gaming": "The creator itself? Welcome, Admin.",
-        "Lionel Messi": "Magic in your feet, magic in this date."
+        "elon": { full: "Elon Musk", msg: "Mars is waiting! 🚀", fact: "Vision: Multi-planetary life." },
+        "friedrich": { full: "Friedrich Merz", msg: "Bundeskanzler 🇩🇪", fact: "Regierungschef von Deutschland." },
+        "donald": { full: "Donald Trump", msg: "47th President 🇺🇸", fact: "Making Birthdays Great Again." },
+        "cristiano": { full: "Cristiano Ronaldo", msg: "The GOAT ⚽", fact: "Legendary status: Active." },
+        "olaf": { full: "Olaf Scholz", msg: "Politiker 🏛️", fact: "Ehem. Bundeskanzler." },
+        "beast": { full: "MrBeast", msg: "Giving away cakes! 💸", fact: "Subscriber count: World Record." },
+        "alex": { full: "Alex Gaming", msg: "System Creator 🛠️", fact: "Root Access: Granted." }
     };
 
-    function init() {
-        if (query.includes('&')) {
-            const [name, date] = query.split('&');
-            renderOS(name, date);
-        }
-    }
-
-    function promptUser() {
-        const n = prompt("Name:");
-        const d = prompt("Date (DD.MM.YYYY):");
-        if(n && d) window.location.search = `?${encodeURIComponent(n)}&${encodeURIComponent(d)}`;
-    }
+    const i18n = {
+        en: { age: "Age", origin: "Origin", clearance: "Clearance", fun: "Fun Fact", days: "Days", copy: "Copy Link", ancient: "ANCIENT ENTITY" },
+        de: { age: "Alter", origin: "Herkunft", clearance: "Freigabe", fun: "Fun Fact", days: "Tage", copy: "Link kopieren", ancient: "ANTIKES WESEN" }
+    };
+    const t = i18n[activeLang] || i18n.en;
 
     function detectOrigin(name) {
         const n = name.toLowerCase();
-        if (n.endsWith('ov') || n.endsWith('in')) return "Eastern Europe";
-        if (n.endsWith('ez') || n.endsWith('os')) return "Spain / Latin Am.";
-        if (n.endsWith('son') || n.endsWith('smith')) return "English Speaking";
-        if (n.endsWith('er') || n.endsWith('mann')) return "Germany / Central Europe";
-        return "Global / Unknown";
+        if (n.endsWith('er') || n.endsWith('mann')) return "Germanic";
+        if (n.endsWith('ov') || n.endsWith('in')) return "Slavic";
+        if (n.endsWith('ez') || n.endsWith('os')) return "Hispanic";
+        if (n.endsWith('son')) return "Scandinavian";
+        return "International";
     }
 
-    function renderOS(name, dateStr) {
-        const origin = detectOrigin(name);
-        const celebMsg = celebs[name] ? `<div class="celeb-alert">★ ${celebs[name]}</div>` : "";
+    function manualLogin() {
+        const n = prompt("Name:");
+        const d = prompt("Birthday (DD.MM.YYYY):");
+        if(n && d) window.location.search = `?${encodeURIComponent(n)}&${encodeURIComponent(d)}`;
+    }
+
+    function render() {
+        // Find name and date in query string
+        let name = "User";
+        let dateStr = "";
+        const keys = Array.from(params.keys());
+        
+        if (keys.length >= 2) {
+            name = keys[0];
+            dateStr = keys[1];
+        } else if (window.location.search.includes('&')) {
+            const parts = window.location.search.substring(1).split('&');
+            name = decodeURIComponent(parts[0]);
+            dateStr = decodeURIComponent(parts[1]);
+        } else { return; }
+
+        let celeb = null;
+        for (let key in celebs) {
+            if (name.toLowerCase().includes(key)) { celeb = celebs[key]; break; }
+        }
 
         app.innerHTML = `
-            <h1 style="color:var(--accent)">Birthday OS Elite</h1>
-            <div style="font-size: 1.2rem; margin-bottom: 20px;">Identity: <strong>${name}</strong> ${celebMsg}</div>
-            
+            <h1>Birthday OS Elite</h1>
+            <div class="id-badge">
+                <span style="color:${celeb ? 'var(--success)' : 'white'}">${celeb ? celeb.full : name}</span>
+                ${celeb ? `<div class="celeb-alert">★ ${celeb.msg}</div>` : ""}
+            </div>
+
             <div class="timer-grid">
-                <div class="time-box"><span id="d-val">0</span><label>Days</label></div>
+                <div class="time-box"><span id="d-val">0</span><label>${t.days}</label></div>
                 <div class="time-box"><span id="h-val">0</span><label>Hrs</label></div>
                 <div class="time-box"><span id="m-val">0</span><label>Min</label></div>
             </div>
 
             <div class="tool-grid">
-                <div class="tool-card"><small>Biological Age</small><span id="c-age">-</span></div>
-                <div class="tool-card"><small>Name Origin</small><span>${origin}</span></div>
-                <div class="tool-card"><small>Clearance Tiers</small><div id="c-ratings" class="rating-flex"></div></div>
-                <div class="tool-card"><small>Celebrity Status</small><span>${celebs[name] ? "Verified ★" : "Citizen"}</span></div>
+                <div class="tool-card"><small>${t.age}</small><span id="c-age">-</span></div>
+                <div class="tool-card"><small>${t.origin}</small><span>${detectOrigin(name)}</span></div>
+                <div class="tool-card"><small>${t.clearance}</small><div id="c-ratings" class="rating-flex"></div></div>
+                <div class="tool-card" style="border: 1px solid var(--accent);"><small>${t.fun}</small><span>${celeb ? celeb.fact : "Heartbeats: ~3.1B"}</span></div>
             </div>
-            <button class="btn" onclick="copyLink()">GENERATE SHARE LINK</button>
+            <button class="btn" onclick="copyLink()">${t.copy}</button>
         `;
-        runLogic(name, dateStr);
+        startLogic(name, dateStr);
     }
 
-    function runLogic(name, dateStr) {
+    function startLogic(name, dateStr) {
         const p = dateStr.split('.');
         const bDate = new Date(p[2], p[1] - 1, p[0]);
         const today = new Date();
@@ -132,25 +158,32 @@
 
         document.getElementById('c-age').innerText = age;
 
-        // FSK Display Logic
+        // FSK Icons
         const popIcons = document.getElementById('pop-icons');
         const dashIcons = document.getElementById('c-ratings');
         const tiers = [0, 6, 12, 16, 18];
-        
         tiers.forEach((lvl, i) => {
             if (age >= lvl) {
-                const img = `<img src="${fskLinks[i]}" class="fsk-badge" title="FSK ${lvl}">`;
+                const img = `<img src="${fskIcons[i]}" class="fsk-icon">`;
                 popIcons.innerHTML += img;
                 dashIcons.innerHTML += img;
             }
         });
 
-        // Popup Logic
-        const popText = age >= 130 ? "DATA ERROR: Time Lord detected. Ancient clearances active." : `Welcome ${name}. Biometric data confirmed. Access granted.`;
-        document.getElementById('pop-text').innerText = popText;
-        if(age >= 130) document.getElementById('pop-title').style.color = "var(--danger)";
+        // Popup
+        const popTitle = document.getElementById('pop-title');
+        const popText = document.getElementById('pop-text');
+        if (age >= 130) {
+            document.getElementById('overlay').style.background = "rgba(30, 0, 0, 0.95)";
+            popTitle.innerText = t.ancient;
+            popTitle.style.color = "var(--danger)";
+            popText.innerText = "Biological clock out of bounds. Accessing restricted legacy archives.";
+        } else {
+            popTitle.innerText = "ACCESS GRANTED: " + name.toUpperCase();
+            popText.innerText = "Biometric analysis complete. All age-appropriate systems initialized.";
+        }
         
-        setTimeout(() => document.getElementById('overlay').classList.add('active'), 500);
+        setTimeout(() => document.getElementById('overlay').classList.add('active'), 600);
 
         setInterval(() => {
             const diff = next - new Date();
@@ -161,9 +194,9 @@
     }
 
     function closePopup() { document.getElementById('overlay').classList.remove('active'); }
-    function copyLink() { navigator.clipboard.writeText(window.location.href); alert("Copied!"); }
-    
-    init();
+    function copyLink() { navigator.clipboard.writeText(window.location.href); alert("Link copied!"); }
+
+    render();
 </script>
 </body>
 </html>
