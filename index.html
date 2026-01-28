@@ -226,7 +226,7 @@
       "ch-ch": { title: "Grüezi bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "ch", name: "Schweiz", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
       "en-us": { title: "Welcome to Alex Gaming", desc: "I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies.", copy: "All rights reserved.", flag: "us", name: "English", legal: "Legal Notice", privacy: "Privacy Policy", support: "Support" },
       "fr-fr": { title: "Bienvenue chez Alex Gaming", desc: "Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET.", copy: "Tous droits réservés.", flag: "fr", name: "Français", legal: "Mentions Légales", privacy: "Confidentialité", support: "Support" },
-      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben een Duitse developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen mit een focus op .NET.", copy: "Alle rechten voorbehouden.", flag: "nl", name: "Nederlands", legal: "Colofon", privacy: "Privacybeleid", support: "Support" },
+      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben een Duitse developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen met een focus op .NET.", copy: "Alle rechten voorbehouden.", flag: "nl", name: "Nederlands", legal: "Colofon", privacy: "Privacybeleid", support: "Support" },
       "it-it": { title: "Benvenuti in Alex Gaming", desc: "Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET.", copy: "Tutti i diritti riservati.", flag: "it", name: "Italiano", legal: "Note Legali", privacy: "Privacy", support: "Supporto" },
       "pl-pl": { title: "Witamy w Alex Gaming", desc: "Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET.", copy: "Wszelkie prawa zastrzeżone.", flag: "pl", name: "Polski", legal: "Nota Prawna", privacy: "Prywatność", support: "Wsparcie" }
     };
@@ -235,11 +235,11 @@
       const data = i18n[langCode];
       if(!data) return;
 
-      // URL Update für Browserverlauf
-      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?lang=" + langCode;
+      // Schöne URL in der Browserzeile erzeugen
+      const newUrl = window.location.protocol + "//" + window.location.host + "/" + langCode + "/";
       window.history.replaceState({ path: newUrl }, '', newUrl);
 
-      // Texte austauschen
+      // Hauptinhalte übersetzen
       document.getElementById('t-title').innerText = data.title;
       document.getElementById('t-desc').innerHTML = data.desc;
       document.getElementById('t-btn').innerText = data.btn;
@@ -247,12 +247,12 @@
       document.getElementById('t-about-p').innerText = data.aboutP;
       document.getElementById('t-copy').innerText = data.copy;
       
-      // Footer-Texte fixen
+      // Footer-Links übersetzen (DIE REPARATUR)
       document.getElementById('f-legal').innerText = data.legal;
       document.getElementById('f-privacy').innerText = data.privacy;
       document.getElementById('f-support').innerText = data.support;
       
-      // Flagge & Menü
+      // Menü-Update (Flagge & Name)
       document.getElementById('cur-lang-name').innerText = data.name;
       document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${data.flag}.png`;
       localStorage.setItem('lang', langCode);
@@ -264,8 +264,11 @@
           sitekey: '0x4AAAAAACVEfjxkDrA2Xmi6',
           callback: function() {
             document.body.classList.add('authorized');
+            
+            // Sprache ermitteln: URL-Parameter oder Speicher oder Standard
             const urlParams = new URLSearchParams(window.location.search);
             const lang = urlParams.get('lang') || localStorage.getItem('lang') || 'de-de';
+            
             setLang(lang);
           }
         });
