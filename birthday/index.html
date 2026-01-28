@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Tools – Alex Gaming</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container { max-width: 650px; padding: 2.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; backdrop-filter: blur(10px); }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #00bcd4; font-weight: 900; }
+        p { color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem; }
+
+        /* Countdown Style */
+        .timer { display: flex; gap: 12px; justify-content: center; margin: 2rem 0; }
+        .time-box { background: rgba(0, 188, 212, 0.1); padding: 15px; border-radius: 15px; min-width: 85px; border: 1px solid rgba(0,188,212,0.3); }
+        .time-box span { display: block; font-size: 2.2rem; font-weight: 900; color: #00bcd4; }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
+
+        /* Tool Grid */
+        .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 2rem; }
+        .tool-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; border: 1px solid #334155; font-size: 0.95rem; }
+        .tool-card strong { display: block; color: #00bcd4; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; }
+        
+        .btn { display: inline-block; padding: 12px 24px; background: #00bcd4; color: white; text-decoration: none; border-radius: 10px; font-weight: 800; transition: 0.3s; margin-top: 10px; border: none; cursor: pointer; }
+        .btn:hover { background: #0097a7; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); }
+
+        code { background: #000; color: #00ff88; padding: 4px 8px; border-radius: 4px; font-family: monospace; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-content">
+    <div id="lang-content">
+        </div>
+</div>
+
+<script>
+    const i18n = {
+        de: {
+            instrTitle: "Anleitung",
+            instrDesc: "Gib dein Geburtsdatum in der URL an, um den Countdown und die Tools zu nutzen.",
+            example: "Beispiel",
+            btnBack: "Zurück",
+            countTitle: "Dein Countdown",
+            days: "Tage", hours: "Std", mins: "Min",
+            age: "Alter", weekday: "Geburtstag", zodiac: "Sternzeichen",
+            congrats: "🎉 Alles Gute zum Geburtstag! 🎈"
+        },
+        en: {
+            instrTitle: "Instructions",
+            instrDesc: "Enter your birth date in the URL to use the countdown and tools.",
+            example: "Example",
+            btnBack: "Back",
+            countTitle: "Your Countdown",
+            days: "Days", hours: "Hrs", mins: "Min",
+            age: "Age", weekday: "Born on a", zodiac: "Zodiac",
+            congrats: "🎉 Happy Birthday! 🎈"
+        }
+        // Weitere Sprachen (fr, it, pl...) können hier nach dem gleichen Schema ergänzt werden
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = window.location.search.substring(1);
+    const savedLang = localStorage.getItem('selectedLang') || 'de';
+    const t = i18n[savedLang] || i18n.en;
+
+    function init() {
+        const langContent = document.getElementById('lang-content');
+
+        // Prüfen, ob eine gültige Datums-Query existiert (Format DD.MM.YYYY)
+        const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/;
+        
+        if (!query || query.toLowerCase() === 'anleitung' || !dateRegex.test(query)) {
+            renderInstructions(langContent);
+        } else {
+            renderTools(langContent, query);
+        }
+    }
+
+    function renderInstructions(container) {
+        container.innerHTML = `
+            <h1>${t.instrTitle}</h1>
+            <p>${t.instrDesc}</p>
+            <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                <p><strong>${t.example}:</strong></p>
+                <code>alexgaming.is-a.dev/birthday/?15.05.2000</code>
+            </div>
+            <a href="../" class="btn">${t.btnBack}</a>
+        `;
+    }
+
+    function renderTools(container, dateStr) {
+        container.innerHTML = `
+            <h1 id="title">${t.countTitle}</h1>
+            <div class="timer">
+                <div class="time-box"><span id="d-val">-</span><label>${t.days}</label></div>
+                <div class="time-box"><span id="h-val">-</span><label>${t.hours}</label></div>
+                <div class="time-box"><span id="m-val">-</span><label>${t.mins}</label></div>
+            </div>
+            <div class="tools">
+                <div class="tool-card"><strong>${t.age}</strong><span id="calc-age">-</span></div>
+                <div class="tool-card"><strong>${t.weekday}</strong><span id="calc-day">-</span></div>
+                <div class="tool-card" style="grid-column: span 2;"><strong>${t.zodiac}</strong><span id="calc-sign">-</span></div>
+            </div>
+            <a href="?anleitung" class="btn" style="background:#334155; margin-top:30px; font-size:0.8rem;">${t.instrTitle}</a>
+        `;
+        startLogic(dateStr);
+    }
+
+    function startLogic(dateStr) {
+        const parts = dateStr.split('.');
+        const birthDate = new Date(parts[2], parts[1] - 1, parts[0]);
+        const today = new Date();
+        
+        // Alter & Tools
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const hasHadBday = (today.getMonth() > birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate()));
+        if (!hasHadBday) age--;
+        
+        document.getElementById('calc-age').innerText = age;
+        document.getElementById('calc-day').innerText = new Intl.DateTimeFormat(savedLang === 'de' ? 'de-DE' : 'en-US', { weekday: 'long' }).format(birthDate);
+        document.getElementById('calc-sign').innerText = getZodiac(birthDate.getDate(), birthDate.getMonth() + 1);
+
+        // Countdown Logik
+        let nextBday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+        if (today > nextBday) nextBday.setFullYear(today.getFullYear() + 1);
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = nextBday - now;
+
+            if (diff < 0) {
+                document.getElementById('title').innerText = t.congrats;
+                return;
+            }
+
+            document.getElementById('d-val').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('h-val').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('m-val').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    }
+
+    function getZodiac(day, month) {
+        const signsDe = ["Steinbock", "Wassermann", "Fische", "Widder", "Stier", "Zwillinge", "Krebs", "Löwe", "Jungfrau", "Waage", "Skorpion", "Schütze"];
+        const signsEn = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
+        const signs = savedLang === 'de' ? signsDe : signsEn;
+        const lastDays = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
+        return (day > lastDays[month - 1]) ? signs[month % 12] : signs[month - 1];
+    }
+
+    init();
+</script>
+
+</body>
+</html>
