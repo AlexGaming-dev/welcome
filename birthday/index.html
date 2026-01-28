@@ -1,172 +1,215 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Tools – Alex Gaming</title>
+    <title>Birthday OS – Alex Gaming</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap">
     <style>
+        :root { --accent: #00bcd4; --bg: #050505; --card: #111; --success: #00ff88; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            background: var(--bg);
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            text-align: center;
+            padding: 20px;
         }
 
-        .container { max-width: 650px; padding: 2.5rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; backdrop-filter: blur(10px); }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #00bcd4; font-weight: 900; }
-        p { color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem; }
+        .os-container {
+            max-width: 700px;
+            width: 100%;
+            background: var(--card);
+            border: 1px solid #222;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
 
-        /* Countdown Style */
-        .timer { display: flex; gap: 12px; justify-content: center; margin: 2rem 0; }
-        .time-box { background: rgba(0, 188, 212, 0.1); padding: 15px; border-radius: 15px; min-width: 85px; border: 1px solid rgba(0,188,212,0.3); }
-        .time-box span { display: block; font-size: 2.2rem; font-weight: 900; color: #00bcd4; }
-        .time-box label { font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
+        h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        p { color: #888; line-height: 1.6; margin-bottom: 20px; }
+
+        /* Countdown Grid */
+        .timer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
+        .time-box { background: #000; padding: 20px; border-radius: 15px; border: 1px solid #333; }
+        .time-box span { display: block; font-size: 2.5rem; font-weight: 900; color: var(--success); }
+        .time-box label { font-size: 0.7rem; color: #666; text-transform: uppercase; font-weight: bold; }
+
+        /* Progress Bar */
+        .progress-wrapper { text-align: left; margin-bottom: 30px; }
+        .progress-header { display: flex; justify-content: space-between; font-size: 0.75rem; color: #888; margin-bottom: 8px; text-transform: uppercase; }
+        .progress-bar-bg { width: 100%; background: #000; height: 12px; border-radius: 6px; border: 1px solid #222; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); transition: width 1.5s cubic-bezier(0.1, 0, 0.3, 1); }
 
         /* Tool Grid */
-        .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 2rem; }
-        .tool-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; border: 1px solid #334155; font-size: 0.95rem; }
-        .tool-card strong { display: block; color: #00bcd4; margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; }
-        
-        .btn { display: inline-block; padding: 12px 24px; background: #00bcd4; color: white; text-decoration: none; border-radius: 10px; font-weight: 800; transition: 0.3s; margin-top: 10px; border: none; cursor: pointer; }
-        .btn:hover { background: #0097a7; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4); }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .tool-card { background: #0a0a0a; padding: 15px; border-radius: 12px; border: 1px solid #222; text-align: left; transition: 0.3s; }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .tool-card small { display: block; color: #555; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
+        .tool-card span { font-weight: 700; color: #eee; font-size: 1rem; }
 
-        code { background: #000; color: #00ff88; padding: 4px 8px; border-radius: 4px; font-family: monospace; }
-        .hidden { display: none; }
+        .btn {
+            display: inline-block; padding: 12px 25px; background: var(--accent); color: black;
+            text-decoration: none; border-radius: 8px; font-weight: 800; cursor: pointer; border: none; margin-top: 20px;
+        }
+
+        code { background: #000; color: var(--success); padding: 5px 10px; border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-<div class="container" id="main-content">
-    <div id="lang-content">
-        </div>
-</div>
+<div class="os-container" id="app">
+    </div>
 
 <script>
-    const i18n = {
-        de: {
-            instrTitle: "Anleitung",
-            instrDesc: "Gib dein Geburtsdatum in der URL an, um den Countdown und die Tools zu nutzen.",
-            example: "Beispiel",
-            btnBack: "Zurück",
-            countTitle: "Dein Countdown",
-            days: "Tage", hours: "Std", mins: "Min",
-            age: "Alter", weekday: "Geburtstag", zodiac: "Sternzeichen",
-            congrats: "🎉 Alles Gute zum Geburtstag! 🎈"
-        },
-        en: {
-            instrTitle: "Instructions",
-            instrDesc: "Enter your birth date in the URL to use the countdown and tools.",
-            example: "Example",
-            btnBack: "Back",
-            countTitle: "Your Countdown",
-            days: "Days", hours: "Hrs", mins: "Min",
-            age: "Age", weekday: "Born on a", zodiac: "Zodiac",
-            congrats: "🎉 Happy Birthday! 🎈"
-        }
-        // Weitere Sprachen (fr, it, pl...) können hier nach dem gleichen Schema ergänzt werden
+    const app = document.getElementById('app');
+    const query = window.location.search.substring(1);
+    
+    // Translation object
+    const lang = {
+        title: "Birthday OS v1.0",
+        instrDesc: "To initialize the system, provide your birth date in the URL parameters.",
+        example: "Format: ?DD.MM.YYYY",
+        countdown: "Time until next level",
+        days: "Days", hours: "Hours", mins: "Mins",
+        age: "Current Age",
+        weekday: "Born on a",
+        zodiac: "Zodiac Sign",
+        china: "Lunar Year",
+        weeks: "Weeks Lived",
+        heart: "Est. Heartbeats",
+        milestone: "Next Milestone",
+        share: "Copy Share Link",
+        congrats: "Happy Birthday! System Level Up!"
     };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = window.location.search.substring(1);
-    const savedLang = localStorage.getItem('selectedLang') || 'de';
-    const t = i18n[savedLang] || i18n.en;
-
     function init() {
-        const langContent = document.getElementById('lang-content');
-
-        // Prüfen, ob eine gültige Datums-Query existiert (Format DD.MM.YYYY)
         const dateRegex = /^\d{2}\.\d{2}\.\d{4}$/;
-        
-        if (!query || query.toLowerCase() === 'anleitung' || !dateRegex.test(query)) {
-            renderInstructions(langContent);
+        if (!query || query.toLowerCase() === 'instructions' || !dateRegex.test(query)) {
+            renderInstructions();
         } else {
-            renderTools(langContent, query);
+            renderOS(query);
         }
     }
 
-    function renderInstructions(container) {
-        container.innerHTML = `
-            <h1>${t.instrTitle}</h1>
-            <p>${t.instrDesc}</p>
-            <div style="text-align: left; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                <p><strong>${t.example}:</strong></p>
-                <code>alexgaming.is-a.dev/birthday/?15.05.2000</code>
+    function renderInstructions() {
+        app.innerHTML = `
+            <h1>${lang.title}</h1>
+            <p>${lang.instrDesc}</p>
+            <div style="background: #000; padding: 20px; border-radius: 12px; border: 1px dashed #444; margin-bottom: 20px;">
+                <p style="margin-bottom: 10px; font-weight: bold; color: white;">${lang.example}</p>
+                <code>?15.05.2000</code>
             </div>
-            <a href="../" class="btn">${t.btnBack}</a>
+            <a href="../" class="btn" style="background: #333; color: white;">Back to Portfolio</a>
         `;
     }
 
-    function renderTools(container, dateStr) {
-        container.innerHTML = `
-            <h1 id="title">${t.countTitle}</h1>
-            <div class="timer">
-                <div class="time-box"><span id="d-val">-</span><label>${t.days}</label></div>
-                <div class="time-box"><span id="h-val">-</span><label>${t.hours}</label></div>
-                <div class="time-box"><span id="m-val">-</span><label>${t.mins}</label></div>
+    function renderOS(dateStr) {
+        app.innerHTML = `
+            <h1 id="os-header">${lang.title}</h1>
+            
+            <div class="progress-wrapper">
+                <div class="progress-header">
+                    <span>Year Progress</span>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
             </div>
-            <div class="tools">
-                <div class="tool-card"><strong>${t.age}</strong><span id="calc-age">-</span></div>
-                <div class="tool-card"><strong>${t.weekday}</strong><span id="calc-day">-</span></div>
-                <div class="tool-card" style="grid-column: span 2;"><strong>${t.zodiac}</strong><span id="calc-sign">-</span></div>
+
+            <div class="timer-grid">
+                <div class="time-box"><span id="d-val">--</span><label>${lang.days}</label></div>
+                <div class="time-box"><span id="h-val">--</span><label>${lang.hours}</label></div>
+                <div class="time-box"><span id="m-val">--</span><label>${lang.mins}</label></div>
             </div>
-            <a href="?anleitung" class="btn" style="background:#334155; margin-top:30px; font-size:0.8rem;">${t.instrTitle}</a>
+
+            <div class="tool-grid">
+                <div class="tool-card"><small>${lang.age}</small><span id="c-age">-</span></div>
+                <div class="tool-card"><small>${lang.weekday}</small><span id="c-day">-</span></div>
+                <div class="tool-card"><small>${lang.zodiac}</small><span id="c-sign">-</span></div>
+                <div class="tool-card"><small>${lang.china}</small><span id="c-china">-</span></div>
+                <div class="tool-card"><small>${lang.weeks}</small><span id="c-weeks">-</span></div>
+                <div class="tool-card"><small>${lang.heart}</small><span id="c-heart">-</span></div>
+                <div class="tool-card" style="grid-column: span 2;"><small>${lang.milestone}</small><span id="c-milestone">-</span></div>
+            </div>
+
+            <button class="btn" onclick="copyLink()">${lang.share}</button>
         `;
-        startLogic(dateStr);
+        runLogic(dateStr);
     }
 
-    function startLogic(dateStr) {
+    function runLogic(dateStr) {
         const parts = dateStr.split('.');
         const birthDate = new Date(parts[2], parts[1] - 1, parts[0]);
         const today = new Date();
-        
-        // Alter & Tools
+
+        // Calculations
         let age = today.getFullYear() - birthDate.getFullYear();
-        const hasHadBday = (today.getMonth() > birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate()));
-        if (!hasHadBday) age--;
+        let lastBday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+        if (today < lastBday) {
+            age--;
+            lastBday = new Date(today.getFullYear() - 1, birthDate.getMonth(), birthDate.getDate());
+        }
+        let nextBday = new Date(lastBday.getFullYear() + 1, birthDate.getMonth(), birthDate.getDate());
+
+        // Fill Progress Bar
+        const totalMs = nextBday - lastBday;
+        const passedMs = today - lastBday;
+        const percent = Math.floor((passedMs / totalMs) * 100);
+        setTimeout(() => {
+            document.getElementById('progress-fill').style.width = percent + "%";
+            document.getElementById('progress-text').innerText = percent + "%";
+        }, 300);
+
+        // Fill Stats
+        document.getElementById('c-age').innerText = age;
+        document.getElementById('c-day').innerText = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(birthDate);
+        document.getElementById('c-sign').innerText = getZodiac(birthDate.getDate(), birthDate.getMonth() + 1);
         
-        document.getElementById('calc-age').innerText = age;
-        document.getElementById('calc-day').innerText = new Intl.DateTimeFormat(savedLang === 'de' ? 'de-DE' : 'en-US', { weekday: 'long' }).format(birthDate);
-        document.getElementById('calc-sign').innerText = getZodiac(birthDate.getDate(), birthDate.getMonth() + 1);
+        const animals = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig"];
+        document.getElementById('c-china').innerText = animals[(birthDate.getFullYear() - 4) % 12];
+        
+        document.getElementById('c-weeks').innerText = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24 * 7)).toLocaleString();
+        document.getElementById('c-heart').innerText = "~" + Math.floor(((today - birthDate) / 1000 / 60 * 75) / 1000000) + "M";
 
-        // Countdown Logik
-        let nextBday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-        if (today > nextBday) nextBday.setFullYear(today.getFullYear() + 1);
+        const nextRnd = (Math.floor(age / 10) + 1) * 10;
+        const milestoneDate = new Date(birthDate.getFullYear() + nextRnd, birthDate.getMonth(), birthDate.getDate());
+        document.getElementById('c-milestone').innerText = Math.floor((milestoneDate - today) / (1000 * 60 * 60 * 24)) + ` days to age ${nextRnd}`;
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const diff = nextBday - now;
-
+        // Timer
+        function update() {
+            const diff = nextBday - new Date().getTime();
             if (diff < 0) {
-                document.getElementById('title').innerText = t.congrats;
+                document.getElementById('os-header').innerText = lang.congrats;
                 return;
             }
-
             document.getElementById('d-val').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('h-val').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById('m-val').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        setInterval(update, 1000);
+        update();
     }
 
     function getZodiac(day, month) {
-        const signsDe = ["Steinbock", "Wassermann", "Fische", "Widder", "Stier", "Zwillinge", "Krebs", "Löwe", "Jungfrau", "Waage", "Skorpion", "Schütze"];
-        const signsEn = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
-        const signs = savedLang === 'de' ? signsDe : signsEn;
+        const signs = ["Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"];
         const lastDays = [19, 18, 20, 19, 20, 20, 22, 22, 22, 22, 21, 21];
         return (day > lastDays[month - 1]) ? signs[month % 12] : signs[month - 1];
     }
 
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied to clipboard!");
+    }
+
     init();
 </script>
-
 </body>
 </html>
