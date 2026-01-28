@@ -12,8 +12,6 @@
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
 
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
-  <link rel="apple-touch-icon" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
   <script type="application/ld+json">
@@ -25,7 +23,6 @@
         "@id": "https://alexgaming.is-a.dev/#website",
         "url": "https://alexgaming.is-a.dev/",
         "name": "Alex Gaming Portfolio",
-        "alternateName": ["AlexGaming", "Alex Gaming Dev"],
         "publisher": { "@id": "https://alexgaming.is-a.dev/#person" }
       },
       {
@@ -34,153 +31,166 @@
         "name": "Alex Gaming",
         "jobTitle": "Softwareentwickler",
         "url": "https://alexgaming.is-a.dev/",
-        "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
         "sameAs": [
           "https://github.com/alexgamingstudio",
           "https://www.youtube.com/@alexgamingdev",
           "https://mastodon.social/@alexgamingdev"
-        ],
-        "knowsAbout": ["C#", ".NET 6", "WebView2", "JavaScript", "WiX Toolset"],
-        "description": "Deutscher Softwareentwickler spezialisiert auf .NET Framework und moderne Web-Lösungen."
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Alex Gaming Software",
-        "operatingSystem": "Windows",
-        "applicationCategory": "DeveloperApplication",
-        "author": { "@id": "https://alexgaming.is-a.dev/#person" },
-        "url": "https://alexgaming.is-a.dev/"
+        ]
       }
     ]
   }
   </script>
 
   <style>
-    /* --- TURNSTILE CONTROL --- */
-    #page-content { opacity: 0.1; pointer-events: none; transition: opacity 0.5s; }
-    body.authorized #page-content { opacity: 1; pointer-events: auto; display: flex; flex-direction: column; }
-    #turnstile-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; }
-    body.authorized #turnstile-container { display: none; }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #ffffff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
+    #page-content { opacity: 0.1; pointer-events: none; transition: opacity 0.5s; display: flex; flex-direction: column; flex: 1; }
+    body.authorized #page-content { opacity: 1; pointer-events: auto; }
+    #turnstile-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; }
+    body.authorized #turnstile-container { display: none; }
+
     header {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
+      z-index: 100;
     }
 
-    header img { max-height: 50px; transition: transform 0.3s; }
+    header img { height: 45px; transition: 0.3s; }
     header img:hover { transform: scale(1.05); }
 
-    .lang-menu { position: relative; display: inline-block; }
-    
+    .lang-menu { position: relative; }
     .lang-btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 600;
-      transition: 0.3s;
     }
 
     .lang-dropdown {
-      display: none; 
+      display: none;
       position: absolute;
       right: 0;
+      top: 110%;
       background: #1e3a45;
       min-width: 180px;
-      box-shadow: 0px 8px 24px rgba(0,0,0,0.5);
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
       overflow: hidden;
-      margin-top: 8px;
     }
-
     .lang-dropdown.show { display: block; }
-
     .lang-dropdown a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 12px;
+      padding: 12px 16px;
+      color: white;
+      text-decoration: none;
       font-size: 0.9rem;
-      transition: background 0.2s;
+      transition: 0.2s;
     }
     .lang-dropdown a:hover { background: #2c5364; }
 
-    .flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; }
-
-    main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2rem; gap: 3rem; }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     .welcome-box {
-      background-color: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
+      border-radius: 30px;
       padding: 3rem 2rem;
-      max-width: 850px;
-      width: 100%;
       text-align: center;
       backdrop-filter: blur(5px);
     }
 
-    .welcome-box h1 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 800; color: #00bcd4; }
-    .welcome-box p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 2rem; color: #cbd5e0; }
+    h1 { font-size: clamp(2rem, 8vw, 3.2rem); color: #00bcd4; margin-bottom: 1.5rem; font-weight: 800; }
+    p.lead { font-size: clamp(1rem, 4vw, 1.25rem); color: #cbd5e0; margin-bottom: 2.5rem; line-height: 1.7; }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
+      margin-top: 3rem;
       text-align: left;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
     }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.08); }
 
     .skill-badge {
       background: rgba(0, 188, 212, 0.1);
-      border: 1px solid rgba(0, 188, 212, 0.3);
       color: #00bcd4;
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 600;
+      margin: 5px;
       display: inline-block;
-      margin: 4px;
+      border: 1px solid rgba(0, 188, 212, 0.2);
     }
 
-    .cta-btn { 
-      display: inline-block; padding: 1rem 2.5rem; background-color: #00bcd4; color: white; 
-      text-decoration: none; font-weight: 700; border-radius: 10px; transition: 0.3s;
+    .cta-btn {
+      background: #00bcd4;
+      color: white;
+      padding: 14px 35px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
     }
-    .cta-btn:hover { background-color: #0097a7; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 188, 212, 0.3); }
+    .cta-btn:hover { background: #0097a7; transform: scale(1.05); }
 
-    footer { text-align: center; padding: 1.5rem; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.4); color: #888; }
+    footer {
+      padding: 2.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #888;
+      background: rgba(0,0,0,0.2);
+    }
 
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; text-align: center; }
-      .welcome-box h1 { font-size: 2rem; }
+    .flag { width: 22px; border-radius: 3px; }
+
+    @media (max-width: 600px) {
+      main { padding: 1rem; }
+      .welcome-box { padding: 2rem 1rem; }
+      .about-grid { gap: 1rem; }
     }
   </style>
 </head>
@@ -190,139 +200,109 @@
 
   <div id="page-content">
     <header>
-      <img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo" />
+      <img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo">
       <div class="lang-menu">
         <button class="lang-btn" id="menu-trigger">
           <img src="https://flagcdn.com/w40/de.png" id="cur-flag" class="flag"> 
-          <span id="cur-lang-name">Deutsch</span>
+          <span id="cur-lang-name">DE-DE</span>
         </button>
         <div class="lang-dropdown" id="lang-dropdown">
-          <a href="javascript:void(0)" onclick="changeLang('de', 'Deutsch', 'de')"><img src="https://flagcdn.com/w40/de.png" class="flag"> Deutsch</a>
-          <a href="javascript:void(0)" onclick="changeLang('at', 'Österreich', 'at')"><img src="https://flagcdn.com/w40/at.png" class="flag"> Österreich</a>
-          <a href="javascript:void(0)" onclick="changeLang('ch', 'Schweiz', 'ch')"><img src="https://flagcdn.com/w40/ch.png" class="flag"> Schweiz</a>
-          <a href="javascript:void(0)" onclick="changeLang('en', 'English (US)', 'us')"><img src="https://flagcdn.com/w40/us.png" class="flag"> English</a>
-          <a href="javascript:void(0)" onclick="changeLang('fr', 'Français', 'fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag"> Français</a>
-          <a href="javascript:void(0)" onclick="changeLang('nl', 'Nederlands', 'nl')"><img src="https://flagcdn.com/w40/nl.png" class="flag"> Nederlands</a>
-          <a href="javascript:void(0)" onclick="changeLang('it', 'Italiano', 'it')"><img src="https://flagcdn.com/w40/it.png" class="flag"> Italiano</a>
-          <a href="javascript:void(0)" onclick="changeLang('pl', 'Polski', 'pl')"><img src="https://flagcdn.com/w40/pl.png" class="flag"> Polski</a>
+          <a href="#" onclick="setLang('de-de')"><img src="https://flagcdn.com/w40/de.png" class="flag"> Deutsch (DE)</a>
+          <a href="#" onclick="setLang('at-at')"><img src="https://flagcdn.com/w40/at.png" class="flag"> Deutsch (AT)</a>
+          <a href="#" onclick="setLang('ch-ch')"><img src="https://flagcdn.com/w40/ch.png" class="flag"> Deutsch (CH)</a>
+          <a href="#" onclick="setLang('en-us')"><img src="https://flagcdn.com/w40/us.png" class="flag"> English (US)</a>
+          <a href="#" onclick="setLang('fr-fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag"> Français</a>
+          <a href="#" onclick="setLang('nl-nl')"><img src="https://flagcdn.com/w40/nl.png" class="flag"> Nederlands</a>
+          <a href="#" onclick="setLang('it-it')"><img src="https://flagcdn.com/w40/it.png" class="flag"> Italiano</a>
+          <a href="#" onclick="setLang('pl-pl')"><img src="https://flagcdn.com/w40/pl.png" class="flag"> Polski</a>
         </div>
       </div>
     </header>
 
     <main>
       <div class="welcome-box">
-        <h1 id="t-title">Willkommen bei Alex Gaming</h1>
-        <p id="t-desc">Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+        <h1 id="t-title">Willkommen</h1>
+        <p class="lead" id="t-desc">Lade Portfolio...</p>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
           <a href="https://github.com/alexgamingstudio" class="cta-btn" id="t-btn">GitHub Profil</a>
-          <a rel="me" href="https://mastodon.social/@alexgamingdev" style="color: #00bcd4; text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px dashed #00bcd4; padding-bottom: 2px;">
-            Verifiziert auf Mastodon
-          </a>
+          <a rel="me" href="https://mastodon.social/@alexgamingdev" style="color: #00bcd4; font-size: 0.8rem; text-decoration: none;">Verifiziert auf Mastodon</a>
         </div>
+      </div>
 
-        <div class="about-grid">
-          <div class="about-info">
-            <h2 id="t-about-h" style="border:none; padding:0; margin-bottom:10px; color: #00bcd4;">Über mich</h2>
-            <p id="t-about-p" style="font-size:1rem; text-align:left;">Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.</p>
-          </div>
-          <div class="about-skills">
-            <h2 id="t-skills-h" style="border:none; padding:0; margin-bottom:10px; color: #00bcd4;">Tech Stack</h2>
-            <div id="skills-list">
-              <span class="skill-badge">C# / .NET 6</span>
-              <span class="skill-badge">WebView2</span>
-              <span class="skill-badge">HTML/CSS</span>
-              <span class="skill-badge">JavaScript</span>
-              <span class="skill-badge">WiX Toolset</span>
-            </div>
+      <div class="about-grid">
+        <div class="card">
+          <h2 id="t-about-h" style="color:#00bcd4; margin-bottom:15px;">Über mich</h2>
+          <p id="t-about-p">Lade Details...</p>
+        </div>
+        <div class="card">
+          <h2 id="t-skills-h" style="color:#00bcd4; margin-bottom:15px;">Tech Stack</h2>
+          <div id="skills-list">
+            <span class="skill-badge">C# / .NET 6</span>
+            <span class="skill-badge">WebView2</span>
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">WiX Toolset</span>
           </div>
         </div>
       </div>
     </main>
 
     <footer>
-      &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
-      <a href="legal/" id="f-legal" style="color:#888; text-decoration:none;">Impressum</a> | 
-      <a href="privacy/" id="f-privacy" style="color:#888; text-decoration:none;">Datenschutz</a> | 
-      <a href="support/" id="f-support" style="color:#888; text-decoration:none;">Support</a>
+      &copy; 2026 Alex Gaming | <span id="t-copy">Alle Rechte vorbehalten.</span>
     </footer>
   </div>
 
   <script>
-    const siteKey = '0x4AAAAAACVEfjxkDrA2Xmi6';
+    const i18n = {
+      "de-de": { title: "Willkommen bei Alex Gaming", desc: "Ich bin deutscher Developer und programmiere moderne Software-Lösungen mit Leidenschaft.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität steht an erster Stelle.", copy: "Alle Rechte vorbehalten.", flag: "de" },
+      "at-at": { title: "Servus bei Alex Gaming", desc: "Ich bin deutscher Developer und programmiere moderne Software-Lösungen mit Leidenschaft.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität steht an erster Stelle.", copy: "Alle Rechte vorbehalten.", flag: "at" },
+      "ch-ch": { title: "Grüezi bei Alex Gaming", desc: "Ich bin deutscher Developer und programmiere moderne Software-Lösungen mit Leidenschaft.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität steht an erster Stelle.", copy: "Alle Rechte vorbehalten.", flag: "ch" },
+      "en-us": { title: "Welcome to Alex Gaming", desc: "I am a German developer creating modern software solutions with passion.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies. Quality is my top priority.", copy: "All rights reserved.", flag: "us" },
+      "fr-fr": { title: "Bienvenue chez Alex Gaming", desc: "Je suis un développeur allemand passionné par la création de solutions logicielles.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET. La qualité est ma priorité.", copy: "Tous droits réservés.", flag: "fr" },
+      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben een Duitse developer die moderne softwareoplossingen creëert.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen met een focus op .NET en webtechnologie.", copy: "Alle rechten voorbehouden.", flag: "nl" },
+      "it-it": { title: "Benvenuti in Alex Gaming", desc: "Sono uno sviluppatore tedesco che crea soluzioni software moderne.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET e tecnologie web.", copy: "Tutti i diritti riservati.", flag: "it" },
+      "pl-pl": { title: "Witamy w Alex Gaming", desc: "Jestem niemieckim deweloperem tworzącym nowoczesne oprogramowanie.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET i technologiach webowych.", copy: "Wszelkie prawa zastrzeżone.", flag: "pl" }
+    };
+
+    function setLang(langCode) {
+      const data = i18n[langCode];
+      if(!data) return;
+
+      // URL Pfad optisch anpassen (Virtual Directory)
+      const newUrl = window.location.protocol + "//" + window.location.host + "/" + langCode + "/";
+      window.history.pushState({ path: newUrl }, '', newUrl);
+
+      document.getElementById('t-title').innerText = data.title;
+      document.getElementById('t-desc').innerText = data.desc;
+      document.getElementById('t-btn').innerText = data.btn;
+      document.getElementById('t-about-h').innerText = data.aboutH;
+      document.getElementById('t-about-p').innerText = data.aboutP;
+      document.getElementById('t-copy').innerText = data.copy;
+      
+      document.getElementById('cur-lang-name').innerText = langCode.toUpperCase();
+      document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${data.flag}.png`;
+      localStorage.setItem('lang', langCode);
+    }
 
     window.onload = () => {
       if (typeof turnstile !== 'undefined') {
         turnstile.render('#turnstile-container', {
-          sitekey: siteKey,
-          callback: function(token) {
+          sitekey: '0x4AAAAAACVEfjxkDrA2Xmi6',
+          callback: function() {
             document.body.classList.add('authorized');
-            initApp();
-          },
-          'error-callback': function() {
-            document.body.innerHTML = `<div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:#ff0055; font-family:sans-serif; text-align:center; padding:20px;"><h1>ZUGRIFF VERWEIGERT</h1><button onclick="location.reload()">Erneut versuchen</button></div>`;
+            // Sprache aus URL oder LocalStorage oder Fallback
+            const pathLang = window.location.pathname.replace(/\//g, '');
+            const saved = i18n[pathLang] ? pathLang : (localStorage.getItem('lang') || 'de-de');
+            setLang(saved);
           }
         });
-      } else {
-        // Falls Skript blockiert, trotzdem Content zeigen (SEO Backup)
-        document.body.classList.add('authorized');
-        initApp();
       }
     };
 
-    const i18n = {
-      de: { title: "Willkommen bei Alex Gaming", desc: "Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
-      en: { title: "Welcome to Alex Gaming", desc: "Glad you're here!<br>I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies. Quality and performance are my top priorities.", skillsH: "Tech Stack", copy: "All rights reserved." },
-      at: { title: "Servus bei Alex Gaming", desc: "Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
-      ch: { title: "Grüezi bei Alex Gaming", desc: "Schön, dass du da bist!<br>Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien. Qualität und Performance stehen bei mir an erster Stelle.", skillsH: "Tech Stack", copy: "Alle Rechte vorbehalten." },
-      fr: { title: "Bienvenue chez Alex Gaming", desc: "Ravi de vous voir!<br>Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET et les technologies web. La qualité est ma priorité.", skillsH: "Compétences", copy: "Tous droits réservés." },
-      nl: { title: "Welkom bij Alex Gaming", desc: "Leuk dat je er bent!<br>Ich bin ein deutscher Developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen met een focus op .NET und webtechnologieën.", skillsH: "Tech Stack", copy: "Alle rechten voorbehalten." },
-      it: { title: "Benvenuti in Alex Gaming", desc: "Piacere di averti qui!<br>Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET e tecnologie web.", skillsH: "Competenze", copy: "Tutti i diritti reservati." },
-      pl: { title: "Witamy w Alex Gaming", desc: "Fajnie, że jesteś!<br>Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę moderne rozwiązania oparte na .NET i technologiach webowych.", skillsH: "Umiejętności", copy: "Wszelkie prawa zastrzeżone." }
-    };
-
-    function initApp() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const saved = urlParams.get('lang') || localStorage.getItem('selectedLang') || 'de';
-      const flagMap = {de:'de', at:'at', ch:'ch', en:'us', fr:'fr', nl:'nl', it:'it', pl:'pl'};
-      const nameMap = {de:'Deutsch', at:'Österreich', ch:'Schweiz', en:'English', fr:'Français', nl:'Nederlands', it:'Italiano', pl:'Polski'};
-      changeLang(saved, nameMap[saved] || 'Deutsch', flagMap[saved] || 'de');
-    }
-
     const trigger = document.getElementById('menu-trigger');
     const dropdown = document.getElementById('lang-dropdown');
-
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('show');
-    });
-
-    window.addEventListener('click', () => dropdown.classList.remove('show'));
-
-    function changeLang(lang, name, flag) {
-      const data = i18n[lang];
-      if(!data) return;
-      document.getElementById('t-title').innerText = data.title;
-      document.getElementById('t-desc').innerHTML = data.desc;
-      document.getElementById('t-btn').innerText = data.btn;
-      document.getElementById('t-about-h').innerText = data.aboutH;
-      document.getElementById('t-about-p').innerText = data.aboutP;
-      document.getElementById('t-skills-h').innerText = data.skillsH;
-      document.getElementById('t-copy').innerText = data.copy;
-      
-      document.getElementById('cur-lang-name').innerText = name;
-      document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${flag}.png`;
-      localStorage.setItem('selectedLang', lang);
-
-      const footerLinks = ['f-legal', 'f-privacy', 'f-support'];
-      footerLinks.forEach(id => {
-          const el = document.getElementById(id);
-          if(el) {
-            const base = el.getAttribute('href').split('?')[0];
-            el.href = `${base}?lang=${lang}`;
-          }
-      });
-    }
+    trigger.onclick = (e) => { e.stopPropagation(); dropdown.classList.toggle('show'); };
+    window.onclick = () => dropdown.classList.remove('show');
   </script>
 </body>
 </html>
