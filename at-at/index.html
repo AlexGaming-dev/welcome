@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // Holt den Namen des aktuellen Ordners (z.B. "it-it")
+        const currentFolder = window.location.pathname.split('/').filter(Boolean).pop();
+        // Leitet weiter an die Hauptseite mit dem Sprach-Parameter
+        window.location.replace('/?lang=' + currentFolder);
+    </script>
+</head>
+<body style="background:#0f2027; color:white; font-family:sans-serif; display:flex; justify-content:center; align-items:center; height:100vh;">
+    <p>Loading Alex Gaming Portfolio...</p>
+</body>
+</html>
