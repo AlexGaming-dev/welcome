@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Office Suite</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* A4 Page Styling */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm 20mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Verstecke Scrollbars in Editoren */
+        .ql-container.ql-snow { border: none !important; }
+        .ql-toolbar.ql-snow { border: none !important; border-bottom: 1px solid #eee !important; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- KONFIGURATION & ÜBERSETZUNGEN ---
+        const translations = {
+            de: { welcome: "Willkommen", activate: "Aktivieren", new: "Neu", docs: "Dokumente", settings: "Einstellungen" },
+            at: { welcome: "Servus", activate: "Aktivieren", new: "Neu", docs: "Dokumente", settings: "Einstellungen" },
+            en: { welcome: "Welcome", activate: "Activate", new: "New", docs: "Documents", settings: "Settings" },
+            fr: { welcome: "Bienvenue", activate: "Activer", new: "Nouveau", docs: "Documents", settings: "Paramètres" },
+            es: { welcome: "Bienvenido", activate: "Activar", new: "Nuevo", docs: "Documentos", settings: "Ajustes" },
+            it: { welcome: "Benvenuto", activate: "Attiva", new: "Nuovo", docs: "Documenti", settings: "Impostazioni" }
+        };
+
+        // --- HAUPTKOMPONENTE ---
+        function App() {
+            const [view, setView] = useState('landing'); // landing, dashboard, editor, settings
+            const [lang, setLang] = useState('de');
+            const [isActivated, setIsActivated] = useState(false);
+            const [productKey, setProductKey] = useState('');
+
+            // Sprachsteuerung über URL oder LocalStorage
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const urlLang = params.get('lang');
+                const storedLang = localStorage.getItem('pref_lang');
+                if (urlLang && translations[urlLang]) {
+                    setLang(urlLang);
+                    localStorage.setItem('pref_lang', urlLang);
+                } else if (storedLang) {
+                    setLang(storedLang);
+                }
+            }, []);
+
+            const t = translations[lang];
+
+            // Aktivierungs-Logik
+            const handleActivate = () => {
+                if (productKey.length === 23) { // Format: XXXXX-XXXXX-XXXXX-XXXXX
+                    setIsActivated(true);
+                    setView('dashboard');
+                } else {
+                    alert("Ungültiger Key-Format!");
+                }
+            };
+
+            // --- UNTER-KOMPONENTEN ---
+
+            const LandingPage = () => (
+                <div className="min-h-screen gradient-bg flex flex-col items-center justify-center text-white p-6">
+                    <h1 className="text-6xl font-bold mb-6 italic">Office Suite 2026</h1>
+                    <div className="glass-card p-8 rounded-2xl text-gray-800 w-full max-w-md shadow-2xl">
+                        <h2 className="text-2xl font-semibold mb-4 text-center">{t.activate}</h2>
+                        <input 
+                            className="w-full p-3 border rounded-lg mb-4 text-center font-mono tracking-widest"
+                            placeholder="XXXXX-XXXXX-XXXXX-XXXXX"
+                            value={productKey}
+                            onChange={(e) => setProductKey(e.target.value.toUpperCase())}
+                        />
+                        <button 
+                            onClick={handleActivate}
+                            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 transition"
+                        >
+                            Login / Aktivieren
+                        </button>
+                    </div>
+                </div>
+            );
+
+            const Dashboard = () => (
+                <div className="p-8 max-w-6xl mx-auto">
+                    <header className="flex justify-between items-center mb-10">
+                        <h1 className="text-3xl font-bold text-gray-800">{t.welcome}, User!</h1>
+                        <button onClick={() => setView('settings')} className="p-2 bg-white rounded-full shadow hover:shadow-md transition">⚙️</button>
+                    </header>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        {['document', 'spreadsheet', 'presentation'].map(type => (
+                            <div 
+                                key={type}
+                                onClick={() => setView('editor')}
+                                className="bg-white p-6 rounded-xl shadow-sm border border-transparent hover:border-indigo-500 cursor-pointer transition-all transform hover:-translate-y-1"
+                            >
+                                <div className="text-4xl mb-4 text-indigo-500">
+                                    {type === 'document' ? '📄' : type === 'spreadsheet' ? '📊' : '📽️'}
+                                </div>
+                                <h3 className="font-bold text-lg capitalize">{type}</h3>
+                                <p className="text-gray-500 text-sm">Erstelle ein neues {type}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+
+            const DocumentEditor = () => {
+                useEffect(() => {
+                    new Quill('#editor-container', { theme: 'snow' });
+                }, []);
+
+                return (
+                    <div className="bg-gray-200 min-h-screen">
+                        <div className="bg-white p-4 border-b flex justify-between items-center sticky top-0 z-50">
+                            <button onClick={() => setView('dashboard')} className="text-indigo-600 font-bold">← Zurück</button>
+                            <input className="text-center font-semibold focus:outline-none" defaultValue="Unbenanntes Dokument" />
+                            <div className="text-xs text-green-600 font-medium">✓ Gespeichert</div>
+                        </div>
+                        <div className="py-10">
+                            <div id="editor-container" className="a4-page shadow-2xl"></div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const Settings = () => (
+                <div className="max-w-2xl mx-auto p-10">
+                    <button onClick={() => setView('dashboard')} className="mb-6 text-indigo-600">← Home</button>
+                    <h2 className="text-3xl font-bold mb-8">Einstellungen</h2>
+                    <div className="bg-white p-6 rounded-xl shadow">
+                        <label className="block mb-2 font-medium">Sprache wählen</label>
+                        <select 
+                            className="w-full p-2 border rounded"
+                            value={lang}
+                            onChange={(e) => setLang(e.target.value)}
+                        >
+                            <option value="de">Deutsch</option>
+                            <option value="at">Österreich (Deutsch)</option>
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                            <option value="es">Español</option>
+                            <option value="it">Italiano</option>
+                        </select>
+                    </div>
+                </div>
+            );
+
+            // Routing
+            if (view === 'landing') return <LandingPage />;
+            if (view === 'settings') return <Settings />;
+            if (view === 'editor') return <DocumentEditor />;
+            return <Dashboard />;
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
