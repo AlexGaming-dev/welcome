@@ -12,36 +12,35 @@
   <link rel="canonical" href="https://alexgaming.is-a.dev/">
 
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Alex Gaming",
-  "url": "https://alexgaming.is-a.dev/",
-  "publisher": {
-    "@type": "Person",
-    "name": "Alex Gaming"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://alexgaming.is-a.dev/#website",
+        "url": "https://alexgaming.is-a.dev/",
+        "name": "Alex Gaming",
+        "publisher": { "@id": "https://alexgaming.is-a.dev/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://alexgaming.is-a.dev/#person",
+        "name": "Alex Gaming",
+        "jobTitle": "Software Developer",
+        "url": "https://alexgaming.is-a.dev/",
+        "mainEntityOfPage": "https://alexgaming.is-a.dev/",
+        "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
+        "sameAs": [
+          "https://github.com/alexgamingstudio",
+          "https://bsky.app/profile/alexgaming.is-a.dev",
+          "https://mastodon.social/@alexgamingdev"
+        ],
+        "knowsAbout": ["C#", ".NET", "Software Engineering", "Web Development", "WebView2", "WiX Toolset"],
+        "description": "Softwareentwickler spezialisiert auf .NET, C# und Web-Technologien."
+      }
+    ]
   }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://alexgaming.is-a.dev/#person",
-  "name": "Alex Gaming",
-  "jobTitle": "Software Developer",
-  "url": "https://alexgaming.is-a.dev/",
-  "sameAs": [
-    "https://alexgaming.is-a.dev/github/",
-    "https://github.com/alexgamingstudio",
-    "https://bsky.app/profile/alexgaming.is-a.dev",
-    "https://mastodon.social/@alexgamingdev"
-  ],
-  "mainEntityOfPage": "https://alexgaming.is-a.dev/",
-  "knowsAbout": ["C#", ".NET", "Software Engineering", "Web Development", "WebView2"]
-}
-</script>
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alexgaming.is-a.dev/">
@@ -127,7 +126,7 @@
             <a href="https://bsky.app/profile/alexgaming.is-a.dev" class="verified-badge">
               ✓ Bluesky
             </a>
-            </div>
+          </div>
         </div>
       </div>
 
@@ -209,4 +208,3 @@
   </script>
 </body>
 </html>
-
