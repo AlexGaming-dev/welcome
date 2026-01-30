@@ -10,10 +10,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Inject API Key from Secrets
+      - name: Inject API Key
         run: |
-          # Ersetzt den Platzhalter im Code durch das echte Secret
-          sed -i 's/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g' index.html
+          # Geht in den Ordner support und ersetzt dort den Key
+          sed -i 's/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g' support/index.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
