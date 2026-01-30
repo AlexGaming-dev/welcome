@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Alex Gaming</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; line-height: 1.6; padding: 40px 20px; }
+    .container { max-width: 850px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); padding: 3rem 2rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
+    h1 { color: #00bcd4; font-size: 2.2rem; margin-bottom: 1.5rem; font-weight: 800; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
+    h2 { margin-top: 2rem; font-size: 1.3rem; color: #fff; font-weight: 700; border-left: 4px solid #00bcd4; padding-left: 10px; }
+    p, ul { margin: 15px 0; color: #ccc; font-size: 0.95rem; }
+    li { margin-bottom: 8px; margin-left: 20px; }
+    .section-box { background: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
+    .back-btn { display: inline-block; margin-top: 3rem; padding: 0.8rem 2rem; background: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; border-radius: 10px; font-weight: 700; transition: 0.3s; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .back-btn:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="p-title">Datenschutzerklärung</h1>
+    <p id="p-date">Stand: Januar 2026</p>
+    <section>
+      <h2 id="p-h1">1. Datenschutz</h2>
+      <div class="section-box"><p id="p-t1">Laden...</p></div>
+    </section>
+    <section>
+      <h2 id="p-h2">2. Hosting</h2>
+      <div class="section-box">
+        <p id="p-t2">Laden...</p>
+        <ul id="p-list1"></ul>
+      </div>
+    </section>
+    <div style="text-align: center;"><a href="/" class="back-btn" id="p-btn">Zurück</a></div>
+  </div>
+
+  <script>
+    const i18n = {
+      de: { title: "Datenschutzerklärung", date: "Januar 2026", h1: "1. Datenschutz", t1: "Ihre Daten sind sicher. Wir verarbeiten nur das Nötigste.", h2: "2. Hosting", t2: "GitHub Pages speichert:", l1: ["IP-Adresse", "Zeitstempel", "Browser-Info"], btn: "Zurück" },
+      en: { title: "Privacy Policy", date: "January 2026", h1: "1. Privacy", t1: "Your data is safe. We only process what is necessary.", h2: "2. Hosting", t2: "GitHub Pages stores:", l1: ["IP Address", "Timestamp", "Browser Info"], btn: "Back" },
+      fr: { title: "Politique de Confidentialité", date: "Janvier 2026", h1: "1. Confidentialité", t1: "Vos données sont en sécurité.", h2: "2. Hébergement", t2: "GitHub Pages stocke :", l1: ["Adresse IP", "Horodatage"], btn: "Retour" },
+      it: { title: "Privacy Policy", date: "Gennaio 2026", h1: "1. Privacy", t1: "I tuoi dati sono al sicuro.", h2: "2. Hosting", t2: "GitHub Pages memorizza:", l1: ["Indirizzo IP", "Timestamp"], btn: "Indietro" },
+      nl: { title: "Privacybeleid", date: "Januari 2026", h1: "1. Privacy", t1: "Uw gegevens zijn veilig.", h2: "2. Hosting", t2: "GitHub Pages slaat op:", l1: ["IP-adres", "Tijdstempel"], btn: "Terug" },
+      pl: { title: "Polityka Prywatności", date: "Styczeń 2026", h1: "1. Prywatność", t1: "Twoje dane są bezpieczne.", h2: "2. Hosting", t2: "GitHub Pages przechowuje:", l1: ["Adres IP", "Znacznik czasu"], btn: "Powrót" }
+    };
+    const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+    const t = i18n[lang] || i18n.en;
+    document.getElementById('p-title').innerText = t.title;
+    document.getElementById('p-date').innerText = t.date;
+    document.getElementById('p-h1').innerText = t.h1;
+    document.getElementById('p-t1').innerText = t.t1;
+    document.getElementById('p-h2').innerText = t.h2;
+    document.getElementById('p-t2').innerText = t.t2;
+    document.getElementById('p-btn').innerText = t.btn;
+    document.getElementById('p-btn').href = `../../?lang=${lang}`;
+    document.getElementById('p-list1').innerHTML = t.l1.map(i => `<li>${i}</li>`).join('');
+  </script>
+</body>
+</html>

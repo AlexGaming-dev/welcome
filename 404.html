@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Not Found | Alex Gaming</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+    .error-box { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 4rem 2rem; backdrop-filter: blur(10px); max-width: 500px; }
+    h1 { font-size: 5rem; color: #00bcd4; margin-bottom: 10px; }
+    p { font-size: 1.2rem; color: #cbd5e0; margin-bottom: 30px; }
+    .cta-btn { display: inline-block; padding: 0.8rem 2rem; background-color: #00bcd4; color: white; text-decoration: none; font-weight: 700; border-radius: 10px; transition: 0.3s; }
+  </style>
+</head>
+<body>
+  <div class="error-box">
+    <h1>404</h1>
+    <p id="t-msg">Wird geladen...</p>
+    <a href="/" class="cta-btn" id="t-btn">Home</a>
+  </div>
+
+  <script>
+    const i18n = {
+      de: { msg: "Hoppla! Diese Seite existiert nicht.", btn: "Zurück zur Startseite" },
+      en: { msg: "Oops! This page does not exist.", btn: "Back to home" },
+      fr: { msg: "Oups ! Cette page n'existe pas.", btn: "Retour à l'accueil" },
+      it: { msg: "Oops! Questa pagina non esiste.", btn: "Torna alla home" },
+      es: { msg: "¡Oops! Esta página no existe.", btn: "Volver al inicio" },
+      nl: { msg: "Oei! Deze pagina bestaat niet.", btn: "Terug naar home" },
+      pl: { msg: "Ups! Ta strona nie istnieje.", btn: "Powrót do strony głównej" }
+    };
+
+    function init() {
+      const lang = new URLSearchParams(window.location.search).get('lang') || 'de';
+      const d = i18n[lang] || i18n.de;
+      document.getElementById('t-msg').innerText = d.msg;
+      document.getElementById('t-btn').innerText = d.btn;
+      document.getElementById('t-btn').href = `/?lang=${lang}`;
+    }
+    init();
+  </script>
+</body>
+</html>

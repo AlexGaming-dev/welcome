@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceProtocol | Reflection</title>
+    <style>
+        :root {
+            --accent: #00a8ff;
+            --dark-bg: #050505;
+            --text-main: #e0e0e0;
+            --text-dim: #777;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow: hidden; /* Lock scroll until enter */
+        }
+
+        /* Ambient Background */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 20%, #101a30 0%, #050505 80%);
+            z-index: -1;
+        }
+
+        /* Entry Overlay for Autoplay Bypass */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: pointer;
+            transition: opacity 1.5s ease;
+        }
+
+        #overlay span {
+            letter-spacing: 5px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            border: 1px solid #333;
+            padding: 20px 40px;
+            transition: 0.3s;
+        }
+
+        #overlay:hover span {
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Main Content */
+        #main-content {
+            opacity: 0;
+            transition: opacity 2s ease;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+            visibility: hidden; /* Prevent interaction before click */
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+            margin-bottom: 60px;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-dim);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-donate {
+            display: inline-block;
+            padding: 20px 50px;
+            background: transparent;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #444;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.4s;
+        }
+
+        .btn-donate:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        footer {
+            margin-top: 100px;
+            opacity: 0.2;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body onclick="startExperience()">
+
+    <div id="overlay">
+        <span>Click to Enter Reflection</span>
+    </div>
+
+    <div class="ambient-glow"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://neal.fun/not-a-robot/end/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="main-content">
+        <div class="video-wrapper">
+            <iframe 
+                id="ytPlayer"
+                src="https://www.youtube-nocookie.com/embed/zXvpISIi8-0?rel=0&modestbranding=1&enablejsapi=1" 
+                title="Sudan Conflict" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="quote">
+            "No child should grow up in the shadow of war. <br>The silence we choose here is the space for their voice."
+        </div>
+
+        <p style="color: #666; margin-bottom: 40px; letter-spacing: 1px;">
+            Ali's story in Sudan is a call for humanity. Stand with those who cannot.
+        </p>
+
+        <a href="https://www.unicef.org/sudan/sudan-crisis-childrens-crisis-0" target="_blank" class="btn-donate">Support UNICEF</a>
+
+        <footer>PEACE PROTOCOL // 2026</footer>
+    </div>
+
+    <script>
+        let experienceStarted = false;
+
+        function startExperience() {
+            if (experienceStarted) return;
+            experienceStarted = true;
+
+            const music = document.getElementById('bgMusic');
+            const overlay = document.getElementById('overlay');
+            const content = document.getElementById('main-content');
+
+            // Musik-Setup & sanfter Fade-In
+            music.volume = 0;
+            music.play().catch(e => console.log("Audio play blocked", e));
+            
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                if (vol < 0.3) {
+                    vol += 0.02;
+                    music.volume = vol;
+                } else {
+                    clearInterval(fadeIn);
+                }
+            }, 100);
+
+            // UI-Animationen
+            overlay.style.opacity = '0';
+            content.style.visibility = 'visible';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                content.style.opacity = '1';
+                document.body.style.overflow = 'auto';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

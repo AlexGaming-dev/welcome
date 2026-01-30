@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Suite 2026 | Browser App</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+        }
+
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 25mm 20mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            outline: none;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Spreadsheet Grid */
+        .sheet-grid {
+            display: grid;
+            grid-template-columns: 40px repeat(10, 120px);
+        }
+        .cell {
+            border: 1px solid #e5e7eb;
+            padding: 4px;
+            height: 30px;
+            outline: none;
+        }
+        .cell-header {
+            background: #f9fafb;
+            font-weight: bold;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const translations = {
+            de: { welcome: "Willkommen", new: "Neu", docs: "Meine Dokumente", activate: "Produkt aktivieren", keyGen: "Gratis Key generieren", save: "Gespeichert", export: "Exportieren" },
+            at: { welcome: "Servus", new: "Neu", docs: "Meine Dokumente", activate: "Aktivieren", keyGen: "Gratis Key holen", save: "Gespeichert", export: "Exportieren" },
+            en: { welcome: "Welcome", new: "New", docs: "My Documents", activate: "Activate Product", keyGen: "Generate Free Key", save: "Saved", export: "Export" },
+            fr: { welcome: "Bienvenue", new: "Nouveau", docs: "Mes Documents", activate: "Activer le produit", keyGen: "Générer une clé", save: "Enregistré", export: "Exporter" },
+            es: { welcome: "Bienvenido", new: "Nuevo", docs: "Mis Documentos", activate: "Activar Producto", keyGen: "Generar Clave", save: "Guardado", export: "Exportar" },
+            it: { welcome: "Benvenuto", new: "Nuovo", docs: "I miei documenti", activate: "Attiva Prodotto", keyGen: "Genera Chiave", save: "Salvato", export: "Esporta" }
+        };
+
+        function App() {
+            const [view, setView] = useState('landing');
+            const [lang, setLang] = useState('de');
+            const [docs, setDocs] = useState(() => JSON.parse(localStorage.getItem('office_v1_docs') || '[]'));
+            const [currentDoc, setCurrentDoc] = useState(null);
+            const [keyInput, setKeyInput] = useState('');
+            const [isActivated, setIsActivated] = useState(() => localStorage.getItem('office_activated') === 'true');
+
+            // URL Language Check
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const l = params.get('lang');
+                if (l && translations[l]) setLang(l);
+            }, []);
+
+            // Auto-Save in LocalStorage
+            useEffect(() => {
+                localStorage.setItem('office_v1_docs', JSON.stringify(docs));
+            }, [docs]);
+
+            const t = translations[lang];
+
+            const handleActivation = (key) => {
+                if (key.length >= 15) {
+                    setIsActivated(true);
+                    localStorage.setItem('office_activated', 'true');
+                    setView('dashboard');
+                }
+            };
+
+            const createDoc = (type) => {
+                const newDoc = {
+                    id: Date.now(),
+                    type,
+                    title: type === 'document' ? 'Neues Dokument' : type === 'spreadsheet' ? 'Neue Tabelle' : 'Neue Präsentation',
+                    content: type === 'spreadsheet' ? Array(20).fill(Array(10).fill('')) : '',
+                    lastModified: new Date().toLocaleString()
+                };
+                setDocs([newDoc, ...docs]);
+                setCurrentDoc(newDoc);
+                setView('editor');
+            };
+
+            const updateContent = (content) => {
+                const updated = docs.map(d => d.id === currentDoc.id ? {...d, content, lastModified: new Date().toLocaleString()} : d);
+                setDocs(updated);
+            };
+
+            const deleteDoc = (id) => {
+                setDocs(docs.filter(d => d.id !== id));
+            };
+
+            // --- VIEW: LANDING ---
+            if (!isActivated && view === 'landing') {
+                return (
+                    <div className="min-h-screen gradient-bg flex items-center justify-center p-4">
+                        <div className="glass p-8 rounded-3xl shadow-2xl w-full max-w-md text-center">
+                            <h1 className="text-4xl font-black text-indigo-900 mb-2 italic">OFFICE 2026</h1>
+                            <p className="text-gray-600 mb-8 font-medium italic">Premium Browser Suite</p>
+                            <input 
+                                className="w-full p-4 border-2 border-indigo-100 rounded-xl mb-4 text-center font-mono tracking-widest outline-none focus:border-indigo-500 transition"
+                                placeholder="XXXXX-XXXXX-XXXXX"
+                                value={keyInput}
+                                onChange={(e) => setKeyInput(e.target.value.toUpperCase())}
+                            />
+                            <button onClick={() => handleActivation(keyInput)} className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-indigo-700 transition mb-4">
+                                {t.activate}
+                            </button>
+                            <button 
+                                onClick={() => setKeyInput(Math.random().toString(36).toUpperCase().match(/.{1,5}/g).join('-').slice(0,17))}
+                                className="text-indigo-600 text-sm font-semibold hover:underline"
+                            >
+                                {t.keyGen}
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            // --- VIEW: DASHBOARD ---
+            if (view === 'dashboard' || (isActivated && view === 'landing')) {
+                return (
+                    <div className="max-w-6xl mx-auto p-6 md:p-12">
+                        <header className="flex justify-between items-center mb-12">
+                            <h2 className="text-3xl font-bold text-gray-800">{t.welcome}, User</h2>
+                            <div className="flex gap-2">
+                                {['de','en','fr','es','it','at'].map(l => (
+                                    <button key={l} onClick={() => setLang(l)} className={`px-2 py-1 rounded text-xs font-bold ${lang === l ? 'bg-indigo-600 text-white' : 'bg-white'}`}>{l.toUpperCase()}</button>
+                                ))}
+                            </div>
+                        </header>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                            <div onClick={() => createDoc('document')} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl cursor-pointer transition-all border-b-4 border-blue-500 group">
+                                <span className="text-4xl block mb-4 group-hover:scale-110 transition">📄</span>
+                                <h3 className="font-bold text-xl">Text-Dokument</h3>
+                            </div>
+                            <div onClick={() => createDoc('spreadsheet')} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl cursor-pointer transition-all border-b-4 border-green-500 group">
+                                <span className="text-4xl block mb-4 group-hover:scale-110 transition">📊</span>
+                                <h3 className="font-bold text-xl">Tabelle</h3>
+                            </div>
+                            <div onClick={() => createDoc('presentation')} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl cursor-pointer transition-all border-b-4 border-orange-500 group">
+                                <span className="text-4xl block mb-4 group-hover:scale-110 transition">📽️</span>
+                                <h3 className="font-bold text-xl">Präsentation</h3>
+                            </div>
+                        </div>
+
+                        <h3 className="text-xl font-bold mb-6 text-gray-700">{t.docs}</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                            {docs.map(d => (
+                                <div key={d.id} className="bg-white p-4 rounded-xl shadow-sm border group relative">
+                                    <div onClick={() => { setCurrentDoc(d); setView('editor'); }} className="cursor-pointer">
+                                        <div className="text-2xl mb-2">{d.type === 'document' ? '📄' : d.type === 'spreadsheet' ? '📊' : '📽️'}</div>
+                                        <div className="font-bold text-sm truncate">{d.title}</div>
+                                        <div className="text-[10px] text-gray-400">{d.lastModified}</div>
+                                    </div>
+                                    <button onClick={() => deleteDoc(d.id)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-600 transition">🗑️</button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
+
+            // --- VIEW: EDITOR ---
+            if (view === 'editor' && currentDoc) {
+                return (
+                    <div className="h-screen flex flex-col overflow-hidden">
+                        <nav className="bg-white border-b p-4 flex justify-between items-center shadow-sm">
+                            <div className="flex items-center gap-6">
+                                <button onClick={() => setView('dashboard')} className="text-indigo-600 font-bold hover:bg-indigo-50 px-3 py-1 rounded">← Dashboard</button>
+                                <input 
+                                    className="font-bold text-lg outline-none border-b border-transparent focus:border-indigo-300 w-64"
+                                    value={currentDoc.title}
+                                    onChange={(e) => {
+                                        const newTitle = e.target.value;
+                                        setDocs(docs.map(d => d.id === currentDoc.id ? {...d, title: newTitle} : d));
+                                        setCurrentDoc({...currentDoc, title: newTitle});
+                                    }}
+                                />
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <span className="text-xs text-green-500 font-medium italic">✓ {t.save}</span>
+                                <button 
+                                    onClick={() => {
+                                        const blob = new Blob([JSON.stringify(currentDoc)], {type: 'application/json'});
+                                        const a = document.createElement('a');
+                                        a.href = URL.createObjectURL(blob);
+                                        a.download = `${currentDoc.title}.offx`;
+                                        a.click();
+                                    }}
+                                    className="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-black transition"
+                                >
+                                    {t.export}
+                                </button>
+                            </div>
+                        </nav>
+
+                        <div className="flex-grow overflow-y-auto bg-gray-200 p-8">
+                            {currentDoc.type === 'document' && (
+                                <div 
+                                    className="a4-page shadow-2xl content-editable" 
+                                    contentEditable 
+                                    onInput={(e) => updateContent(e.currentTarget.innerHTML)}
+                                    dangerouslySetInnerHTML={{ __html: currentDoc.content }}
+                                ></div>
+                            )}
+
+                            {currentDoc.type === 'spreadsheet' && (
+                                <div className="bg-white shadow-xl inline-block p-4 rounded-lg mx-auto">
+                                    <div className="sheet-grid">
+                                        <div className="cell cell-header">#</div>
+                                        {Array.from('ABCDEFGHIJ').map(l => <div key={l} className="cell cell-header">{l}</div>)}
+                                        {Array.from({length: 20}).map((_, r) => (
+                                            <React.Fragment key={r}>
+                                                <div className="cell cell-header">{r+1}</div>
+                                                {Array.from({length: 10}).map((_, c) => (
+                                                    <input key={c} className="cell text-sm focus:bg-blue-50 transition" onBlur={(e) => updateContent('Spreadsheet Data')} />
+                                                ))}
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {currentDoc.type === 'presentation' && (
+                                <div className="flex flex-col items-center gap-8">
+                                    <div className="w-[800px] h-[450px] bg-white shadow-2xl rounded-lg p-12 flex flex-col justify-center text-center">
+                                        <h1 className="text-5xl font-bold mb-6 outline-none" contentEditable>Titel der Folie</h1>
+                                        <p className="text-xl text-gray-600 outline-none" contentEditable>Klicken zum Bearbeiten des Inhalts...</p>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="w-32 h-20 bg-white border-2 border-indigo-500 rounded shadow-sm"></div>
+                                        <div className="w-32 h-20 bg-gray-300 rounded shadow-sm opacity-50"></div>
+                                        <button className="w-32 h-20 border-2 border-dashed border-gray-400 rounded flex items-center justify-center text-gray-400 hover:border-indigo-400 hover:text-indigo-400">+</button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

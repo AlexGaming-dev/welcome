@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>PR Guidelines | Alex Gaming</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0b0e14; color: #e0e0e0; padding: 40px; }
+        .container { max-width: 800px; margin: auto; border: 1px solid #00bcd4; padding: 30px; border-radius: 12px; background: rgba(255,255,255,0.02); }
+        h1 { color: #00bcd4; margin-bottom: 20px; }
+        .step { background: rgba(0, 188, 212, 0.1); padding: 15px; margin: 10px 0; border-left: 4px solid #00bcd4; border-radius: 4px; }
+        footer { margin-top: 30px; font-size: 0.8rem; color: #555; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="t-h">Pull Requests</h1>
+        <p id="t-p">Anleitung:</p>
+        <div id="steps"></div>
+        <p style="margin-top:20px;"><strong id="t-note">Hinweis:</strong> Klonen verboten.</p>
+    </div>
+    <footer id="t-foot">&copy; 2026 Alex Gaming</footer>
+
+    <script>
+        const i18n = {
+            de: { h: "Pull-Request Richtlinien", p: "Folge diesen Schritten:", steps: ["Unterordner in PR/ erstellen", "Dateien hochladen", "Release-Script ausführen"], note: "Das Kopieren des Projekts für private Zwecke ist untersagt.", foot: "© 2026 Alex Gaming" },
+            en: { h: "Pull-Request Guidelines", p: "Follow these steps:", steps: ["Create subfolder in PR/", "Upload files", "Run release script"], note: "Cloning for personal use is strictly prohibited.", foot: "© 2026 Alex Gaming" },
+            fr: { h: "Directives Pull-Request", p: "Suivez ces étapes:", steps: ["Créer un sous-dossier", "Télécharger les fichiers", "Lancer le script"], note: "Le clonage à des fins personnelles est interdit.", foot: "© 2026 Alex Gaming" },
+            it: { h: "Linee guida Pull-Request", p: "Seguire questi passaggi:", steps: ["Crea sottocartella", "Carica file", "Esegui script di rilascio"], note: "La clonazione per uso personale è vietata.", foot: "© 2026 Alex Gaming" },
+            nl: { h: "Pull-Request Richtlijnen", p: "Volg deze stappen:", steps: ["Submap aanmaken", "Bestanden uploaden", "Release-script uitvoeren"], note: "Klonen voor persoonlijk gebruik is verboden.", foot: "© 2026 Alex Gaming" },
+            pl: { h: "Wytyczne Pull-Request", p: "Wykonaj te kroki:", steps: ["Utwórz podfolder", "Prześlij pliki", "Uruchom skrypt"], note: "Klonowanie do użytku osobistego jest zabronione.", foot: "© 2026 Alex Gaming" }
+        };
+
+        function init() {
+            const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+            const d = i18n[lang] || i18n.de;
+            document.getElementById('t-h').innerText = d.h;
+            document.getElementById('t-p').innerText = d.p;
+            document.getElementById('t-foot').innerText = d.foot;
+            document.getElementById('t-note').innerHTML = `<strong>Note:</strong> ${d.note}`;
+            document.getElementById('steps').innerHTML = d.steps.map((s, i) => `<div class="step">${i+1}. ${s}</div>`).join('');
+        }
+        init();
+    </script>
+</body>
+</html>

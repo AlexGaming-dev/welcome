@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Alex Gaming – Developer Portfolio</title>
+  <meta property="og:site_name" content="Alex Gaming">
+  <meta name="apple-mobile-web-app-title" content="Alex Gaming">
+  <meta name="description" content="Offizielles Portfolio von Alex Gaming – Softwareentwickler spezialisiert auf .NET, C# und Web-Technologien.">
+  <meta name="author" content="Alex Gaming">
+  <link rel="canonical" href="https://alexgaming.is-a.dev/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://alexgaming.is-a.dev/#website",
+        "url": "https://alexgaming.is-a.dev/",
+        "name": "Alex Gaming",
+        "publisher": { "@id": "https://alexgaming.is-a.dev/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://alexgaming.is-a.dev/#person",
+        "name": "Alex Gaming",
+        "jobTitle": "Software Developer",
+        "url": "https://alexgaming.is-a.dev/",
+        "mainEntityOfPage": "https://alexgaming.is-a.dev/",
+        "image": "https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png",
+        "sameAs": [
+          "https://github.com/alexgamingstudio",
+          "https://bsky.app/profile/alexgaming.is-a.dev",
+          "https://mastodon.social/@alexgamingdev"
+        ],
+        "knowsAbout": ["C#", ".NET", "Software Engineering", "Web Development", "WebView2", "WiX Toolset"],
+        "description": "Softwareentwickler spezialisiert auf .NET, C# und Web-Technologien."
+      }
+    ]
+  }
+  </script>
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alexgaming.is-a.dev/">
+  <meta property="og:title" content="Alex Gaming – Developer Portfolio">
+  <meta property="og:description" content="Softwareentwickler spezialisiert auf .NET, C# und Web-Technologien.">
+  <meta property="og:image" content="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="fediverse:creator" content="@alexgamingdev@mastodon.social">
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
+    #page-content { opacity: 0.1; pointer-events: none; transition: opacity 0.5s; display: flex; flex-direction: column; flex: 1; }
+    body.authorized #page-content { opacity: 1; pointer-events: auto; }
+    #turnstile-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; }
+    body.authorized #turnstile-container { display: none; }
+    header { background: rgba(0, 0, 0, 0.6); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; backdrop-filter: blur(10px); z-index: 1000; }
+    header img { max-height: 50px; cursor: pointer; }
+    .lang-menu { position: relative; }
+    .lang-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 10px 15px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 600; }
+    .lang-dropdown { display: none; position: absolute; right: 0; background: #1e3a45; min-width: 180px; border-radius: 8px; box-shadow: 0px 8px 24px rgba(0,0,0,0.5); margin-top: 8px; overflow: hidden; }
+    .lang-dropdown.show { display: block; }
+    .lang-dropdown a { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: white; text-decoration: none; font-size: 0.9rem; }
+    .lang-dropdown a:hover { background: #2c5364; }
+    main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 3rem; }
+    .welcome-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 3rem 2rem; width: 100%; text-align: center; backdrop-filter: blur(5px); }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #00bcd4; margin-bottom: 1rem; font-weight: 800; }
+    p.lead { font-size: clamp(1rem, 3vw, 1.2rem); color: #cbd5e0; margin-bottom: 2rem; }
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; width: 100%; text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem; }
+    .skill-badge { background: rgba(0, 188, 212, 0.1); border: 1px solid rgba(0, 188, 212, 0.3); color: #00bcd4; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 4px; display: inline-block; }
+    .cta-btn { background: #00bcd4; color: white; padding: 1rem 2.5rem; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; }
+    .cta-btn:hover { background: #0097a7; transform: translateY(-3px); }
+    .verified-badge { display: inline-flex; align-items: center; gap: 6px; color: #00bcd4; font-size: 0.85rem; text-decoration: none; border: 1px solid rgba(0, 188, 212, 0.3); padding: 6px 14px; border-radius: 20px; background: rgba(0, 188, 212, 0.05); transition: 0.3s; }
+    .verified-badge:hover { background: rgba(0, 188, 212, 0.15); border-color: #00bcd4; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.4); color: #888; }
+    footer a { color: #888; text-decoration: none; margin: 0 5px; }
+    footer a:hover { color: #00bcd4; }
+    .flag { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; }
+    @media (max-width: 768px) { header { padding: 1rem; } main { padding: 1rem; } }
+  </style>
+</head>
+<body>
+
+  <div id="turnstile-container"></div>
+
+  <div id="page-content">
+    <header>
+      <img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo" onclick="window.location.href='/'">
+      <div class="lang-menu">
+        <button class="lang-btn" id="menu-trigger">
+          <img src="https://flagcdn.com/w40/de.png" id="cur-flag" class="flag"> 
+          <span id="cur-lang-name">Deutsch</span>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <a href="#" onclick="setLang('de-de')"><img src="https://flagcdn.com/w40/de.png" class="flag"> Deutsch</a>
+          <a href="#" onclick="setLang('at-at')"><img src="https://flagcdn.com/w40/at.png" class="flag"> Österreich</a>
+          <a href="#" onclick="setLang('ch-ch')"><img src="https://flagcdn.com/w40/ch.png" class="flag"> Schweiz</a>
+          <a href="#" onclick="setLang('en-us')"><img src="https://flagcdn.com/w40/us.png" class="flag"> English</a>
+          <a href="#" onclick="setLang('fr-fr')"><img src="https://flagcdn.com/w40/fr.png" class="flag"> Français</a>
+          <a href="#" onclick="setLang('nl-nl')"><img src="https://flagcdn.com/w40/nl.png" class="flag"> Nederlands</a>
+          <a href="#" onclick="setLang('it-it')"><img src="https://flagcdn.com/w40/it.png" class="flag"> Italiano</a>
+          <a href="#" onclick="setLang('pl-pl')"><img src="https://flagcdn.com/w40/pl.png" class="flag"> Polski</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="welcome-box">
+        <h1 id="t-title">Willkommen</h1>
+        <p class="lead" id="t-desc">Lade Portfolio...</p>
+        
+        <div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
+          <a href="https://github.com/alexgamingstudio" class="cta-btn" id="t-btn">GitHub Profil</a>
+          
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+            <a rel="me" href="https://mastodon.social/@alexgamingdev" class="verified-badge">
+              ✓ Mastodon
+            </a>
+            <a href="https://bsky.app/profile/alexgaming.is-a.dev" class="verified-badge">
+              ✓ Bluesky
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-info">
+          <h2 id="t-about-h" style="color:#00bcd4; margin-bottom:10px;">Über mich</h2>
+          <p id="t-about-p">Lade Details...</p>
+        </div>
+        <div class="about-skills">
+          <h2 id="t-skills-h" style="color:#00bcd4; margin-bottom:10px;">Tech Stack</h2>
+          <div id="skills-list">
+            <span class="skill-badge">C# / .NET 6</span>
+            <span class="skill-badge">WebView2</span>
+            <span class="skill-badge">HTML/CSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">WiX Toolset</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
+      <a href="/legal/" id="f-legal">Impressum</a> | 
+      <a href="/privacy/" id="f-privacy">Datenschutz</a> | 
+      <a href="/support/" id="f-support">Support</a>
+    </footer>
+  </div>
+
+  <script>
+    const i18n = {
+      "de-de": { title: "Willkommen bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "de", name: "Deutsch", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "at-at": { title: "Servus bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "at", name: "Österreich", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "ch-ch": { title: "Grüezi bei Alex Gaming", desc: "Ich bin deutscher Developer und habe Spaß am Programmieren.", btn: "GitHub Profil", aboutH: "Über mich", aboutP: "Ich entwickle moderne Lösungen mit Fokus auf .NET und Web-Technologien.", copy: "Alle Rechte vorbehalten.", flag: "ch", name: "Schweiz", legal: "Impressum", privacy: "Datenschutz", support: "Support" },
+      "en-us": { title: "Welcome to Alex Gaming", desc: "I am a German developer with a passion for coding.", btn: "GitHub Profile", aboutH: "About Me", aboutP: "I develop modern solutions focusing on .NET and web technologies.", copy: "All rights reserved.", flag: "us", name: "English", legal: "Legal Notice", privacy: "Privacy Policy", support: "Support" },
+      "fr-fr": { title: "Bienvenue chez Alex Gaming", desc: "Je suis un développeur allemand passionné par le code.", btn: "Profil GitHub", aboutH: "À propos", aboutP: "Je développe des solutions modernes axées sur .NET.", copy: "Tous droits réservés.", flag: "fr", name: "Français", legal: "Mentions Légales", privacy: "Confidentialité", support: "Support" },
+      "nl-nl": { title: "Welkom bij Alex Gaming", desc: "Ik ben eine Duitse developer.", btn: "GitHub Profiel", aboutH: "Over mij", aboutP: "Ik ontwikkel moderne oplossingen mit een focus op .NET.", copy: "Alle rechten voorbehalten.", flag: "nl", name: "Nederlands", legal: "Colofon", privacy: "Privacybeleid", support: "Support" },
+      "it-it": { title: "Benvenuti in Alex Gaming", desc: "Sono uno sviluppatore tedesco.", btn: "Profilo GitHub", aboutH: "Su di me", aboutP: "Sviluppo soluzioni moderne focalizzate su .NET.", copy: "Tutti i diritti riservati.", flag: "it", name: "Italiano", legal: "Note Legali", privacy: "Privacy", support: "Supporto" },
+      "pl-pl": { title: "Witamy w Alex Gaming", desc: "Jestem niemieckim deweloperem.", btn: "Profil GitHub", aboutH: "O mnie", aboutP: "Tworzę nowoczesne rozwiązania oparte na .NET.", copy: "Wszelkie prawa zastrzeżone.", flag: "pl", name: "Polski", legal: "Nota Prawna", privacy: "Prywatność", support: "Wsparcie" }
+    };
+
+    function setLang(langCode) {
+      const data = i18n[langCode];
+      if(!data) return;
+      const newUrl = window.location.protocol + "//" + window.location.host + "/" + langCode + "/";
+      window.history.replaceState({ path: newUrl }, '', newUrl);
+      document.getElementById('t-title').innerText = data.title;
+      document.getElementById('t-desc').innerHTML = data.desc;
+      document.getElementById('t-btn').innerText = data.btn;
+      document.getElementById('t-about-h').innerText = data.aboutH;
+      document.getElementById('t-about-p').innerText = data.aboutP;
+      document.getElementById('t-copy').innerText = data.copy;
+      document.getElementById('f-legal').innerText = data.legal;
+      document.getElementById('f-privacy').innerText = data.privacy;
+      document.getElementById('f-support').innerText = data.support;
+      document.getElementById('cur-lang-name').innerText = data.name;
+      document.getElementById('cur-flag').src = `https://flagcdn.com/w40/${data.flag}.png`;
+      localStorage.setItem('lang', langCode);
+    }
+
+    window.onload = () => {
+      if (typeof turnstile !== 'undefined') {
+        turnstile.render('#turnstile-container', {
+          sitekey: '0x4AAAAAACVEfjxkDrA2Xmi6',
+          callback: function() {
+            document.body.classList.add('authorized');
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || localStorage.getItem('lang') || 'de-de';
+            setLang(lang);
+          }
+        });
+      }
+    };
+
+    const trigger = document.getElementById('menu-trigger');
+    const dropdown = document.getElementById('lang-dropdown');
+    trigger.onclick = (e) => { e.stopPropagation(); dropdown.classList.toggle('show'); };
+    window.onclick = () => dropdown.classList.remove('show');
+  </script>
+</body>
+</html>
+

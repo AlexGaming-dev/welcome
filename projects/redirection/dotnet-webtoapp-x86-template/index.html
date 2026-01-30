@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>.NET WebToApp x86 Template</title> 
+    <script>
+        const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
+        localStorage.setItem('selectedLang', lang);
+        // Redirect zu GitHub - Parameter wird angehängt, falls GitHub-Pages o.ä. genutzt würden
+        window.location.href = "https://github.com/AlexGaming-dev/.NET-WebToApp-x86-Template/tree/main";
+    </script>
+    <meta http-equiv="refresh" content="0; URL='https://github.com/AlexGaming-dev/.NET-WebToApp-x86-Template/tree/main'" />
+</head>
+<body style="background:#0d1117; color:white; font-family:sans-serif; text-align:center; padding-top:50px;">
+    <div id="status">Wird geladen...</div>
+    <script>
+        const msgs = { de: "Wird geladen...", en: "Loading...", fr: "Chargement...", it: "Caricamento...", nl: "Laden...", pl: "Ładowanie..." };
+        document.getElementById('status').innerText = msgs[lang] || msgs.de;
+    </script>
+</body>
+</html>

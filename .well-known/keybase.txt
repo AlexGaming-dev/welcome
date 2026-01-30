@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/alexgamingdev
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://alexgaming.is-a.dev
+  * I am alexgamingdev (https://keybase.io/alexgamingdev) on keybase.
+  * I have a public key ASBweDbSZSpTy2mR5VZYXS5j51eSgrmIHGwlBfYu_Leo3wo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120707836d2652a53cb6991e556585d2e63e7579282b9881c6c2505f62efcb7a8df0a",
+      "host": "keybase.io",
+      "kid": "0120707836d2652a53cb6991e556585d2e63e7579282b9881c6c2505f62efcb7a8df0a",
+      "uid": "7203499332924e47e1e043f45dafaa19",
+      "username": "alexgamingdev"
+    },
+    "merkle_root": {
+      "ctime": 1769705661,
+      "hash": "4fae66236ac2ddc0f2d4fb73b16b2638ed543d57a1a525cc4a369742a7055290c42a3dad540d65a0ad851d2f0b2124accbcd971736f757c4a28cadd05664a11a",
+      "hash_meta": "520780daf3011e1c2657358467abd65089f7911249afae05589081087bdd26c5",
+      "seqno": 27375949
+    },
+    "service": {
+      "entropy": "USs9CiW3+cbJRZUc8f+9JqNq",
+      "hostname": "alexgaming.is-a.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.5.1"
+  },
+  "ctime": 1769705697,
+  "expire_in": 504576000,
+  "prev": "3078ca9a2e16f60b12a46dba675a0b4a80c2852c3a9777cf5d34dd530e1f7587",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgcHg20mUqU8tpkeVWWF0uY+dXkoK5iBxsJQX2Lvy3qN8Kp3BheWxvYWTESpcCBMQgMHjKmi4W9gsSpG26Z1oLSoDChSw6l3fPXTTdUw4fdYfEIAk04wX52cXnx/780v2oIW1D29norRjPcoXR0pibXORwAgHCo3NpZ8RANkD3O0FFI+kFRDPf27vVpXwd69Rm6Q2y/8dFRDNR6qXW98LufeHwzzx8u6XF44zSxwEZ/Zsz8kQv5hUD7QSsC6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIMZlillG/w3SjDl7iLcrYnz8gmlb/mJRnAc4bkJraurTo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/alexgamingdev
+
+==================================================================
