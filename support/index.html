@@ -3,68 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support Center – Alex Gaming</title>
+  <title>Alex Gaming Support AI</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
   <style>
+    /* Styling bleibt gleich für das moderne UI */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; }
-    header { background-color: rgba(0, 0, 0, 0.6); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; }
-    header img { max-height: 40px; }
-    main { flex: 1; padding: 3rem 1rem; max-width: 1000px; margin: 0 auto; width: 100%; }
-    .support-header { text-align: center; margin-bottom: 3rem; }
-    .status-badge { display: inline-flex; align-items: center; background: rgba(0, 255, 136, 0.1); color: #00ff88; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.3); }
-    .status-dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; margin-right: 8px; box-shadow: 0 0 10px #00ff88; }
-    footer { text-align: center; padding: 3rem; color: #666; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
-    .back-btn { color: #888; text-decoration: none; display: block; margin-top: 20px; text-align: center; transition: 0.3s; }
-    .back-btn:hover { color: #00bcd4; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: #ffffff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    header { background-color: rgba(0, 0, 0, 0.6); padding: 1rem; text-align: center; border-bottom: 1px solid #00bcd4; }
+    header img { max-height: 50px; }
+    main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 1rem; }
+    #chat-box { width: 100%; max-width: 800px; height: 85%; background: rgba(26, 42, 48, 0.9); border: 1px solid #00bcd4; border-radius: 15px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    #chat-header { background: #00bcd4; padding: 15px; text-align: center; font-weight: 800; font-size: 1.1rem; }
+    #messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+    .msg { padding: 12px 16px; border-radius: 15px; max-width: 80%; line-height: 1.4; font-size: 0.95rem; }
+    .bot { background: #2c5364; align-self: flex-start; border-bottom-left-radius: 2px; }
+    .user { background: #00bcd4; align-self: flex-end; border-bottom-right-radius: 2px; }
+    #input-area { display: flex; padding: 15px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.1); }
+    #user-input { flex: 1; background: transparent; border: none; color: white; outline: none; font-size: 1rem; }
+    #send-btn { background: #00bcd4; border: none; color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    footer { text-align: center; padding: 1rem; font-size: 0.8rem; color: #888; background: rgba(0,0,0,0.4); }
   </style>
 </head>
 <body>
-  <header>
-    <a href="../" id="logo-link"><img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo" /></a>
-    <div id="t-hub-title" style="font-weight: 800; color: #00bcd4; font-size: 0.8rem; text-transform: uppercase;">Support-Hub</div>
-  </header>
+<header><img src="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png" alt="Logo"></header>
+<main>
+  <div id="chat-box">
+    <div id="chat-header">ALEX GAMING AI SUPPORT</div>
+    <div id="messages"><div class="msg bot" id="welcome-msg">...</div></div>
+    <div id="input-area">
+      <input type="text" id="user-input" placeholder="..." onkeypress="if(event.key==='Enter') askAI()">
+      <button id="send-btn" onclick="askAI()">Send</button>
+    </div>
+  </div>
+</main>
+<footer><span id="t-copy">&copy; 2026 Alex Gaming.</span></footer>
 
-  <main>
-    <section class="support-header">
-      <div class="status-badge"><div class="status-dot"></div> <span id="t-status">Support Online</span></div>
-      <h1 id="t-h1">Wie kann ich helfen?</h1>
-      <p id="t-p1">Support für Software & Dokumentation.</p>
-    </section>
-    <a href="../" class="back-btn" id="t-back">← Zurück</a>
-  </main>
+<script>
+  // WICHTIG: Die GitHub Action ersetzt diesen Platzhalter durch dein Repo Secret!
+  const API_KEY = "__GROQ_API_KEY__"; 
 
-  <footer id="t-foot">&copy; 2026 Alex Gaming</footer>
+  const uiTexts = {
+    de: { welcome: "Moin! Ich bin deine Support KI. Wie kann ich helfen?<br><br><i>Pull-Requests erlaubt, Kopieren verboten.</i>", placeholder: "Frag mich was...", btn: "Senden" },
+    en: { welcome: "Hi! I am your support AI. How can I help?<br><br><i>Pull requests allowed, copying prohibited.</i>", placeholder: "Ask me anything...", btn: "Send" }
+  };
 
-  <script>
-    const i18n = {
-      de: { status: "Support Online", h1: "Wie kann ich dir helfen?", p1: "Unterstützung für meine Software-Projekte.", foot: "© 2026 Alex Gaming | Support", back: "← Zurück zur Hauptseite" },
-      at: { status: "Support Online", h1: "Wie kann i helfen?", p1: "Unterstützung für meine Software-Projekte.", foot: "© 2026 Alex Gaming | Support", back: "← Zurück zur Hauptseite" },
-      ch: { status: "Support Online", h1: "Wie cha ich helfe?", p1: "Unterstützung für mini Software-Projekt.", foot: "© 2026 Alex Gaming | Support", back: "← Zrugg zur Hauptsyte" },
-      en: { status: "Support Online", h1: "How can I help you?", p1: "Support for my software projects.", foot: "© 2026 Alex Gaming | Support", back: "← Back to home" },
-      fr: { status: "Support en ligne", h1: "Comment puis-je aider?", p1: "Support pour mes projets logiciels.", foot: "© 2026 Alex Gaming | Support", back: "← Retour" },
-      it: { status: "Supporto Online", h1: "Come posso aiutarvi?", p1: "Supporto per i miei progetti software.", foot: "© 2026 Alex Gaming | Supporto", back: "← Torna indietro" },
-      nl: { status: "Support Online", h1: "Hoe kan ik helpen?", p1: "Ondersteuning voor mijn softwareprojecten.", foot: "© 2026 Alex Gaming | Support", back: "← Terug naar home" },
-      pl: { status: "Support Online", h1: "W czym pomóc?", p1: "Wsparcie dla moich projektów.", foot: "© 2026 Alex Gaming | Support", back: "← Powrót" }
-    };
+  const lang = navigator.language.split('-')[0] === 'de' ? 'de' : 'en';
+  const t = uiTexts[lang];
+  document.getElementById('welcome-msg').innerHTML = t.welcome;
+  document.getElementById('user-input').placeholder = t.placeholder;
+  document.getElementById('send-btn').innerText = t.btn;
 
-    function update() {
-      const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
-      localStorage.setItem('selectedLang', lang);
-      const d = i18n[lang] || i18n.de;
-      
-      document.getElementById('t-status').innerText = d.status;
-      document.getElementById('t-h1').innerText = d.h1;
-      document.getElementById('t-p1').innerText = d.p1;
-      document.getElementById('t-foot').innerText = d.foot;
-      document.getElementById('t-back').innerText = d.back;
-      
-      const link = `../?lang=${lang}`;
-      document.getElementById('logo-link').href = link;
-      document.getElementById('t-back').href = link;
+  async function askAI() {
+    const input = document.getElementById('user-input');
+    const container = document.getElementById('messages');
+    const text = input.value.trim();
+    
+    // Verhindert Senden, wenn der Platzhalter nicht ersetzt wurde
+    if(!text || API_KEY.startsWith("__GROQ")) {
+        alert("API Key nicht geladen. Bitte über GitHub Actions deployen.");
+        return;
     }
-    update();
-  </script>
+
+    container.innerHTML += `<div class="msg user">${text}</div>`;
+    input.value = "";
+    const loader = document.createElement('div');
+    loader.className = "msg bot";
+    loader.innerText = "...";
+    container.appendChild(loader);
+    container.scrollTop = container.scrollHeight;
+
+    try {
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${API_KEY}` },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: [
+            { role: "system", content: "You are the support bot for Alex Gaming. Pull requests allowed, but copying code is forbidden. Answer in user's language." },
+            { role: "user", content: text }
+          ]
+        })
+      });
+      const data = await response.json();
+      loader.innerText = data.choices[0].message.content;
+    } catch (e) { loader.innerText = "Fehler: Verbindung fehlgeschlagen."; }
+    container.scrollTop = container.scrollHeight;
+  }
+</script>
 </body>
 </html>
