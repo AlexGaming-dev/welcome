@@ -1,4 +1,4 @@
-name: Deploy Support Chat
+name: Deploy Multi-AI Projects
 on:
   push:
     branches: [ main ]
@@ -10,10 +10,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Inject API Key
+      - name: Inject API Key to all Projects
         run: |
-          # Geht in den Ordner support und ersetzt dort den Key
-          sed -i 's/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g' support/index.html
+          # Ersetzt den Key im Support-Ordner
+          if [ -f "support/index.html" ]; then
+            sed -i 's/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g' support/index.html
+          fi
+          
+          # Ersetzt den Key im AI-Ordner
+          if [ -f "ai/index.html" ]; then
+            sed -i 's/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g' ai/index.html
+          fi
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
