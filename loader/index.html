@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamischer Loader</title>
+    <style>
+        body {
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+
+        /* LOADER 1: Dreieck-Gradient */
+        .loader-1 {
+            --b: 25%;
+            height: 80px;
+            aspect-ratio: 1/cos(30deg);
+            position: relative;
+            clip-path: polygon(50% 0,100% 100%,0 100%,50% 0,50% var(--b),calc(var(--b)*cos(30deg)) calc(100% - var(--b)/2),calc(100% - var(--b)*cos(30deg)) calc(100% - var(--b)/2),50% var(--b));
+            filter: blur(1px); /* Blur leicht reduziert für bessere Sichtbarkeit */
+        }
+        .loader-1:before {
+            content: "";
+            position: absolute;
+            inset: -8% 0;
+            background: conic-gradient(#0000 35%,#0B486B,#0000 65%);
+            animation: l5 2s linear infinite;
+        }
+
+        /* LOADER 2: Tanzende Quadrate */
+        .loader-2 {
+            width: 40px;
+            aspect-ratio: 1;
+            position: relative;
+        }
+        .loader-2:before,
+        .loader-2:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: -8px 0 0 -8px;
+            width: 16px;
+            aspect-ratio: 1;
+            background: #3FB8AF;
+            animation: l1-1 2s infinite, l1-2 .5s infinite;
+        }
+        .loader-2:after {
+            background: #FF3D7F;
+            animation-delay: -1s, 0s;
+        }
+
+        /* Keyframes */
+        @keyframes l5 { to { rotate: 1turn } }
+        @keyframes l1-1 {
+            0%   {top:0;   left:0}
+            25%  {top:100%;left:0}
+            50%  {top:100%;left:100%}
+            75%  {top:0;   left:100%}
+            100% {top:0;   left:0}
+        }
+        @keyframes l1-2 { 80%,100% {transform: rotate(0.5turn)} }
+    </style>
+</head>
+<body>
+
+    <div id="loader-container"></div>
+
+    <script>
+        // URL Parameter auslesen
+        const urlParams = new URLSearchParams(window.location.search);
+        const loaderType = urlParams.get('loader');
+        const container = document.getElementById('loader-container');
+
+        // Loader basierend auf Parameter einfügen
+        if (loaderType === '1') {
+            container.innerHTML = '<div class="loader-1"></div>';
+        } else if (loaderType === '2') {
+            container.innerHTML = '<div class="loader-2"></div>';
+        } else {
+            // Standard-Anzeige oder Info, falls kein Parameter gesetzt ist
+            container.innerHTML = '<p>Bitte ?loader=1 oder ?loader=2 an die URL hängen.</p>';
+        }
+    </script>
+</body>
+</html>
