@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kombinierte Loader Sammlung</title>
+    <title>Loading Animations</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/nLhPrLMH/1000072572-3643adb7b6957288cd73d569e60f8263-18-11-2023-12-35-17-20240415-181847-0000-Original.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
     <style>
         :root {
             /* Variablen für Loader 4 & 8 */
@@ -25,6 +27,13 @@
         /* Hintergrund-Modi */
         .bg-dark { background: #090707; color: #fff; }
         .bg-light { background: #f0f0f0; color: #333; }
+        
+        /* 404 Hintergrund */
+        .bg-error { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364); 
+            color: #ffffff; 
+        }
 
         #loader-container {
             display: flex;
@@ -33,6 +42,12 @@
             width: 100vw;
             height: 100vh;
         }
+
+        /* --- 404 STYLES --- */
+        .error-box { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 4rem 2rem; backdrop-filter: blur(10px); max-width: 500px; text-align: center; }
+        .error-box h1 { font-size: 5rem; color: #00bcd4; margin-bottom: 10px; }
+        .error-box p { font-size: 1.2rem; color: #cbd5e0; margin-bottom: 30px; }
+        .cta-btn { display: inline-block; padding: 0.8rem 2rem; background-color: #00bcd4; color: white; text-decoration: none; font-weight: 700; border-radius: 10px; transition: 0.3s; }
 
         /* --- LOADER 1: Dreieck-Gradient --- */
         .loader-1 {
@@ -148,14 +163,19 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const loaderType = urlParams.get('loader');
+        const lang = urlParams.get('lang') || 'de';
         const container = document.getElementById('loader-container');
         const body = document.getElementById('main-body');
 
-        // Dark-Mode für Loader 3, 5, 6
-        const darkLoaders = ['3', '5', '6'];
-        if (darkLoaders.includes(loaderType)) {
-            body.className = 'bg-dark';
-        }
+        const i18n = {
+          de: { msg: "Hoppla! Diese Seite existiert nicht.", btn: "Zurück zur Startseite" },
+          en: { msg: "Oops! This page does not exist.", btn: "Back to home" },
+          fr: { msg: "Oups ! Cette page n'existe pas.", btn: "Retour à l'accueil" },
+          it: { msg: "Oops! Questa pagina non esiste.", btn: "Torna alla home" },
+          es: { msg: "¡Oops! Esta página no existe.", btn: "Volver al inicio" },
+          nl: { msg: "Oei! Deze pagina besteht niet.", btn: "Terug naar home" },
+          pl: { msg: "Ups! Ta strona nie istnieje.", btn: "Powrót do strony głównej" }
+        };
 
         const loaders = {
             '1': '<div class="loader-1"></div>',
@@ -175,15 +195,23 @@
         };
 
         if (loaders[loaderType]) {
+            // Dark-Mode für Loader 3, 5, 6
+            const darkLoaders = ['3', '5', '6'];
+            if (darkLoaders.includes(loaderType)) {
+                body.className = 'bg-dark';
+            }
             container.innerHTML = loaders[loaderType];
         } else {
-            container.innerHTML = `<div style="text-align:center">
-                <h2>Loader Sammlung</h2>
-                <p>Nutze <code>?loader=X</code> (X = 1, 2, 3, 4, 5, 6, 8)</p>
-                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
-                    ${Object.keys(loaders).map(k => `<a href="?loader=${k}" style="padding:10px; background:#ddd; border-radius:5px; text-decoration:none; color:#000;">Loader ${k}</a>`).join('')}
-                </div>
-            </div>`;
+            // 404 Fehlerzustand
+            body.className = 'bg-error';
+            const d = i18n[lang] || i18n.de;
+            document.title = "404 - Not Found | Alex Gaming";
+            container.innerHTML = `
+                <div class="error-box">
+                    <h1>404</h1>
+                    <p>${d.msg}</p>
+                    <a href="/?lang=${lang}" class="cta-btn">${d.btn}</a>
+                </div>`;
         }
     </script>
 </body>
