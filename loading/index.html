@@ -2,86 +2,188 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Dynamischer Loader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kombinierte Loader Sammlung</title>
     <style>
+        :root {
+            /* Variablen für Loader 4 & 8 */
+            --speed-tetro: 1.5s;
+            --duration-box: 1.5s;
+            --box-size-8: 33px;
+        }
+
         body {
             display: grid;
             place-content: center;
             height: 100vh;
             margin: 0;
-            background: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.4s ease;
+            overflow: hidden;
         }
 
-        /* LOADER 1: Dreieck-Gradient */
+        /* Hintergrund-Modi */
+        .bg-dark { background: #090707; color: #fff; }
+        .bg-light { background: #f0f0f0; color: #333; }
+
+        #loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* --- LOADER 1: Dreieck-Gradient --- */
         .loader-1 {
             --b: 25%;
             height: 80px;
             aspect-ratio: 1/cos(30deg);
             position: relative;
             clip-path: polygon(50% 0,100% 100%,0 100%,50% 0,50% var(--b),calc(var(--b)*cos(30deg)) calc(100% - var(--b)/2),calc(100% - var(--b)*cos(30deg)) calc(100% - var(--b)/2),50% var(--b));
-            filter: blur(1px); /* Blur leicht reduziert für bessere Sichtbarkeit */
+            filter: blur(1px);
         }
         .loader-1:before {
             content: "";
             position: absolute;
             inset: -8% 0;
             background: conic-gradient(#0000 35%,#0B486B,#0000 65%);
-            animation: l5 2s linear infinite;
+            animation: l1-rotate 2s linear infinite;
         }
+        @keyframes l1-rotate { to { transform: rotate(1turn); } }
 
-        /* LOADER 2: Tanzende Quadrate */
-        .loader-2 {
-            width: 40px;
-            aspect-ratio: 1;
-            position: relative;
+        /* --- LOADER 2: Tanzende Quadrate --- */
+        .loader-2 { width: 40px; aspect-ratio: 1; position: relative; }
+        .loader-2:before, .loader-2:after { 
+            content: ""; position: absolute; top: 0; left: 0; margin: -8px 0 0 -8px; 
+            width: 16px; aspect-ratio: 1; background: #3FB8AF; 
+            animation: l2-1 2s infinite, l2-2 .5s infinite; 
         }
-        .loader-2:before,
-        .loader-2:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: -8px 0 0 -8px;
-            width: 16px;
-            aspect-ratio: 1;
-            background: #3FB8AF;
-            animation: l1-1 2s infinite, l1-2 .5s infinite;
-        }
-        .loader-2:after {
-            background: #FF3D7F;
-            animation-delay: -1s, 0s;
-        }
+        .loader-2:after { background: #FF3D7F; animation-delay: -1s, 0s; }
+        @keyframes l2-1 { 0%, 100% {top:0; left:0} 25% {top:100%; left:0} 50% {top:100%; left:100%} 75% {top:0; left:100%} }
+        @keyframes l2-2 { 80%,100% {transform: rotate(0.5turn)} }
 
-        /* Keyframes */
-        @keyframes l5 { to { rotate: 1turn } }
-        @keyframes l1-1 {
-            0%   {top:0;   left:0}
-            25%  {top:100%;left:0}
-            50%  {top:100%;left:100%}
-            75%  {top:0;   left:100%}
-            100% {top:0;   left:0}
+        /* --- LOADER 3: Orbit (3D) --- */
+        .loader-3 { position: relative; width: 64px; height: 64px; border-radius: 50%; perspective: 800px; }
+        .loader-3 .inner { position: absolute; width: 100%; height: 100%; border-radius: 50%; border-bottom: 3px solid #EFEFFA; }
+        .loader-3 .one { animation: rotate-one 1s linear infinite; }
+        .loader-3 .two { animation: rotate-two 1s linear infinite; border-bottom: none; border-right: 3px solid #EFEFFA; }
+        .loader-3 .three { animation: rotate-three 1s linear infinite; border-bottom: none; border-top: 3px solid #EFEFFA; }
+        @keyframes rotate-one { 0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }
+        @keyframes rotate-two { 0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); } 100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); } }
+        @keyframes rotate-three { 0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }
+
+        /* --- LOADER 4: Tetrominos --- */
+        .tetrominos { position: absolute; top: 50%; left: 50%; transform: translate(-112px, -96px); }
+        .tetromino { 
+            width: 96px; height: 112px; position: absolute; transition: all ease .3s;
+            background: url('data:image/svg+xml;utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 684"%3E%3Cpath fill="%23010101" d="M305.7 0L0 170.9v342.3L305.7 684 612 513.2V170.9L305.7 0z"/%3E%3Cpath fill="%23fff" d="M305.7 80.1l-233.6 131 233.6 131 234.2-131-234.2-131"/%3E%3C/svg%3E') no-repeat top center; 
         }
-        @keyframes l1-2 { 80%,100% {transform: rotate(0.5turn)} }
+        .box1 { animation: tetromino1 var(--speed-tetro) ease-out infinite; }
+        .box2 { animation: tetromino2 var(--speed-tetro) ease-out infinite; }
+        .box3 { animation: tetromino3 var(--speed-tetro) ease-out infinite; z-index: 2; }
+        .box4 { animation: tetromino4 var(--speed-tetro) ease-out infinite; }
+        @keyframes tetromino1 { 0%, 40% { transform: translate(0,0); } 50% { transform: translate(48px,-27px); } 60%, 100% { transform: translate(96px,0); } }
+        @keyframes tetromino2 { 0%, 20% { transform: translate(96px, 0px); } 40%, 100% { transform: translate(144px, 27px); } }
+        @keyframes tetromino3 { 0% { transform: translate(144px, 27px); } 20%, 60% { transform: translate(96px, 54px); } 90%, 100% { transform: translate(48px, 27px); } }
+        @keyframes tetromino4 { 0%, 60% { transform: translate(48px, 27px); } 90%, 100% { transform: translate(0, 0); } }
+
+        /* --- LOADER 5: Morphing Gradient Box --- */
+        .wrapper { position: absolute; left: 50%; top: 50%; margin: -100px; width: 200px; height: 200px; }
+        .box-wrap { width: 70%; height: 70%; margin: 15%; position: relative; transform: rotate(-45deg); }
+        .box-wrap .box { width: 100%; height: 100%; position: absolute; left: 0; top: 0; visibility: hidden; background: linear-gradient(to right, #141562, #486fbc, #eab5a1, #8dd6ff, #4973c9, #d07ca7, #f4915e, #f5919e, #b46f89, #141562, #486fbc); background-size: 1000% 1000%; }
+        .box.one { animation: moveGradient 15s infinite, oneMove 3.5s infinite; }
+        .box.two { animation: moveGradient 15s infinite, twoMove 3.5s 0.15s infinite; }
+        .box.three { animation: moveGradient 15s infinite, threeMove 3.5s 0.3s infinite; }
+        .box.four { animation: moveGradient 15s infinite, fourMove 3.5s 0.575s infinite; }
+        .box.five { animation: moveGradient 15s infinite, fiveMove 3.5s 0.725s infinite; }
+        .box.six { animation: moveGradient 15s infinite, sixMove 3.5s 0.875s infinite; }
+        @keyframes moveGradient { to { background-position: 100% 50%; } }
+        @keyframes oneMove { 0%, 14.3% { visibility: visible; clip-path: inset(0% 35% 70% round 5%); } 28.6% { clip-path: inset(35% round 5%); } 42.9%, 57.1% { clip-path: inset(35% 70% 35% 0 round 5%); } 71.4%, 85.7% { clip-path: inset(0% 70% 70% 0 round 5%); } 100% { clip-path: inset(0% 35% 70% round 5%); } }
+        @keyframes twoMove { 0%, 14.3% { visibility: visible; clip-path: inset(0% 70% 70% 0 round 5%); } 28.6%, 42.9% { clip-path: inset(0% 35% 70% round 5%); } 57.1% { clip-path: inset(35% round 5%); } 71.4%, 85.7% { clip-path: inset(35% 70% 35% 0 round 5%); } 100% { clip-path: inset(0% 70% 70% 0 round 5%); } }
+        @keyframes threeMove { 0%, 14.3% { visibility: visible; clip-path: inset(35% 70% 35% 0 round 5%); } 28.6%, 42.9% { clip-path: inset(0% 70% 70% 0 round 5%); } 57.1%, 71.4% { clip-path: inset(0% 35% 70% round 5%); } 85.7% { clip-path: inset(35% round 5%); } 100% { clip-path: inset(35% 70% 35% 0 round 5%); } }
+        @keyframes fourMove { 0%, 14.3% { visibility: visible; clip-path: inset(35% 0% 35% 70% round 5%); } 28.6% { clip-path: inset(35% round 5%); } 42.9%, 57.1% { clip-path: inset(70% 35% 0% 35% round 5%); } 71.4%, 85.7% { clip-path: inset(70% 0 0 70% round 5%); } 100% { clip-path: inset(35% 0% 35% 70% round 5%); } }
+        @keyframes fiveMove { 0%, 14.3% { visibility: visible; clip-path: inset(70% 0 0 70% round 5%); } 28.6%, 42.9% { clip-path: inset(35% 0% 35% 70% round 5%); } 57.1% { clip-path: inset(35% round 5%); } 71.4%, 85.7% { clip-path: inset(70% 35% 0% 35% round 5%); } 100% { clip-path: inset(70% 0 0 70% round 5%); } }
+        @keyframes sixMove { 0%, 14.3% { visibility: visible; clip-path: inset(70% 35% 0% 35% round 5%); } 28.6%, 42.9% { clip-path: inset(70% 0 0 70% round 5%); } 57.1%, 71.4% { clip-path: inset(35% 0% 35% 70% round 5%); } 85.7% { clip-path: inset(35% round 5%); } 100% { clip-path: inset(70% 35% 0% 35% round 5%); } }
+
+        /* --- LOADER 6: Hexagon Arrows --- */
+        .hexagon { display: flex; flex-direction: column; align-items: center; }
+        .row { display: flex; }
+        .arrow { width: 0; height: 0; margin: 0 -2.5vmin; border-left: 5vmin solid transparent; border-right: 5vmin solid transparent; border-bottom: 9vmin solid #66bb6a; animation: blink 1s infinite; filter: drop-shadow(0 0 7.5vmin #66bb6a); }
+        .arrow.down { transform: rotate(180deg); }
+        @keyframes blink { 0%, 100% { opacity: 0.1; } 30% { opacity: 1; } }
+        .outer-1 { animation-delay: -0.06s; } .outer-2 { animation-delay: -0.11s; } .outer-3 { animation-delay: -0.17s; } .outer-4 { animation-delay: -0.22s; } .outer-5 { animation-delay: -0.28s; } .outer-6 { animation-delay: -0.33s; } .outer-7 { animation-delay: -0.39s; } .outer-8 { animation-delay: -0.44s; } .outer-9 { animation-delay: -0.50s; } .outer-10 { animation-delay: -0.56s; } .outer-11 { animation-delay: -0.61s; } .outer-12 { animation-delay: -0.67s; } .outer-13 { animation-delay: -0.72s; } .outer-14 { animation-delay: -0.78s; } .outer-15 { animation-delay: -0.83s; } .outer-16 { animation-delay: -0.89s; } .outer-17 { animation-delay: -0.94s; } .outer-18 { animation-delay: -1s; } .inner-1 { animation-delay: -0.17s; } .inner-2 { animation-delay: -0.33s; } .inner-3 { animation-delay: -0.50s; } .inner-4 { animation-delay: -0.67s; } .inner-5 { animation-delay: -0.83s; } .inner-6 { animation-delay: -1s; }
+
+        /* --- LOADER 8: Sliding Boxes --- */
+        .container-8 { width: 250px; display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .box-8 { width: var(--box-size-8); height: var(--box-size-8); position: relative; display: block; transform-origin: -50% center; border-radius: 15%; }
+        .box-8:after { content: ""; width: 100%; height: 100%; position: absolute; top: 0; right: 0; background-color: lightblue; border-radius: 15%; box-shadow: 0px 0px 10px 0px rgba(28, 159, 255, 0.4); }
+        .box-8:nth-child(1) { animation: slide var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(1):after { animation: color-change var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(2) { animation: flip-1 var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(2):after { animation: squidge-1 var(--duration-box) ease-in-out infinite alternate; background-color: #1c9fff; }
+        .box-8:nth-child(3) { animation: flip-2 var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(3):after { animation: squidge-2 var(--duration-box) ease-in-out infinite alternate; background-color: #1fb1fd; }
+        .box-8:nth-child(4) { animation: flip-3 var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(4):after { animation: squidge-3 var(--duration-box) ease-in-out infinite alternate; background-color: #22c7fb; }
+        .box-8:nth-child(5) { animation: flip-4 var(--duration-box) ease-in-out infinite alternate; }
+        .box-8:nth-child(5):after { animation: squidge-4 var(--duration-box) ease-in-out infinite alternate; background-color: #23d3fb; }
+
+        @keyframes slide { 0% { background-color: #1795ff; transform: translatex(0); } 100% { background-color: #23d3fb; transform: translatex(calc(250px - (var(--box-size-8) * 1.25))); } }
+        @keyframes color-change { 0% { background-color: #1795ff; } 100% { background-color: #23d3fb; } }
+        @keyframes flip-1 { 0%, 15% { transform: rotate(0); } 35%, 100% { transform: rotate(-180deg); } }
+        @keyframes flip-2 { 0%, 30% { transform: rotate(0); } 50%, 100% { transform: rotate(-180deg); } }
+        @keyframes flip-3 { 0%, 45% { transform: rotate(0); } 65%, 100% { transform: rotate(-180deg); } }
+        @keyframes flip-4 { 0%, 60% { transform: rotate(0); } 80%, 100% { transform: rotate(-180deg); } }
+        @keyframes squidge-1 { 5% { transform-origin: center bottom; transform: scalex(1) scaley(1); } 15% { transform-origin: center bottom; transform: scalex(1.3) scaley(0.7); } 20%, 25% { transform-origin: center bottom; transform: scalex(0.8) scaley(1.4); } 40% { transform-origin: center top; transform: scalex(1.3) scaley(0.7); } 55%, 100% { transform-origin: center top; transform: scalex(1) scaley(1); } }
+        @keyframes squidge-2 { 20% { transform-origin: center bottom; transform: scalex(1) scaley(1); } 30% { transform-origin: center bottom; transform: scalex(1.3) scaley(0.7); } 35%, 40% { transform-origin: center bottom; transform: scalex(0.8) scaley(1.4); } 55% { transform-origin: center top; transform: scalex(1.3) scaley(0.7); } 70%, 100% { transform-origin: center top; transform: scalex(1) scaley(1); } }
+        @keyframes squidge-3 { 35% { transform-origin: center bottom; transform: scalex(1) scaley(1); } 45% { transform-origin: center bottom; transform: scalex(1.3) scaley(0.7); } 50%, 55% { transform-origin: center bottom; transform: scalex(0.8) scaley(1.4); } 70% { transform-origin: center top; transform: scalex(1.3) scaley(0.7); } 85%, 100% { transform-origin: center top; transform: scalex(1) scaley(1); } }
+        @keyframes squidge-4 { 50% { transform-origin: center bottom; transform: scalex(1) scaley(1); } 60% { transform-origin: center bottom; transform: scalex(1.3) scaley(0.7); } 65%, 70% { transform-origin: center bottom; transform: scalex(0.8) scaley(1.4); } 85% { transform-origin: center top; transform: scalex(1.3) scaley(0.7); } 100% { transform-origin: center top; transform: scalex(1) scaley(1); } }
     </style>
 </head>
-<body>
+<body id="main-body" class="bg-light">
 
     <div id="loader-container"></div>
 
     <script>
-        // URL Parameter auslesen
         const urlParams = new URLSearchParams(window.location.search);
         const loaderType = urlParams.get('loader');
         const container = document.getElementById('loader-container');
+        const body = document.getElementById('main-body');
 
-        // Loader basierend auf Parameter einfügen
-        if (loaderType === '1') {
-            container.innerHTML = '<div class="loader-1"></div>';
-        } else if (loaderType === '2') {
-            container.innerHTML = '<div class="loader-2"></div>';
+        // Dark-Mode für Loader 3, 5, 6
+        const darkLoaders = ['3', '5', '6'];
+        if (darkLoaders.includes(loaderType)) {
+            body.className = 'bg-dark';
+        }
+
+        const loaders = {
+            '1': '<div class="loader-1"></div>',
+            '2': '<div class="loader-2"></div>',
+            '3': '<div class="loader-3"><div class="inner one"></div><div class="inner two"></div><div class="inner three"></div></div>',
+            '4': `<div class='tetrominos'><div class='tetromino box1'></div><div class='tetromino box2'></div><div class='tetromino box3'></div><div class='tetromino box4'></div></div>`,
+            '5': `<div class="wrapper"><div class="box-wrap"><div class="box one"></div><div class="box two"></div><div class="box three"></div><div class="box four"></div><div class="box five"></div><div class="box six"></div></div></div>`,
+            '6': `<div class="hexagon">
+                    <div class="row"><div class="arrow up outer outer-18"></div><div class="arrow down outer outer-17"></div><div class="arrow up outer outer-16"></div><div class="arrow down outer outer-15"></div><div class="arrow up outer outer-14"></div></div>
+                    <div class="row"><div class="arrow up outer outer-1"></div><div class="arrow down outer outer-2"></div><div class="arrow up inner inner-6"></div><div class="arrow down inner inner-5"></div><div class="arrow up inner inner-4"></div><div class="arrow down outer outer-13"></div><div class="arrow up outer outer-12"></div></div>
+                    <div class="row"><div class="arrow down outer outer-3"></div><div class="arrow up outer outer-4"></div><div class="arrow down inner inner-1"></div><div class="arrow up inner inner-2"></div><div class="arrow down inner inner-3"></div><div class="arrow up outer outer-11"></div><div class="arrow down outer outer-10"></div></div>
+                    <div class="row"><div class="arrow down outer outer-5"></div><div class="arrow up outer outer-6"></div><div class="arrow down outer outer-7"></div><div class="arrow up outer outer-8"></div><div class="arrow down outer outer-9"></div></div>
+                  </div>`,
+            '8': `<div class="container-8">
+                    <div class="box-8"></div><div class="box-8"></div><div class="box-8"></div><div class="box-8"></div><div class="box-8"></div>
+                  </div>`
+        };
+
+        if (loaders[loaderType]) {
+            container.innerHTML = loaders[loaderType];
         } else {
-            // Standard-Anzeige oder Info, falls kein Parameter gesetzt ist
-            container.innerHTML = '<p>Bitte ?loader=1 oder ?loader=2 an die URL hängen.</p>';
+            container.innerHTML = `<div style="text-align:center">
+                <h2>Loader Sammlung</h2>
+                <p>Nutze <code>?loader=X</code> (X = 1, 2, 3, 4, 5, 6, 8)</p>
+                <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+                    ${Object.keys(loaders).map(k => `<a href="?loader=${k}" style="padding:10px; background:#ddd; border-radius:5px; text-decoration:none; color:#000;">Loader ${k}</a>`).join('')}
+                </div>
+            </div>`;
         }
     </script>
 </body>
