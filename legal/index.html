@@ -8,24 +8,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; line-height: 1.6; padding: 40px 20px; }
-    .container { max-width: 850px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); padding: 3rem 2rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; line-height: 1.6; padding: 40px 20px; min-height: 100vh; }
+    .container { max-width: 850px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); padding: 3rem 2rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); }
     h1 { color: #00bcd4; font-size: 2.2rem; margin-bottom: 1.5rem; font-weight: 800; border-bottom: 2px solid rgba(0, 188, 212, 0.3); padding-bottom: 10px; }
     h2 { margin-top: 2.5rem; font-size: 1.3rem; color: #fff; font-weight: 700; display: flex; align-items: center; gap: 10px; }
     p { margin: 15px 0; color: #ccc; font-size: 1rem; }
     .section-box { background: rgba(255, 255, 255, 0.03); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid rgba(255, 255, 255, 0.05); }
     .contact-link { color: #00bcd4; text-decoration: none; font-weight: 700; transition: 0.3s; }
-    .contact-link:hover { color: #fff; }
+    .contact-link:hover { color: #fff; text-decoration: underline; }
     .license-text { background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.85rem; color: #aaa; white-space: pre-wrap; border: 1px solid rgba(0, 188, 212, 0.2); margin-top: 15px; line-height: 1.4; }
     .license-badge { display: inline-block; background: #00bcd4; color: #000; padding: 2px 10px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
     .back-btn { display: inline-block; margin-top: 3rem; padding: 0.8rem 2rem; background: #00bcd4; color: white; text-decoration: none; border-radius: 10px; font-weight: 700; transition: 0.3s; }
     .back-btn:hover { background: #0097a7; transform: translateY(-2px); }
     .custom-notice { color: #ff9800; font-weight: 600; font-size: 0.9rem; margin-top: 10px; border-left: 3px solid #ff9800; padding-left: 10px; }
+    #l-t4 { font-size: 0.9rem; color: #cbd5e0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; margin-top: 15px; font-style: italic; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 id="l-title">Legal & License</h1>
+    
     <section>
       <h2 id="l-h1">📧 Kontakt</h2>
       <div class="section-box">
@@ -33,6 +35,7 @@
         <p><a href="mailto:info@alexgaming.is-a.dev" class="contact-link">info@alexgaming.is-a.dev</a></p>
       </div>
     </section>
+
     <section>
       <h2 id="l-h2">⚖️ Lizenzierung</h2>
       <div class="section-box">
@@ -67,30 +70,36 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-</div>
+        </div>
       </div>
     </section>
+
     <section>
       <h2 id="l-h3">📜 Rechtlicher Hinweis</h2>
       <div class="section-box">
         <p id="l-t3">Dies ist eine rein private Website zur Präsentation von Software-Projekten. Es erfolgt keine gewerbliche Nutzung.</p>
-        <p id="l-t4" style="font-size: 0.85rem; color: #777; font-style: italic;">Hinweis gemäß § 5 TMG...</p>
+        <p id="l-t4"></p>
       </div>
     </section>
-    <div style="text-align: center;"><a href="/" class="back-btn" id="l-btn">Zurück zur Startseite</a></div>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-btn" id="l-btn">Zurück zur Startseite</a>
+    </div>
   </div>
 
   <script>
     const i18n = {
-      de: { title: "Legal & Lizenz", h1: "📧 Kontakt", t1: "Für Anfragen oder Feedback erreichst du mich per E-Mail:", h2: "⚖️ Lizenzierung", t2: "Projekte unterliegen dieser Lizenz:", notice: "Pull-Requests sind willkommen, aber das Klonen/Kopieren für private Zwecke ist untersagt.", h3: "📜 Rechtlicher Hinweis", t3: "Dies ist eine private Website.", t4: "Hinweis gemäß § 5 TMG: Private Natur...", btn: "Zurück zur Startseite" },
-      en: { title: "Legal & License", h1: "📧 Contact", t1: "For inquiries or feedback, reach me via email:", h2: "⚖️ Licensing", t2: "Projects are subject to this license:", notice: "Pull requests are welcome, however cloning for personal use is prohibited.", h3: "📜 Legal Notice", t3: "This is a private website.", t4: "Note according to § 5 TMG: Private nature...", btn: "Back to Home" },
-      fr: { title: "Mentions Légales", h1: "📧 Contact", t1: "Pour toute demande ou feedback, contactez-moi :", h2: "⚖️ Licence", t2: "Les projets sont soumis à cette licence :", notice: "Les Pull Requests sind bienvenue, mais le clonage est interdit.", h3: "📜 Note Juridique", t3: "C'est un site privé.", t4: "Note TMG : Nature privée...", btn: "Retour" },
-      it: { title: "Note Legali", h1: "📧 Contatto", t1: "Per richieste o feedback, scrivimi via email:", h2: "⚖️ Licenza", t2: "I progetti sono soggetti a questa licenza:", notice: "Le Pull Request sono benvenute, ma il clonaggio è vietato.", h3: "📜 Note Legali", t3: "Sito privato.", t4: "Nota TMG: Natura privata...", btn: "Indietro" },
-      nl: { title: "Juridisch & Licentie", h1: "📧 Contact", t1: "Voor vragen of feedback, mail me:", h2: "⚖️ Licenties", t2: "Projecten vallen onder deze licentie:", notice: "Pull-requests welkom, klonen verboden.", h3: "📜 Juridische Mededeling", t3: "Dit is een privéwebsite.", t4: "TMG-opmerking: Privé-aard...", btn: "Terug" },
-      pl: { title: "Prawne & Licencja", h1: "📧 Kontakt", t1: "W przypadku pytań lub opinii napisz do mnie:", h2: "⚖️ Licencjonowanie", t2: "Projekty podlegają tej licencji:", notice: "Pull requesty mile widziane, klonowanie zabronione.", h3: "📜 Informacja Prawna", t3: "To jest prywatna strona.", t4: "Informacja TMG: Charakter prywatny...", btn: "Powrót" }
+      "de-de": { title: "Legal & Lizenz", h1: "📧 Kontakt", t1: "Für Anfragen oder Feedback erreichst du mich per E-Mail:", h2: "⚖️ Lizenzierung", t2: "Projekte unterliegen dieser Lizenz:", notice: "Pull-Requests sind willkommen, aber das Klonen/Kopieren für private Zwecke ist untersagt.", h3: "📜 Rechtlicher Hinweis", t3: "Dies ist eine private Website.", t4: "Zum Schutz der Privatsphäre wird auf die Veröffentlichung einer vollständigen Anschrift verzichtet. Diese kann bei berechtigtem Interesse unter info@alexgaming.is-a.dev angefordert werden.", btn: "Zurück zur Startseite" },
+      "en-us": { title: "Legal & License", h1: "📧 Contact", t1: "For inquiries or feedback, reach me via email:", h2: "⚖️ Licensing", t2: "Projects are subject to this license:", notice: "Pull requests are welcome, however cloning for personal use is prohibited.", h3: "📜 Legal Notice", t3: "This is a private website.", t4: "To protect privacy, a full physical address is not published. It can be requested for legitimate reasons via info@alexgaming.is-a.dev.", btn: "Back to Home" },
+      "fr-fr": { title: "Mentions Légales", h1: "📧 Contact", t1: "Pour toute demande ou feedback, contactez-moi :", h2: "⚖️ Licence", t2: "Les projets sont soumis à cette licence :", notice: "Les Pull Requests sont bienvenue, mais le clonage est interdit.", h3: "📜 Note Juridique", t3: "C'est un site privé.", t4: "Pour protéger la vie privée, l'adresse physique n'est pas publiée. Elle peut être demandée via info@alexgaming.is-a.dev.", btn: "Retour" },
+      "it-it": { title: "Note Legali", h1: "📧 Contatto", t1: "Per richieste o feedback, scrivimi via email:", h2: "⚖️ Licenza", t2: "I progetti sono soggetti a questa licenza:", notice: "Le Pull Request sono benvenute, ma il clonaggio è vietato.", h3: "📜 Note Legali", t3: "Sito privato.", t4: "Per proteggere la privacy, l'indirizzo fisico non viene pubblicato. Può essere richiesto tramite info@alexgaming.is-a.dev.", btn: "Indietro" },
+      "nl-nl": { title: "Juridisch & Licentie", h1: "📧 Contact", t1: "Voor vragen of feedback, mail me:", h2: "⚖️ Licenties", t2: "Projecten vallen onder diese licentie:", notice: "Pull-requests welkom, klonen verboden.", h3: "📜 Juridische Mededeling", t3: "Dit is eine privéwebsite.", t4: "Vanwege privacyoverwegingen wordt er geen fysiek adres vermeld. Dit kan worden opgevraagd via info@alexgaming.is-a.dev.", btn: "Terug" },
+      "pl-pl": { title: "Prawne & Licencja", h1: "📧 Kontakt", t1: "W przypadku pytań lub opinii napisz do mnie:", h2: "⚖️ Licencjonowanie", t2: "Projekty podlegają tej licencji:", notice: "Pull requesty mile widziane, klonowanie zabronione.", h3: "📜 Informacja Prawna", t3: "To jest prywatna strona.", t4: "Aby chronić prywatność, adres fizyczny nie jest publikowany. Można go uzyskać pod adresem info@alexgaming.is-a.dev.", btn: "Powrót" }
     };
-    const lang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('selectedLang') || 'de';
-    const t = i18n[lang] || i18n.en;
+
+    const lang = localStorage.getItem('lang') || 'de-de';
+    const t = i18n[lang] || i18n["en-us"];
+
     document.getElementById('l-title').innerText = t.title;
     document.getElementById('l-h1').innerText = t.h1;
     document.getElementById('l-t1').innerText = t.t1;
@@ -101,8 +110,6 @@ SOFTWARE.
     document.getElementById('l-t3').innerText = t.t3;
     document.getElementById('l-t4').innerText = t.t4;
     document.getElementById('l-btn').innerText = t.btn;
-    document.getElementById('l-btn').href = `../../?lang=${lang}`;
   </script>
 </body>
 </html>
-
