@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>is-a.dev | Senior Review Suite</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --border: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #2f81f7;
+            --success: #238636;
+            --warning: #d29922;
+            --docs-blue: #58a6ff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 25px 35px;
+            background: linear-gradient(135deg, #1c2128 0%, #0d1117 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 { font-size: 24px; margin: 0; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .header p { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 25px;
+        }
+
+        .column-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .option-card {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.1s ease-in-out;
+            font-size: 12.5px;
+            user-select: none;
+        }
+
+        .option-card:hover { border-color: var(--text-muted); background: #1c2128; }
+        .option-card input { margin-right: 10px; accent-color: var(--accent); cursor: pointer; }
+        .option-card.active { border-color: var(--accent); background: rgba(47, 129, 247, 0.1); color: #fff; }
+
+        .output-area { background: #090c10; padding: 30px; border-top: 1px solid var(--border); }
+        .output-label { font-size: 13px; font-weight: 600; color: var(--warning); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        
+        #resultContainer {
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 120px;
+            color: #d1d5da;
+            white-space: pre-wrap;
+        }
+
+        .footer-controls { display: flex; gap: 15px; margin-top: 20px; }
+        button { padding: 12px 25px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 14px; }
+        .btn-copy { background: var(--success); color: white; flex: 3; }
+        .btn-copy:hover { background: #2ea043; }
+        .btn-reset { background: #30363d; color: var(--text-main); flex: 1; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1><span>💎</span> is-a.dev Assistant Pro</h1>
+        <p>Maintain project quality with professional contributor reviews.</p>
+    </div>
+
+    <div class="main-grid">
+        <div class="column">
+            <div class="column-title">✨ Tone</div>
+            <label class="option-card active"><input type="radio" name="opener" value="hey" checked onchange="update()"> Friendly</label>
+            <label class="option-card"><input type="radio" name="opener" value="cool" onchange="update()"> Appreciative</label>
+            <label class="option-card"><input type="radio" name="opener" value="quick" onchange="update()"> Direct</label>
+        </div>
+
+        <div class="column">
+            <div class="column-title">📁 Structure</div>
+            <label class="option-card"><input type="checkbox" value="plural" onchange="update()"> 'records' (plural)</label>
+            <label class="option-card"><input type="checkbox" value="username" onchange="update()"> Owner Username</label>
+            <label class="option-card"><input type="checkbox" value="lower" onchange="update()"> Lowercase only</label>
+        </div>
+
+        <div class="column">
+            <div class="column-title">⚠️ Conflicts</div>
+            <label class="option-card"><input type="checkbox" value="user_conflict" onchange="update()"> Conflict (Other User)</label>
+            <label class="option-card"><input type="checkbox" value="self_dup" onchange="update()"> Duplicate PR (Self)</label>
+            <label class="option-card"><input type="checkbox" value="existing" onchange="update()"> Already in Repo</label>
+        </div>
+
+        <div class="column">
+            <div class="column-title">⚙️ Technical</div>
+            <label class="option-card"><input type="checkbox" value="dot" onchange="update()"> CNAME dot</label>
+            <label class="option-card"><input type="checkbox" value="url" onchange="update()"> CNAME URL error</label>
+            <label class="option-card"><input type="checkbox" value="proxy" onchange="update()"> Proxying off</label>
+        </div>
+
+        <div class="column">
+            <div class="column-title">🖼️ Media</div>
+            <label class="option-card"><input type="checkbox" value="broken_img" onchange="update()"> Broken Upload</label>
+            <label class="option-card"><input type="checkbox" value="proof" onchange="update()"> Missing Proof</label>
+        </div>
+    </div>
+
+    <div class="output-area">
+        <div class="output-label"><span>📝</span> Final Review Comment</div>
+        <div id="resultContainer">Select options to build your message...</div>
+        
+        <div class="footer-controls">
+            <button class="btn-copy" onclick="copy()">Copy Review Comment</button>
+            <button class="btn-reset" onclick="reset()">Reset Selection</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const issues = {
+        plural: "change `record` to `records` (it must be plural)",
+        username: "add your GitHub `username` to the owner block",
+        lower: "ensure all fields and the filename are in lowercase",
+        dot: "remove the trailing dot at the end of the CNAME target",
+        url: "make sure the CNAME value is just the domain (remove http:// or slashes)",
+        proxy: "disable Cloudflare proxying (set it to DNS only)",
+        user_conflict: "note that another user has already requested this exact subdomain in an earlier Pull Request. Since we follow a first-come, first-served policy, you may need to choose a different name",
+        self_dup: "close this Pull Request, as you have already opened a duplicate PR for this domain",
+        existing: "choose a different subdomain, as this one is already registered in the repository",
+        broken_img: "re-upload your image (the current upload didn't finish and shows a placeholder)",
+        proof: "provide a screenshot or proof of ownership if required"
+    };
+
+    const openers = {
+        hey: "Hey, just noticed a few things that might trip up the automation: You'll need to ",
+        cool: "Cool project! I just spotted a few small issues that might prevent this from being merged: You'll need to ",
+        quick: "Quick heads-up: to pass the automated validation, you'll need to "
+    };
+
+    function update() {
+        const toneKey = document.querySelector('input[name="opener"]:checked').value;
+        const selected = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => issues[cb.value]);
+        
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.classList.toggle('active', card.querySelector('input').checked);
+        });
+
+        if (selected.length === 0) {
+            document.getElementById('resultContainer').innerText = "Select options to build your message...";
+            return;
+        }
+
+        let msg = openers[toneKey];
+        if (selected.length === 1) { msg += selected[0]; } 
+        else {
+            const last = selected.pop();
+            msg += selected.join(", ") + " and " + last;
+        }
+
+        msg += ".\n\nYou can find the full documentation and formatting rules here: https://docs.is-a.dev";
+        document.getElementById('resultContainer').innerText = msg;
+    }
+
+    function copy() {
+        const text = document.getElementById('resultContainer').innerText;
+        if (text.includes("Select options")) return;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.btn-copy');
+            btn.innerText = "Review Copied! ✓";
+            setTimeout(() => btn.innerText = "Copy Review Comment", 2000);
+        });
+    }
+
+    function reset() {
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        update();
+    }
+</script>
+
+</body>
+</html>
