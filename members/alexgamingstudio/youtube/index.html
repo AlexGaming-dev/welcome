@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Gaming | Zocken & Coden</title>
+    <title>alexgamingdev | Gaming & Development</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -36,7 +36,7 @@
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin: 0;
             font-weight: 900;
             letter-spacing: -2px;
@@ -48,8 +48,8 @@
         .subtitle {
             font-size: 1.2rem;
             color: var(--text-dim);
-            max-width: 600px;
-            margin-top: 1rem;
+            max-width: 700px;
+            margin-top: 1.5rem;
         }
 
         .container {
@@ -69,11 +69,14 @@
             padding: 40px;
             border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.15);
         }
 
         .card i {
@@ -83,53 +86,81 @@
         .gaming-card i { color: var(--accent-gaming); }
         .coding-card i { color: var(--accent-coding); }
 
-        h2 { font-size: 2rem; margin-bottom: 15px; }
+        h2 { font-size: 1.8rem; margin-bottom: 15px; }
 
         .btn-group {
             margin-top: 40px;
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 12px;
             text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
         }
 
         .btn-youtube { background: #ef4444; color: white; }
-        .btn-github { background: #333; color: white; }
+        .btn-youtube:hover { background: #dc2626; transform: scale(1.05); }
+
+        .btn-github { background: #334155; color: white; }
+        .btn-github:hover { background: #475569; transform: scale(1.05); }
 
         code {
             font-family: 'Fira Code', monospace;
             background: #000;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 3px 8px;
+            border-radius: 6px;
             color: var(--accent-coding);
+            font-size: 0.9rem;
+        }
+
+        .legal-notice {
+            margin-top: auto;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 60px 20px;
             color: var(--text-dim);
             font-size: 0.9rem;
         }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover { color: var(--accent-coding); }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 id="title">Alex Gaming</h1>
+        <h1 id="title">alexgamingdev</h1>
         <p class="subtitle">
-            Tagsüber im Stream, nachts in der IDE auf Bug-Suche. 
-            Willkommen in meinem digitalen Wohnzimmer.
+            Entwickler aus Leidenschaft & Gamer im Herzen. <br>
+            Ich baue Tools für die Zukunft und teile meine Erlebnisse in Minecraft.
         </p>
         <div class="btn-group">
-            <a href="https://youtube.com/@alexgamingdev" class="btn btn-youtube">YouTube Kanal</a>
-            <a href="https://github.com/alexgamingstudio" class="btn btn-github">GitHub Profile</a>
+            <a href="https://youtube.com/@alexgamingdev" class="btn btn-youtube">
+                <i data-lucide="youtube" size="20"></i> YouTube Kanal
+            </a>
+            <a href="https://github.com/AlexGaming-Dev" class="btn btn-github">
+                <i data-lucide="github" size="20"></i> GitHub Org
+            </a>
         </div>
     </header>
 
@@ -138,22 +169,28 @@
             <div class="card gaming-card">
                 <i data-lucide="gamepad-2" size="48"></i>
                 <h2>Gaming</h2>
-                <p>Ich liebe einfache und nicht komplexe Spiele. Auf YouTube zeige ich euch meine besten Momente und reagiere auf Videos anderer YouTuber.</p>
-                <p><strong>Aktuell:</strong> Minecraft</p>
+                <p>Auf YouTube zeige ich entspanntes Gameplay und Reaktionen. Ich schätze unkomplizierte Spiele, die Spaß machen und die Community verbinden.</p>
+                <p><strong>Aktueller Fokus:</strong> Minecraft</p>
             </div>
 
             <div class="card coding-card">
                 <i data-lucide="code-2" size="48"></i>
-                <h2>Programming</h2>
-                <p>Privat brenne ich für die Softwareentwicklung. Ich baue Tools, die meinen Stream verbessern oder experimentiere mit Web-Technologien wie <code>dotnet</code>.</p>
-                <p><strong>Fokus:</strong> C# / .NET 6; WebView2; HTML/CSS; JavaScript und WiX Toolset</p>
+                <h2>Development</h2>
+                <p>In meiner Freizeit entwickle ich Softwarelösungen mit <code>.NET 6</code> und modernen Web-Technologien. Pull-Requests auf GitHub sind jederzeit willkommen!</p>
+                <p><strong>Stack:</strong> C#, WebView2, HTML/CSS, JS & WiX Toolset</p>
+                <div class="legal-notice">
+                    Hinweis: Kopieren von Code für persönliche Zwecke untersagt.
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Alex Gaming Studio. Alle Rechte vorbehalten.</p>
-        <p>Kontakt: <a href="mailto:alex.yt@alexgaming.is-a.dev" style="color: var(--accent-coding);">alex.yt@alexgaming.is-a.dev</a></p>
+        <p>&copy; 2026 alexgamingdev. Alle Rechte vorbehalten.</p>
+        <p>
+            <a href="https://www.alexgaming.is-a.dev/legal">Impressum</a> | 
+            <a href="mailto:youtube@alexgaming.is-a.dev">Kontakt</a>
+        </p>
     </footer>
 
     <script>
