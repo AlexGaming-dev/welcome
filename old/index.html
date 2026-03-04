@@ -107,7 +107,7 @@
 
   <div id="page-content">
     <header>
-      <img src="https://cdn.discordapp.com/icons/1459638802091081750/28dda650f9693b581f890d1be94f2717.webp" alt="Alex Gaming Logo" onclick="window.location.href='/'">
+      <img src="https://cdn.discordapp.com/icons/1459638802091081750/28dda650f9693b581f890d1be94f2717.webp" alt="Alex Gaming Logo" onclick="window.location.href='/old/'">
       <div class="lang-menu">
         <button class="lang-btn" id="menu-trigger">
           <img src="https://flagcdn.com/w40/de.png" id="cur-flag" class="flag" alt="Language"> 
@@ -160,9 +160,9 @@
 
     <footer>
       &copy; 2026 Alex Gaming – <span id="t-copy">Alle Rechte vorbehalten.</span> | 
-      <a href="/legal/" id="f-legal">Impressum</a> | 
-      <a href="/privacy/" id="f-privacy">Datenschutz</a> | 
-      <a href="/support/" id="f-support">Support</a>
+      <a href="/old/legal/" id="f-legal">Impressum</a> | 
+      <a href="/old/privacy/" id="f-privacy">Datenschutz</a> | 
+      <a href="/old/support/" id="f-support">Support</a>
     </footer>
   </div>
 
@@ -182,7 +182,7 @@
       const data = i18n[langCode];
       if(!data) return;
       
-      const newUrl = window.location.protocol + "//" + window.location.host + "/" + langCode + "/";
+      const newUrl = window.location.protocol + "//" + window.location.host + "/old/" + langCode + "/";
       window.history.replaceState({ path: newUrl }, '', newUrl);
 
       document.getElementById('t-title').innerText = data.title;
