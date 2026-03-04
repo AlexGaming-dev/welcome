@@ -21,6 +21,10 @@
   </style>
 </head>
 <body>
+  <div style="background:#ff9800;color:#000;text-align:center;padding:12px 16px;font-size:0.9rem;font-weight:700;" id="legacy-banner">
+    ⚠️ <span id="lb-text">Diese Seite ist veraltet.</span>
+    <a href="https://www.alexgamingdev.tech/privacy/" style="color:#000;text-decoration:underline;margin-left:8px;" id="lb-link">Zur aktuellen Datenschutzerklärung →</a>
+  </div>
   <div class="container">
     <h1 id="p-title">Datenschutzerklärung</h1>
     <p id="p-date">Stand: Januar 2026</p>
@@ -86,6 +90,11 @@
     };
     setList('p-list1', t.l1);
     setList('p-list2', t.l2);
+
+    const legacyText = { de: "Diese Seite ist veraltet.", en: "This page is outdated.", fr: "Cette page est obsolète.", it: "Questa pagina è obsoleta.", nl: "Deze pagina is verouderd.", pl: "Ta strona jest nieaktualna." };
+    const legacyLink = { de: "Zur aktuellen Datenschutzerklärung →", en: "View current privacy policy →", fr: "Voir la politique de confidentialité actuelle →", it: "Vedi la privacy policy attuale →", nl: "Bekijk huidig privacybeleid →", pl: "Zobacz aktualną politykę prywatności →" };
+    document.getElementById('lb-text').innerText = legacyText[lang] || legacyText.de;
+    document.getElementById('lb-link').innerText = legacyLink[lang] || legacyLink.de;
   </script>
 </body>
 </html>
