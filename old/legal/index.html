@@ -25,6 +25,10 @@
   </style>
 </head>
 <body>
+  <div style="background:#ff9800;color:#000;text-align:center;padding:12px 16px;font-size:0.9rem;font-weight:700;" id="legacy-banner">
+    ⚠️ <span id="lb-text">Diese Seite ist veraltet.</span>
+    <a href="https://www.alexgamingdev.tech/impressum/" style="color:#000;text-decoration:underline;margin-left:8px;" id="lb-link">Zum aktuellen Impressum →</a>
+  </div>
   <div class="container">
     <h1 id="l-title">Legal & License</h1>
     
@@ -110,6 +114,11 @@ SOFTWARE.
     document.getElementById('l-t3').innerText = t.t3;
     document.getElementById('l-t4').innerText = t.t4;
     document.getElementById('l-btn').innerText = t.btn;
+
+    const legacyBannerText = { "de-de": "Diese Seite ist veraltet.", "at-at": "Diese Seite ist veraltet.", "ch-ch": "Diese Seite ist veraltet.", "en-us": "This page is outdated.", "fr-fr": "Cette page est obsolète.", "it-it": "Questa pagina è obsoleta.", "nl-nl": "Deze pagina is verouderd.", "pl-pl": "Ta strona jest nieaktualna." };
+    const legacyBannerLink = { "de-de": "Zum aktuellen Impressum →", "at-at": "Zum aktuellen Impressum →", "ch-ch": "Zum aktuellen Impressum →", "en-us": "View current legal notice →", "fr-fr": "Voir les mentions légales actuelles →", "it-it": "Vedi le note legali attuali →", "nl-nl": "Bekijk huidige juridische informatie →", "pl-pl": "Zobacz aktualne informacje prawne →" };
+    document.getElementById('lb-text').innerText = legacyBannerText[lang] || legacyBannerText["de-de"];
+    document.getElementById('lb-link').innerText = legacyBannerLink[lang] || legacyBannerLink["de-de"];
   </script>
 </body>
 </html>
