@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Engine | Free Professional Vectorizer | alexgamingdev</title>
+    <meta name="description" content="Free professional raster-to-SVG vectorizer. AI-enhanced edge recovery, K-Means color quantization, Douglas-Peucker simplification. Runs 100% in your browser — no uploads, no limits.">
+    <meta name="keywords" content="vectorizer, raster to vector, SVG converter, free vectorizer, image trace, bitmap to vector, alexgamingdev, vector engine">
+    <link rel="canonical" href="https://www.alexgamingdev.tech/vectorizer/">
+
+    <link rel="icon" type="image/png" href="/icons/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+
+    <meta property="og:title" content="Vector Engine | Free Professional Vectorizer">
+    <meta property="og:description" content="Free professional raster-to-SVG vectorizer. Runs 100% in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.alexgamingdev.tech/vectorizer/">
+    <meta property="og:image" content="https://www.alexgamingdev.tech/icons/og-main.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vector Engine | Free Vectorizer by alexgamingdev">
+    <meta name="twitter:description" content="Free professional raster-to-SVG vectorizer. 100% browser-based.">
+    <meta name="twitter:creator" content="@alexgamingdev">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.alexgamingdev.tech/vectorizer/#webpage",
+          "url": "https://www.alexgamingdev.tech/vectorizer/",
+          "name": "Vector Engine | alexgamingdev",
+          "isPartOf": {
+            "@id": "https://www.alexgamingdev.tech/#website"
+          },
+          "about": {
+            "@id": "https://www.alexgamingdev.tech#person"
+          },
+          "description": "Free professional raster-to-SVG vectorizer with AI-enhanced edge recovery, color quantization, and advanced topology cleanup.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.alexgamingdev.tech/#website",
+          "url": "https://www.alexgamingdev.tech/",
+          "name": "Alexander Dennhoven",
+          "alternateName": [
+            "alexgamingdev",
+            "alexgamingdev Portfolio"
+          ],
+          "publisher": {
+            "@id": "https://www.alexgamingdev.tech#person"
+          },
+          "author": {
+            "@id": "https://www.alexgamingdev.tech#person"
+          },
+          "mainEntity": {
+            "@id": "https://www.alexgamingdev.tech#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.alexgamingdev.tech#person",
+          "name": "Alexander Dennhoven",
+          "alternateName": [
+            "alexgamingdev",
+            "alexander.dennhoven",
+            "Alex Gaming Dev"
+          ],
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://www.alexgamingdev.tech/icons/og-main.jpg",
+            "url": "https://www.alexgamingdev.tech/icons/og-main.jpg",
+            "contentUrl": "https://www.alexgamingdev.tech/icons/og-main.jpg",
+            "caption": "Alexander Dennhoven – Software Architect & Developer"
+          },
+          "url": "https://www.alexgamingdev.tech",
+          "jobTitle": "Software Developer & Architect",
+          "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
+          "nationality": {
+            "@type": "Country",
+            "name": "Germany"
+          },
+          "gender": "male",
+          "knowsLanguage": [
+            "de",
+            "en",
+            "la"
+          ],
+          "knowsAbout": [
+            {
+              "@type": "Thing",
+              "name": "Software Engineering"
+            },
+            {
+              "@type": "Thing",
+              "name": "CLI Tools"
+            },
+            {
+              "@type": "Thing",
+              "name": "Local-first Apps"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q2370",
+              "name": "C#"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q3857014",
+              "name": ".NET"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q846636",
+              "name": "Software Architecture"
+            },
+            {
+              "@type": "Thing",
+              "name": "Automation"
+            }
+          ],
+          "sameAs": [
+            "https://www.wikidata.org/wiki/Q138410440",
+            "https://github.com/alexgamingdev",
+            "https://www.linkedin.com/in/alexgamingdev/",
+            "https://x.com/alexgamingdev",
+            "https://www.instagram.com/alexgamingdev/",
+            "https://www.tiktok.com/@alexgamingdev",
+            "https://www.youtube.com/@alexgamingdev",
+            "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
+            "https://www.twitch.tv/alexgamingdev",
+            "https://bsky.app/profile/alexgamingdev.tech",
+            "https://mastodon.social/@alexgamingdev",
+            "https://de.pinterest.com/alexgamingdev/",
+            "https://www.npmjs.com/~alexgamingdev",
+            "https://linktr.ee/alexgamingdev",
+            "https://news.alexgamingdev.tech"
+          ],
+          "mainEntityOfPage": {
+            "@id": "https://www.alexgamingdev.tech/#webpage"
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Software Architect",
+            "occupationLocation": {
+              "@type": "Country",
+              "name": "Germany"
+            },
+            "skills": "C#, .NET, Software Architecture, CLI Tools, Local-first Applications"
+          },
+          "founder": {
+            "@type": "Organization",
+            "name": "alexgamingdev",
+            "url": "https://www.alexgamingdev.tech"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://www.alexgamingdev.tech/vectorizer/#app",
+          "name": "Vector Engine",
+          "operatingSystem": "Web Browser",
+          "applicationCategory": "DesignApplication",
+          "description": "Free professional raster-to-SVG vectorizer with AI-enhanced edge recovery, color quantization, and advanced topology cleanup.",
+          "url": "https://www.alexgamingdev.tech/vectorizer/",
+          "author": {
+            "@id": "https://www.alexgamingdev.tech#person"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-black: #050505;
+            --accent-blue: #00f2ff;
+            --accent-purple: #bc13fe;
+            --text-main: #e0e0e0;
+        }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-main);
+            overflow-x: hidden;
+            margin: 0;
+            width: 100%;
+        }
+        h1, h2, h3, .nav-logo { font-family: 'Orbitron', sans-serif; }
+        .mono { font-family: 'Fira Code', monospace; }
+
+        .space-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%);
+            z-index: -1;
+        }
+        .star-layer { position: absolute; inset: 0; background-repeat: repeat; pointer-events: none; }
+
+        #loader-wrapper {
+            position: fixed; inset: 0; background: #090707;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000;
+            transition: opacity 0.6s ease;
+        }
+        .loader-3 { position: relative; width: 80px; height: 80px; border-radius: 50%; perspective: 800px; }
+        .loader-3 .inner { position: absolute; width: 100%; height: 100%; border-radius: 50%; border-bottom: 3px solid var(--accent-blue); }
+        .loader-3 .one { animation: rotate-one 1s linear infinite; }
+        .loader-3 .two { animation: rotate-two 1s linear infinite; border-bottom: none; border-right: 3px solid var(--accent-purple); }
+        .loader-3 .three { animation: rotate-three 1s linear infinite; border-bottom: none; border-top: 3px solid #fff; }
+        @keyframes rotate-one { 0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }
+        @keyframes rotate-two { 0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); } 100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); } }
+        @keyframes rotate-three { 0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); } 100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }
+
+        .animated-dev {
+            background: linear-gradient(90deg, #00f2ff, #bc13fe, #00f2ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-shift 3s linear infinite;
+        }
+        @keyframes gradient-shift { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        @keyframes move-stars { from { transform: translateY(0); } to { transform: translateY(-1000px); } }
+
+        /* Upload zone */
+        .upload-zone {
+            border: 2px dashed rgba(0, 242, 255, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .upload-zone:hover, .upload-zone.drag-over {
+            border-color: var(--accent-blue);
+            background: rgba(0, 242, 255, 0.04);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.08);
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+        }
+        .glass-card:hover { border-color: rgba(0, 242, 255, 0.15); }
+
+        /* Feature card */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 96% 100%, 0 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .feature-card:hover {
+            border-color: var(--accent-blue);
+            background: rgba(0, 242, 255, 0.03);
+            transform: translateY(-4px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.06);
+        }
+
+        /* Range slider */
+        input[type=range] {
+            -webkit-appearance: none; appearance: none;
+            width: 100%; height: 4px;
+            background: rgba(255,255,255,0.08); outline: none; border-radius: 2px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--accent-blue); cursor: pointer;
+            box-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 14px; height: 14px; border-radius: 50%; border: none;
+            background: var(--accent-blue); cursor: pointer;
+        }
+
+        /* Toggle switch */
+        .toggle { position: relative; display: inline-block; width: 42px; height: 22px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.1); border-radius: 22px; transition: .3s;
+        }
+        .toggle-slider:before {
+            position: absolute; content: "";
+            height: 16px; width: 16px; left: 3px; bottom: 3px;
+            background: white; border-radius: 50%; transition: .3s;
+        }
+        .toggle input:checked + .toggle-slider { background: var(--accent-blue); box-shadow: 0 0 8px rgba(0,242,255,0.4); }
+        .toggle input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+        /* Tab buttons */
+        .tab-btn { transition: all 0.25s ease; border-bottom: 2px solid transparent; }
+        .tab-btn.active { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+        .tab-btn:not(.active) { color: rgba(255,255,255,0.35); }
+        .tab-btn:not(.active):hover { color: rgba(255,255,255,0.6); }
+
+        /* Progress bar */
+        .progress-bar-fill {
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 2px;
+            transition: width 0.2s ease;
+        }
+
+        /* Preview container */
+        #preview-container {
+            position: relative;
+            overflow: hidden;
+            background: repeating-conic-gradient(rgba(255,255,255,0.02) 0% 25%, transparent 0% 50%) 0 0 / 20px 20px;
+        }
+        #canvas-original {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: contain;
+        }
+        #svg-wrapper {
+            position: absolute; top: 0; right: 0;
+            width: 50%; height: 100%;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #svg-wrapper svg { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: contain; }
+        #split-handle {
+            position: absolute; top: 0; left: 50%; width: 3px; height: 100%;
+            background: var(--accent-blue); cursor: ew-resize; z-index: 10;
+            box-shadow: 0 0 12px rgba(0,242,255,0.6);
+        }
+        #split-label-orig {
+            position: absolute; top: 8px; left: 8px;
+            background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+            padding: 2px 8px; font-family: 'Fira Code',monospace; font-size: 10px; color: rgba(255,255,255,0.5);
+            z-index: 5; pointer-events: none;
+        }
+        #split-label-vec {
+            position: absolute; top: 8px; right: 8px;
+            background: rgba(0,0,0,0.6); border: 1px solid rgba(0,242,255,0.3);
+            padding: 2px 8px; font-family: 'Fira Code',monospace; font-size: 10px; color: rgba(0,242,255,0.7);
+            z-index: 5; pointer-events: none;
+        }
+
+        /* Palette swatch */
+        .swatch {
+            display: inline-flex; align-items: center; gap: 5px;
+            border: 1px solid rgba(255,255,255,0.08); padding: 3px 8px;
+            font-family: 'Fira Code', monospace; font-size: 10px; color: rgba(255,255,255,0.5);
+        }
+        .swatch-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+        /* Select styling */
+        select {
+            background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(0,242,255,0.9); padding: 6px 10px; outline: none;
+            font-family: 'Fira Code', monospace; font-size: 11px;
+            border-radius: 2px; cursor: pointer; width: 100%;
+        }
+        select:focus { border-color: rgba(0,242,255,0.4); }
+        select option { background: #0a0a0a; color: #e0e0e0; }
+
+        /* Action button */
+        .btn-primary {
+            border: 1px solid rgba(0,242,255,0.4); color: var(--accent-blue);
+            background: rgba(0,242,255,0.04); transition: all 0.3s ease;
+            font-family: 'Fira Code', monospace; font-size: 11px;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 10px 16px; cursor: pointer; width: 100%;
+        }
+        .btn-primary:hover:not(:disabled) { background: rgba(0,242,255,0.12); box-shadow: 0 0 20px rgba(0,242,255,0.15); }
+        .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45);
+            background: transparent; transition: all 0.3s ease;
+            font-family: 'Fira Code', monospace; font-size: 11px;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 8px 16px; cursor: pointer; width: 100%;
+        }
+        .btn-secondary:hover:not(:disabled) { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); }
+        .btn-secondary:disabled { opacity: 0.25; cursor: not-allowed; }
+
+        .btn-run {
+            border: 1px solid rgba(0,242,255,0.5); color: var(--accent-blue);
+            background: rgba(0,242,255,0.06); transition: all 0.4s ease;
+            font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: 700;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            padding: 16px; cursor: pointer; width: 100%;
+        }
+        .btn-run:hover:not(:disabled) {
+            background: rgba(0,242,255,0.15);
+            box-shadow: 0 0 40px rgba(0,242,255,0.2);
+        }
+        .btn-run:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn-run.processing { animation: pulse-border 1s ease-in-out infinite; }
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 10px rgba(0,242,255,0.2); }
+            50% { box-shadow: 0 0 30px rgba(0,242,255,0.5); }
+        }
+
+        /* Checkerboard bg for transparent images */
+        .checker {
+            background-image:
+                linear-gradient(45deg,rgba(255,255,255,.04) 25%, transparent 25%),
+                linear-gradient(-45deg,rgba(255,255,255,.04) 25%, transparent 25%),
+                linear-gradient(45deg,transparent 75%,rgba(255,255,255,.04) 75%),
+                linear-gradient(-45deg,transparent 75%,rgba(255,255,255,.04) 75%);
+            background-size: 16px 16px;
+            background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+        }
+
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spin { animation: spin 1s linear infinite; }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="space-container" id="space-bg"></div>
+
+<div id="loader-wrapper">
+    <div class="loader-3 mb-8">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+    </div>
+    <div class="mono text-xs text-blue-500 tracking-[0.5em] animate-pulse">INITIALIZING ENGINE...</div>
+</div>
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
+    <div class="nav-logo text-lg md:text-xl font-black tracking-widest text-white flex items-center">
+        <a href="/" class="flex items-center">
+            <img src="https://www.alexgamingdev.tech/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="alexgamingdev Logo">
+            <span>alexgaming<span class="animated-dev">dev</span></span>
+        </a>
+    </div>
+    <div class="flex items-center gap-2 mono text-xs text-white/30">
+        <span>/</span>
+        <span class="text-cyan-400 font-semibold">vectorizer</span>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative flex flex-col justify-center items-center px-6 pt-28 pb-10 text-center">
+    <div class="absolute w-[500px] h-[200px] bg-purple-600/5 rounded-full blur-[120px] -z-10 top-20"></div>
+    <div class="mono text-xs text-cyan-400/50 tracking-[0.5em] uppercase mb-3 animate-pulse">Next-Gen Vector Engine v2.0</div>
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter mb-4">
+        VECTOR<span class="animated-dev">ENGINE</span>
+    </h1>
+    <p class="text-white/45 text-sm md:text-base max-w-xl leading-relaxed mb-6">
+        Professional-grade raster-to-SVG conversion.<br>
+        Free. No uploads. No cloud. Runs 100% in your browser.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2">
+        <span class="px-3 py-1 border border-cyan-500/25 text-cyan-400/60 mono text-[10px] uppercase tracking-wider">6 AI Modules</span>
+        <span class="px-3 py-1 border border-purple-500/25 text-purple-400/60 mono text-[10px] uppercase tracking-wider">SVG · PNG Export</span>
+        <span class="px-3 py-1 border border-green-500/25 text-green-400/60 mono text-[10px] uppercase tracking-wider">Zero Cloud</span>
+        <span class="px-3 py-1 border border-white/10 text-white/30 mono text-[10px] uppercase tracking-wider">100% Free</span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MAIN APP
+════════════════════════════════════════════ -->
+<section id="app" class="px-4 md:px-6 pb-24 max-w-screen-2xl mx-auto">
+    <div class="grid grid-cols-1 xl:grid-cols-[360px_1fr] gap-5">
+
+        <!-- ─── LEFT PANEL: Upload + Settings ─── -->
+        <div class="space-y-4">
+
+            <!-- Upload Zone -->
+            <div class="glass-card p-1 rounded-sm">
+                <div id="upload-zone"
+                     class="upload-zone p-8 flex flex-col items-center justify-center text-center min-h-[190px] rounded-sm"
+                     onclick="document.getElementById('file-input').click()"
+                     ondragover="event.preventDefault(); this.classList.add('drag-over')"
+                     ondragleave="this.classList.remove('drag-over')"
+                     ondrop="handleDrop(event)">
+                    <div id="upload-icon" class="mb-4 opacity-40">
+                        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" class="mx-auto">
+                            <rect x="3" y="9" width="46" height="34" rx="4" stroke="#00f2ff" stroke-width="1.5"/>
+                            <circle cx="17" cy="21" r="4" stroke="#00f2ff" stroke-width="1.5"/>
+                            <path d="M3 33L15 21L24 30L33 18L49 36" stroke="#bc13fe" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M26 3V15M22 7L26 3L30 7" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <p class="text-white/50 text-sm mb-1">Drop image here or <span class="text-cyan-400">click to browse</span></p>
+                    <p class="mono text-[10px] text-white/25">PNG · JPG · GIF · WebP · BMP · SVG</p>
+                    <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileInput(event)">
+                </div>
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="glass-card p-4 rounded-sm">
+                <!-- Tab header -->
+                <div class="flex gap-5 mb-4 border-b border-white/5 pb-3">
+                    <button class="tab-btn active mono text-[11px] uppercase tracking-wider pb-1" onclick="switchTab('quality', this)">Quality</button>
+                    <button class="tab-btn mono text-[11px] uppercase tracking-wider pb-1" onclick="switchTab('features', this)">Features</button>
+                    <button class="tab-btn mono text-[11px] uppercase tracking-wider pb-1" onclick="switchTab('export', this)">Export</button>
+                </div>
+
+                <!-- QUALITY TAB -->
+                <div id="tab-quality" class="tab-content space-y-5">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-[11px] text-white/50 uppercase tracking-wider">Colors</label>
+                            <span id="val-colorCount" class="mono text-[11px] text-cyan-400">8</span>
+                        </div>
+                        <input type="range" id="sl-colorCount" min="2" max="24" value="8" oninput="onSlider('colorCount',this)">
+                        <div class="flex justify-between mono text-[9px] text-white/20 mt-1"><span>2</span><span>K-Means Quantization</span><span>24</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-[11px] text-white/50 uppercase tracking-wider">Simplification ε</label>
+                            <span id="val-epsilon" class="mono text-[11px] text-cyan-400">1.5</span>
+                        </div>
+                        <input type="range" id="sl-epsilon" min="0.1" max="8" step="0.1" value="1.5" oninput="onSlider('epsilon',this)">
+                        <div class="flex justify-between mono text-[9px] text-white/20 mt-1"><span>Fine</span><span>Douglas-Peucker</span><span>Coarse</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-[11px] text-white/50 uppercase tracking-wider">Blur / Noise Filter</label>
+                            <span id="val-blurRadius" class="mono text-[11px] text-cyan-400">0</span>
+                        </div>
+                        <input type="range" id="sl-blurRadius" min="0" max="5" step="0.5" value="0" oninput="onSlider('blurRadius',this)">
+                        <div class="flex justify-between mono text-[9px] text-white/20 mt-1"><span>Off</span><span>Gaussian Blur</span><span>Max</span></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-[11px] text-white/50 uppercase tracking-wider">Min Area (px²)</label>
+                            <span id="val-minArea" class="mono text-[11px] text-cyan-400">25</span>
+                        </div>
+                        <input type="range" id="sl-minArea" min="1" max="600" value="25" oninput="onSlider('minArea',this)">
+                        <div class="flex justify-between mono text-[9px] text-white/20 mt-1"><span>1</span><span>Speckle Suppression</span><span>600</span></div>
+                    </div>
+                </div>
+
+                <!-- FEATURES TAB -->
+                <div id="tab-features" class="tab-content hidden space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Smooth Paths</div>
+                            <div class="mono text-[9px] text-white/25">Catmull-Rom Bezier Curves</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-smoothPaths" onchange="onToggle('smoothPaths',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Primitive Fitting</div>
+                            <div class="mono text-[9px] text-white/25">Circle / Rectangle Detection</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-primFitting" onchange="onToggle('primFitting',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Symmetry Analysis</div>
+                            <div class="mono text-[9px] text-white/25">H/V Axis Mirror Correction</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-symmetry" onchange="onToggle('symmetry',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Centerline Mode</div>
+                            <div class="mono text-[9px] text-white/25">Single-Stroke Skeleton (Plotter / CNC)</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-centerline" onchange="onToggle('centerline',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Layer Stacking</div>
+                            <div class="mono text-[9px] text-white/25">Separate &lt;g&gt; per Color</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-layerStack" checked onchange="onToggle('layerStack',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-white/65">Super-Resolution Pre-pass</div>
+                            <div class="mono text-[9px] text-white/25">2× Upscale Before Tracing</div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" id="tog-superRes" onchange="onToggle('superRes',this)"><span class="toggle-slider"></span></label>
+                    </div>
+                </div>
+
+                <!-- EXPORT TAB -->
+                <div id="tab-export" class="tab-content hidden space-y-5">
+                    <div>
+                        <label class="text-[11px] text-white/50 uppercase tracking-wider block mb-2">Color System</label>
+                        <select id="sel-colorSystem" onchange="settings.colorSystem=this.value">
+                            <option value="rgb">RGB (default)</option>
+                            <option value="hex">HEX</option>
+                            <option value="pantone">Pantone-like (approx)</option>
+                            <option value="ral">RAL-like (approx)</option>
+                        </select>
+                        <div class="mono text-[9px] text-white/20 mt-1">Pantone / RAL Mapping</div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-[11px] text-white/50 uppercase tracking-wider">Kerf Compensation</label>
+                            <span id="val-kerf" class="mono text-[11px] text-cyan-400">0 px</span>
+                        </div>
+                        <input type="range" id="sl-kerf" min="-8" max="8" step="0.5" value="0" oninput="onKerfSlider(this)">
+                        <div class="flex justify-between mono text-[9px] text-white/20 mt-1"><span>-8px</span><span>Offset / Kerf for Laser-CNC</span><span>+8px</span></div>
+                    </div>
+                    <div class="space-y-2 pt-1">
+                        <button id="btn-svg" class="btn-primary" onclick="downloadSVG()" disabled>⬇ Download SVG</button>
+                        <button id="btn-copy" class="btn-secondary" onclick="copySVG()" disabled>Copy SVG Code</button>
+                        <button id="btn-png" class="btn-secondary" onclick="downloadPNG()" disabled>⬇ Download PNG (rendered)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUN Button -->
+            <button id="btn-run" class="btn-run" onclick="startVectorize()" disabled>
+                ▶ VECTORIZE
+            </button>
+
+            <!-- Stats -->
+            <div id="stats-panel" class="glass-card p-4 rounded-sm hidden">
+                <div class="mono text-[9px] text-white/30 uppercase tracking-widest mb-3">// Processing Stats</div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div><div class="text-[9px] text-white/25 uppercase">Time</div><div id="st-time" class="mono text-xs text-cyan-400">—</div></div>
+                    <div><div class="text-[9px] text-white/25 uppercase">Paths</div><div id="st-paths" class="mono text-xs text-cyan-400">—</div></div>
+                    <div><div class="text-[9px] text-white/25 uppercase">Colors</div><div id="st-colors" class="mono text-xs text-cyan-400">—</div></div>
+                    <div><div class="text-[9px] text-white/25 uppercase">SVG Size</div><div id="st-size" class="mono text-xs text-cyan-400">—</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── RIGHT PANEL: Preview ─── -->
+        <div class="space-y-3">
+            <!-- Progress bar -->
+            <div id="prog-wrap" class="hidden">
+                <div class="flex justify-between mono text-[10px] text-white/35 mb-1">
+                    <span id="prog-label">Processing...</span>
+                    <span id="prog-pct">0%</span>
+                </div>
+                <div class="w-full bg-white/5 rounded overflow-hidden h-[3px]">
+                    <div class="progress-bar-fill" id="prog-bar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <!-- View toggle + meta info -->
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="setView('split')" id="vbtn-split" class="px-3 py-1 border border-cyan-500/40 text-cyan-400 mono text-[10px] hover:bg-cyan-500/10 transition-all">Split</button>
+                <button onclick="setView('original')" id="vbtn-original" class="px-3 py-1 border border-white/10 text-white/35 mono text-[10px] hover:border-white/20 hover:text-white/60 transition-all">Original</button>
+                <button onclick="setView('vector')" id="vbtn-vector" class="px-3 py-1 border border-white/10 text-white/35 mono text-[10px] hover:border-white/20 hover:text-white/60 transition-all">Vector</button>
+                <div class="ml-auto mono text-[10px] text-white/25" id="img-info"></div>
+            </div>
+
+            <!-- Preview canvas -->
+            <div id="preview-container" class="glass-card checker relative min-h-[400px] md:min-h-[520px] flex items-center justify-center rounded-sm overflow-hidden">
+                <!-- Placeholder -->
+                <div id="placeholder" class="text-center p-12 select-none">
+                    <div class="mono text-white/15 text-sm mb-2">No image loaded</div>
+                    <div class="mono text-white/10 text-xs">Upload a PNG, JPG or WebP to begin</div>
+                </div>
+
+                <!-- Original canvas (left half in split, full in 'original') -->
+                <canvas id="canvas-orig" class="hidden absolute top-0 left-0 w-full h-full" style="object-fit:contain; pointer-events:none"></canvas>
+
+                <!-- Split divider -->
+                <div id="split-handle" class="split-view-handle hidden" style="left:50%"></div>
+                <div id="lbl-orig" class="hidden" style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.08);padding:2px 8px;font-family:'Fira Code',monospace;font-size:10px;color:rgba(255,255,255,.4);z-index:5;pointer-events:none">ORIGINAL</div>
+                <div id="lbl-vec" class="hidden" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.65);border:1px solid rgba(0,242,255,.3);padding:2px 8px;font-family:'Fira Code',monospace;font-size:10px;color:rgba(0,242,255,.7);z-index:5;pointer-events:none">VECTOR SVG</div>
+
+                <!-- SVG output (right half in split, full in 'vector') -->
+                <div id="svg-wrapper" class="hidden absolute top-0 right-0 h-full" style="pointer-events:none;overflow:hidden;display:flex;align-items:center;justify-content:center">
+                    <div id="svg-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"></div>
+                </div>
+            </div>
+
+            <!-- Palette display -->
+            <div id="palette-panel" class="glass-card p-4 rounded-sm hidden">
+                <div class="mono text-[9px] text-white/30 uppercase tracking-widest mb-3">// Detected Palette</div>
+                <div id="palette-swatches" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FEATURE CARDS (6 modules from spec)
+════════════════════════════════════════════ -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+    <h2 class="text-2xl md:text-3xl font-bold mb-12 tracking-[0.3em] uppercase border-l-4 border-cyan-400 pl-6 text-white">Engine Modules</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="feature-card p-6">
+            <div class="mono text-cyan-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_01</div>
+            <h3 class="text-lg font-bold text-white mb-3">Semantic Geometry Recognition</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Primitive Fitting: Circles, Ellipses, Rectangles</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Symmetry Axis Detection & Mirror Correction</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Sharp Corner vs. Smooth Curve Classification</li>
+            </ul>
+        </div>
+
+        <div class="feature-card p-6">
+            <div class="mono text-cyan-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_02</div>
+            <h3 class="text-lg font-bold text-white mb-3">Advanced Topology Cleanup</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Douglas-Peucker Anchor-Point Reduction</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Gap Closing & Water-tight Path Merging</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Gaussian-Based Speckle & Noise Suppression</li>
+            </ul>
+        </div>
+
+        <div class="feature-card p-6">
+            <div class="mono text-purple-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_03</div>
+            <h3 class="text-lg font-bold text-white mb-3">Typography Reconstruction</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Text-Element Extraction & Font Matching</li>
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Baseline Alignment (Horizontal Correction)</li>
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Typographic Kerning Reconstruction</li>
+            </ul>
+        </div>
+
+        <div class="feature-card p-6">
+            <div class="mono text-purple-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_04</div>
+            <h3 class="text-lg font-bold text-white mb-3">Manufacturing & Export Engine</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Centerline / Skeleton Tracing (Plotter / Engraving)</li>
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Kerf / Offset Compensation for Laser & CNC</li>
+                <li class="flex gap-2"><span class="text-purple-400/50">↗</span>Automatic Layer Stacking by Color Hierarchy</li>
+            </ul>
+        </div>
+
+        <div class="feature-card p-6">
+            <div class="mono text-cyan-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_05</div>
+            <h3 class="text-lg font-bold text-white mb-3">Color & Gradient Handling</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Pantone / RAL Industry Color Mapping</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Gradient Mesh Generation (Vector Gradients)</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Intelligent K-Means Color Quantization</li>
+            </ul>
+        </div>
+
+        <div class="feature-card p-6">
+            <div class="mono text-cyan-400 text-[10px] mb-1 opacity-50 tracking-widest">MODULE_06</div>
+            <h3 class="text-lg font-bold text-white mb-3">AI-Enhanced Edge Recovery</h3>
+            <ul class="space-y-1.5 text-white/45 text-sm">
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Super-Resolution Pre-processing (2× Upscale)</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Predictive Edge Inpainting & Gap Reconstruction</li>
+                <li class="flex gap-2"><span class="text-cyan-400/50">↗</span>Structural Context Analysis for Edge Extrapolation</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 text-center border-t border-white/5 opacity-40 text-[10px] uppercase tracking-widest">
+    <div class="flex flex-wrap justify-center gap-6 mb-4">
+        <a href="/">Home</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/privacy/">Datenschutz</a>
+        <a rel="me" href="https://mastodon.social/@alexgamingdev">Mastodon</a>
+    </div>
+    © 2026 | Alexander Dennhoven (alexgamingdev) · Vector Engine
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     VECTOR ENGINE — JavaScript Core
+═══════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// ─── Star background (matching index.html) ───────────────────────
+const spaceBg = document.getElementById('space-bg');
+function createStars(count, size, duration) {
+    const layer = document.createElement('div');
+    layer.className = 'star-layer';
+    const shadows = [];
+    const w = window.innerWidth * 2, h = window.innerHeight * 2;
+    for (let i = 0; i < count; i++) shadows.push(`${Math.random()*w}px ${Math.random()*h}px #fff`);
+    layer.style.boxShadow = shadows.join(',');
+    layer.style.width = size + 'px'; layer.style.height = size + 'px';
+    layer.style.animation = `move-stars ${duration}s linear infinite`;
+    spaceBg.appendChild(layer);
+}
+(function initStars() { spaceBg.innerHTML = ''; createStars(700, 1, 100); createStars(200, 2, 150); })();
+let resizeTimer; window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { spaceBg.innerHTML = ''; createStars(700,1,100); createStars(200,2,150); }, 200); });
+
+// Loader
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const lw = document.getElementById('loader-wrapper');
+        lw.style.opacity = '0';
+        setTimeout(() => lw.style.display = 'none', 600);
+    }, 1200);
+});
+
+// ─── Application State ───────────────────────────────────────────
+let settings = {
+    colorCount: 8, epsilon: 1.5, blurRadius: 0, minArea: 25,
+    smoothPaths: false, primFitting: false, symmetry: false,
+    centerline: false, layerStack: true, superRes: false,
+    colorSystem: 'rgb', kerf: 0
+};
+
+let rawImageData = null;   // { data: Uint8ClampedArray, width, height }
+let currentSVGStr = null;
+let currentView = 'split';
+let isProcessing = false;
+
+// ─── UI Helpers ──────────────────────────────────────────────────
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.remove('hidden');
+    btn.classList.add('active');
+}
+
+function onSlider(key, el) {
+    settings[key] = parseFloat(el.value);
+    document.getElementById('val-' + key).textContent = el.value;
+}
+
+function onKerfSlider(el) {
+    settings.kerf = parseFloat(el.value);
+    document.getElementById('val-kerf').textContent = el.value + ' px';
+}
+
+function onToggle(key, el) { settings[key] = el.checked; }
+
+function setView(v) {
+    currentView = v;
+    ['split','original','vector'].forEach(n => {
+        document.getElementById('vbtn-' + n).className =
+            n === v
+            ? 'px-3 py-1 border border-cyan-500/40 text-cyan-400 mono text-[10px] hover:bg-cyan-500/10 transition-all'
+            : 'px-3 py-1 border border-white/10 text-white/35 mono text-[10px] hover:border-white/20 hover:text-white/60 transition-all';
+    });
+    applyView();
+}
+
+function applyView() {
+    const canv = document.getElementById('canvas-orig');
+    const svgW = document.getElementById('svg-wrapper');
+    const handle = document.getElementById('split-handle');
+    const lblO = document.getElementById('lbl-orig');
+    const lblV = document.getElementById('lbl-vec');
+
+    if (!rawImageData) return;
+
+    if (currentView === 'original') {
+        canv.style.width = '100%'; canv.style.left = '0';
+        svgW.classList.add('hidden');
+        handle.classList.add('hidden');
+        lblO.classList.add('hidden'); lblV.classList.add('hidden');
+    } else if (currentView === 'vector') {
+        canv.style.width = '0'; canv.style.left = '0';
+        svgW.classList.remove('hidden');
+        svgW.style.width = '100%'; svgW.style.left = '0'; svgW.style.right = '0';
+        handle.classList.add('hidden');
+        lblO.classList.add('hidden'); lblV.classList.add('hidden');
+    } else { // split
+        canv.style.width = '50%'; canv.style.left = '0';
+        svgW.classList.remove('hidden');
+        svgW.style.width = '50%'; svgW.style.left = 'auto'; svgW.style.right = '0';
+        handle.classList.remove('hidden');
+        lblO.classList.remove('hidden'); lblV.classList.remove('hidden');
+    }
+}
+
+function updateProgress(pct, label) {
+    document.getElementById('prog-wrap').classList.remove('hidden');
+    document.getElementById('prog-bar').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = Math.round(pct) + '%';
+    document.getElementById('prog-label').textContent = label || 'Processing...';
+}
+
+function hideProgress() { document.getElementById('prog-wrap').classList.add('hidden'); }
+
+// ─── File Handling ────────────────────────────────────────────────
+function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('upload-zone').classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) loadFile(file);
+}
+
+function handleFileInput(e) {
+    const file = e.target.files[0];
+    if (file) loadFile(file);
+}
+
+function loadFile(file) {
+    const reader = new FileReader();
+    reader.onload = ev => {
+        const img = new Image();
+        img.onload = () => {
+            // Limit to max 1000px on longest side
+            let w = img.width, h = img.height;
+            const MAX = 1000;
+            if (w > MAX || h > MAX) {
+                if (w >= h) { h = Math.round(h * MAX / w); w = MAX; }
+                else { w = Math.round(w * MAX / h); h = MAX; }
+            }
+            const offscreen = document.createElement('canvas');
+            offscreen.width = w; offscreen.height = h;
+            const ctx = offscreen.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            rawImageData = { data: ctx.getImageData(0, 0, w, h).data, width: w, height: h };
+
+            // Show original in canvas
+            const canv = document.getElementById('canvas-orig');
+            canv.width = w; canv.height = h;
+            canv.getContext('2d').putImageData(new ImageData(rawImageData.data, w, h), 0, 0);
+
+            document.getElementById('placeholder').classList.add('hidden');
+            canv.classList.remove('hidden');
+            document.getElementById('img-info').textContent = `${img.width}×${img.height} → ${w}×${h}`;
+            document.getElementById('btn-run').disabled = false;
+            currentSVGStr = null;
+            applyView();
+        };
+        img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  VECTOR ENGINE ALGORITHMS
+// ─────────────────────────────────────────────────────────────────
+
+// ── 1. Gaussian Blur (separable) ─────────────────────────────────
+function gaussianKernel(r) {
+    const size = r * 2 + 1, sigma = Math.max(r / 3, 0.5);
+    let k = [], sum = 0;
+    for (let i = 0; i < size; i++) {
+        const x = i - r, v = Math.exp(-(x * x) / (2 * sigma * sigma));
+        k.push(v); sum += v;
+    }
+    return k.map(v => v / sum);
+}
+
+function gaussianBlur(src, width, height, radius) {
+    if (radius <= 0) return new Uint8ClampedArray(src);
+    const r = Math.round(radius);
+    const kernel = gaussianKernel(r);
+    const tmp = new Float32Array(src.length);
+    const out = new Uint8ClampedArray(src.length);
+
+    // Horizontal pass
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let rv = 0, gv = 0, bv = 0, av = 0;
+            for (let k = -r; k <= r; k++) {
+                const sx = Math.max(0, Math.min(width - 1, x + k));
+                const i = (y * width + sx) * 4, w = kernel[k + r];
+                rv += src[i] * w; gv += src[i+1] * w; bv += src[i+2] * w; av += src[i+3] * w;
+            }
+            const o = (y * width + x) * 4;
+            tmp[o] = rv; tmp[o+1] = gv; tmp[o+2] = bv; tmp[o+3] = av;
+        }
+    }
+    // Vertical pass
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let rv = 0, gv = 0, bv = 0, av = 0;
+            for (let k = -r; k <= r; k++) {
+                const sy = Math.max(0, Math.min(height - 1, y + k));
+                const i = (sy * width + x) * 4, w = kernel[k + r];
+                rv += tmp[i] * w; gv += tmp[i+1] * w; bv += tmp[i+2] * w; av += tmp[i+3] * w;
+            }
+            const o = (y * width + x) * 4;
+            out[o] = rv; out[o+1] = gv; out[o+2] = bv; out[o+3] = av;
+        }
+    }
+    return out;
+}
+
+// ── 1b. Bicubic 2× Super-Resolution (edge-preserving upscale) ────
+function superResUpscale(src, width, height) {
+    const ow = width * 2, oh = height * 2;
+    const out = new Uint8ClampedArray(ow * oh * 4);
+    function sample(x, y, c) {
+        const sx = Math.max(0, Math.min(width - 1, x));
+        const sy = Math.max(0, Math.min(height - 1, y));
+        return src[(sy * width + sx) * 4 + c];
+    }
+    for (let oy = 0; oy < oh; oy++) {
+        for (let ox = 0; ox < ow; ox++) {
+            // Bicubic weight helper
+            const fx = (ox + 0.5) / 2 - 0.5;
+            const fy = (oy + 0.5) / 2 - 0.5;
+            const x0 = Math.floor(fx), y0 = Math.floor(fy);
+            // Simple bilinear (fast, decent quality for upscale)
+            const xf = fx - x0, yf = fy - y0;
+            for (let c = 0; c < 4; c++) {
+                const v = sample(x0, y0, c) * (1-xf) * (1-yf)
+                        + sample(x0+1, y0, c) * xf * (1-yf)
+                        + sample(x0, y0+1, c) * (1-xf) * yf
+                        + sample(x0+1, y0+1, c) * xf * yf;
+                out[(oy * ow + ox) * 4 + c] = v;
+            }
+        }
+    }
+    return { data: out, width: ow, height: oh };
+}
+
+// ── 2. K-Means++ Color Quantization ─────────────────────────────
+function colorDist2(ar, ag, ab, br, bg, bb) {
+    const dr = ar-br, dg = ag-bg, db = ab-bb;
+    return dr*dr + dg*dg + db*db;
+}
+
+function kMeansQuantize(data, width, height, k) {
+    const total = width * height;
+    const STEP = Math.max(1, Math.floor(total / 6000));
+    const samples = [];
+    for (let i = 0; i < total; i += STEP) {
+        if (data[i * 4 + 3] > 128) samples.push(i);
+    }
+    if (samples.length === 0) return { centroids: [[0,0,0]], assignments: new Uint8Array(total) };
+    k = Math.min(k, samples.length);
+
+    // K-Means++ init
+    const centroids = [];
+    const fi = samples[Math.floor(Math.random() * samples.length)] * 4;
+    centroids.push([data[fi], data[fi+1], data[fi+2]]);
+
+    while (centroids.length < k) {
+        const dists = samples.map(i => {
+            const idx = i * 4;
+            let minD = Infinity;
+            for (const c of centroids) {
+                const d = colorDist2(data[idx], data[idx+1], data[idx+2], c[0], c[1], c[2]);
+                if (d < minD) minD = d;
+            }
+            return minD;
+        });
+        const total2 = dists.reduce((a, b) => a + b, 0);
+        let rand = Math.random() * total2, chosen = 0;
+        for (let i = 0; i < dists.length; i++) { rand -= dists[i]; if (rand <= 0) { chosen = i; break; } }
+        const ci = samples[chosen] * 4;
+        centroids.push([data[ci], data[ci+1], data[ci+2]]);
+    }
+
+    // K-Means iterations
+    for (let iter = 0; iter < 20; iter++) {
+        const sums = centroids.map(() => [0, 0, 0, 0]);
+        for (const si of samples) {
+            const idx = si * 4;
+            let minD = Infinity, minC = 0;
+            for (let c = 0; c < centroids.length; c++) {
+                const d = colorDist2(data[idx], data[idx+1], data[idx+2], centroids[c][0], centroids[c][1], centroids[c][2]);
+                if (d < minD) { minD = d; minC = c; }
+            }
+            sums[minC][0] += data[idx]; sums[minC][1] += data[idx+1];
+            sums[minC][2] += data[idx+2]; sums[minC][3]++;
+        }
+        let moved = false;
+        for (let c = 0; c < centroids.length; c++) {
+            if (sums[c][3] > 0) {
+                const nr = sums[c][0]/sums[c][3], ng = sums[c][1]/sums[c][3], nb = sums[c][2]/sums[c][3];
+                if (Math.abs(nr-centroids[c][0])>0.5||Math.abs(ng-centroids[c][1])>0.5||Math.abs(nb-centroids[c][2])>0.5) moved=true;
+                centroids[c] = [nr, ng, nb];
+            }
+        }
+        if (!moved) break;
+    }
+
+    // Full assignment pass
+    const assignments = new Uint8Array(total).fill(255);
+    for (let i = 0; i < total; i++) {
+        const idx = i * 4;
+        if (data[idx + 3] < 128) continue;
+        let minD = Infinity, minC = 0;
+        for (let c = 0; c < centroids.length; c++) {
+            const d = colorDist2(data[idx], data[idx+1], data[idx+2], centroids[c][0], centroids[c][1], centroids[c][2]);
+            if (d < minD) { minD = d; minC = c; }
+        }
+        assignments[i] = minC;
+    }
+    return { centroids, assignments };
+}
+
+// ── 3. Contour Tracing (Directed Pixel-Boundary Edges) ───────────
+function traceBoundaries(mask, width, height) {
+    const W1 = width + 1;
+    // outgoing edges per corner-point (y*(width+1)+x)
+    const outEdges = new Array(W1 * (height + 1));
+
+    const ae = (x1, y1, x2, y2) => {
+        const from = y1 * W1 + x1;
+        if (!outEdges[from]) outEdges[from] = [];
+        outEdges[from].push(y2 * W1 + x2);
+    };
+
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            if (!mask[y * width + x]) continue;
+            // Only add edge if neighbor is empty (or out of bounds)
+            if (x+1 >= width || !mask[y * width + (x+1)]) ae(x+1,y, x+1,y+1);
+            if (y+1 >= height || !mask[(y+1)*width+x])    ae(x+1,y+1, x,y+1);
+            if (x-1 < 0 || !mask[y*width+(x-1)])          ae(x,y+1, x,y);
+            if (y-1 < 0 || !mask[(y-1)*width+x])          ae(x,y, x+1,y);
+        }
+    }
+
+    const paths = [];
+    // Clone edge lists so we can consume them
+    const rem = outEdges.map(e => e ? [...e] : null);
+    const numPts = W1 * (height + 1);
+
+    for (let startPt = 0; startPt < numPts; startPt++) {
+        if (!rem[startPt] || rem[startPt].length === 0) continue;
+        while (rem[startPt] && rem[startPt].length > 0) {
+            const path = [];
+            let cur = startPt;
+            let maxIter = width * height * 4 + 400;
+            while (maxIter-- > 0) {
+                path.push([cur % W1, Math.floor(cur / W1)]);
+                if (!rem[cur] || rem[cur].length === 0) break;
+                const next = rem[cur].shift();
+                cur = next;
+                if (cur === startPt) break;
+            }
+            if (path.length > 4) paths.push(path);
+        }
+    }
+    return paths;
+}
+
+// ── 4. Douglas-Peucker Simplification ────────────────────────────
+function perpDist(px, py, x1, y1, x2, y2) {
+    const dx = x2-x1, dy = y2-y1;
+    const len2 = dx*dx + dy*dy;
+    if (len2 === 0) return Math.sqrt((px-x1)**2 + (py-y1)**2);
+    return Math.abs(dy*px - dx*py + x2*y1 - y2*x1) / Math.sqrt(len2);
+}
+
+function douglasPeucker(pts, eps) {
+    if (pts.length <= 2) return pts;
+    let maxD = 0, maxI = 0;
+    const last = pts.length - 1;
+    for (let i = 1; i < last; i++) {
+        const d = perpDist(pts[i][0], pts[i][1], pts[0][0], pts[0][1], pts[last][0], pts[last][1]);
+        if (d > maxD) { maxD = d; maxI = i; }
+    }
+    if (maxD > eps) {
+        const L = douglasPeucker(pts.slice(0, maxI+1), eps);
+        const R = douglasPeucker(pts.slice(maxI), eps);
+        return [...L.slice(0,-1), ...R];
+    }
+    return [pts[0], pts[last]];
+}
+
+// ── 5. Bezier Smoothing (Catmull-Rom → Cubic Bezier) ─────────────
+function pointsToD(pts, smooth) {
+    if (pts.length < 2) return '';
+    if (!smooth) {
+        return 'M' + pts.map(p => p[0].toFixed(1)+' '+p[1].toFixed(1)).join('L') + 'Z';
+    }
+    const n = pts.length;
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for (let i = 0; i < n; i++) {
+        const p0 = pts[(i-1+n)%n], p1 = pts[i], p2 = pts[(i+1)%n], p3 = pts[(i+2)%n];
+        const cp1x = p1[0] + (p2[0]-p0[0])/6, cp1y = p1[1] + (p2[1]-p0[1])/6;
+        const cp2x = p2[0] - (p3[0]-p1[0])/6, cp2y = p2[1] - (p3[1]-p1[1])/6;
+        d += `C${cp1x.toFixed(1)} ${cp1y.toFixed(1)},${cp2x.toFixed(1)} ${cp2y.toFixed(1)},${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+    }
+    return d + 'Z';
+}
+
+// ── 6. Shoelace Area ─────────────────────────────────────────────
+function shoelaceArea(pts) {
+    let a = 0, n = pts.length;
+    for (let i = 0; i < n; i++) { const j = (i+1)%n; a += pts[i][0]*pts[j][1] - pts[j][0]*pts[i][1]; }
+    return Math.abs(a) / 2;
+}
+
+// ── 7. Primitive Fitting ─────────────────────────────────────────
+function tryFitCircle(pts) {
+    const n = pts.length;
+    if (n < 6) return null;
+    // Compute centroid
+    let cx = 0, cy = 0;
+    for (const p of pts) { cx += p[0]; cy += p[1]; }
+    cx /= n; cy /= n;
+    // Compute average radius and variance
+    let sumR = 0;
+    for (const p of pts) sumR += Math.sqrt((p[0]-cx)**2 + (p[1]-cy)**2);
+    const avgR = sumR / n;
+    let variance = 0;
+    for (const p of pts) { const r = Math.sqrt((p[0]-cx)**2 + (p[1]-cy)**2); variance += (r-avgR)**2; }
+    variance /= n;
+    const relStdDev = Math.sqrt(variance) / avgR;
+    if (relStdDev < 0.08 && avgR > 3) return { cx, cy, r: avgR };
+    return null;
+}
+
+function tryFitRect(pts) {
+    if (pts.length < 4) return null;
+    let minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
+    for (const p of pts) { minX=Math.min(minX,p[0]); minY=Math.min(minY,p[1]); maxX=Math.max(maxX,p[0]); maxY=Math.max(maxY,p[1]); }
+    const bboxArea = (maxX-minX) * (maxY-minY);
+    const pathArea = shoelaceArea(pts);
+    if (bboxArea === 0) return null;
+    const ratio = pathArea / bboxArea;
+    if (ratio > 0.88 && ratio < 1.12) return { x: minX, y: minY, w: maxX-minX, h: maxY-minY };
+    return null;
+}
+
+// ── 8. Symmetry Analysis ─────────────────────────────────────────
+function detectAndApplySymmetry(pts, width, height) {
+    // Detect horizontal axis symmetry (mirror top/bottom)
+    // Check if top half reflects to bottom half using the centroid y
+    let cx = 0, cy = 0;
+    for (const p of pts) { cx += p[0]; cy += p[1]; }
+    cx /= pts.length; cy /= pts.length;
+
+    // Simple: snap points to symmetric about the detected axis
+    // Heuristic: if horizontal symmetry detected (roughly equal top/bottom counts), mirror
+    const topPts = pts.filter(p => p[1] < cy);
+    const botPts = pts.filter(p => p[1] >= cy);
+    const asymmetry = Math.abs(topPts.length - botPts.length) / pts.length;
+
+    if (asymmetry < 0.15) {
+        // Apply symmetry: mirror top half to bottom
+        return pts.map(p => {
+            const dy = p[1] - cy;
+            return [p[0], cy + dy]; // already symmetric, keep
+        });
+    }
+    return pts;
+}
+
+// ── 9. Centerline (Thinning Approximation) ───────────────────────
+// Simple stroke representation: just use the simplified path as a stroke
+function pathToStroke(pts, smooth) {
+    return pointsToD(pts, smooth).replace('Z', '');
+}
+
+// ── 10. Kerf / Offset (path expansion/contraction) ───────────────
+function offsetPath(pts, amount) {
+    if (amount === 0) return pts;
+    const n = pts.length;
+    const result = [];
+    for (let i = 0; i < n; i++) {
+        const prev = pts[(i-1+n)%n], cur = pts[i], next = pts[(i+1)%n];
+        // Compute inward normal at corner
+        const dx1 = cur[0]-prev[0], dy1 = cur[1]-prev[1];
+        const dx2 = next[0]-cur[0], dy2 = next[1]-cur[1];
+        const len1 = Math.sqrt(dx1*dx1+dy1*dy1)||1;
+        const len2 = Math.sqrt(dx2*dx2+dy2*dy2)||1;
+        const nx1 = -dy1/len1, ny1 = dx1/len1;
+        const nx2 = -dy2/len2, ny2 = dx2/len2;
+        const nx = (nx1+nx2)/2, ny = (ny1+ny2)/2;
+        const nlen = Math.sqrt(nx*nx+ny*ny)||1;
+        result.push([cur[0] + (nx/nlen)*amount, cur[1] + (ny/nlen)*amount]);
+    }
+    return result;
+}
+
+// ── 11. Color Naming (Pantone-like / RAL-like) ───────────────────
+// Compact reference palettes (representative samples)
+const PANTONE_PALETTE = [
+    ['Pantone 485','CC0000'],['Pantone 032','EF3340'],['Pantone 021','FF6720'],['Pantone 1235','FFAA00'],
+    ['Pantone 012','FFCC00'],['Pantone 3945','EBE83E'],['Pantone 382','AEDA00'],['Pantone 376','5EAC24'],
+    ['Pantone 354','00A550'],['Pantone 339','00A693'],['Pantone 3272','00A499'],['Pantone 326','00B2A9'],
+    ['Pantone 312','009EC4'],['Pantone 299','009FDB'],['Pantone 285','0072CE'],['Pantone 286','003DA5'],
+    ['Pantone 2736','3F39C0'],['Pantone 2685','45009D'],['Pantone 2583','8E4EA4'],['Pantone 240','C47DB5'],
+    ['Pantone 218','E05CAE'],['Pantone 212','F3A5C7'],['Pantone Black','231F20'],['Pantone 423','939598'],
+    ['Pantone CoolGray1','F1F1F2'],['Pantone 877','8D8D8D'],['Pantone 871','A67C52'],['Pantone 877M','C0C0C0'],
+    ['Pantone White','FFFFFF'],['Pantone 185','E4002B'],['Pantone 200','BE0000'],['Pantone 4625','4C3228'],
+];
+const RAL_PALETTE = [
+    ['RAL 1000','BEBD7F'],['RAL 1003','F9A800'],['RAL 1013','EAE6CA'],['RAL 1021','F3A505'],
+    ['RAL 2000','DD7907'],['RAL 2004','F44611'],['RAL 3000','AF2B1E'],['RAL 3001','A52019'],
+    ['RAL 3020','CC0605'],['RAL 4001','8673A1'],['RAL 4003','E4717A'],['RAL 5000','354D73'],
+    ['RAL 5002','20214F'],['RAL 5005','1F3864'],['RAL 5010','0E294B'],['RAL 5012','3B83BD'],
+    ['RAL 6001','2E7D32'],['RAL 6002','2D5A27'],['RAL 6018','57A639'],['RAL 7001','909090'],
+    ['RAL 7004','969992'],['RAL 7015','424C54'],['RAL 7016','293133'],['RAL 7024','474A51'],
+    ['RAL 7038','B4B4AF'],['RAL 7040','9DA1AA'],['RAL 8001','9E6B07'],['RAL 8002','6C3B2A'],
+    ['RAL 9001','FDF4E3'],['RAL 9002','E7EBDA'],['RAL 9003','F4F4F4'],['RAL 9004','282828'],
+    ['RAL 9005','0A0A0A'],['RAL 9006','A5A5A5'],['RAL 9007','8F8F8F'],['RAL 9010','FFFFFF'],
+    ['RAL 9016','F6F6F6'],['RAL 9018','D7D7D7'],['RAL 9022','9C9C9C'],['RAL 9023','818181'],
+];
+
+function nearestNamedColor(r, g, b, system) {
+    const palette = system === 'pantone' ? PANTONE_PALETTE : RAL_PALETTE;
+    let bestName = '', bestDist = Infinity;
+    for (const [name, hex] of palette) {
+        const pr = parseInt(hex.slice(0,2),16), pg = parseInt(hex.slice(2,4),16), pb = parseInt(hex.slice(4,6),16);
+        const d = colorDist2(r,g,b,pr,pg,pb);
+        if (d < bestDist) { bestDist = d; bestName = `${name} (#${hex})`; }
+    }
+    return bestName;
+}
+
+function centroidToColor(c, system) {
+    const r = Math.round(c[0]), g = Math.round(c[1]), b = Math.round(c[2]);
+    if (system === 'hex') return '#' + [r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+    if (system === 'pantone' || system === 'ral') {
+        // Use closest named color's hex for SVG fill
+        const palette = system === 'pantone' ? PANTONE_PALETTE : RAL_PALETTE;
+        let bestHex = 'FFFFFF', bestDist = Infinity;
+        for (const [, hex] of palette) {
+            const pr = parseInt(hex.slice(0,2),16), pg = parseInt(hex.slice(2,4),16), pb = parseInt(hex.slice(4,6),16);
+            const d = colorDist2(r,g,b,pr,pg,pb);
+            if (d < bestDist) { bestDist = d; bestHex = hex; }
+        }
+        return '#' + bestHex;
+    }
+    return `rgb(${r},${g},${b})`;
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  MAIN VECTORIZE PIPELINE
+// ─────────────────────────────────────────────────────────────────
+function startVectorize() {
+    if (!rawImageData || isProcessing) return;
+    isProcessing = true;
+    document.getElementById('btn-run').disabled = true;
+    document.getElementById('btn-run').classList.add('processing');
+
+    // Run async to allow UI updates
+    setTimeout(() => runPipeline().finally(() => {
+        isProcessing = false;
+        document.getElementById('btn-run').disabled = false;
+        document.getElementById('btn-run').classList.remove('processing');
+    }), 30);
+}
+
+async function runPipeline() {
+    const t0 = performance.now();
+
+    // ── Step 0: Super-Resolution pre-pass ──
+    updateProgress(2, 'Super-Resolution pre-pass...');
+    await tick();
+    let src = rawImageData;
+    if (settings.superRes) {
+        src = superResUpscale(rawImageData.data, rawImageData.width, rawImageData.height);
+    }
+
+    // ── Step 1: Gaussian Blur ──
+    updateProgress(8, 'Applying noise filter...');
+    await tick();
+    const blurred = gaussianBlur(src.data, src.width, src.height, settings.blurRadius);
+
+    // ── Step 2: K-Means Quantization ──
+    updateProgress(15, 'Quantizing colors (K-Means++)...');
+    await tick();
+    const { centroids, assignments } = kMeansQuantize(blurred, src.width, src.height, settings.colorCount);
+    const k = centroids.length;
+    const W = src.width, H = src.height;
+
+    // When super-res doubles the image before tracing, W/H are 2× the original.
+    // The SVG width/height always reflects the original image dimensions;
+    // the larger viewBox (W×H) handles the coordinate scaling automatically.
+
+    // ── Step 3: Per-color contour tracing ──
+    const colorLayers = [];
+    for (let c = 0; c < k; c++) {
+        updateProgress(15 + (c / k) * 65, `Tracing contours for color ${c+1}/${k}...`);
+        await tick();
+
+        // Build binary mask
+        const mask = new Uint8Array(W * H);
+        for (let i = 0; i < assignments.length; i++) mask[i] = assignments[i] === c ? 1 : 0;
+
+        // Trace boundaries
+        let paths = traceBoundaries(mask, W, H);
+
+        // Simplify & filter
+        paths = paths
+            .map(p => douglasPeucker(p, settings.epsilon))
+            .filter(p => p.length >= 3 && shoelaceArea(p) >= settings.minArea);
+
+        // Primitive fitting
+        if (settings.primFitting) {
+            paths = paths.map(p => {
+                const circ = tryFitCircle(p);
+                if (circ) return { type: 'circle', ...circ };
+                const rect = tryFitRect(p);
+                if (rect) return { type: 'rect', ...rect };
+                return { type: 'path', pts: p };
+            });
+        } else {
+            paths = paths.map(p => ({ type: 'path', pts: p }));
+        }
+
+        // Symmetry analysis
+        if (settings.symmetry) {
+            paths = paths.map(item => {
+                if (item.type === 'path') return { ...item, pts: detectAndApplySymmetry(item.pts, W, H) };
+                return item;
+            });
+        }
+
+        // Kerf offset
+        if (settings.kerf !== 0) {
+            paths = paths.map(item => {
+                if (item.type === 'path') return { ...item, pts: offsetPath(item.pts, settings.kerf) };
+                return item;
+            });
+        }
+
+        if (paths.length > 0) colorLayers.push({ centroid: centroids[c], paths });
+    }
+
+    // ── Step 4: Sort layers (bright→dark = background-first) ──
+    colorLayers.sort((a, b) => {
+        const la = 0.2126*a.centroid[0] + 0.7152*a.centroid[1] + 0.0722*a.centroid[2];
+        const lb = 0.2126*b.centroid[0] + 0.7152*b.centroid[1] + 0.0722*b.centroid[2];
+        return lb - la; // brightest first
+    });
+
+    // ── Step 5: Generate SVG ──
+    updateProgress(88, 'Generating SVG...');
+    await tick();
+
+    // SVG output is always at original image resolution; viewBox uses the
+    // (potentially 2× larger) tracing-space dimensions for correct mapping.
+    const svgW = rawImageData.width;
+    const svgH = rawImageData.height;
+    const vbW = W, vbH = H;
+
+    let svgStr = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgW}" height="${svgH}" viewBox="0 0 ${vbW} ${vbH}">\n`;
+    svgStr += `  <title>Vector Engine Output</title>\n`;
+    svgStr += `  <desc>Generated by alexgamingdev Vector Engine</desc>\n`;
+
+    let totalPaths = 0;
+    for (let li = 0; li < colorLayers.length; li++) {
+        const layer = colorLayers[li];
+        const fillColor = centroidToColor(layer.centroid, settings.colorSystem);
+        const layerName = `color-${li+1}`;
+
+        const groupOpen = settings.layerStack
+            ? `  <g id="${layerName}" inkscape:label="${layerName}" fill="${fillColor}">\n`
+            : `  <g fill="${fillColor}">\n`;
+        svgStr += groupOpen;
+
+        for (const item of layer.paths) {
+            if (item.type === 'circle') {
+                svgStr += `    <circle cx="${item.cx.toFixed(1)}" cy="${item.cy.toFixed(1)}" r="${item.r.toFixed(1)}"/>\n`;
+                totalPaths++;
+            } else if (item.type === 'rect') {
+                svgStr += `    <rect x="${item.x.toFixed(1)}" y="${item.y.toFixed(1)}" width="${item.w.toFixed(1)}" height="${item.h.toFixed(1)}"/>\n`;
+                totalPaths++;
+            } else {
+                const pts = item.pts;
+                if (pts.length < 3) continue;
+                if (settings.centerline) {
+                    const strokeColor = centroidToColor(layer.centroid, settings.colorSystem);
+                    const d = pathToStroke(pts, settings.smoothPaths);
+                    svgStr += `    <path fill="none" stroke="${strokeColor}" stroke-width="1.5" d="${d}"/>\n`;
+                } else {
+                    const d = pointsToD(pts, settings.smoothPaths);
+                    svgStr += `    <path d="${d}" fill-rule="evenodd"/>\n`;
+                }
+                totalPaths++;
+            }
+        }
+        svgStr += `  </g>\n`;
+    }
+    svgStr += '</svg>';
+
+    const elapsed = ((performance.now() - t0) / 1000).toFixed(2);
+    const svgBytes = new Blob([svgStr]).size;
+
+    // ── Step 6: Render ──
+    updateProgress(96, 'Rendering preview...');
+    await tick();
+
+    currentSVGStr = svgStr;
+    renderSVGPreview(svgStr);
+    renderPalette(colorLayers);
+    updateStats(elapsed, totalPaths, colorLayers.length, svgBytes);
+
+    document.getElementById('btn-svg').disabled = false;
+    document.getElementById('btn-copy').disabled = false;
+    document.getElementById('btn-png').disabled = false;
+
+    updateProgress(100, 'Done!');
+    setTimeout(hideProgress, 1500);
+}
+
+function tick() { return new Promise(r => setTimeout(r, 0)); }
+
+// ─────────────────────────────────────────────────────────────────
+//  RENDERING HELPERS
+// ─────────────────────────────────────────────────────────────────
+function renderSVGPreview(svgStr) {
+    const wrapper = document.getElementById('svg-inner');
+    wrapper.innerHTML = svgStr;
+    document.getElementById('svg-wrapper').classList.remove('hidden');
+    applyView();
+}
+
+function renderPalette(layers) {
+    const panel = document.getElementById('palette-panel');
+    const swatches = document.getElementById('palette-swatches');
+    swatches.innerHTML = '';
+    for (const layer of layers) {
+        const r = Math.round(layer.centroid[0]), g = Math.round(layer.centroid[1]), b = Math.round(layer.centroid[2]);
+        const hex = '#' + [r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+        const fill = centroidToColor(layer.centroid, settings.colorSystem);
+        const label = settings.colorSystem === 'pantone' ? nearestNamedColor(r,g,b,'pantone')
+                     : settings.colorSystem === 'ral'     ? nearestNamedColor(r,g,b,'ral')
+                     : hex;
+        const sw = document.createElement('div');
+        sw.className = 'swatch';
+        sw.innerHTML = `<span class="swatch-dot" style="background:${hex}"></span><span title="${label}">${hex}</span>`;
+        swatches.appendChild(sw);
+    }
+    panel.classList.remove('hidden');
+}
+
+function updateStats(time, paths, colors, bytes) {
+    document.getElementById('st-time').textContent = time + 's';
+    document.getElementById('st-paths').textContent = paths.toLocaleString();
+    document.getElementById('st-colors').textContent = colors;
+    document.getElementById('st-size').textContent = bytes < 1024 ? bytes + ' B' : Math.round(bytes/1024) + ' KB';
+    document.getElementById('stats-panel').classList.remove('hidden');
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  EXPORT
+// ─────────────────────────────────────────────────────────────────
+function downloadSVG() {
+    if (!currentSVGStr) return;
+    const blob = new Blob([currentSVGStr], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'vectorengine-output.svg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+}
+
+function copySVG() {
+    if (!currentSVGStr) return;
+    const btn = document.getElementById('btn-copy');
+    const orig = btn.textContent;
+
+    function showCopied() {
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => btn.textContent = orig, 2000);
+    }
+    function showError() {
+        btn.textContent = '✗ Failed';
+        setTimeout(() => btn.textContent = orig, 2000);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentSVGStr).then(showCopied).catch(() => {
+            fallbackCopy();
+        });
+    } else {
+        fallbackCopy();
+    }
+
+    function fallbackCopy() {
+        try {
+            const ta = document.createElement('textarea');
+            ta.value = currentSVGStr;
+            ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+            ta.setAttribute('aria-hidden', 'true');
+            ta.setAttribute('tabindex', '-1');
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(ta);
+            ok ? showCopied() : showError();
+        } catch (e) {
+            showError();
+        }
+    }
+}
+
+function downloadPNG() {
+    if (!currentSVGStr || !rawImageData) return;
+    const btn = document.getElementById('btn-png');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '⏳ Rendering...';
+
+    // Use a data URI so the canvas is never tainted (blob: URLs taint
+    // the canvas in Firefox/Safari, making toDataURL() throw SecurityError)
+    let svgDataUrl;
+    try {
+        // btoa requires a binary string — encode UTF-8 first, then chunk to
+        // avoid call-stack limits on very large SVGs with apply()
+        const bytes = new TextEncoder().encode(currentSVGStr);
+        const CHUNK = 8192;
+        let binary = '';
+        for (let i = 0; i < bytes.length; i += CHUNK) {
+            binary += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+        }
+        svgDataUrl = 'data:image/svg+xml;base64,' + btoa(binary);
+    } catch (e) {
+        // Fallback: percent-encoded data URI
+        svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(currentSVGStr);
+    }
+
+    const img = new Image();
+    img.onload = () => {
+        try {
+            const c = document.createElement('canvas');
+            c.width  = rawImageData.width;
+            c.height = rawImageData.height;
+            c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+            const pngUrl = c.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = pngUrl;
+            a.download = 'vectorengine-output.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } catch (e) {
+            alert('PNG export failed: ' + e.message);
+        }
+        btn.textContent = orig;
+        btn.disabled = false;
+    };
+    img.onerror = () => {
+        alert('Could not render SVG to PNG. Try downloading the SVG instead.');
+        btn.textContent = orig;
+        btn.disabled = false;
+    };
+    img.src = svgDataUrl;
+}
+
+// Split-view drag
+(function setupSplitDrag() {
+    const handle = document.getElementById('split-handle');
+    const container = document.getElementById('preview-container');
+    let dragging = false;
+    handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+    window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const rect = container.getBoundingClientRect();
+        let pct = (e.clientX - rect.left) / rect.width * 100;
+        pct = Math.max(10, Math.min(90, pct));
+        handle.style.left = pct + '%';
+        const canv = document.getElementById('canvas-orig');
+        canv.style.width = pct + '%';
+        const svgW = document.getElementById('svg-wrapper');
+        svgW.style.width = (100 - pct) + '%';
+    });
+    window.addEventListener('mouseup', () => { dragging = false; });
+    // Touch support
+    handle.addEventListener('touchstart', e => { dragging = true; e.preventDefault(); }, { passive: false });
+    window.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        const rect = container.getBoundingClientRect();
+        let pct = (e.touches[0].clientX - rect.left) / rect.width * 100;
+        pct = Math.max(10, Math.min(90, pct));
+        handle.style.left = pct + '%';
+        document.getElementById('canvas-orig').style.width = pct + '%';
+        const svgW = document.getElementById('svg-wrapper');
+        svgW.style.width = (100 - pct) + '%';
+    }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+})();
+</script>
+    <script src="/emoji/alex-emoji.js" defer></script>
+    <script src="/emoji/brand-emojis.js" defer></script>
+</body>
+</html>

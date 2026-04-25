@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Verweis auf die Sitemap für schnellere Indexierung
+Sitemap: https://www.alexgamingdev.tech/sitemap.xml
