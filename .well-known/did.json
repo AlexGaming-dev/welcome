@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "id": "did:web:alexgamingdev.tech",
+  "verificationMethod": [
+    {
+      "id": "did:web:alexgamingdev.tech#owner",
+      "type": "JsonWebKey2020",
+      "controller": "did:web:alexgamingdev.tech",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "nv0tOIR61iszFSIiyistlBDujEw9HJas2ZNBz4AwZbw",
+        "y": "oXAe68MeKUI0DidsIRM6mGHlaqynCv-S1vRJ4kr-S6w"
+      }
+    }
+  ],
+  "authentication": [
+    "did:web:alexgamingdev.tech#owner"
+  ],
+  "assertionMethod": [
+    "did:web:alexgamingdev.tech#owner"
+  ]
+}
