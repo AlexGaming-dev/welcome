@@ -2,7 +2,7 @@
 
 Welcome to the official neural-link repository of **alexgamingdev**. This is the hub for high-end applications developed at the edge of performance.
 
-Visit the live system: [alexgamingdev.tech](https://www.alexgamingdev.tech)
+Visit the live system: [alexgaming.is-a.dev](https://alexgaming.is-a.dev)
 
 ---
 

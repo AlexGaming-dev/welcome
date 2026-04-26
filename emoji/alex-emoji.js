@@ -1,14 +1,14 @@
 /**
- * <alex-emoji> — Custom emoji for alexgamingdev.tech
+ * <alex-emoji> — Custom emoji for alexgaming.is-a.dev
  *
  * Usage: <alex-emoji></alex-emoji>
  *
- * Only renders on alexgamingdev.tech (and localhost for development).
+ * Only renders on alexgaming.is-a.dev (and localhost for development).
  */
 (function () {
   'use strict';
 
-  const ALLOWED_HOSTS = ['alexgamingdev.tech', 'www.alexgamingdev.tech', 'localhost', '127.0.0.1'];
+  const ALLOWED_HOSTS = ['alexgaming.is-a.dev', 'localhost', '127.0.0.1'];
   const EMOJI_SRC = '/icons/favicon.png';
   const EMOJI_ALT = 'alexgamingdev';
 

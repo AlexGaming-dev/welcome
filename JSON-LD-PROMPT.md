@@ -1,6 +1,6 @@
 # JSON-LD Prompt – alexgamingdev
 
-Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle strukturierten Daten auf der Website `https://www.alexgamingdev.tech`.
+Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle strukturierten Daten auf der Website `https://alexgaming.is-a.dev`.
 
 ---
 
@@ -9,7 +9,7 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
 **Name:** Alexander Dennhoven  
 **Online-Alias:** `alexgamingdev`  
 **Wikidata-ID:** `https://www.wikidata.org/wiki/Q138410440`  
-**Website:** `https://www.alexgamingdev.tech`  
+**Website:** `https://alexgaming.is-a.dev`  
 **Job:** Software Developer & Architect  
 **Nationalität:** Deutschland  
 **Sprachen:** Deutsch (`de`), Englisch (`en`), Latein (`la`)  
@@ -21,11 +21,11 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
 ```json
 {
   "@type": "Person",
-  "@id": "https://www.alexgamingdev.tech",
+  "@id": "https://alexgaming.is-a.dev",
   "name": "Alexander Dennhoven",
   "alternateName": ["alexgamingdev", "alexander.dennhoven", "Alex Gaming Dev"],
-  "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-  "url": "https://www.alexgamingdev.tech",
+  "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+  "url": "https://alexgaming.is-a.dev",
   "jobTitle": "Software Developer & Architect",
   "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
   "nationality": { "@type": "Country", "name": "Germany" },
@@ -40,7 +40,7 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
     { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q846636", "name": "Software Architecture" },
     { "@type": "Thing", "name": "Automation" }
   ],
-  "founder": { "@id": "https://www.alexgamingdev.tech/#organization" },
+  "founder": { "@id": "https://alexgaming.is-a.dev/#organization" },
   "sameAs": [
     "https://www.wikidata.org/wiki/Q138410440",
     "https://github.com/alexgamingdev",
@@ -49,14 +49,14 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
     "https://www.youtube.com/@alexgamingdev",
     "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
     "https://www.twitch.tv/alexgamingdev",
-    "https://bsky.app/profile/alexgamingdev.tech",
+    "https://bsky.app/profile/alexgaming.is-a.dev",
     "https://mastodon.social/@alexgamingdev",
     "https://www.npmjs.com/~alexgamingdev",
     "https://linktr.ee/alexgamingdev",
     "https://de.pinterest.com/alexgamingdev/",
     "https://news.alexgamingdev.tech",
     "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-    "did:web:alexgamingdev.tech"
+    "did:web:alexgaming.is-a.dev"
   ]
 }
 ```
@@ -68,10 +68,10 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
 ```json
 {
   "@type": "Organization",
-  "@id": "https://www.alexgamingdev.tech/#organization",
+  "@id": "https://alexgaming.is-a.dev/#organization",
   "name": "alexgamingdev",
-  "url": "https://www.alexgamingdev.tech",
-  "founder": { "@id": "https://www.alexgamingdev.tech" },
+  "url": "https://alexgaming.is-a.dev",
+  "founder": { "@id": "https://alexgaming.is-a.dev" },
   "sameAs": [
     "https://github.com/alexgamingdev",
     "https://www.wikidata.org/wiki/Q138410440"
@@ -86,13 +86,13 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
 ```json
 {
   "@type": "WebSite",
-  "@id": "https://www.alexgamingdev.tech/#website",
-  "url": "https://www.alexgamingdev.tech/",
+  "@id": "https://alexgaming.is-a.dev/#website",
+  "url": "https://alexgaming.is-a.dev/",
   "name": "alexgamingdev Portfolio",
   "alternateName": "alexgamingdev",
-  "publisher": { "@id": "https://www.alexgamingdev.tech/#organization" },
-  "author":    { "@id": "https://www.alexgamingdev.tech" },
-  "mainEntity": { "@id": "https://www.alexgamingdev.tech" }
+  "publisher": { "@id": "https://alexgaming.is-a.dev/#organization" },
+  "author":    { "@id": "https://alexgaming.is-a.dev" },
+  "mainEntity": { "@id": "https://alexgaming.is-a.dev" }
 }
 ```
 
@@ -106,12 +106,12 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
 ```json
 {
   "@type": "WebPage",
-  "@id": "https://www.alexgamingdev.tech/[SEITENNAME]/#webpage",
-  "url": "https://www.alexgamingdev.tech/[SEITENNAME]/",
+  "@id": "https://alexgaming.is-a.dev/[SEITENNAME]/#webpage",
+  "url": "https://alexgaming.is-a.dev/[SEITENNAME]/",
   "name": "[SEITENTITEL] | alexgamingdev",
   "description": "[Kurzbeschreibung der Seite]",
-  "isPartOf": { "@id": "https://www.alexgamingdev.tech/#website" },
-  "about":    { "@id": "https://www.alexgamingdev.tech" }
+  "isPartOf": { "@id": "https://alexgaming.is-a.dev/#website" },
+  "about":    { "@id": "https://alexgaming.is-a.dev" }
 }
 ```
 
@@ -134,13 +134,13 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
 ```json
 {
   "@type": "WebApplication",
-  "@id": "https://www.alexgamingdev.tech/#webapp",
+  "@id": "https://alexgaming.is-a.dev/#webapp",
   "name": "alexgamingdev Portfolio",
   "operatingSystem": "Web Browser",
   "applicationCategory": "WebApplication",
   "description": "Offizielles Portfolio von Alexander Dennhoven (alexgamingdev). Software Architect & Developer.",
-  "author": { "@id": "https://www.alexgamingdev.tech" },
-  "url": "https://www.alexgamingdev.tech"
+  "author": { "@id": "https://alexgaming.is-a.dev" },
+  "url": "https://alexgaming.is-a.dev"
 }
 ```
 
@@ -154,7 +154,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
   "operatingSystem": "Web Browser",
   "applicationCategory": "BusinessApplication",
   "description": "Local-first browser office suite. Zero cloud. Zero tracking.",
-  "author": { "@id": "https://www.alexgamingdev.tech" },
+  "author": { "@id": "https://alexgaming.is-a.dev" },
   "url": "https://officeweb.alexgamingdev.tech"
 }
 ```
@@ -169,7 +169,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
   "operatingSystem": "Cross-platform",
   "applicationCategory": "DeveloperApplication",
   "description": "CLI scaffolding engine. JSON blueprints to file structures.",
-  "author": { "@id": "https://www.alexgamingdev.tech" },
+  "author": { "@id": "https://alexgaming.is-a.dev" },
   "url": "https://github.com/alexgaming-dev/arch-it"
 }
 ```
@@ -184,7 +184,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
   "operatingSystem": "Cross-platform",
   "applicationCategory": "UtilitiesApplication",
   "description": "Directory cleaner tool. Automated sweep and cleanup of project directories.",
-  "author": { "@id": "https://www.alexgamingdev.tech" },
+  "author": { "@id": "https://alexgaming.is-a.dev" },
   "url": "https://github.com/alexgaming-dev/sweep-it"
 }
 ```
@@ -199,11 +199,11 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://www.alexgamingdev.tech",
+      "@id": "https://alexgaming.is-a.dev",
       "name": "Alexander Dennhoven",
       "alternateName": ["alexgamingdev", "alexander.dennhoven", "Alex Gaming Dev"],
-      "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-      "url": "https://www.alexgamingdev.tech",
+      "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+      "url": "https://alexgaming.is-a.dev",
       "jobTitle": "Software Developer & Architect",
       "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
       "nationality": { "@type": "Country", "name": "Germany" },
@@ -218,7 +218,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
         { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q846636", "name": "Software Architecture" },
         { "@type": "Thing", "name": "Automation" }
       ],
-      "founder": { "@id": "https://www.alexgamingdev.tech/#organization" },
+      "founder": { "@id": "https://alexgaming.is-a.dev/#organization" },
       "sameAs": [
         "https://www.wikidata.org/wiki/Q138410440",
         "https://github.com/alexgamingdev",
@@ -227,35 +227,35 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
         "https://www.youtube.com/@alexgamingdev",
         "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
         "https://www.twitch.tv/alexgamingdev",
-        "https://bsky.app/profile/alexgamingdev.tech",
+        "https://bsky.app/profile/alexgaming.is-a.dev",
         "https://mastodon.social/@alexgamingdev",
         "https://www.npmjs.com/~alexgamingdev",
         "https://linktr.ee/alexgamingdev",
         "https://de.pinterest.com/alexgamingdev/",
         "https://news.alexgamingdev.tech",
         "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-        "did:web:alexgamingdev.tech"
+        "did:web:alexgaming.is-a.dev"
       ]
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.alexgamingdev.tech/#website",
-      "url": "https://www.alexgamingdev.tech/",
+      "@id": "https://alexgaming.is-a.dev/#website",
+      "url": "https://alexgaming.is-a.dev/",
       "name": "alexgamingdev Portfolio",
       "alternateName": "alexgamingdev",
-      "publisher":  { "@id": "https://www.alexgamingdev.tech/#organization" },
-      "author":     { "@id": "https://www.alexgamingdev.tech" },
-      "mainEntity": { "@id": "https://www.alexgamingdev.tech" }
+      "publisher":  { "@id": "https://alexgaming.is-a.dev/#organization" },
+      "author":     { "@id": "https://alexgaming.is-a.dev" },
+      "mainEntity": { "@id": "https://alexgaming.is-a.dev" }
     },
     {
       "@type": ["WebPage", "ProfilePage"],
-      "@id": "https://www.alexgamingdev.tech/#webpage",
-      "url": "https://www.alexgamingdev.tech/",
+      "@id": "https://alexgaming.is-a.dev/#webpage",
+      "url": "https://alexgaming.is-a.dev/",
       "name": "Alexander Dennhoven | Software Architect & Developer",
       "description": "Offizielles Portfolio von Alexander Dennhoven (alexgamingdev). Entwickler von Officeweb, arch-it und sweep-it.",
-      "isPartOf":   { "@id": "https://www.alexgamingdev.tech/#website" },
-      "about":      { "@id": "https://www.alexgamingdev.tech" },
-      "mainEntity": { "@id": "https://www.alexgamingdev.tech" }
+      "isPartOf":   { "@id": "https://alexgaming.is-a.dev/#website" },
+      "about":      { "@id": "https://alexgaming.is-a.dev" },
+      "mainEntity": { "@id": "https://alexgaming.is-a.dev" }
     },
     {
       "@type": "SoftwareApplication",
@@ -264,7 +264,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
       "operatingSystem": "Web Browser",
       "applicationCategory": "BusinessApplication",
       "description": "Local-first browser office suite. Zero cloud. Zero tracking.",
-      "author": { "@id": "https://www.alexgamingdev.tech" },
+      "author": { "@id": "https://alexgaming.is-a.dev" },
       "url": "https://officeweb.alexgamingdev.tech"
     },
     {
@@ -274,7 +274,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
       "operatingSystem": "Cross-platform",
       "applicationCategory": "DeveloperApplication",
       "description": "CLI scaffolding engine. JSON blueprints to file structures.",
-      "author": { "@id": "https://www.alexgamingdev.tech" },
+      "author": { "@id": "https://alexgaming.is-a.dev" },
       "url": "https://github.com/alexgaming-dev/arch-it"
     },
     {
@@ -284,18 +284,18 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
       "operatingSystem": "Cross-platform",
       "applicationCategory": "UtilitiesApplication",
       "description": "Directory cleaner tool. Automated sweep and cleanup of project directories.",
-      "author": { "@id": "https://www.alexgamingdev.tech" },
+      "author": { "@id": "https://alexgaming.is-a.dev" },
       "url": "https://github.com/alexgaming-dev/sweep-it"
     },
     {
       "@type": "WebApplication",
-      "@id": "https://www.alexgamingdev.tech/#webapp",
+      "@id": "https://alexgaming.is-a.dev/#webapp",
       "name": "alexgamingdev Portfolio",
       "operatingSystem": "Web Browser",
       "applicationCategory": "WebApplication",
       "description": "Offizielles Portfolio von Alexander Dennhoven (alexgamingdev). Software Architect & Developer.",
-      "author": { "@id": "https://www.alexgamingdev.tech" },
-      "url": "https://www.alexgamingdev.tech"
+      "author": { "@id": "https://alexgaming.is-a.dev" },
+      "url": "https://alexgaming.is-a.dev"
     }
   ]
 }
@@ -311,30 +311,30 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
   "@graph": [
     {
       "@type": "ContactPage",
-      "@id": "https://www.alexgamingdev.tech/contact/#webpage",
-      "url": "https://www.alexgamingdev.tech/contact/",
+      "@id": "https://alexgaming.is-a.dev/contact/#webpage",
+      "url": "https://alexgaming.is-a.dev/contact/",
       "name": "Contact | alexgamingdev",
       "description": "Sende eine verschlüsselte Nachricht an Alexander Dennhoven.",
-      "isPartOf": { "@id": "https://www.alexgamingdev.tech/#website" },
-      "about":    { "@id": "https://www.alexgamingdev.tech" }
+      "isPartOf": { "@id": "https://alexgaming.is-a.dev/#website" },
+      "about":    { "@id": "https://alexgaming.is-a.dev" }
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.alexgamingdev.tech/#website",
-      "url": "https://www.alexgamingdev.tech/",
+      "@id": "https://alexgaming.is-a.dev/#website",
+      "url": "https://alexgaming.is-a.dev/",
       "name": "alexgamingdev Portfolio",
       "alternateName": "alexgamingdev",
-      "publisher":  { "@id": "https://www.alexgamingdev.tech/#organization" },
-      "author":     { "@id": "https://www.alexgamingdev.tech" },
-      "mainEntity": { "@id": "https://www.alexgamingdev.tech" }
+      "publisher":  { "@id": "https://alexgaming.is-a.dev/#organization" },
+      "author":     { "@id": "https://alexgaming.is-a.dev" },
+      "mainEntity": { "@id": "https://alexgaming.is-a.dev" }
     },
     {
       "@type": "Person",
-      "@id": "https://www.alexgamingdev.tech",
+      "@id": "https://alexgaming.is-a.dev",
       "name": "Alexander Dennhoven",
       "alternateName": ["alexgamingdev", "alexander.dennhoven", "Alex Gaming Dev"],
-      "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-      "url": "https://www.alexgamingdev.tech",
+      "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+      "url": "https://alexgaming.is-a.dev",
       "jobTitle": "Software Developer & Architect",
       "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
       "nationality": { "@type": "Country", "name": "Germany" },
@@ -349,7 +349,7 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
         { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q846636", "name": "Software Architecture" },
         { "@type": "Thing", "name": "Automation" }
       ],
-      "founder": { "@id": "https://www.alexgamingdev.tech/#organization" },
+      "founder": { "@id": "https://alexgaming.is-a.dev/#organization" },
       "sameAs": [
         "https://www.wikidata.org/wiki/Q138410440",
         "https://github.com/alexgamingdev",
@@ -358,14 +358,14 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
         "https://www.youtube.com/@alexgamingdev",
         "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
         "https://www.twitch.tv/alexgamingdev",
-        "https://bsky.app/profile/alexgamingdev.tech",
+        "https://bsky.app/profile/alexgaming.is-a.dev",
         "https://mastodon.social/@alexgamingdev",
         "https://www.npmjs.com/~alexgamingdev",
         "https://linktr.ee/alexgamingdev",
         "https://de.pinterest.com/alexgamingdev/",
         "https://news.alexgamingdev.tech",
         "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-        "did:web:alexgamingdev.tech"
+        "did:web:alexgaming.is-a.dev"
       ]
     }
   ]
@@ -376,11 +376,11 @@ Passe `@id`, `url`, `name`, `description` und `@type` für jede Seite an.
 
 ## Regeln für die KI
 
-1. **`@id` des Person-Nodes** ist immer `https://www.alexgamingdev.tech` – nie ändern.
+1. **`@id` des Person-Nodes** ist immer `https://alexgaming.is-a.dev` – nie ändern.
 2. **`sameAs`** ist die vollständige Liste oben – keine Einträge weglassen, keine erfinden.
-3. **`publisher`** des `WebSite`-Nodes verweist auf die `Organization`: `{ "@id": "https://www.alexgamingdev.tech/#organization" }`. **`author`, `about`, `mainEntity`** verweisen immer per `{ "@id": "https://www.alexgamingdev.tech" }` auf den Person-Node.
-4. **`Organization`-`@id`** ist immer `https://www.alexgamingdev.tech/#organization`.
-5. **`WebSite`-`@id`** ist immer `https://www.alexgamingdev.tech/#website`.
-6. **`WebPage`-`@id`** folgt dem Muster `https://www.alexgamingdev.tech/[seite]/#webpage`.
+3. **`publisher`** des `WebSite`-Nodes verweist auf die `Organization`: `{ "@id": "https://alexgaming.is-a.dev/#organization" }`. **`author`, `about`, `mainEntity`** verweisen immer per `{ "@id": "https://alexgaming.is-a.dev" }` auf den Person-Node.
+4. **`Organization`-`@id`** ist immer `https://alexgaming.is-a.dev/#organization`.
+5. **`WebSite`-`@id`** ist immer `https://alexgaming.is-a.dev/#website`.
+6. **`WebPage`-`@id`** folgt dem Muster `https://alexgaming.is-a.dev/[seite]/#webpage`.
 7. Für **neue Seiten**: Füge `WebPage`-Node + `WebSite`-Node + `Person`-Node ins `@graph` ein. Projektspezifische `SoftwareApplication`-Nodes nur auf Seiten hinzufügen, auf denen das Projekt auch vorkommt.
 8. Das JSON-LD kommt als `<script type="application/ld+json">` direkt im `<head>`.

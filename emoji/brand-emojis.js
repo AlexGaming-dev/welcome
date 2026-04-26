@@ -1,5 +1,5 @@
 /**
- * Brand & Social Media Emoji Web Components — alexgamingdev.tech
+ * Brand & Social Media Emoji Web Components — alexgaming.is-a.dev
  *
  * Registers custom elements for well-known brand logos, served from
  * SimpleIcons (https://simpleicons.org) — a consistent, open-source icon set.
@@ -12,12 +12,12 @@
  *   <youtube-emoji></youtube-emoji>
  *   <linkedin-emoji></linkedin-emoji>
  *
- * Only renders on alexgamingdev.tech (and localhost for development).
+ * Only renders on alexgaming.is-a.dev (and localhost for development).
  */
 (function () {
   'use strict';
 
-  const ALLOWED_HOSTS = ['alexgamingdev.tech', 'www.alexgamingdev.tech', 'localhost', '127.0.0.1'];
+  const ALLOWED_HOSTS = ['alexgaming.is-a.dev', 'localhost', '127.0.0.1'];
 
   const hostname = window.location.hostname;
   if (!ALLOWED_HOSTS.some(h => hostname === h || hostname.endsWith('.' + h))) {

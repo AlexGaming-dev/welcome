@@ -63,4 +63,4 @@ I will keep building, publishing, and sharing in this direction — because I am
 ---
 
 **Alexander Dennhoven** is a Software Architect and Developer. He builds local-first applications and CLI tools with a focus on privacy and performance.  
-More at [alexgamingdev.tech](https://www.alexgamingdev.tech) · GitHub: [@alexgamingdev](https://github.com/alexgamingdev) · GitHub: [@alexgamingstudio](https://github.com/alexgamingstudio) · GitHub: [@alexgaming-dev](https://github.com/alexgaming-dev)
+More at [alexgaming.is-a.dev](https://alexgaming.is-a.dev) · GitHub: [@alexgamingdev](https://github.com/alexgamingdev) · GitHub: [@alexgamingstudio](https://github.com/alexgamingstudio) · GitHub: [@alexgaming-dev](https://github.com/alexgaming-dev)

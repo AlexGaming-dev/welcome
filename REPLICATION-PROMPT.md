@@ -1,6 +1,6 @@
 # AI Replication Prompt – alexgamingdev/welcome Repository
 
-Du arbeitest am Repository `alexgamingdev/welcome` (GitHub Pages Portfolio-Website unter `https://www.alexgamingdev.tech`).
+Du arbeitest am Repository `alexgamingdev/welcome` (GitHub Pages Portfolio-Website unter `https://alexgaming.is-a.dev`).
 
 ## Deine Aufgabe
 
@@ -37,7 +37,7 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
     <title>Impressum | alexgamingdev</title>
     <meta name="description" content="Impressum von Alexander Dennhoven (alexgamingdev) – Angaben gemäß § 5 DDG. Diese Seite wird gerade überarbeitet.">
     <meta name="keywords" content="Alexander Dennhoven, alexgamingdev, Impressum, Software Architect, Deutschland, DDG">
-    <link rel="canonical" href="https://www.alexgamingdev.tech/impressum/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/impressum/">
 
     <link rel="icon" type="image/png" href="/icons/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
@@ -46,8 +46,8 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
     <meta property="og:title" content="Impressum | alexgamingdev">
     <meta property="og:description" content="Impressum von Alexander Dennhoven (alexgamingdev).">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.alexgamingdev.tech/impressum/">
-    <meta property="og:image" content="https://www.alexgamingdev.tech/icons/og-main.jpg">
+    <meta property="og:url" content="https://alexgaming.is-a.dev/impressum/">
+    <meta property="og:image" content="https://alexgaming.is-a.dev/icons/og-main.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Impressum | alexgamingdev">
@@ -63,19 +63,19 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
       "@graph": [
         {
           "@type": "WebSite",
-          "@id": "https://www.alexgamingdev.tech/#website",
+          "@id": "https://alexgaming.is-a.dev/#website",
           "name": "alexgamingdev Portfolio",
           "alternateName": "alexgamingdev",
-          "url": "https://www.alexgamingdev.tech/",
+          "url": "https://alexgaming.is-a.dev/",
           "publisher": { "@id": "https://www.wikidata.org/wiki/Q138410440" },
           "mainEntity": { "@id": "https://www.wikidata.org/wiki/Q138410440" }
         },
         {
           "@type": "WebPage",
-          "@id": "https://www.alexgamingdev.tech/impressum/#webpage",
-          "url": "https://www.alexgamingdev.tech/impressum/",
+          "@id": "https://alexgaming.is-a.dev/impressum/#webpage",
+          "url": "https://alexgaming.is-a.dev/impressum/",
           "name": "Impressum | alexgamingdev",
-          "isPartOf": { "@id": "https://www.alexgamingdev.tech/#website" },
+          "isPartOf": { "@id": "https://alexgaming.is-a.dev/#website" },
           "about": { "@id": "https://www.wikidata.org/wiki/Q138410440" }
         },
         {
@@ -83,8 +83,8 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
           "@id": "https://www.wikidata.org/wiki/Q138410440",
           "name": "Alexander Dennhoven",
           "alternateName": ["alexgamingdev", "Alex Gaming Dev"],
-          "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-          "url": "https://www.alexgamingdev.tech",
+          "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+          "url": "https://alexgaming.is-a.dev",
           "jobTitle": "Software Developer & Architect",
           "description": "Alexander Dennhoven is a software architect specialized in C#, .NET, and local-first applications.",
           "nationality": { "@type": "Country", "name": "Germany" },
@@ -92,7 +92,7 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
           "knowsAbout": ["Software Engineering", "CLI Tools", "Local-first Apps", "C#", ".NET", "Architecture", "Automation"],
           "sameAs": [
             "https://www.wikidata.org/wiki/Q138410440",
-            "https://bsky.app/profile/alexgamingdev.tech",
+            "https://bsky.app/profile/alexgaming.is-a.dev",
             "https://github.com/alexgamingdev",
             "https://www.linkedin.com/in/alexgamingdev/",
             "https://linktr.ee/alexgamingdev",
@@ -105,7 +105,7 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
             "https://www.twitch.tv/alexgamingdev",
             "https://news.alexgamingdev.tech",
             "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-            "did:web:alexgamingdev.tech"
+            "did:web:alexgaming.is-a.dev"
           ]
         }
       ]
@@ -196,7 +196,7 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
 
     <nav class="fixed w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
         <div class="nav-logo text-lg md:text-xl font-black tracking-widest text-white flex items-center cursor-pointer" onclick="window.location.href='/'">
-            <img src="https://www.alexgamingdev.tech/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
+            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
             <span>alexgaming<span class="animated-dev">dev</span></span>
         </div>
     </nav>
@@ -223,7 +223,7 @@ Ersetze den **gesamten Inhalt** von `impressum/index.html` mit:
             <a href="/impressum/">Impressum</a>
             <a href="/privacy/">Datenschutz</a>
             <a rel="me" href="https://mastodon.social/@alexgamingdev">Mastodon</a>
-            <a href="https://bsky.app/profile/alexgamingdev.tech">Bluesky</a>
+            <a href="https://bsky.app/profile/alexgaming.is-a.dev">Bluesky</a>
         </div>
         © 2026 | Alexander Dennhoven (alexgamingdev)
     </footer>
@@ -269,23 +269,23 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Datenschutz | alexgamingdev</title>
-    <meta name="description" content="Datenschutzerklärung von Alexander Dennhoven (alexgamingdev) für die Website alexgamingdev.tech.">
+    <meta name="description" content="Datenschutzerklärung von Alexander Dennhoven (alexgamingdev) für die Website alexgaming.is-a.dev.">
     <meta name="keywords" content="Alexander Dennhoven, alexgamingdev, Datenschutz, Privacy Policy, DSGVO, Software Architect, Deutschland">
-    <link rel="canonical" href="https://www.alexgamingdev.tech/privacy/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/privacy/">
 
     <link rel="icon" type="image/png" href="/icons/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="manifest" href="/icons/site.webmanifest">
 
     <meta property="og:title" content="Datenschutz | alexgamingdev">
-    <meta property="og:description" content="Datenschutzerklärung für die Website alexgamingdev.tech von Alexander Dennhoven.">
+    <meta property="og:description" content="Datenschutzerklärung für die Website alexgaming.is-a.dev von Alexander Dennhoven.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.alexgamingdev.tech/privacy/">
-    <meta property="og:image" content="https://www.alexgamingdev.tech/icons/og-main.jpg">
+    <meta property="og:url" content="https://alexgaming.is-a.dev/privacy/">
+    <meta property="og:image" content="https://alexgaming.is-a.dev/icons/og-main.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Datenschutz | alexgamingdev">
-    <meta name="twitter:description" content="Datenschutzerklärung für die Website alexgamingdev.tech.">
+    <meta name="twitter:description" content="Datenschutzerklärung für die Website alexgaming.is-a.dev.">
     <meta name="twitter:creator" content="@alexgamingdev">
 
     <link rel="me" href="https://mastodon.social/@alexgamingdev">
@@ -297,17 +297,17 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
       "@graph": [
         {
           "@type": "WebPage",
-          "@id": "https://www.alexgamingdev.tech/privacy/#webpage",
-          "url": "https://www.alexgamingdev.tech/privacy/",
+          "@id": "https://alexgaming.is-a.dev/privacy/#webpage",
+          "url": "https://alexgaming.is-a.dev/privacy/",
           "name": "Datenschutz | alexgamingdev",
-          "isPartOf": { "@id": "https://www.alexgamingdev.tech/#website" },
+          "isPartOf": { "@id": "https://alexgaming.is-a.dev/#website" },
           "about": { "@id": "https://www.wikidata.org/wiki/Q138410440" },
-          "description": "Datenschutzerklärung für die Website alexgamingdev.tech."
+          "description": "Datenschutzerklärung für die Website alexgaming.is-a.dev."
         },
         {
           "@type": "WebSite",
-          "@id": "https://www.alexgamingdev.tech/#website",
-          "url": "https://www.alexgamingdev.tech/",
+          "@id": "https://alexgaming.is-a.dev/#website",
+          "url": "https://alexgaming.is-a.dev/",
           "name": "alexgamingdev Portfolio",
           "publisher": { "@id": "https://www.wikidata.org/wiki/Q138410440" },
           "mainEntity": { "@id": "https://www.wikidata.org/wiki/Q138410440" }
@@ -317,8 +317,8 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
           "@id": "https://www.wikidata.org/wiki/Q138410440",
           "name": "Alexander Dennhoven",
           "alternateName": ["alexgamingdev", "Alex Gaming Dev"],
-          "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-          "url": "https://www.alexgamingdev.tech",
+          "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+          "url": "https://alexgaming.is-a.dev",
           "jobTitle": "Software Developer & Architect",
           "description": "Alexander Dennhoven is a software architect specialized in C#, .NET, and local-first applications.",
           "nationality": { "@type": "Country", "name": "Germany" },
@@ -332,14 +332,14 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
             "https://www.youtube.com/@alexgamingdev",
             "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
             "https://www.twitch.tv/alexgamingdev",
-            "https://bsky.app/profile/alexgamingdev.tech",
+            "https://bsky.app/profile/alexgaming.is-a.dev",
             "https://mastodon.social/@alexgamingdev",
             "https://www.npmjs.com/~alexgamingdev",
             "https://linktr.ee/alexgamingdev",
             "https://news.alexgamingdev.tech",
             "https://de.pinterest.com/alexgamingdev/",
             "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-            "did:web:alexgamingdev.tech"
+            "did:web:alexgaming.is-a.dev"
           ]
         }
       ]
@@ -430,7 +430,7 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
 
     <nav class="fixed w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
         <div class="nav-logo text-lg md:text-xl font-black tracking-widest text-white flex items-center cursor-pointer" onclick="window.location.href='/'">
-            <img src="https://www.alexgamingdev.tech/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
+            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
             <span>alexgaming<span class="animated-dev">dev</span></span>
         </div>
     </nav>
@@ -476,7 +476,7 @@ Ersetze den **gesamten Inhalt** von `privacy/index.html` mit:
             <a href="/impressum/">Impressum</a>
             <a href="/privacy/">Datenschutz</a>
             <a rel="me" href="https://mastodon.social/@alexgamingdev">Mastodon</a>
-            <a href="https://bsky.app/profile/alexgamingdev.tech">Bluesky</a>
+            <a href="https://bsky.app/profile/alexgaming.is-a.dev">Bluesky</a>
         </div>
         © 2026 | Alexander Dennhoven (alexgamingdev)
     </footer>
@@ -523,7 +523,7 @@ zu:
 
 ```html
     <meta name="keywords" content="Alexander Dennhoven, alexgamingdev, Kontakt, Contact, Software Architect, Deutschland">
-    <link rel="canonical" href="https://www.alexgamingdev.tech/contact/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/contact/">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="manifest" href="/icons/site.webmanifest">
@@ -531,8 +531,8 @@ zu:
     <meta property="og:title" content="Contact | alexgamingdev">
     <meta property="og:description" content="Sende eine verschlüsselte Nachricht an Alexander Dennhoven.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.alexgamingdev.tech/contact/">
-    <meta property="og:image" content="https://www.alexgamingdev.tech/icons/og-main.jpg">
+    <meta property="og:url" content="https://alexgaming.is-a.dev/contact/">
+    <meta property="og:image" content="https://alexgaming.is-a.dev/icons/og-main.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact | alexgamingdev">
@@ -549,11 +549,11 @@ zu:
 
 **Ändere Zeile 10** von:
 ```html
-    <link rel="canonical" href="https://www.alexgamingdev.tech/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/">
 ```
 zu:
 ```html
-    <link rel="canonical" href="https://www.alexgamingdev.tech/about/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/about/">
 ```
 
 ---
@@ -574,7 +574,7 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
     <title>Schiri-Tool | alexgamingdev</title>
     <meta name="description" content="Schiri-Profi-Tool von alexgamingdev – Digitale Gelbe & Rote Karte für den Einsatz auf dem Spielfeld.">
     <meta name="keywords" content="Alexander Dennhoven, alexgamingdev, Schiedsrichter, Schiri Tool, Gelbe Karte, Rote Karte, Referee">
-    <link rel="canonical" href="https://www.alexgamingdev.tech/referee/">
+    <link rel="canonical" href="https://alexgaming.is-a.dev/referee/">
 
     <link rel="icon" type="image/png" href="/icons/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
@@ -583,8 +583,8 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
     <meta property="og:title" content="Schiri-Tool | alexgamingdev">
     <meta property="og:description" content="Digitale Gelbe & Rote Karte für den Einsatz auf dem Spielfeld.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.alexgamingdev.tech/referee/">
-    <meta property="og:image" content="https://www.alexgamingdev.tech/icons/og-main.jpg">
+    <meta property="og:url" content="https://alexgaming.is-a.dev/referee/">
+    <meta property="og:image" content="https://alexgaming.is-a.dev/icons/og-main.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Schiri-Tool | alexgamingdev">
@@ -600,17 +600,17 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
       "@graph": [
         {
           "@type": "WebPage",
-          "@id": "https://www.alexgamingdev.tech/referee/#webpage",
-          "url": "https://www.alexgamingdev.tech/referee/",
+          "@id": "https://alexgaming.is-a.dev/referee/#webpage",
+          "url": "https://alexgaming.is-a.dev/referee/",
           "name": "Schiri-Tool | alexgamingdev",
-          "isPartOf": { "@id": "https://www.alexgamingdev.tech/#website" },
+          "isPartOf": { "@id": "https://alexgaming.is-a.dev/#website" },
           "about": { "@id": "https://www.wikidata.org/wiki/Q138410440" },
           "description": "Digitale Gelbe & Rote Karte für Schiedsrichter."
         },
         {
           "@type": "WebSite",
-          "@id": "https://www.alexgamingdev.tech/#website",
-          "url": "https://www.alexgamingdev.tech/",
+          "@id": "https://alexgaming.is-a.dev/#website",
+          "url": "https://alexgaming.is-a.dev/",
           "name": "alexgamingdev Portfolio",
           "publisher": { "@id": "https://www.wikidata.org/wiki/Q138410440" },
           "mainEntity": { "@id": "https://www.wikidata.org/wiki/Q138410440" }
@@ -620,8 +620,8 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
           "@id": "https://www.wikidata.org/wiki/Q138410440",
           "name": "Alexander Dennhoven",
           "alternateName": ["alexgamingdev", "Alex Gaming Dev"],
-          "image": "https://www.alexgamingdev.tech/icons/favicon.png",
-          "url": "https://www.alexgamingdev.tech",
+          "image": "https://alexgaming.is-a.dev/icons/favicon.png",
+          "url": "https://alexgaming.is-a.dev",
           "jobTitle": "Software Developer & Architect",
           "description": "Alexander Dennhoven is a software architect specialized in C#, .NET, and local-first applications.",
           "nationality": { "@type": "Country", "name": "Germany" },
@@ -632,12 +632,12 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
             "https://github.com/alexgamingdev",
             "https://x.com/alexgamingdev",
             "https://www.linkedin.com/in/alexgamingdev/",
-            "https://bsky.app/profile/alexgamingdev.tech",
+            "https://bsky.app/profile/alexgaming.is-a.dev",
             "https://mastodon.social/@alexgamingdev",
             "https://www.npmjs.com/~alexgamingdev",
             "https://linktr.ee/alexgamingdev",
             "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-            "did:web:alexgamingdev.tech"
+            "did:web:alexgaming.is-a.dev"
           ]
         }
       ]
@@ -768,7 +768,7 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
 
     <nav class="fixed w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
         <div class="nav-logo text-lg md:text-xl font-black tracking-widest text-white flex items-center cursor-pointer" onclick="window.location.href='/'">
-            <img src="https://www.alexgamingdev.tech/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
+            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-6 h-6 md:w-8 md:h-8 mr-2 object-contain" alt="Logo">
             <span>alexgaming<span class="animated-dev">dev</span></span>
         </div>
     </nav>
@@ -793,7 +793,7 @@ Ersetze den **gesamten Inhalt** von `referee/index.html` mit:
             <a href="/impressum/">Impressum</a>
             <a href="/privacy/">Datenschutz</a>
             <a rel="me" href="https://mastodon.social/@alexgamingdev">Mastodon</a>
-            <a href="https://bsky.app/profile/alexgamingdev.tech">Bluesky</a>
+            <a href="https://bsky.app/profile/alexgaming.is-a.dev">Bluesky</a>
         </div>
         © 2026 | Alexander Dennhoven (alexgamingdev)
     </footer>
