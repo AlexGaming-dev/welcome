@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 
 # Verweis auf die Sitemap für schnellere Indexierung
-Sitemap: https://www.alexgamingdev.tech/sitemap.xml
+Sitemap: https://alexgaming.is-a.dev/sitemap.xml
