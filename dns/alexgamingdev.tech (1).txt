@@ -1,0 +1,83 @@
+;;
+;; Domain:     alexgamingdev.tech.
+;; Exported:   2026-04-25 20:40:15
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+alexgamingdev.tech	3600	IN	SOA	hope.ns.cloudflare.com. dns.cloudflare.com. 2052881621 10000 2400 604800 3600
+
+;; NS Records
+alexgamingdev.tech.	86400	IN	NS	hope.ns.cloudflare.com.
+alexgamingdev.tech.	86400	IN	NS	yichun.ns.cloudflare.com.
+
+;; A Records
+alexgamingdev.tech.	1	IN	A	185.199.111.153 ; cf_tags=cf-proxied:true
+alexgamingdev.tech.	1	IN	A	185.199.110.153 ; cf_tags=cf-proxied:true
+alexgamingdev.tech.	1	IN	A	185.199.109.153 ; cf_tags=cf-proxied:true
+alexgamingdev.tech.	1	IN	A	185.199.108.153 ; cf_tags=cf-proxied:true
+
+;; CNAME Records
+cdn.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+firebase1._domainkey.nexnet.alexgamingdev.tech.	1	IN	CNAME	mail-nexnet-alexgamingdev-tech.dkim1._domainkey.firebasemail.com. ; cf_tags=cf-proxied:false
+firebase2._domainkey.nexnet.alexgamingdev.tech.	1	IN	CNAME	mail-nexnet-alexgamingdev-tech.dkim2._domainkey.firebasemail.com. ; cf_tags=cf-proxied:false
+help.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+news.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+nexnet.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+oauth.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+officeweb.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+oxyum.alexgamingdev.tech.	1	IN	CNAME	oxyum-protocol.github.io. ; cf_tags=cf-proxied:true
+oxyumapi.alexgamingdev.tech.	1	IN	CNAME	oxyum-protocol.github.io. ; cf_tags=cf-proxied:true
+tobias.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+www.alexgamingdev.tech.	1	IN	CNAME	alexgamingdev.github.io. ; cf_tags=cf-proxied:true
+
+;; MX Records
+alexgamingdev.tech.	1	IN	MX	78 route3.mx.cloudflare.net.
+alexgamingdev.tech.	1	IN	MX	57 route2.mx.cloudflare.net.
+alexgamingdev.tech.	1	IN	MX	44 route1.mx.cloudflare.net.
+officeweb.alexgamingdev.tech.	1	IN	MX	78 route3.mx.cloudflare.net.
+officeweb.alexgamingdev.tech.	1	IN	MX	57 route2.mx.cloudflare.net.
+officeweb.alexgamingdev.tech.	1	IN	MX	44 route1.mx.cloudflare.net.
+
+;; TXT Records
+alexgamingdev.tech.	1	IN	TXT	"brave-ledger-verification=e273de40a327cabe855cb122c43ec2abe34607569941e0385f9e1506fe647ab6"
+alexgamingdev.tech.	1	IN	TXT	"alex-agency-auth-05042013"
+alexgamingdev.tech.	1	IN	TXT	"pinterest-site-verification=bf1f23c8b5d67ea1f80016473b3b6a02"
+alexgamingdev.tech.	3600	IN	TXT	"google-site-verification=s_4VtgpZggaqsVK7PN0TjORmJEfhpCTsLc46A_jFJrs"
+alexgamingdev.tech.	1	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+_atproto.alexgamingdev.tech.	1	IN	TXT	"did=did:plc:rtbcymem26k76lg6tv6q7c3n"
+cf2024-1._domainkey.alexgamingdev.tech.	1	IN	TXT	"v=DKIM1; h=sha256; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiweykoi+o48IOGuP7GR3X0MOExCUDY/BCRHoWBnh3rChl7WhdyCxW3jgq1daEjPPqoi7sJvdg5hEQVsgVRQP4DcnQDVjGMbASQtrY4WmB1VebF+RPJB2ECPsEDTpeiI5ZyUAwJaVX7r6bznU67g7LvFq35yIo4sdlmtZGV+i0H4cpYH9+3JJ78k" "m4KXwaf9xUJCWF6nxeD+qG6Fyruw1Qlbds2r85U9dkNDVAS3gioCvELryh1TxKGiVTkg4wqHTyHfWsp7KD3WQHYJn0RyfJJu6YEmL77zonn7p2SRMvTMP3ZEXibnC9gz3nnhR6wcYL8Q7zXypKTMD58bTixDSJwIDAQAB"
+default._bimi.alexgamingdev.tech.	1	IN	TXT	"v=BIMI1; l=https://www.alexgamingdev.tech/icons/icon.svg; a=;"
+_discord.www.alexgamingdev.tech.	1	IN	TXT	"dh=a8fcc7f19f36193f1a23090e0448e2660d42550d"
+_dmarc.alexgamingdev.tech.	1	IN	TXT	"v=DMARC1; p=quarantine; pct=100; rua=mailto:admin@alexgamingdev.tech;"
+_dmarc.alexgamingdev.tech.	1	IN	TXT	"v=DMARC1; p=none; rua=mailto:2a5d054cb7574097aa2ab98e5d30eb8e@dmarc-reports.cloudflare.net"
+_gh-alexgaming-dev-o.www.alexgamingdev.tech.	1	IN	TXT	"4aeb22c822"
+_gh-oxyum-protocol-o.alexgamingdev.tech.	1	IN	TXT	"aa00d73dd8"
+_gh-oxyum-protocol-o.oxyum.alexgamingdev.tech.	1	IN	TXT	"08c8e53a41"
+_gh-oxyum-protocol-o.www.alexgamingdev.tech.	1	IN	TXT	"371e68a5d9"
+_github-pages-challenge-oxyum-protocol.oxyum.alexgamingdev.tech.	1	IN	TXT	"18e5009657dfc945a8d8e688b95b66"
+news.alexgamingdev.tech.	1	IN	TXT	"alex-agency-auth-05042013"
+news._atproto.alexgamingdev.tech.	1	IN	TXT	"did=did:plc:ovk6zgiuhwen2qu4k2bhisrx"
+nexnet.alexgamingdev.tech.	1	IN	TXT	"firebase=socialmedia-71e80"
+nexnet.alexgamingdev.tech.	1	IN	TXT	"v=spf1 include:_spf.firebasemail.com ~all"
+officeweb.alexgamingdev.tech.	1	IN	TXT	"v=spf1 include:_spf.mx.cloudflare.net ~all"
+www.alexgamingdev.tech.	1	IN	TXT	"brave-ledger-verification=e273de40a327cabe855cb122c43ec2abe34607569941e0385f9e1506fe647ab6"

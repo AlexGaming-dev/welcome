@@ -1,0 +1,12 @@
+{
+  "names": {
+    "alexander.dennhoven": "64e030a218f0813f3679c16b671d4924a4f89d53457193245456f916df24e542"
+  },
+  "relays": {
+    "64e030a218f0813f3679c16b671d4924a4f89d53457193245456f916df24e542": [
+      "wss://relay.damus.io",
+      "wss://nos.lol",
+      "wss://relay.snort.social"
+    ]
+  }
+}
