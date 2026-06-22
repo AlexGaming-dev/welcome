@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>VeloRadar | Central Team Dashboard</title>
+    <style>
+        :root { 
+            --bg-main: #f8fafc; 
+            --bg-surface: #ffffff; 
+            --text-primary: #0f172a; 
+            --color-info: #0284c7; 
+            --border-primary: #cbd5e1; 
+            --radius-md: 4px; 
+            
+            --color-safe: #15803d;
+            --color-warning: #b45309;
+            --color-danger: #991b1b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-primary); min-height: 100vh; padding-bottom: 60px; }
+        header { background-color: #0f172a; color: white; padding: 16px 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-bottom: 3px solid var(--color-info); }
+        
+        .layout-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 420px 1fr; gap: 30px; }
+        
+        .panel { background-color: var(--bg-surface); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); height: max-content; }
+        .panel-title { font-size: 0.8rem; text-transform: uppercase; color: var(--color-info); margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; font-weight: 800; letter-spacing: 0.5px; }
+        
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: 700; color: #475569; margin-bottom: 4px; text-transform: uppercase; }
+        .form-control { width: 100%; background-color: #f1f5f9; border: 1px solid var(--border-primary); color: var(--text-primary); padding: 10px; border-radius: var(--radius-md); font-size: 0.9rem; }
+        .form-control::placeholder { color: #94a3b8; }
+        
+        .btn-team { width: 100%; background-color: #0f172a; color: white; border: none; padding: 12px; border-radius: var(--radius-md); font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 0.5px; }
+        .btn-team:hover { background-color: #1e293b; }
+        
+        #syncLog { text-align: center; font-size: 0.75rem; font-family: monospace; color: #475569; margin-top: 15px; font-weight: 700; }
+        
+        .table-panel { background-color: var(--bg-surface); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .event-table { width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left; }
+        .event-table th, .event-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; vertical-align: top; }
+        .event-table th { background-color: #f8fafc; font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700; }
+        
+        .status-pill { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+        .status-pill.status-safe { background-color: #dcfce7; color: var(--color-safe); }
+        .status-pill.status-warning { background-color: #fef3c7; color: var(--color-warning); }
+        .status-pill.status-danger { background-color: #fee2e2; color: var(--color-danger); }
+        
+        .btn-action { padding: 6px 12px; border: 1px solid var(--border-primary); background-color: #f8fafc; color: var(--text-primary); border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-right: 5px; }
+        .btn-action:hover { background-color: #f1f5f9; }
+        .btn-delete { background-color: #fee2e2; color: var(--color-danger); border-color: #fca5a5; }
+        .btn-delete:hover { background-color: #fecaca; }
+
+        @media (max-width: 950px) {
+            .layout-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>VeloRadar | Central Team Dashboard</header>
+    
+    <div class="layout-container">
+        
+        <div class="panel">
+            <div id="formModeTitle" class="panel-title">Neues Event registrieren</div>
+            <form id="teamForm">
+                <input type="hidden" id="editOriginalId" value="">
+
+                <div class="form-group">
+                    <label for="masterToken">Team Master-Passwort</label>
+                    <input type="password" id="masterToken" class="form-control" value="TeamMaster2026" required>
+                </div>
+                <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
+                
+                <div class="form-group">
+                    <label for="newEventId">Event-ID</label>
+                    <input type="text" id="newEventId" class="form-control" placeholder="z.B. openair-2026" required>
+                </div>
+                <div class="form-group">
+                    <label for="newAdminPassword">Passwort für den Veranstalter</label>
+                    <input type="text" id="newAdminPassword" class="form-control" placeholder="Veranstalter-Passwort festlegen" required>
+                </div>
+                
+                <div class="form-group" id="statusGroup">
+                    <label for="eventStatus">Sicherheitsstatus</label>
+                    <select id="eventStatus" class="form-control">
+                        <option value="safe">Grün: Normalbetrieb</option>
+                        <option value="warning">Gelb: Warnung</option>
+                        <option value="danger">Rot: Akute Gefahr</option>
+                    </select>
+                </div>
+
+                <div style="background-color: #f8fafc; border: 1px dashed var(--border-primary); padding: 12px; margin-bottom: 14px; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.7rem; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">Custom Durchsage (Optional)</div>
+                    <div class="form-group">
+                        <label for="customTitle">Custom Titel</label>
+                        <input type="text" id="customTitle" class="form-control" placeholder="Eigener Titel (z.B. Unwetter-Annäherung)">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="customMessage">Custom Nachricht</label>
+                        <textarea id="customMessage" class="form-control" rows="3" placeholder="Eigene Meldung an die Monitore senden..." style="resize: vertical; min-height: 60px;"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" id="btnSubmit" class="btn-team">Event-Kanal provisionieren</button>
+                <button type="button" id="btnCancelEdit" class="btn-team" style="background-color: #64748b; margin-top: 8px; display: none;" onclick="resetFormState()">Bearbeiten abbrechen</button>
+            </form>
+            <div id="syncLog">Bereit zur Übertragung.</div>
+        </div>
+        
+        <div class="table-panel">
+            <div class="panel-title">Aktive System-Kanäle (Echtzeit)</div>
+            <table class="event-table">
+                <thead>
+                    <tr>
+                        <th>Event-ID</th>
+                        <th>Veranstalter-PW</th>
+                        <th>Status / Aktuelle Meldung</th>
+                        <th>Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody id="eventTableBody">
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: #64748b;">Datenfeed wird synchronisiert...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, deleteDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyACU1YMRq1MBM4iPSSWUuEQxacZNoQPyOU",
+            authDomain: "veloradar-ah.firebaseapp.com",
+            projectId: "veloradar-ah",
+            storageBucket: "veloradar-ah.firebasestorage.app",
+            messagingSenderId: "95043949449",
+            appId: "1:95043949449:web:ad41a776dd243b41c24758",
+            measurementId: "G-7K073HRBLG"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let currentEvents = {};
+
+        function initLiveTable() {
+            onSnapshot(collection(db, "events"), (eventsSnapshot) => {
+                const eventsList = [];
+                eventsSnapshot.forEach(docSnap => {
+                    eventsList.push(docSnap.data());
+                });
+                
+                onSnapshot(collection(db, "incidents"), (incidentsSnapshot) => {
+                    const statusMap = {};
+                    incidentsSnapshot.forEach(docSnap => {
+                        statusMap[docSnap.id] = docSnap.data();
+                    });
+                    
+                    renderTable(eventsList, statusMap);
+                });
+            });
+        }
+
+        function renderTable(events, statusMap) {
+            const tbody = document.getElementById('eventTableBody');
+            tbody.innerHTML = "";
+            currentEvents = {};
+
+            if (events.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #64748b;">Keine registrierten Kanäle im System vorhanden.</td></tr>`;
+                return;
+            }
+
+            events.forEach(event => {
+                const id = event.eventId;
+                const pw = event.adminPassword;
+                const incidentData = statusMap[id] || { level: 'safe', title: 'Normalbetrieb', message: 'Es liegen keine aktiven Sicherheitsmeldungen vor.' };
+                const status = incidentData.level || 'safe';
+                
+                currentEvents[id] = { 
+                    eventId: id, 
+                    adminPassword: pw, 
+                    status: status,
+                    title: incidentData.title || '',
+                    message: incidentData.message || ''
+                };
+
+                let statusLabel = "Normalbetrieb";
+                let statusClass = "status-safe";
+                if (status === 'warning') { statusLabel = "Warnung"; statusClass = "status-warning"; }
+                if (status === 'danger') { statusLabel = "Gefahr"; statusClass = "status-danger"; }
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="font-weight: 700; font-family: monospace;">${id}</td>
+                    <td style="font-family: monospace; color: #475569;">${pw}</td>
+                    <td>
+                        <div style="margin-bottom: 4px;"><span class="status-pill ${statusClass}">${statusLabel}</span></div>
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">${incidentData.title || ''}</div>
+                        <div style="font-size: 0.75rem; color: #64748b; max-width: 350px;">${incidentData.message || ''}</div>
+                    </td>
+                    <td>
+                        <button class="btn-action" onclick="startEditEvent('${id}')">Bearbeiten</button>
+                        <button class="btn-action btn-delete" onclick="deleteEvent('${id}')">Löschen</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        document.getElementById('teamForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const log = document.getElementById('syncLog');
+            
+            const originalId = document.getElementById('editOriginalId').value;
+            const newId = document.getElementById('newEventId').value.trim().toLowerCase();
+            const password = document.getElementById('newAdminPassword').value;
+            const status = document.getElementById('eventStatus').value;
+            const masterToken = document.getElementById('masterToken').value;
+            
+            const customTitle = document.getElementById('customTitle').value.trim();
+            const customMessage = document.getElementById('customMessage').value.trim();
+
+            log.innerText = "Sende Konfigurationsänderung...";
+            log.style.color = "#475569";
+
+            let finalTitle = customTitle;
+            let finalMessage = customMessage;
+
+            if (!finalTitle) {
+                finalTitle = status === 'danger' ? 'AKUTE GEFAHR' : (status === 'warning' ? 'WARNUNG ACTIVE' : 'Normalbetrieb');
+            }
+            if (!finalMessage) {
+                finalMessage = status === 'safe' ? 'Es liegen keine aktiven Sicherheitsmeldungen vor.' : 'Status manuell über das Central Team Dashboard gesetzt.';
+            }
+
+            try {
+                if (originalId && originalId !== newId) {
+                    await deleteDoc(doc(db, "events", originalId));
+                    await deleteDoc(doc(db, "incidents", originalId));
+                }
+
+                await setDoc(doc(db, "events", newId), {
+                    eventId: newId,
+                    adminPassword: password,
+                    masterToken: masterToken
+                });
+
+                await setDoc(doc(db, "incidents", newId), {
+                    level: status,
+                    title: finalTitle,
+                    message: finalMessage,
+                    secretToken: password,
+                    masterToken: masterToken, // Wichtig für die Löschberechtigung
+                    updatedAt: new Date().toISOString()
+                });
+
+                log.innerText = originalId ? "Änderungen erfolgreich übernommen." : "Kanal erfolgreich provisioniert.";
+                log.style.color = "#15803d";
+                resetFormState();
+
+            } catch (error) {
+                log.innerText = "Fehler: Autorisierung oder Schreibvorgang fehlgeschlagen.";
+                log.style.color = "#b91c1c";
+            }
+        });
+
+        window.startEditEvent = function(id) {
+            const data = currentEvents[id];
+            if (!data) return;
+
+            document.getElementById('formModeTitle').innerText = "Event-Parameter anpassen";
+            document.getElementById('editOriginalId').value = data.eventId;
+            document.getElementById('newEventId').value = data.eventId;
+            document.getElementById('newAdminPassword').value = data.adminPassword;
+            document.getElementById('eventStatus').value = data.status;
+            
+            document.getElementById('customTitle').value = data.title;
+            document.getElementById('customMessage').value = data.message;
+            
+            document.getElementById('btnSubmit').innerText = "Änderungen speichern";
+            document.getElementById('btnCancelEdit').style.display = "block";
+            
+            document.getElementById('newEventId').focus();
+        };
+
+        window.deleteEvent = async function(id) {
+            if (confirm(`Soll der Sicherheitskanal '${id}' wirklich unwiderruflich gelöscht werden?`)) {
+                const log = document.getElementById('syncLog');
+                try {
+                    await deleteDoc(doc(db, "events", id));
+                    await deleteDoc(doc(db, "incidents", id));
+                    log.innerText = `Kanal '${id}' wurde erfolgreich gelöscht.`;
+                    log.style.color = "#15803d";
+                } catch (error) {
+                    log.innerText = "Fehler beim Löschen des Datensatzes.";
+                    log.style.color = "#b91c1c";
+                }
+            }
+        };
+
+        window.resetFormState = function() {
+            document.getElementById('formModeTitle').innerText = "Neues Event registrieren";
+            document.getElementById('editOriginalId').value = "";
+            document.getElementById('teamForm').reset();
+            document.getElementById('masterToken').value = "TeamMaster2026";
+            
+            document.getElementById('btnSubmit').innerText = "Event-Kanal provisionieren";
+            document.getElementById('btnCancelEdit').style.display = "none";
+        };
+
+        initLiveTable();
+    </script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeloRadar Sicherheits-Informationssystem</title>
+    <style>
+        :root {
+            --color-safe: #15803d;
+            --color-warning: #b45309;
+            --color-danger: #991b1b;
+            
+            --bg-normal: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-normal);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* ------------------------------------------------------------- */
+        /* STANDARD-MODUS (Desktop-Fenster und Mobilgeräte)             */
+        /* ------------------------------------------------------------- */
+        .main-container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        header {
+            width: 100%;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        header h1 { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        header h1 span { color: #0284c7; }
+
+        .app-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--color-safe);
+            transition: border-color 0.3s;
+        }
+
+        .status-badge-ui {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            background-color: #dcfce7;
+            color: var(--color-safe);
+        }
+
+        .app-title { font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 12px; text-transform: uppercase; }
+        .app-text { font-size: 1rem; line-height: 1.5; color: #334155; }
+
+        @media screen and (min-width: 1024px) {
+            .main-container {
+                max-width: 1000px;
+                display: grid;
+                grid-template-columns: 1fr 300px;
+                gap: 24px;
+                margin-top: 40px;
+            }
+            header { grid-column: span 2; }
+            .app-card { padding: 40px; }
+            .app-title { font-size: 2rem; }
+        }
+
+        /* ------------------------------------------------------------- */
+        /* MONITOR-MODUS (Aktiviert via JS bei F11 / Echtem Vollbild)     */
+        /* ------------------------------------------------------------- */
+        body.kiosk-mode {
+            background-color: var(--color-safe);
+            color: #ffffff !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            overflow: hidden;
+        }
+
+        body.kiosk-mode header { display: none !important; }
+        body.kiosk-mode .main-container { display: block; max-width: 1300px; width: 100%; text-align: center; }
+        body.kiosk-mode .app-card { background: transparent; padding: 0; box-shadow: none; border: none; }
+        
+        body.kiosk-mode .status-badge-ui {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: transparent !important;
+            color: #ffffff !important;
+            margin-bottom: 30px;
+        }
+        body.kiosk-mode .app-title { font-size: 4.5rem; font-weight: 900; margin-bottom: 25px; }
+        body.kiosk-mode .app-text { font-size: 2.5rem; max-width: 1100px; margin: 0 auto; color: #ffffff; opacity: 0.95; }
+
+        body.kiosk-mode.level-danger { background-color: var(--color-danger); }
+        body.kiosk-mode.level-warning { background-color: var(--color-warning); }
+        body.kiosk-mode.level-safe { background-color: var(--color-safe); }
+
+        /* Aktivierungssperre */
+        .audio-barrier {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f172a; color: white;
+            z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; padding: 20px; text-align: center;
+        }
+        .audio-btn {
+            background: #0284c7; color: white; border: none; padding: 16px 32px; font-size: 1.1rem; font-weight: 700; border-radius: 4px; cursor: pointer; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="audioBarrier" class="audio-barrier">
+        <h2 style="font-size: 1.4rem; font-weight: 800; text-transform: uppercase;">VeloRadar Empfangssystem</h2>
+        <p style="color: #94a3b8; max-width: 420px; font-size: 0.95rem;">Klicken Sie auf die Schaltfläche, um den automatischen Datenempfang sowie die akustische Signalisierung zu initialisieren.</p>
+        <button class="audio-btn" onclick="initMonitor()">System starten</button>
+    </div>
+
+    <div class="main-container">
+        <header id="appHeader">
+            <div class="brand">
+                <h1>VeloRadar <span>Lagebericht</span></h1>
+            </div>
+        </header>
+
+        <div class="app-card" id="alertCard">
+            <div id="statusLabel" class="status-badge-ui">Initialisierung</div>
+            <h1 id="displayTitle" class="app-title">Verbindung wird hergestellt</h1>
+            <p id="displayText" class="app-text">Synchronisation mit der Leitstelle läuft.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyACU1YMRq1MBM4iPSSWUuEQxacZNoQPyOU",
+            authDomain: "veloradar-ah.firebaseapp.com",
+            projectId: "veloradar-ah",
+            storageBucket: "veloradar-ah.firebasestorage.app",
+            messagingSenderId: "95043949449",
+            appId: "1:95043949449:web:ad41a776dd243b41c24758",
+            measurementId: "G-7K073HRBLG"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('id');
+
+        let audioCtx = null;
+        let continuousOscillator = null; 
+        let continuousGain = null;
+        let modulationOscillator = null; 
+
+        window.initMonitor = function() {
+            document.getElementById('audioBarrier').style.display = 'none';
+            
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            if ("Notification" in window) { Notification.requestPermission(); }
+
+            if (!eventId) {
+                document.getElementById('statusLabel').innerText = "Fehler";
+                document.getElementById('displayTitle').innerText = "Keine Event-ID";
+                document.getElementById('displayText').innerText = "Der URL-Parameter ?id= fehlt.";
+            } else {
+                startLiveListening();
+                setupFullscreenDetector();
+            }
+        };
+
+        // Überarbeitete, native Vollbilderfassung für Desktop-Monitore
+        function setupFullscreenDetector() {
+            const checkStatus = () => {
+                // Kombinierte Abfrage: Nutzt native API ODER den mathematischen Abmessungs-Fallback
+                const isNativeFull = !!document.fullscreenElement || window.fullScreen;
+                const isSizeFull = (Math.abs(window.innerWidth - window.screen.width) <= 4 && Math.abs(window.innerHeight - window.screen.height) <= 4);
+                
+                if ((isNativeFull || isSizeFull) && window.innerWidth >= 1024) {
+                    document.body.classList.add('kiosk-mode');
+                } else {
+                    document.body.classList.remove('kiosk-mode');
+                }
+            };
+
+            // Hört auf das offizielle Browser-Event für Vollbildänderungen
+            document.addEventListener('fullscreenchange', checkStatus);
+            document.addEventListener('webkitfullscreenchange', checkStatus);
+            window.addEventListener('resize', checkStatus);
+            
+            // Initialer Check beim Laden
+            checkStatus();
+        }
+
+        let firstLoad = true;
+        let currentLevel = 'none';
+
+        function startLiveListening() {
+            onSnapshot(doc(db, "incidents", eventId), (docSnap) => {
+                let level = 'safe', title = 'Normalbetrieb', message = 'Es liegen keine aktiven Sicherheitsmeldungen vor.';
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    level = data.level; title = data.title; message = data.message;
+                }
+
+                const isNewUpdate = (level !== currentLevel && !firstLoad);
+                currentLevel = level;
+                
+                updateUI(level, title, message);
+                if (isNewUpdate) { handleAudioSignals(level, title, message); }
+                
+                firstLoad = false;
+            });
+        }
+
+        function updateUI(level, title, message) {
+            const body = document.body;
+            const card = document.getElementById('alertCard');
+            const label = document.getElementById('statusLabel');
+            const displayTitle = document.getElementById('displayTitle');
+            const displayText = document.getElementById('displayText');
+
+            body.classList.remove('level-danger', 'level-warning', 'level-safe');
+
+            if (level === 'danger') {
+                card.style.borderLeftColor = "var(--color-danger)";
+                label.style.backgroundColor = "#fee2e2"; label.style.color = "var(--color-danger)";
+                label.innerText = "STATUS: AKUTE GEFAHR";
+                body.classList.add('level-danger');
+            } else if (level === 'warning') {
+                card.style.borderLeftColor = "var(--color-warning)";
+                label.style.backgroundColor = "#fef3c7"; label.style.color = "var(--color-warning)";
+                label.innerText = "STATUS: WARNUNG";
+                body.classList.add('level-warning');
+            } else {
+                card.style.borderLeftColor = "var(--color-safe)";
+                label.style.backgroundColor = "#dcfce7"; label.style.color = "var(--color-safe)";
+                label.innerText = "STATUS: NORMALBETRIEB";
+                body.classList.add('level-safe');
+            }
+
+            displayTitle.innerText = title;
+            displayText.innerText = message;
+        }
+
+        async function handleAudioSignals(level, title, message) {
+            if (!audioCtx) return;
+
+            if (audioCtx.state === 'suspended') {
+                await audioCtx.resume();
+            }
+
+            stopContinuousAlarm();
+
+            if (level === 'danger') {
+                continuousOscillator = audioCtx.createOscillator();
+                continuousGain = audioCtx.createGain();
+                
+                continuousOscillator.type = 'sawtooth';
+                continuousOscillator.frequency.setValueAtTime(550, audioCtx.currentTime);
+                
+                modulationOscillator = audioCtx.createOscillator();
+                const modulationGain = audioCtx.createGain();
+                
+                modulationOscillator.type = 'sine';
+                modulationOscillator.frequency.setValueAtTime(2.2, audioCtx.currentTime);
+                modulationGain.gain.setValueAtTime(250, audioCtx.currentTime);
+                
+                modulationOscillator.connect(modulationGain);
+                modulationGain.connect(continuousOscillator.frequency);
+                
+                continuousOscillator.connect(continuousGain);
+                continuousGain.connect(audioCtx.destination);
+                
+                continuousGain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                
+                continuousOscillator.start();
+                modulationOscillator.start();
+
+            } else if (level === 'warning') {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine'; osc.frequency.setValueAtTime(554.37, now);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                gain.gain.setValueAtTime(0.25, now);
+                osc.start(now); osc.stop(now + 0.3);
+
+            } else if (level === 'safe') {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine'; osc.frequency.setValueAtTime(293.66, now);
+                osc.connect(gain); gain.connect(audioCtx.destination);
+                gain.gain.setValueAtTime(0.2, now);
+                osc.start(now); osc.stop(now + 0.25);
+            }
+
+            if ("Notification" in window && Notification.permission === "granted") {
+                let prefix = level === 'danger' ? "GEFAHR: " : (level === 'warning' ? "WARNUNG: " : "ENTWARNUNG: ");
+                new Notification(`${prefix}${title}`, { body: message, tag: 'veloradar-alert' });
+            }
+        }
+
+        function stopContinuousAlarm() {
+            if (continuousOscillator) {
+                try {
+                    continuousOscillator.stop();
+                    continuousOscillator.disconnect();
+                } catch(e){}
+                continuousOscillator = null;
+            }
+            if (modulationOscillator) {
+                try {
+                    modulationOscillator.stop();
+                    modulationOscillator.disconnect();
+                } catch(e){}
+                modulationOscillator = null;
+            }
+        }
+    </script>
+</body>
+</html>
