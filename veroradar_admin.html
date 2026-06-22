@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>VeloRadar | Leitstellen-Eingabe</title>
+    <style>
+        :root { --bg-main: #f1f5f9; --bg-surface: #ffffff; --text-primary: #1e293b; --text-secondary: #64748b; --border-primary: #cbd5e1; --radius: 4px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-primary); padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .panel { background-color: var(--bg-surface); border: 1px solid var(--border-primary); border-radius: var(--radius); padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .section-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #1d4ed8; margin-bottom: 16px; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; }
+        
+        /* Grid für die Makro-Schnellwahltasten */
+        .macro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+        .btn-macro { padding: 12px; border: 1px solid #fca5a5; background-color: #fef2f2; color: #991b1b; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; border-radius: var(--radius); cursor: pointer; text-align: left; }
+        .btn-macro:hover { background-color: #fee2e2; }
+        .btn-macro.macro-warning { border-color: #fde047; background-color: #fefce8; color: #854d0e; }
+        .btn-macro.macro-warning:hover { background-color: #fef9c3; }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; }
+        .form-control { width: 100%; background-color: #f8fafc; border: 1px solid var(--border-primary); color: var(--text-primary); padding: 10px; border-radius: var(--radius); font-size: 0.9rem; }
+        .btn-submit { width: 100%; background-color: #0f172a; color: white; border: none; padding: 14px; border-radius: var(--radius); font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+        #syncLog { text-align: center; font-size: 0.75rem; font-family: monospace; color: var(--text-secondary); margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="section-title">Schnellwahltasten (Sofortige Live-Schaltung)</div>
+            <div class="macro-grid">
+                <button type="button" class="btn-macro" onclick="triggerMacro('danger', 'AMOKLAUF / LEBENSGEFAHR', 'Im gesamten Areal liegt eine Bedrohungslage vor. Suchen Sie umgehend verbarrikadierte Räume auf. Meiden Sie Freiflächen.')">Amok-Alarm (Rot)</button>
+                <button type="button" class="btn-macro" onclick="triggerMacro('danger', 'EVAKUIERUNG', 'Das Veranstaltungsgelände muss sofort geräumt werden. Bewahren Sie Ruhe und folgen Sie den Anweisungen des Sicherheitsordnungsdienstes.')">Evakuierung (Rot)</button>
+                <button type="button" class="btn-macro" onclick="triggerMacro('danger', 'EXTREMWETTER / UNWETTER', 'Akutes Unwetter mit Blitzschlag. Verlassen Sie offene Bereiche. Suchen Sie Schutzbauten oder befestigte Gebäude auf.')">Unwetter (Rot)</button>
+                <button type="button" class="btn-macro class-warning macro-warning" onclick="triggerMacro('warning', 'WETTERWARNUNG', 'Ein Gewitter nähert sich dem Areal. Beobachten Sie die Wetterentwicklung und halten Sie sich für Schutzmaßnahmen bereit.')">Wetterwarnung (Gelb)</button>
+            </div>
+
+            <div class="section-title">Manuelle Berichterstattung</div>
+            <form id="incidentForm">
+                <div class="form-group">
+                    <label for="eventId">Zugeordnete Event-ID</label>
+                    <input type="text" id="eventId" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="token">Veranstalter Passwort</label>
+                    <input type="password" id="token" class="form-control" required>
+                </div>
+                <hr style="border:0; border-top:1px solid #e2e8f0; margin:15px 0;">
+                <div class="form-group">
+                    <label for="level">Warnstufe</label>
+                    <select id="level" class="form-control">
+                        <option value="safe">Grün: Normalbetrieb / Entwarnung</option>
+                        <option value="warning">Gelb: Warnung (Erhöhte Aufmerksamkeit)</option>
+                        <option value="danger">Rot: Gefahr (Sofortige Maßnahmen erforderlich)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">Meldungs-Titel</label>
+                    <input type="text" id="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Lagebeschreibung / Anweisung</label>
+                    <textarea id="message" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Meldung publizieren</button>
+            </form>
+            <div id="syncLog">System betriebsbereit.</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyACU1YMRq1MBM4iPSSWUuEQxacZNoQPyOU",
+            authDomain: "veloradar-ah.firebaseapp.com",
+            projectId: "veloradar-ah",
+            storageBucket: "veloradar-ah.firebasestorage.app",
+            messagingSenderId: "95043949449",
+            appId: "1:95043949449:web:ad41a776dd243b41c24758",
+            measurementId: "G-7K073HRBLG"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Verarbeitet sowohl manuelle Formulare als auch die Makro-Schnelltasten
+        window.triggerMacro = function(level, title, message) {
+            document.getElementById('level').value = level;
+            document.getElementById('title').value = title;
+            document.getElementById('message').value = message;
+            
+            // Löst die Übermittlung automatisch aus, wenn ID und PW eingetragen sind
+            if(document.getElementById('eventId').value && document.getElementById('token').value) {
+                document.getElementById('incidentForm').requestSubmit();
+            } else {
+                alert("Bitte tragen Sie zuerst oben Ihre Event-ID und das Passwort ein.");
+            }
+        }
+
+        document.getElementById('incidentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const log = document.getElementById('syncLog');
+            const id = document.getElementById('eventId').value.trim();
+            log.innerText = "Sende Datenpaket an Zentralinstanz...";
+
+            try {
+                await setDoc(doc(db, "incidents", id), {
+                    level: document.getElementById('level').value,
+                    title: document.getElementById('title').value,
+                    message: document.getElementById('message').value,
+                    secretToken: document.getElementById('token').value,
+                    updatedAt: new Date().toISOString()
+                });
+                log.innerText = "Status erfolgreich aktualisiert.";
+                log.style.color = "#15803d";
+            } catch (error) {
+                log.innerText = "Fehler: Autorisierung fehlgeschlagen.";
+                log.style.color = "#b91c1c";
+            }
+        });
+    </script>
+</body>
+</html>
