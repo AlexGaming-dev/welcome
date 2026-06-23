@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Truepage Redirecting...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-400 font-sans min-h-screen flex items-center justify-center">
+
+    <div class="text-center space-y-4">
+        <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p class="text-sm font-medium tracking-wide">Sichere Weiterleitung über <span class="text-white font-bold">truepa.ge</span>...</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI",
+            authDomain: "truepage-ah.firebaseapp.com",
+            projectId: "truepage-ah",
+            storageBucket: "truepage-ah.firebasestorage.app",
+            messagingSenderId: "679330743144",
+            appId: "1:679330743144:web:f872ed11f8f935d1f60cdd"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function resolveShortlink() {
+            const pathSegments = window.location.pathname.split('/');
+            const shortId = pathSegments[pathSegments.indexOf('s') + 1];
+
+            if (!shortId) {
+                window.location.href = "/index.html";
+                return;
+            }
+
+            try {
+                const linkRef = doc(db, "shortlinks", shortId);
+                const linkSnap = await getDoc(linkRef);
+
+                if (linkSnap.exists()) {
+                    const data = linkSnap.data();
+                    
+                    // Analytics Klick zählen
+                    await setDoc(doc(db, "analytics", shortId), {
+                        clicks: increment(1),
+                        lastClick: new Date()
+                    }, { merge: true });
+
+                    window.location.href = data.targetUrl;
+                } else {
+                    document.body.innerHTML = "<div class='text-center text-red-400 font-bold'>❌ Shortlink nicht gefunden.</div>";
+                }
+            } catch (e) {
+                console.error(e);
+                window.location.href = "/index.html";
+            }
+        }
+        resolveShortlink();
+    </script>
+</body>
+</html>
