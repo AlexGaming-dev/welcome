@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Truepage Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white p-10">
+    <h1 class="text-3xl font-bold mb-10">Verifizierungs-Anträge</h1>
+    <div id="adminList" class="space-y-4">Lade...</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI",
+            authDomain: "truepage-ah.firebaseapp.com",
+            projectId: "truepage-ah",
+            storageBucket: "truepage-ah.firebasestorage.app",
+            messagingSenderId: "679330743144",
+            appId: "1:679330743144:web:f872ed11f8f935d1f60cdd"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // BITTE HIER DEINE UID EINTRAGEN
+        const MY_ADMIN_UID = "i4Ivzb3NmtXt8ljWKOgGv92obY02";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user && user.uid === MY_ADMIN_UID) { loadRequests(); }
+            else { document.body.innerHTML = "Zugriff verweigert."; }
+        });
+
+        async function loadRequests() {
+            const snap = await getDocs(collection(db, "verification_requests"));
+            const list = document.getElementById('adminList');
+            list.innerHTML = "";
+            snap.forEach(d => {
+                const req = d.data();
+                const card = document.createElement('div');
+                card.className = "bg-gray-900 p-6 rounded-xl border border-gray-800 flex justify-between";
+                card.innerHTML = `
+                    <div>
+                        <h2 class="text-blue-400 font-bold">@${req.slug}</h2>
+                        <p class="text-sm text-gray-400 mt-1">${req.reason}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button onclick="approve('${req.slug}')" class="bg-green-600 px-4 py-2 rounded font-bold">Haken geben</button>
+                        <button onclick="deny('${req.slug}')" class="bg-red-600 px-4 py-2 rounded font-bold text-xs opacity-50">Löschen</button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        window.approve = async (slug) => {
+            await updateDoc(doc(db, "pages", slug), { verified: true });
+            await deleteDoc(doc(db, "verification_requests", slug));
+            alert(slug + " verifiziert!");
+            location.reload();
+        };
+
+        window.deny = async (slug) => {
+            await deleteDoc(doc(db, "verification_requests", slug));
+            location.reload();
+        };
+    </script>
+</body>
+</html>

@@ -3,135 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truepage — Advanced Dashboard</title>
+    <title>Truepage — Identität & Links</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .verified-badge {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
+        .verified-badge { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .view-section { display: none; }
+        .view-active { display: block; }
     </style>
 </head>
-<body class="bg-gray-950 text-gray-100 font-sans min-h-screen flex flex-col">
+<body class="bg-gray-950 text-gray-100 font-sans min-h-screen">
 
-    <nav class="border-b border-gray-900 bg-gray-950/50 backdrop-blur sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2 text-xl font-bold tracking-wider text-white cursor-pointer" onclick="showView('view-landing')">
+    <nav id="mainNav" class="border-b border-gray-900 bg-gray-950/50 backdrop-blur sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2 text-xl font-bold tracking-wider text-white cursor-pointer" onclick="window.location.href='index.html'">
             <span>truepa<span class="text-blue-500">.ge</span></span>
         </div>
-        <div id="navAuthSection">
-            <button onclick="loginWithGoogle()" class="bg-white text-gray-950 font-semibold px-4 py-2 rounded-xl text-sm hover:bg-gray-200 transition">Mit Google anmelden</button>
-        </div>
+        <div id="navAuthSection"></div>
     </nav>
 
-    <div class="flex-1 flex flex-col">
+    <div id="mainContainer">
+        <section id="view-landing" class="view-section text-center px-6 py-20 space-y-8">
+            <h1 class="text-6xl font-black text-white leading-none">Deine Identität.<br><span class="text-blue-500">Absolut verifiziert.</span></h1>
+            <button onclick="loginWithGoogle()" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl transition">Jetzt starten</button>
+        </section>
 
-        <section id="view-landing" class="view-section max-w-4xl mx-auto text-center px-6 py-20 my-auto space-y-8">
-            <span class="bg-blue-950/50 text-blue-400 border border-blue-900/60 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase">🚀 Next-Gen Link-In-Bio</span>
-            <h1 class="text-5xl md:text-6xl font-black text-white tracking-tight leading-none">
-                Deine Identität.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-400">Absolut verifiziert.</span>
-            </h1>
-            <div class="pt-4">
-                <button onclick="showView('view-auth')" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-4 rounded-xl shadow-lg transition">Jetzt starten</button>
+        <section id="view-register-slug" class="view-section max-w-md mx-auto py-20 px-6">
+            <div class="bg-gray-900/50 border border-gray-900 p-8 rounded-3xl backdrop-blur">
+                <h2 class="text-xl font-bold mb-4">Wähle deinen Namen</h2>
+                <input type="text" id="pageUrlInput" placeholder="wunschname" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-white outline-none mb-4">
+                <button onclick="createNewPage()" class="w-full bg-blue-600 py-3 rounded-xl font-bold">Seite erstellen</button>
             </div>
         </section>
 
-        <section id="view-auth" class="view-section hidden max-w-md w-full mx-auto px-6 py-20 my-auto text-center">
-            <div class="bg-gray-900/50 border border-gray-900 p-8 rounded-3xl backdrop-blur">
-                <h2 class="text-2xl font-bold text-white mb-2">Willkommen bei Truepage</h2>
-                <p class="text-sm text-gray-400 mb-8">Registrierung und Login laufen sicher über Google.</p>
-                <button onclick="loginWithGoogle()" class="w-full bg-white text-gray-950 font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center space-x-3 hover:bg-gray-200">
-                    <span>Weiter mit Google</span>
-                </button>
-            </div>
-        </section>
-
-        <section id="view-register-slug" class="view-section hidden max-w-md w-full mx-auto px-6 py-20 my-auto">
-            <div class="bg-gray-900/50 border border-gray-900 p-8 rounded-3xl backdrop-blur">
-                <h2 class="text-xl font-bold text-white mb-2">Sichere dir deine URL</h2>
-                <div class="space-y-4 mt-4">
-                    <div class="flex rounded-xl overflow-hidden border border-gray-800 focus-within:border-blue-500 transition">
-                        <span class="bg-gray-800 px-4 py-3 text-gray-400 text-sm flex items-center">truepa.ge/</span>
-                        <input type="text" id="pageUrlInput" placeholder="wunschname" class="bg-transparent px-3 py-3 w-full text-white text-sm outline-none">
+        <section id="view-editor" class="view-section max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <main class="lg:col-span-5 space-y-6">
+                <div class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl">
+                    <h2 class="font-semibold mb-4 text-white">Profil anpassen</h2>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gray-800 border overflow-hidden cursor-pointer" onclick="document.getElementById('avatarUploader').click()" id="dashAvatar"></div>
+                        <input type="file" id="avatarUploader" class="hidden" accept="image/*">
+                        <input type="text" id="displayNameInput" placeholder="Dein voller Name" oninput="updatePreview()" class="flex-1 bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-white outline-none">
                     </div>
-                    <button onclick="createNewPage()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-xl transition text-sm">Seite erstellen</button>
+                    <button onclick="saveProfileMeta()" class="w-full bg-gray-800 py-2 rounded-lg text-xs font-bold uppercase">Metadaten speichern</button>
                 </div>
-            </div>
-        </section>
-
-        <section id="view-editor" class="view-section hidden max-w-7xl mx-auto w-full px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10 flex-1">
-            
-            <main class="lg:col-span-5 space-y-6 max-h-[85vh] overflow-y-auto pr-2">
-                
-                <section class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl space-y-4">
-                    <h2 class="text-md font-semibold text-white">Profil anpassen</h2>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-16 h-16 rounded-full bg-gray-800 border border-gray-700 overflow-hidden relative group cursor-pointer" onclick="document.getElementById('avatarUploader').click()">
-                            <div id="dashboardAvatarContainer" class="w-full h-full flex items-center justify-center text-lg font-bold text-gray-400 uppercase">?</div>
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[10px] text-white font-semibold transition">Ändern</div>
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <input type="text" id="displayNameInput" placeholder="Anzeigename (z.B. Alexander Dennhoven)" oninput="updateProfileMetaLive()" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-blue-500">
-                            <input type="file" id="avatarUploader" accept="image/*" class="hidden">
-                            <button onclick="saveProfileMeta()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">Änderungen speichern</button>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl">
-                    <h2 class="text-md font-semibold text-white mb-4">Profil-Link hinzufügen</h2>
-                    <div class="space-y-3">
-                        <input type="text" id="linkTitleInput" placeholder="Titel" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500">
-                        <input type="url" id="linkUrlInput" placeholder="Ziel-URL (https://...)" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500">
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Icon (optional):</label>
-                            <input type="file" id="linkImageUploader" accept="image/*" class="text-xs text-gray-400 file:bg-gray-800 file:text-gray-200 cursor-pointer">
-                        </div>
-                        <button onclick="addNewLink()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-sm transition">Link einspeisen</button>
-                    </div>
-                </section>
-
-                <section class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl">
-                    <h2 class="text-md font-semibold text-white mb-2">Deine Bausteine</h2>
-                    <div id="linksEditorContainer" class="space-y-2"></div>
-                </section>
-
-                <section class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl space-y-3">
-                    <h2 class="text-md font-semibold text-white">Shortlink Generator</h2>
-                    <input type="url" id="standaloneShortlinkInput" placeholder="Beliebige Ziel-URL..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500">
-                    <button onclick="generateStandaloneShortlink()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-sm transition">Shortlink generieren</button>
-                    <div id="shortlinkOutputContainer" class="hidden bg-gray-950 p-3 rounded-xl border border-gray-800 flex justify-between items-center text-xs">
-                        <span id="generatedShortlinkText" class="text-blue-400 font-mono select-all"></span>
-                        <span class="text-emerald-400 font-medium">Bereit!</span>
-                    </div>
-                </section>
-
-                <section class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl space-y-3">
-                    <h2 class="text-md font-semibold text-white">Custom Verifizierung</h2>
-                    <textarea id="verificationReason" rows="3" placeholder="Grund oder Social Media Kanäle einreichen..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white outline-none focus:border-blue-500 resize-none"></textarea>
-                    <button onclick="submitCustomVerification()" id="btnSubmitVerification" class="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold py-2 rounded-xl text-xs transition">Prüfung beantragen</button>
-                </section>
+                <div class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl space-y-3">
+                    <h2 class="font-semibold text-white">Neuer Link</h2>
+                    <input type="text" id="linkTitle" placeholder="Titel" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-white">
+                    <input type="url" id="linkUrl" placeholder="URL" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-white">
+                    <button onclick="addLink()" class="w-full bg-blue-600 py-2 rounded-xl font-bold">Link hinzufügen</button>
+                    <div id="editorLinks" class="space-y-2 mt-4"></div>
+                </div>
+                <div class="bg-gray-900/40 border border-gray-900 p-6 rounded-2xl">
+                    <h2 class="font-semibold text-white mb-2">Verifizierung beantragen</h2>
+                    <textarea id="verifyReason" placeholder="Grund..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white mb-2"></textarea>
+                    <button onclick="applyVerify()" class="w-full bg-indigo-900 text-indigo-300 py-2 rounded-xl text-xs font-bold">Antrag absenden</button>
+                </div>
             </main>
 
-            <aside class="lg:col-span-7 flex flex-col items-center">
-                <div class="w-full max-w-sm bg-gray-900 border border-gray-800 rounded-[3rem] p-4 shadow-2xl relative aspect-[9/19] flex flex-col">
-                    <div class="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-between bg-gradient-to-b from-gray-900 via-gray-950 to-gray-950 rounded-[2.5rem]">
-                        <div class="w-full flex flex-col items-center text-center mt-6">
-                            <div class="relative mb-3">
-                                <div class="w-20 h-20 rounded-full bg-gray-800 border-2 border-gray-700 overflow-hidden flex items-center justify-center text-xl font-bold text-white uppercase" id="avatarContainer">
-                                    <span id="avatarLetter">?</span>
-                                </div>
-                                <div id="blueBadge" class="hidden absolute bottom-0 right-0 w-6 h-6 rounded-full verified-badge border-2 border-gray-950 flex items-center justify-center p-1">
-                                    <svg class="text-white w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                </div>
-                            </div>
-                            <h1 class="text-base font-bold text-white tracking-wide" id="previewFullName">Anzeigename</h1>
-                            <p class="text-xs text-gray-500 mt-0.5">@<span id="profileName">name</span></p>
+            <aside class="lg:col-span-7 flex justify-center">
+                <div id="phonePreview" class="w-full max-w-sm bg-gray-900 border-[8px] border-gray-800 rounded-[3rem] aspect-[9/19] p-4 shadow-2xl relative overflow-hidden">
+                    <div class="h-full bg-gradient-to-b from-gray-900 to-black p-6 flex flex-col items-center">
+                        <div class="relative mt-8 mb-4">
+                            <div id="prevAvatar" class="w-24 h-24 rounded-full border-2 border-gray-700 bg-gray-800 overflow-hidden flex items-center justify-center text-2xl font-bold uppercase">?</div>
+                            <div id="prevBadge" class="hidden absolute bottom-0 right-0 w-6 h-6 verified-badge rounded-full border-2 border-gray-900 p-1"><svg fill="white" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg></div>
                         </div>
-                        <div id="linksPreviewContainer" class="w-full space-y-3 my-auto py-6"></div>
-                        <div class="text-center"><span class="text-[10px] text-gray-600 tracking-wider font-semibold">truepa.ge</span></div>
+                        <h2 id="prevName" class="text-lg font-bold text-white">Name</h2>
+                        <p id="prevSlug" class="text-xs text-gray-500 mb-6">@slug</p>
+                        <div id="prevLinks" class="w-full space-y-3"></div>
                     </div>
                 </div>
             </aside>
+        </section>
+
+        <section id="view-public" class="view-section min-h-screen flex items-center justify-center p-6">
+            <div id="publicContent" class="w-full max-w-sm flex flex-col items-center text-center">
+                </div>
         </section>
     </div>
 
@@ -155,145 +100,136 @@
         const provider = new GoogleAuthProvider();
 
         let currentUser = null, activeSlug = null, localLinks = [];
-        let draggedItemIndex = null;
 
-        window.showView = function(viewId) {
-            document.querySelectorAll('.view-section').forEach(v => v.classList.add('hidden'));
-            document.getElementById(viewId).classList.remove('hidden');
-        };
-
-        window.loginWithGoogle = function() { signInWithPopup(auth, provider).catch(err => console.error(err)); };
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                currentUser = user;
-                const userSnap = await getDoc(doc(db, "users", user.uid));
-                if (userSnap.exists() && userSnap.data().activeSlug) {
-                    activeSlug = userSnap.data().activeSlug;
-                    showView('view-editor');
-                    loadPageData();
-                } else { showView('view-register-slug'); }
-            } else { showView('view-landing'); }
-        });
-
-        window.createNewPage = async function() {
-            const slug = document.getElementById('pageUrlInput').value.trim().toLowerCase();
-            if(!slug) return;
-            await setDoc(doc(db, "pages", slug), { ownerUid: currentUser.uid, slug, verified: false, links: [], avatarData: "", displayName: slug });
-            await setDoc(doc(db, "users", currentUser.uid), { activeSlug: slug });
-            activeSlug = slug;
-            showView('view-editor');
-            loadPageData();
-        };
-
-        async function loadPageData() {
-            const snap = await getDoc(doc(db, "pages", activeSlug));
-            if(!snap.exists()) return;
-            const data = snap.data();
-            localLinks = data.links || [];
-
-            document.getElementById('profileName').innerText = data.slug;
-            document.getElementById('previewFullName').innerText = data.displayName || data.slug;
-            document.getElementById('displayNameInput').value = data.displayName || "";
-            
-            if (data.avatarData) {
-                document.getElementById('avatarContainer').innerHTML = `<img src="${data.avatarData}" class="w-full h-full object-cover">`;
-                document.getElementById('dashboardAvatarContainer').innerHTML = `<img src="${data.avatarData}" class="w-full h-full object-cover">`;
-            }
-            if(data.verified) document.getElementById('blueBadge').classList.remove('hidden');
-            renderLinks();
+        // ROUTER & VIEW LOGIK
+        function showView(viewId) {
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('view-active'));
+            document.getElementById(viewId).classList.add('view-active');
         }
 
-        window.updateProfileMetaLive = function() {
-            document.getElementById('previewFullName').innerText = document.getElementById('displayNameInput').value.trim() || activeSlug;
+        // PRÜFEN: IST ES EIN PROFIL-AUFRUF?
+        const urlParams = new URLSearchParams(window.location.search);
+        const userQuery = urlParams.get('u');
+
+        if (userQuery) {
+            document.getElementById('mainNav').style.display = 'none';
+            loadPublicProfile(userQuery);
+        } else {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    currentUser = user;
+                    document.getElementById('navAuthSection').innerHTML = `<span class="text-xs mr-3">${user.displayName}</span><button onclick="auth.signOut()" class="text-xs bg-gray-900 px-3 py-1 rounded-lg">Logout</button>`;
+                    const userSnap = await getDoc(doc(db, "users", user.uid));
+                    if (userSnap.exists()) { activeSlug = userSnap.data().activeSlug; loadEditorData(); }
+                    else { showView('view-register-slug'); }
+                } else { showView('view-landing'); }
+            });
+        }
+
+        window.loginWithGoogle = () => signInWithPopup(auth, provider);
+
+        window.createNewPage = async () => {
+            const slug = document.getElementById('pageUrlInput').value.trim().toLowerCase();
+            if(!slug) return;
+            await setDoc(doc(db, "pages", slug), { ownerUid: currentUser.uid, slug, displayName: currentUser.displayName, verified: false, links: [], avatarData: "" });
+            await setDoc(doc(db, "users", currentUser.uid), { activeSlug: slug });
+            location.reload();
         };
 
-        window.saveProfileMeta = async function() {
-            await updateDoc(doc(db, "pages", activeSlug), { displayName: document.getElementById('displayNameInput').value.trim() });
-            alert("Profil gespeichert!");
+        async function loadEditorData() {
+            const snap = await getDoc(doc(db, "pages", activeSlug));
+            const data = snap.data();
+            localLinks = data.links || [];
+            document.getElementById('displayNameInput').value = data.displayName || "";
+            activeSlug = data.slug;
+            updatePreview(data);
+            renderEditorLinks();
+            showView('view-editor');
+        }
+
+        window.updatePreview = (data) => {
+            const name = document.getElementById('displayNameInput').value || "Name";
+            document.getElementById('prevName').innerText = name;
+            document.getElementById('prevSlug').innerText = "@" + activeSlug;
+            if (data?.avatarData) {
+                const img = `<img src="${data.avatarData}" class="w-full h-full object-cover">`;
+                document.getElementById('prevAvatar').innerHTML = img;
+                document.getElementById('dashAvatar').innerHTML = img;
+            }
+            if(data?.verified) document.getElementById('prevBadge').classList.remove('hidden');
         };
 
+        // BILD SPEICHERN FIX
         document.getElementById('avatarUploader').addEventListener('change', function(e) {
             const file = e.target.files[0];
-            if (!file) return;
             const reader = new FileReader();
-            reader.onload = async function(event) {
+            reader.onload = async (event) => {
                 const base64 = event.target.result;
-                document.getElementById('avatarContainer').innerHTML = `<img src="${base64}" class="w-full h-full object-cover">`;
-                document.getElementById('dashboardAvatarContainer').innerHTML = `<img src="${base64}" class="w-full h-full object-cover">`;
                 await updateDoc(doc(db, "pages", activeSlug), { avatarData: base64 });
+                loadEditorData();
             };
             reader.readAsDataURL(file);
         });
 
-        window.addNewLink = function() {
-            const title = document.getElementById('linkTitleInput').value.trim();
-            const url = document.getElementById('linkUrlInput').value.trim();
-            const imgFile = document.getElementById('linkImageUploader').files[0];
+        window.saveProfileMeta = async () => {
+            const newName = document.getElementById('displayNameInput').value;
+            await updateDoc(doc(db, "pages", activeSlug), { displayName: newName });
+            alert("Gespeichert!");
+        };
+
+        window.addLink = async () => {
+            const title = document.getElementById('linkTitle').value, url = document.getElementById('linkUrl').value;
             if(!title || !url) return;
             const shortId = Math.floor(100000 + Math.random() * 900000).toString();
-
-            if (imgFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) { save({ shortId, title, url, iconData: e.target.result }); };
-                reader.readAsDataURL(imgFile);
-            } else { save({ shortId, title, url, iconData: "" }); }
-        };
-
-        async function save(linkObj) {
-            localLinks.push(linkObj);
-            await setDoc(doc(db, "shortlinks", linkObj.shortId), { targetUrl: linkObj.url });
+            localLinks.push({ title, url, shortId });
             await updateDoc(doc(db, "pages", activeSlug), { links: localLinks });
-            renderLinks();
-        }
-
-        window.generateStandaloneShortlink = async function() {
-            const targetUrl = document.getElementById('standaloneShortlinkInput').value.trim();
-            if(!targetUrl) return;
-            const shortId = Math.floor(100000 + Math.random() * 900000).toString();
-            await setDoc(doc(db, "shortlinks", shortId), { targetUrl });
-
-            const outContainer = document.getElementById('shortlinkOutputContainer');
-            outContainer.classList.remove('hidden');
-            document.getElementById('generatedShortlinkText').innerText = `${window.location.origin}/truepage/s/?id=${shortId}`;
+            await setDoc(doc(db, "shortlinks", shortId), { targetUrl: url });
+            loadEditorData();
         };
 
-        window.submitCustomVerification = async function() {
-            const reason = document.getElementById('verificationReason').value.trim();
-            if(!reason) return;
-            await setDoc(doc(db, "verification_requests", activeSlug), { slug: activeSlug, applicantUid: currentUser.uid, reason, timestamp: new Date() });
-            alert("Antrag übermittelt!");
-        };
-
-        function renderLinks() {
-            const editorList = document.getElementById('linksEditorContainer');
-            const previewList = document.getElementById('linksPreviewContainer');
-            editorList.innerHTML = ''; previewList.innerHTML = '';
-
-            localLinks.forEach((link, index) => {
-                const el = document.createElement('div');
-                el.className = "bg-gray-950 border border-gray-800 p-3 rounded-xl flex justify-between items-center cursor-grab";
-                el.draggable = true;
-                el.innerHTML = `<span class="text-sm text-white">${link.title}</span><button class="text-xs text-red-500">X</button>`;
-                el.addEventListener('dragstart', () => { draggedItemIndex = index; });
-                el.addEventListener('drop', async () => {
-                    const item = localLinks.splice(draggedItemIndex, 1)[0];
-                    localLinks.splice(index, 0, item);
-                    await updateDoc(doc(db, "pages", activeSlug), { links: localLinks });
-                    renderLinks();
-                });
-                el.addEventListener('dragover', (e) => e.preventDefault());
-                editorList.appendChild(el);
-
-                const previewEl = document.createElement('a');
-                // Nutzt den Query-Parameter, um den 404-Fehler auf GitHub zu umgehen!
-                previewEl.href = `/truepage/s/?id=${link.shortId}`;
-                previewEl.target = "_blank";
-                previewEl.className = "flex items-center bg-gray-800/40 hover:bg-gray-800 border border-gray-800 py-3 px-4 rounded-xl text-sm text-white transition w-full text-center justify-center relative";
-                previewEl.innerText = link.title;
-                previewList.appendChild(previewEl);
+        function renderEditorLinks() {
+            const container = document.getElementById('editorLinks'), prevContainer = document.getElementById('prevLinks');
+            container.innerHTML = ""; prevContainer.innerHTML = "";
+            localLinks.forEach((link, i) => {
+                container.innerHTML += `<div class="bg-gray-950 p-2 rounded-lg flex justify-between text-xs"><span>${link.title}</span><button onclick="removeLink(${i})" class="text-red-500">Löschen</button></div>`;
+                prevContainer.innerHTML += `<a href="/truepage/s/?id=${link.shortId}" target="_blank" class="w-full bg-gray-800/50 py-3 px-4 rounded-xl text-center text-sm block border border-gray-800">${link.title}</a>`;
             });
         }
+
+        window.removeLink = async (i) => {
+            localLinks.splice(i, 1);
+            await updateDoc(doc(db, "pages", activeSlug), { links: localLinks });
+            loadEditorData();
+        };
+
+        window.applyVerify = async () => {
+            const reason = document.getElementById('verifyReason').value;
+            await setDoc(doc(db, "verification_requests", activeSlug), { slug: activeSlug, applicantUid: currentUser.uid, reason, timestamp: new Date() });
+            alert("Beantragt!");
+        };
+
+        // ÖFFENTLICHES PROFIL LADEN
+        async function loadPublicProfile(slug) {
+            const snap = await getDoc(doc(db, "pages", slug));
+            if (!snap.exists()) { document.body.innerHTML = "404 - Seite nicht gefunden"; return; }
+            const data = snap.data();
+            showView('view-public');
+            document.getElementById('publicContent').innerHTML = `
+                <div class="relative mb-6">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-800 bg-gray-900 overflow-hidden flex items-center justify-center text-3xl font-bold uppercase">
+                        ${data.avatarData ? `<img src="${data.avatarData}" class="w-full h-full object-cover">` : data.slug.charAt(0)}
+                    </div>
+                    ${data.verified ? `<div class="absolute bottom-1 right-1 w-8 h-8 verified-badge rounded-full border-4 border-gray-950 p-1.5"><svg fill="white" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg></div>` : ''}
+                </div>
+                <h1 class="text-2xl font-bold text-white">${data.displayName || data.slug}</h1>
+                <p class="text-gray-500 mb-8 tracking-wide">@${data.slug}</p>
+                <div class="w-full space-y-4">
+                    ${data.links.map(l => `<a href="/truepage/s/?id=${l.shortId}" target="_blank" class="block w-full bg-gray-900 border border-gray-800 py-4 px-6 rounded-2xl text-white font-medium hover:bg-gray-800 transition shadow-lg">${l.title}</a>`).join('')}
+                </div>
+                <div class="mt-12 opacity-30 text-[10px] uppercase font-bold tracking-widest text-white">Verified Identity by Truepage</div>
+            `;
+        }
+        window.auth = auth;
     </script>
 </body>
 </html>
