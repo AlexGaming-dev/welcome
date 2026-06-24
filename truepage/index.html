@@ -2,50 +2,36 @@
 <html lang="de" class="bg-gray-950 text-white">
 <head>
     <meta charset="UTF-8">
-    <title>Truepage | Professional</title>
+    <title>Truepage | Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="p-4 md:p-10 font-sans">
-    <div id="app" class="max-w-4xl mx-auto">
-        <header class="flex justify-between items-center mb-10 border-b border-gray-800 pb-5">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-xl">T</div>
-                <h1 class="text-2xl font-black tracking-tighter">TRUEPAGE</h1>
-            </div>
-            <div id="nav" class="text-sm text-gray-400"></div>
-        </header>
-        <div id="view">Initialisiere System...</div>
+<body class="p-10">
+    <div id="app" class="max-w-2xl mx-auto text-center">
+        <h1 class="text-4xl font-black mb-8">TRUEPAGE</h1>
+        <div id="view">
+            <button id="loginBtn" class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-500">Mit Google anmelden</button>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-        const config = { apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI", projectId: "truepage-ah" };
-        const db = getFirestore(initializeApp(config));
-        const auth = getAuth();
-        const ADMIN_UID = "DEINE_UID_HIER"; 
+        const auth = getAuth(initializeApp({ apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI", projectId: "truepage-ah" }));
+        const provider = new GoogleAuthProvider();
 
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) { document.getElementById('view').innerHTML = "Login erforderlich."; return; }
-            if (user.uid === ADMIN_UID) { renderAdmin(); } 
-            else { renderDashboard(user); }
+        document.getElementById('loginBtn').onclick = () => signInWithPopup(auth, provider);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('view').innerHTML = `
+                    <div class="space-y-4">
+                        <p>Eingeloggt als ${user.displayName}</p>
+                        <a href="admin.html" class="block bg-gray-800 p-4 rounded-xl">Admin Panel</a>
+                    </div>
+                `;
+            }
         });
-
-        async function renderAdmin() {
-            const snap = await getDocs(collection(db, "verification_requests"));
-            let html = '<h2 class="text-xl font-bold mb-6">Admin Management: Verifizierungen</h2>';
-            snap.forEach(d => {
-                html += `<div class="bg-gray-900 p-4 rounded-lg flex justify-between mb-2 border border-gray-800">
-                    <span>@${d.id}</span>
-                    <button onclick="approve('${d.id}')" class="bg-blue-600 px-3 py-1 rounded text-xs font-bold">Bestätigen</button>
-                </div>`;
-            });
-            document.getElementById('view').innerHTML = html;
-        }
-        window.approve = async (s) => { await updateDoc(doc(db, "pages", s), { verified: true }); location.reload(); };
     </script>
 </body>
 </html>

@@ -2,13 +2,12 @@
 <html lang="de" class="bg-black text-white">
 <head>
     <meta charset="UTF-8">
-    <title>Profile | Truepage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6">
-    <div id="root" class="w-full max-w-sm text-center">Lade Profil...</div>
-    <div id="qr-code" class="mt-10 bg-white p-2 rounded"></div>
+<body class="flex flex-col items-center justify-center min-h-screen p-6">
+    <div id="profile" class="w-full max-w-sm text-center"></div>
+    <div id="qr" class="mt-8 bg-white p-2 rounded"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
@@ -19,16 +18,16 @@
 
         async function init() {
             const snap = await getDoc(doc(db, "pages", id));
-            if(!snap.exists()) return;
-            const d = snap.data();
-            document.getElementById('root').innerHTML = `
-                <div class="w-24 h-24 mx-auto bg-gray-800 rounded-full mb-4"></div>
-                <h1 class="text-3xl font-black">${d.displayName}</h1>
-                <div class="space-y-3 mt-8">
-                    ${(d.links || []).map(l => `<a href="${l.url}" class="block bg-gray-900 hover:bg-gray-800 p-4 rounded-xl border border-gray-800 font-bold">${l.title}</a>`).join('')}
-                </div>
-            `;
-            new QRCode(document.getElementById("qr-code"), window.location.href);
+            if(snap.exists()) {
+                const d = snap.data();
+                document.getElementById('profile').innerHTML = `
+                    <h1 class="text-3xl font-bold mb-6">${d.displayName}</h1>
+                    <div class="space-y-3">
+                        ${(d.links || []).map(l => `<a href="${l.url}" class="block bg-gray-800 p-4 rounded-xl">${l.title}</a>`).join('')}
+                    </div>
+                `;
+                new QRCode(document.getElementById("qr"), window.location.href);
+            }
         }
         init();
     </script>
