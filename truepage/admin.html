@@ -1,66 +1,68 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="bg-gray-950 text-white">
 <head>
     <meta charset="UTF-8">
-    <title>Truepage Admin</title>
+    <title>Truepage | Administration</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white p-10">
-    <h1 class="text-3xl font-bold mb-10">Verifizierungs-Anträge</h1>
-    <div id="adminList" class="space-y-4">Lade...</div>
+<body class="p-4 md:p-10">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-10 border-b border-gray-800 pb-5 flex justify-between items-center">
+            <h1 class="text-2xl font-black tracking-tighter text-blue-500">ADMIN PANEL</h1>
+            <a href="index.html" class="text-xs bg-gray-900 px-4 py-2 rounded-lg hover:bg-gray-800 transition">Zurück zum Dashboard</a>
+        </header>
+
+        <div id="admin-view" class="space-y-4">
+            <div class="animate-pulse">System wird autorisiert...</div>
+        </div>
+    </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
         import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI",
-            authDomain: "truepage-ah.firebaseapp.com",
-            projectId: "truepage-ah",
-            storageBucket: "truepage-ah.firebasestorage.app",
-            messagingSenderId: "679330743144",
-            appId: "1:679330743144:web:f872ed11f8f935d1f60cdd"
-        };
+        const config = { apiKey: "AIzaSyB91kgTv8QyGkCMibaftH3mtLS4NmGbLTI", projectId: "truepage-ah" };
+        const db = getFirestore(initializeApp(config));
+        const auth = getAuth();
+        const ADMIN_UID = "i4Ivzb3NmtXt8ljWKOgGv92obY02";
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        // BITTE HIER DEINE UID EINTRAGEN
-        const MY_ADMIN_UID = "i4Ivzb3NmtXt8ljWKOgGv92obY02";
-
-        onAuthStateChanged(auth, (user) => {
-            if (user && user.uid === MY_ADMIN_UID) { loadRequests(); }
-            else { document.body.innerHTML = "Zugriff verweigert."; }
+        onAuthStateChanged(auth, async (user) => {
+            if (user && user.uid === ADMIN_UID) {
+                loadVerificationQueue();
+            } else {
+                document.getElementById('admin-view').innerHTML = '<div class="text-red-500 font-bold">Zugriff verweigert. Nur für alexgamingdev.</div>';
+            }
         });
 
-        async function loadRequests() {
+        async function loadVerificationQueue() {
             const snap = await getDocs(collection(db, "verification_requests"));
-            const list = document.getElementById('adminList');
-            list.innerHTML = "";
+            const view = document.getElementById('admin-view');
+            view.innerHTML = '<h2 class="text-xl font-bold mb-4">Verifizierungs-Anträge</h2>';
+            
+            if(snap.empty) view.innerHTML += '<p class="text-gray-500">Keine offenen Anträge.</p>';
+
             snap.forEach(d => {
                 const req = d.data();
-                const card = document.createElement('div');
-                card.className = "bg-gray-900 p-6 rounded-xl border border-gray-800 flex justify-between";
-                card.innerHTML = `
+                const div = document.createElement('div');
+                div.className = "bg-gray-900 p-6 rounded-2xl border border-gray-800 flex justify-between items-center";
+                div.innerHTML = `
                     <div>
-                        <h2 class="text-blue-400 font-bold">@${req.slug}</h2>
-                        <p class="text-sm text-gray-400 mt-1">${req.reason}</p>
+                        <h3 class="font-bold text-lg">@${req.slug}</h3>
+                        <p class="text-sm text-gray-400">Grund: ${req.reason}</p>
                     </div>
                     <div class="space-x-2">
-                        <button onclick="approve('${req.slug}')" class="bg-green-600 px-4 py-2 rounded font-bold">Haken geben</button>
-                        <button onclick="deny('${req.slug}')" class="bg-red-600 px-4 py-2 rounded font-bold text-xs opacity-50">Löschen</button>
+                        <button onclick="approve('${req.slug}')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl text-xs font-bold transition">Verifizieren</button>
+                        <button onclick="deny('${req.slug}')" class="bg-red-900 hover:bg-red-800 px-4 py-2 rounded-xl text-xs font-bold transition">Ablehnen</button>
                     </div>
                 `;
-                list.appendChild(card);
+                view.appendChild(div);
             });
         }
 
         window.approve = async (slug) => {
             await updateDoc(doc(db, "pages", slug), { verified: true });
             await deleteDoc(doc(db, "verification_requests", slug));
-            alert(slug + " verifiziert!");
             location.reload();
         };
 
