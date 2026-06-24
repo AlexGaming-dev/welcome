@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+        const firebaseConfig = { /* DEINE CONFIG */ };
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        // Pfad analysieren: /truepage/s/agd -> agd
+        const pathParts = window.location.pathname.split('/');
+        const slug = pathParts[pathParts.length - 1];
+
+        async function loadProfile() {
+            const snap = await getDoc(doc(db, "pages", slug));
+            if (snap.exists()) {
+                const data = snap.data();
+                document.body.innerHTML = `<h1>${data.displayName}</h1>...`; // Hier dein Profil-Design
+            } else {
+                document.body.innerHTML = "Profil nicht gefunden.";
+            }
+        }
+        loadProfile();
+    </script>
+</head>
+<body></body>
+</html>
