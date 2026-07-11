@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>NEWS | alexgamingdev</title>
+    <link rel="icon" href="https://alexgaming.is-a.dev/icons/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --primary-black: #050505; --accent-blue: #00f2ff; }
+        body { background-color: var(--primary-black); color: #e0e0e0; font-family: 'Rajdhani', sans-serif; margin: 0; }
+        .space-bg { position: fixed; inset: 0; background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%); z-index: -1; }
+        .project-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); }
+    </style>
+</head>
+<body>
+    <div class="space-bg"></div>
+    <nav class="flex items-center justify-between px-8 py-6">
+        <div class="flex items-center gap-3">
+            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-8 h-8">
+            <span class="font-['Orbitron'] font-bold text-lg tracking-wider">alexgaming<span class="text-purple-500">dev</span></span>
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto p-10">
+        <h1 class="text-4xl font-bold mb-12 text-white font-['Orbitron']">// SYSTEM_LOGS</h1>
+        <div id="news-feed" class="grid gap-6"></div>
+    </main>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+        const db = getFirestore(initializeApp({ /* CONFIG */ }));
+        onSnapshot(query(collection(db, "news"), orderBy("timestamp", "desc")), (s) => {
+            document.getElementById('news-feed').innerHTML = '';
+            s.forEach((d) => {
+                const data = d.data();
+                document.getElementById('news-feed').innerHTML += `
+                    <div class="project-card p-8">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="${data.logo}" class="w-10 h-10 rounded-full border border-cyan-500">
+                            <div>
+                                <div class="font-bold">${data.displayName} ${data.verified ? '✓' : ''}</div>
+                                <div class="text-xs text-cyan-400 mono">@${data.username}</div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">${data.title}</h3>
+                        <p class="text-white/70">${data.content}</p>
+                    </div>`;
+            });
+        });
+    </script>
+</body>
+</html>
