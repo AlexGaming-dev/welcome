@@ -1,64 +1,77 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-DE" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <title>NEWS | alexgamingdev</title>
     <link rel="icon" href="https://alexgaming.is-a.dev/icons/favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-black: #050505; --accent-blue: #00f2ff; }
-        body { background-color: var(--primary-black); color: #e0e0e0; font-family: 'Rajdhani', sans-serif; margin: 0; }
-        .space-bg { position: fixed; inset: 0; background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%); z-index: -1; }
-        .project-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); }
+        :root { --primary-black: #050505; --accent-blue: #00f2ff; --accent-purple: #bc13fe; --text-main: #e0e0e0; }
+        body { font-family: 'Rajdhani', sans-serif; background-color: var(--primary-black); color: var(--text-main); margin: 0; }
+        .mono { font-family: 'Fira Code', monospace; }
+        .space-container { position: fixed; inset: 0; background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%); z-index: -1; }
+        .star-layer { position: absolute; inset: 0; background-repeat: repeat; pointer-events: none; }
+        .animated-dev { background: linear-gradient(90deg, #00f2ff, #bc13fe, #00f2ff); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-shift 3s linear infinite; }
+        @keyframes gradient-shift { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+        .news-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%); }
     </style>
 </head>
-<body>
-    <div class="space-bg"></div>
-    <nav class="flex items-center justify-between px-8 py-6">
-        <div class="flex items-center gap-3">
-            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-8 h-8">
-            <span class="font-['Orbitron'] font-bold text-lg tracking-wider">alexgaming<span class="text-purple-500">dev</span></span>
+<body class="antialiased">
+    <div class="space-container" id="space-bg"></div>
+
+    <nav class="fixed w-full z-50 px-8 py-4 flex justify-between items-center bg-black/60 backdrop-blur-xl border-b border-white/5">
+        <div class="text-lg font-black tracking-widest text-white flex items-center cursor-pointer" onclick="window.location.href='/'">
+            <img src="https://alexgaming.is-a.dev/icons/favicon.png" class="w-8 h-8 mr-2">
+            <span>alexgaming<span class="animated-dev">dev</span></span>
         </div>
     </nav>
-    <main class="max-w-4xl mx-auto p-10">
-        <h1 class="text-4xl font-bold mb-12 text-white font-['Orbitron']">// SYSTEM_LOGS</h1>
+
+    <main class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+        <h1 class="text-4xl font-black mb-12 text-center text-white">// NEWS_FEED</h1>
         <div id="news-feed" class="grid gap-6"></div>
     </main>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
         
-        const firebaseConfig = {
-            apiKey: "AIzaSyBm1PN6GX87GLIzW7cggTmnLuB7jntJKRM",
-            authDomain: "alexgaming-dev.firebaseapp.com",
-            projectId: "alexgaming-dev",
-            storageBucket: "alexgaming-dev.firebasestorage.app",
-            messagingSenderId: "749802649463",
-            appId: "1:749802649463:web:66392d97fad59e6d4a9372",
-            measurementId: "G-07TMJREFCJ"
-        };
-        const db = getFirestore(initializeApp(firebaseConfig));
-        
+        const config = { apiKey: "AIzaSyBm1PN6GX87GLIzW7cggTmnLuB7jntJKRM", authDomain: "alexgaming-dev.firebaseapp.com", projectId: "alexgaming-dev", storageBucket: "alexgaming-dev.firebasestorage.app", messagingSenderId: "749802649463", appId: "1:749802649463:web:66392d97fad59e6d4a9372" };
+        const db = getFirestore(initializeApp(config));
+
+        const verifiedIcon = `<svg class="inline w-5 h-5 ml-1" viewBox="0 0 24 24" fill="#00a3ff"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.97.084-1.41.238-.65-1.273-2.02-2.148-3.6-2.148s-2.95.875-3.6 2.148c-.44-.154-.915-.238-1.41-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6s.875 2.95 2.148 3.6c-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .97-.084 1.41-.238.65 1.273 2.02 2.148 3.6 2.148s2.95-.875 3.6-2.148c.44.154.915.238 1.41.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-10.5 4.5l-5-5 1.41-1.41 3.59 3.59 7-7 1.41 1.41-8.41 8.41z" /></svg>`;
+
         onSnapshot(query(collection(db, "news"), orderBy("timestamp", "desc")), (s) => {
             const feed = document.getElementById('news-feed');
             feed.innerHTML = '';
             s.forEach((d) => {
                 const data = d.data();
                 feed.innerHTML += `
-                    <div class="project-card p-8">
-                        <div class="flex items-center gap-4 mb-4">
-                            <img src="${data.logo}" class="w-10 h-10 rounded-full border border-cyan-500">
+                    <div class="news-card p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <img src="${data.logo}" class="w-12 h-12 rounded-full border border-white/10">
                             <div>
-                                <div class="font-bold">${data.displayName} ${data.verified ? '✓' : ''}</div>
-                                <div class="text-xs text-cyan-400 font-['Fira_Code']">@${data.username}</div>
+                                <div class="font-bold text-lg">${data.displayName}${data.verified ? verifiedIcon : ''}</div>
+                                <div class="mono text-xs text-cyan-400">@${data.username}</div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-3 font-['Orbitron']">${data.title}</h3>
-                        <p class="text-white/70">${data.content}</p>
+                        <h3 class="text-2xl font-bold mb-4">${data.title}</h3>
+                        <p class="text-white/70 leading-relaxed">${data.content}</p>
                     </div>`;
             });
         });
+
+        // Background script from Impressum
+        const spaceBg = document.getElementById('space-bg');
+        function createStars(count, size, duration) {
+            const layer = document.createElement('div'); layer.className = 'star-layer';
+            let shadows = []; const w = window.innerWidth * 2; const h = window.innerHeight * 2;
+            for(let i=0; i<count; i++) shadows.push(`${Math.random()*w}px ${Math.random()*h}px #fff`);
+            layer.style.boxShadow = shadows.join(','); layer.style.width = size + 'px'; layer.style.height = size + 'px';
+            layer.style.animation = `move-stars ${duration}s linear infinite`; spaceBg.appendChild(layer);
+        }
+        function initStars() { spaceBg.innerHTML = ''; createStars(700, 1, 100); createStars(200, 2, 150); }
+        initStars();
     </script>
 </body>
 </html>
