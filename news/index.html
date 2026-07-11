@@ -28,21 +28,33 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
         import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-        const db = getFirestore(initializeApp({ /* CONFIG */ }));
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBm1PN6GX87GLIzW7cggTmnLuB7jntJKRM",
+            authDomain: "alexgaming-dev.firebaseapp.com",
+            projectId: "alexgaming-dev",
+            storageBucket: "alexgaming-dev.firebasestorage.app",
+            messagingSenderId: "749802649463",
+            appId: "1:749802649463:web:66392d97fad59e6d4a9372",
+            measurementId: "G-07TMJREFCJ"
+        };
+        const db = getFirestore(initializeApp(firebaseConfig));
+        
         onSnapshot(query(collection(db, "news"), orderBy("timestamp", "desc")), (s) => {
-            document.getElementById('news-feed').innerHTML = '';
+            const feed = document.getElementById('news-feed');
+            feed.innerHTML = '';
             s.forEach((d) => {
                 const data = d.data();
-                document.getElementById('news-feed').innerHTML += `
+                feed.innerHTML += `
                     <div class="project-card p-8">
                         <div class="flex items-center gap-4 mb-4">
                             <img src="${data.logo}" class="w-10 h-10 rounded-full border border-cyan-500">
                             <div>
                                 <div class="font-bold">${data.displayName} ${data.verified ? '✓' : ''}</div>
-                                <div class="text-xs text-cyan-400 mono">@${data.username}</div>
+                                <div class="text-xs text-cyan-400 font-['Fira_Code']">@${data.username}</div>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-3">${data.title}</h3>
+                        <h3 class="text-2xl font-bold text-white mb-3 font-['Orbitron']">${data.title}</h3>
                         <p class="text-white/70">${data.content}</p>
                     </div>`;
             });
