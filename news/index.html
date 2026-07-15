@@ -8,13 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { --primary-black: #050505; --accent-blue: #00f2ff; --accent-purple: #bc13fe; --text-main: #e0e0e0; }
-        body { font-family: 'Rajdhani', sans-serif; background-color: var(--primary-black); color: var(--text-main); margin: 0; }
+        body { font-family: 'Rajdhani', sans-serif; background-color: var(--primary-black); color: var(--text-main); margin: 0; overflow-x: hidden; }
         .mono { font-family: 'Fira Code', monospace; }
-        .space-container { position: fixed; inset: 0; background: radial-gradient(circle at center, #0a0a0a 0%, #050505 100%); z-index: -1; }
-        .star-layer { position: absolute; inset: 0; background-repeat: repeat; pointer-events: none; }
+        .space-container { position: fixed; inset: 0; background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%); z-index: -1; }
+        .star-layer { position: absolute; inset: 0; background-repeat: repeat; pointer-events: none; opacity: 0.5; }
+        
         .animated-dev { background: linear-gradient(90deg, #00f2ff, #bc13fe, #00f2ff); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-shift 3s linear infinite; }
         @keyframes gradient-shift { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-        .news-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%); }
+        
+        .news-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%); transition: transform 0.3s ease; }
+        .news-card:hover { transform: translateY(-5px); border-color: rgba(0, 242, 255, 0.2); }
+        
+        @keyframes move-stars { from { transform: translateY(0); } to { transform: translateY(-500px); } }
     </style>
 </head>
 <body class="antialiased">
@@ -39,7 +44,17 @@
         const config = { apiKey: "AIzaSyBm1PN6GX87GLIzW7cggTmnLuB7jntJKRM", authDomain: "alexgaming-dev.firebaseapp.com", projectId: "alexgaming-dev", storageBucket: "alexgaming-dev.firebasestorage.app", messagingSenderId: "749802649463", appId: "1:749802649463:web:66392d97fad59e6d4a9372" };
         const db = getFirestore(initializeApp(config));
 
-        const verifiedIcon = `<svg class="inline w-5 h-5 ml-1" viewBox="0 0 24 24" fill="#00a3ff"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.97.084-1.41.238-.65-1.273-2.02-2.148-3.6-2.148s-2.95.875-3.6 2.148c-.44-.154-.915-.238-1.41-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6s.875 2.95 2.148 3.6c-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .97-.084 1.41-.238.65 1.273 2.02 2.148 3.6 2.148s2.95-.875 3.6-2.148c.44.154.915.238 1.41.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-10.5 4.5l-5-5 1.41-1.41 3.59 3.59 7-7 1.41 1.41-8.41 8.41z" /></svg>`;
+        const verifiedIcon = `
+            <div style="padding-left: 4px;">
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 4px;">
+                    <div style="width: 18px; height: 18px;">
+                        <svg fill="none" width="18" viewBox="0 0 24 24" height="18">
+                            <circle cx="12" cy="12" r="11.5" fill="#0F73FF"></circle>
+                            <path fill="#fff" fill-rule="evenodd" clip-rule="evenodd" d="M17.659 8.175a1.361 1.361 0 0 1 0 1.925l-6.224 6.223a1.361 1.361 0 0 1-1.925 0L6.4 13.212a1.361 1.361 0 0 1 1.925-1.925l2.149 2.148 5.26-5.26a1.361 1.361 0 0 1 1.925 0Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>`;
 
         onSnapshot(query(collection(db, "news"), orderBy("timestamp", "desc")), (s) => {
             const feed = document.getElementById('news-feed');
@@ -51,7 +66,9 @@
                         <div class="flex items-center gap-4 mb-6">
                             <img src="${data.logo}" class="w-12 h-12 rounded-full border border-white/10">
                             <div>
-                                <div class="font-bold text-lg">${data.displayName}${data.verified ? verifiedIcon : ''}</div>
+                                <a href="https://bsky.app/profile/alexgaming.is-a.dev" class="flex items-center font-bold text-lg hover:text-cyan-400 transition-colors">
+                                    ${data.displayName}${data.verified ? verifiedIcon : ''}
+                                </a>
                                 <div class="mono text-xs text-cyan-400">@${data.username}</div>
                             </div>
                         </div>
@@ -61,17 +78,16 @@
             });
         });
 
-        // Background script from Impressum
         const spaceBg = document.getElementById('space-bg');
         function createStars(count, size, duration) {
             const layer = document.createElement('div'); layer.className = 'star-layer';
-            let shadows = []; const w = window.innerWidth * 2; const h = window.innerHeight * 2;
-            for(let i=0; i<count; i++) shadows.push(`${Math.random()*w}px ${Math.random()*h}px #fff`);
+            let shadows = []; 
+            for(let i=0; i<count; i++) shadows.push(`${Math.random()*2000}px ${Math.random()*2000}px #fff`);
             layer.style.boxShadow = shadows.join(','); layer.style.width = size + 'px'; layer.style.height = size + 'px';
             layer.style.animation = `move-stars ${duration}s linear infinite`; spaceBg.appendChild(layer);
         }
-        function initStars() { spaceBg.innerHTML = ''; createStars(700, 1, 100); createStars(200, 2, 150); }
-        initStars();
+        createStars(400, 2, 80);
+        createStars(200, 1, 120);
     </script>
 </body>
 </html>
