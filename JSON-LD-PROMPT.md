@@ -19,46 +19,159 @@ Verwende die folgenden JSON-LD-Daten als **einzige Wahrheitsquelle** für alle s
 ## Kanonischer `Person`-Node (immer gleich, nie ändern)
 
 ```json
-{
-  "@type": "Person",
-  "@id": "https://alexgaming.is-a.dev",
-  "name": "Alexander Dennhoven",
-  "alternateName": ["alexgamingdev", "alexander.dennhoven", "Alex Gaming Dev"],
-  "image": "https://alexgaming.is-a.dev/icons/favicon.png",
-  "url": "https://alexgaming.is-a.dev",
-  "jobTitle": "Software Developer & Architect",
-  "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
-  "nationality": { "@type": "Country", "name": "Germany" },
-  "gender": "male",
-  "knowsLanguage": ["de", "en", "la"],
-  "knowsAbout": [
-    { "@type": "Thing", "name": "Software Engineering" },
-    { "@type": "Thing", "name": "CLI Tools" },
-    { "@type": "Thing", "name": "Local-first Apps" },
-    { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q2370", "name": "C#" },
-    { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q3857014", "name": ".NET" },
-    { "@type": "Thing", "@id": "https://www.wikidata.org/wiki/Q846636", "name": "Software Architecture" },
-    { "@type": "Thing", "name": "Automation" }
-  ],
-  "founder": { "@id": "https://alexgaming.is-a.dev/#organization" },
-  "sameAs": [
-    "https://www.wikidata.org/wiki/Q138410440",
-    "https://github.com/alexgamingdev",
-    "https://x.com/alexgamingdev",
-    "https://www.linkedin.com/in/alexgamingdev/",
-    "https://www.youtube.com/@alexgamingdev",
-    "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
-    "https://www.twitch.tv/alexgamingdev",
-    "https://bsky.app/profile/alexgaming.is-a.dev",
-    "https://mastodon.social/@alexgamingdev",
-    "https://www.npmjs.com/~alexgamingdev",
-    "https://linktr.ee/alexgamingdev",
-    "https://de.pinterest.com/alexgamingdev/",
-    "https://news.alexgamingdev.tech",
-    "nostr:npub1tcv7ela0kwz6ntz3qxj1he65z6x8eghkhgk8m0kw92j0jzsztvqkphn77f",
-    "did:web:alexgaming.is-a.dev"
-  ]
-}
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://alexgaming.is-a.dev/#person",
+          "name": "Alexander Dennhoven (alexgamingdev)",
+          "alternateName": [
+              "Alexander Dennhoven",
+              "alexgamingdev",
+              "alexgamingdev | Alexander Dennhoven",
+              "Alex Gaming Dev",
+              "alexgamingdev | Alexander Dennhoven 🇨🇭"
+          ],
+          "legalName": "Alexander Dennhoven",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://alexgaming.is-a.dev/icons/og-main.jpg",
+            "url": "https://alexgaming.is-a.dev/icons/og-main.jpg",
+            "contentUrl": "https://alexgaming.is-a.dev/icons/og-main.jpg",
+            "encodingFormat": "image/jpeg",
+            "caption": "Profilbild von Alexander Dennhoven"
+          },
+          "url": "https://alexgaming.is-a.dev",
+          "jobTitle": "Software Developer & Architect",
+          "description": "Alexander Dennhoven (alexgamingdev) ist ein deutscher Software-Architekt und Entwickler, spezialisiert auf .NET, C# und Local-first Anwendungen. Er entwickelt unter anderem Officeweb, eine browserbasierte Office-Suite ohne Cloud-Abhängigkeit, sowie arch-it, ein CLI-Tool zur automatisierten Projektstrukturierung. Sein Fokus liegt auf schlanker, datenschutzfreundlicher und offline-fähiger Software.",
+          "nationality": {
+            "@type": "Country",
+            "name": "Germany"
+          },
+          "gender": "Male",
+          "knowsLanguage": [
+            "de",
+            "en",
+            "la"
+          ],
+          "knowsAbout": [
+            {
+              "@type": "Thing",
+              "name": "Software Engineering"
+            },
+            {
+              "@type": "Thing",
+              "name": "CLI Tools"
+            },
+            {
+              "@type": "Thing",
+              "name": "Local-first Apps"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q2370",
+              "name": "C#"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q3857014",
+              "name": ".NET"
+            },
+            {
+              "@type": "Thing",
+              "@id": "https://www.wikidata.org/wiki/Q846636",
+              "name": "Software Architecture"
+            },
+            {
+              "@type": "Thing",
+              "name": "Automation"
+            }
+          ],
+          "sameAs": [
+            "https://www.google.com/search?kgmid=/g/11y_3fjgvj",
+            "https://www.wikidata.org/wiki/Q138410440",
+            "https://github.com/alexgamingdev",
+            "https://www.linkedin.com/in/alexgamingdev/",
+            "https://x.com/alexgamingdev",
+            "https://www.instagram.com/alexgamingdev/",
+            "https://www.tiktok.com/@alexgamingdev",
+            "https://www.youtube.com/@alexgamingdev",
+            "https://www.youtube.com/channel/UCGjpQOhY7XNjvHdb2yj0Nyg",
+            "https://www.twitch.tv/alexgamingdev",
+            "https://bsky.app/profile/alexgaming.is-a.dev",
+            "https://mastodon.social/@alexgamingdev",
+            "https://de.pinterest.com/alexgamingdev/",
+            "https://www.npmjs.com/~alexgamingdev",
+            "https://linktr.ee/alexgamingdev",
+            "https://news.alexgamingdev.tech/",
+            "https://alexgaming.dev"
+          ],
+          "mainEntityOfPage": {
+            "@id": "https://alexgaming.is-a.dev/#webpage"
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "Software Architect",
+            "occupationLocation": {
+              "@type": "Country",
+              "name": "Germany"
+            },
+            "skills": "C#, .NET, Software Architecture, CLI Tools, Local-first Applications"
+          },
+          "founder": {
+            "@id": "https://alexgaming.is-a.dev/#organization"
+          },
+          "subjectOf": [
+            {
+              "@type": "CreativeWork",
+              "url": "https://medium.com/@alexgaming.padh/entwickler-alexgamingdev-k%C3%BCndigt-technische-l%C3%B6sung-f%C3%BCr-windows-11-kompatibilit%C3%A4t-an-55cb568cc941"
+            },
+            {
+              "@type": "CreativeWork",
+              "url": "https://dev.to/alexgamingdev/pressemitteilung-alexgamingdev-kundigt-technische-losung-fur-windows-11-kompatibilitat-und-1fh9"
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://alexgaming.is-a.dev/#organization",
+          "name": "alexgamingdev",
+          "url": "https://alexgaming.is-a.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://alexgaming.is-a.dev/icons/favicon.png",
+            "width": 1024,
+            "height": 1024
+          },
+          "founder": {
+            "@id": "https://alexgaming.is-a.dev/#person"
+          },
+          "sameAs": [
+            "https://github.com/alexgamingdev",
+            "https://www.instagram.com/alexgamingdev/",
+            "https://www.tiktok.com/@alexgamingdev",
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://alexgaming.is-a.dev/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://alexgaming.is-a.dev/about/"
+            }
+          ]
+        }
+      ]
+    }
 ```
 
 ---
