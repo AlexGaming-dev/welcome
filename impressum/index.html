@@ -33,61 +33,32 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "WebSite",
-          "@id": "https://alexgaming.is-a.dev/#website",
-          "name": "Alexander Dennhoven",
-          "alternateName": [
-            "alexgamingdev",
-            "alexgamingdev Portfolio"
-          ],
-          "url": "https://alexgaming.is-a.dev/",
-          "publisher": {
-            "@id": "https://alexgaming.is-a.dev#person"
-          },
-          "author": {
-            "@id": "https://alexgaming.is-a.dev#person"
-          },
-          "mainEntity": {
-            "@id": "https://alexgaming.is-a.dev#person"
-          }
-        },
-        {
-          "@type": "WebPage",
-          "@id": "https://alexgaming.is-a.dev/impressum/#webpage",
-          "url": "https://alexgaming.is-a.dev/impressum/",
-          "name": "Impressum | alexgamingdev",
-          "isPartOf": {
-            "@id": "https://alexgaming.is-a.dev/#website"
-          },
-          "about": {
-            "@id": "https://alexgaming.is-a.dev#person"
-          },
-          "inLanguage": "de"
-        },
-        {
           "@type": "Person",
-          "@id": "https://alexgaming.is-a.dev#person",
-          "name": "Alexander Dennhoven",
+          "@id": "https://alexgaming.is-a.dev/#person",
+          "name": "Alexander Dennhoven (alexgamingdev)",
           "alternateName": [
             "alexgamingdev",
             "alexander.dennhoven",
-            "Alex Gaming Dev"
+            "Alex Gaming Dev",
+            "alexgamingstudio"
           ],
+          "legalName": "Alexander Dennhoven",
           "image": {
             "@type": "ImageObject",
             "@id": "https://alexgaming.is-a.dev/icons/og-main.jpg",
             "url": "https://alexgaming.is-a.dev/icons/og-main.jpg",
             "contentUrl": "https://alexgaming.is-a.dev/icons/og-main.jpg",
-            "caption": "Alexander Dennhoven – Software Architect & Developer"
+            "encodingFormat": "image/jpeg",
+            "caption": "Profilbild von Alexander Dennhoven"
           },
           "url": "https://alexgaming.is-a.dev",
           "jobTitle": "Software Developer & Architect",
-          "description": "Alexander Dennhoven (alexgamingdev) is a software architect specialized in C#, .NET, and local-first applications.",
+          "description": "Alexander Dennhoven (alexgamingdev) ist ein deutscher Software-Architekt und Entwickler, spezialisiert auf .NET, C# und Local-first Anwendungen. Er entwickelt unter anderem Officeweb, eine browserbasierte Office-Suite ohne Cloud-Abhängigkeit, sowie arch-it, ein CLI-Tool zur automatisierten Projektstrukturierung. Sein Fokus liegt auf schlanker, datenschutzfreundlicher und offline-fähiger Software.",
           "nationality": {
             "@type": "Country",
             "name": "Germany"
           },
-          "gender": "male",
+          "gender": "Male",
           "knowsLanguage": [
             "de",
             "en",
@@ -127,6 +98,7 @@
             }
           ],
           "sameAs": [
+            "https://www.google.com/search?kgmid=/g/11y_3fjgvj",
             "https://www.wikidata.org/wiki/Q138410440",
             "https://github.com/alexgamingdev",
             "https://www.linkedin.com/in/alexgamingdev/",
@@ -141,7 +113,8 @@
             "https://de.pinterest.com/alexgamingdev/",
             "https://www.npmjs.com/~alexgamingdev",
             "https://linktr.ee/alexgamingdev",
-            "https://news.alexgamingdev.tech"
+            "https://news.alexgamingdev.tech/",
+            "https://alexgaming.dev"
           ],
           "mainEntityOfPage": {
             "@id": "https://alexgaming.is-a.dev/#webpage"
@@ -156,18 +129,39 @@
             "skills": "C#, .NET, Software Architecture, CLI Tools, Local-first Applications"
           },
           "founder": {
-            "@type": "Organization",
-            "name": "alexgamingdev",
-            "url": "https://alexgaming.is-a.dev",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://alexgaming.is-a.dev/icons/favicon.png",
-              "width": 1024,
-              "height": 1024
+            "@id": "https://alexgaming.is-a.dev/#organization"
+          },
+          "subjectOf": [
+            {
+              "@type": "CreativeWork",
+              "url": "https://medium.com/@alexgaming.padh/entwickler-alexgamingdev-k%C3%BCndigt-technische-l%C3%B6sung-f%C3%BCr-windows-11-kompatibilit%C3%A4t-an-55cb568cc941"
+            },
+            {
+              "@type": "CreativeWork",
+              "url": "https://dev.to/alexgamingdev/pressemitteilung-alexgamingdev-kundigt-technische-losung-fur-windows-11-kompatibilitat-und-1fh9"
             }
-          }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://alexgaming.is-a.dev/#organization",
+          "name": "alexgamingdev",
+          "url": "https://alexgaming.is-a.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://alexgaming.is-a.dev/icons/favicon.png",
+            "width": 1024,
+            "height": 1024
+          },
+          "founder": {
+            "@id": "https://alexgaming.is-a.dev/#person"
+          },
+          "sameAs": [
+            "https://github.com/alexgamingdev",
+            "https://www.instagram.com/alexgamingdev/",
+            "https://www.tiktok.com/@alexgamingdev",
+          ]
         }
-      ]
     }
     </script>
 
@@ -280,7 +274,7 @@
                 <p class="text-white font-bold">Alexander Dennhoven</p>
                 <p class="text-white text-sm">(Anschrift wie oben)</p>
             </div>
-            <a href="/" class="mono px-8 py-3 border border-cyan-500/50 hover:bg-cyan-500/10 transition-all font-bold uppercase tracking-[0.2em] text-cyan-400 text-xs">← Back to Terminal</a>
+            <a href="/" class="mono px-8 py-3 border border-cyan-500/50 hover:bg-cyan-500/10 transition-all font-bold uppercase tracking-[0.2em] text-cyan-400 text-xs">? Back to Terminal</a>
         </section>
     </main>
 
